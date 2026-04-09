@@ -1,441 +1,240 @@
----
-layout: default
-title: Teoria das Janelas Quebradas - Chamada à Ação em Condomínio
-description: Site oficial complementar ao livro de Erigutemberg Meneses. Recursos, jurisprudência e ferramentas para síndicos.
----
-
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="{{ page.description }}">
-  <meta name="author" content="Erigutemberg Meneses">
-  
-  <!-- Open Graph / SEO -->
-  <meta property="og:title" content="{{ page.title }}">
-  <meta property="og:description" content="{{ page.description }}">
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/">
-  <meta property="og:type" content="website">
-  
-  <title>{{ page.title }}</title>
-  
-  <!-- ✅ LINKS DE CSS COM relative_url (COMPATÍVEL LOCAL + PRODUÇÃO) -->
-  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teoria das Janelas Quebradas - Chamada à Ação em Condomínio. Uma obra inovadora que aplica os fundamentos da famosa teoria norte-americana à realidade dos condomínios brasileiros.">
+    <meta name="author" content="Erigutemberg Meneses">
+    <title>Teoria das Janelas Quebradas - Chamada à Ação em Condomínio</title>
+    
+    <!-- REFERÊNCIA DO CSS -->
+    <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
-  
-  <!-- Skip Link para Acessibilidade -->
-  <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
 
-  <!-- Header / Navegação -->
-  <header class="header">
-    <div class="container header__container">
-      <a href="{{ '/' | relative_url }}" class="header__logo">
-        <span class="logo__text">Teoria das Janelas Quebradas</span>
-      </a>
-      
-      <button class="header__toggle" aria-label="Menu" aria-expanded="false">
-        <span class="hamburger"></span>
-      </button>
-      
-      <nav class="header__nav" id="main-nav">
-        <ul class="nav__list">
-          <li><a href="#sobre">Sobre a Obra</a></li>
-          <li><a href="#autor">Autor</a></li>
-          <li><a href="#recursos">Recursos</a></li>
-          <li><a href="#jurisprudencia">Jurisprudência</a></li>
-          <li><a href="#blog">Blog</a></li>
-          <li><a href="#contato">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <!-- Conteúdo Principal -->
-  <main id="main-content">
-    
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container hero__content">
-        <span class="hero__badge">Lançamento</span>
-        <h1 class="hero__title">Teoria das Janelas Quebradas</h1>
-        <p class="hero__subtitle">Chamada à Ação em Condomínio</p>
-        <p class="hero__author">por <strong>Erigutemberg Meneses</strong></p>
-        <p class="hero__description">
-          Uma obra inovadora que aplica os fundamentos da famosa teoria norte-americana 
-          à realidade dos condomínios brasileiros. Conservação, governança e gestão 
-          de pessoas para uma administração eficiente.
-        </p>
-        <div class="hero__actions">
-          <a href="#comprar" class="btn btn--primary">Comprar Livro</a>
-          <a href="#recursos" class="btn btn--secondary">Baixar Recursos</a>
+    <!-- HEADER PRINCIPAL -->
+    <header class="main-header">
+        <div class="container">
+            <div class="badge">LANÇAMENTO</div>
+            <h1>Teoria das Janelas Quebradas</h1>
+            <p class="tagline">Chamada à Ação em Condomínio</p>
+            <p style="margin-top: 20px; font-size: 1.1rem;">por Erigutemberg Meneses</p>
         </div>
-      </div>
-      <div class="hero__book-cover">
-        <img src="{{ '/assets/img/capa-livro.jpg' | relative_url }}" alt="Capa do livro Teoria das Janelas Quebradas" loading="lazy">
-      </div>
-    </section>
+    </header>
 
-    <!-- Sobre a Obra -->
-    <section id="sobre" class="section section--about">
-      <div class="container">
-        <h2 class="section__title">Sobre a Obra</h2>
-        <p class="section__subtitle">Uma nova abordagem para a gestão condominial</p>
+    <div class="container">
         
-        <div class="about__grid">
-          <div class="about__text">
+        <!-- SEÇÃO SOBRE A OBRA -->
+        <section class="section">
+            <h2>Sobre a Obra</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">Uma nova abordagem para a gestão condominial</p>
+            
             <p><strong>Teoria das Janelas Quebradas: Chamada à ação em condomínios</strong> é uma obra que revoluciona a maneira de administrar condomínios, aplicando os pilares da famosa teoria norte-americana ao universo condominial.</p>
-            <p>Desenvolvida originalmente pelos americanos James Wilson e George Kelling, a teoria demonstra que pequenas desordens — como uma janela quebrada e não reparada — criam um ambiente propício para transgressões maiores.</p>
-            <p>Neste livro, o autor inova ao ampliar o conceito para além do espaço urbano, abordando a manutenção preventiva de empreendimentos condominiais sob o prisma da legislação, gestão de pessoas e governança condominial.</p>
-          </div>
-          <ul class="about__highlights">
-            <li><i class="fas fa-check-circle"></i> Base legal completa</li>
-            <li><i class="fas fa-check-circle"></i> Gestão profissional</li>
-            <li><i class="fas fa-check-circle"></i> Governança participativa</li>
-            <li><i class="fas fa-check-circle"></i> Ferramentas práticas (5S, ISO, MEG)</li>
-          </ul>
-        </div>
+            
+            <p style="margin-top: 15px;">Desenvolvida originalmente pelos americanos James Wilson e George Kelling, a teoria demonstra que pequenas desordens — como uma janela quebrada e não reparada — criam um ambiente propício para transgressões maiores.</p>
+            
+            <p style="margin-top: 15px;">Neste livro, o autor inova ao ampliar o conceito para além do espaço urbano, abordando a manutenção preventiva de empreendimentos condominiais sob o prisma da legislação, gestão de pessoas e governança condominial.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <strong>📚 Base legal completa</strong>
+                    <p>Fundamentação jurídica sólida</p>
+                </div>
+                <div class="feature-card">
+                    <strong>🎯 Gestão profissional</strong>
+                    <p>Metodologias comprovadas</p>
+                </div>
+                <div class="feature-card">
+                    <strong>👥 Governança participativa</strong>
+                    <p>Envolvimento dos condôminos</p>
+                </div>
+                <div class="feature-card">
+                    <strong>🛠️ Ferramentas práticas</strong>
+                    <p>5S, ISO, MEG e muito mais</p>
+                </div>
+            </div>
+        </section>
 
-        <!-- Ficha Técnica -->
-        <div class="tech-specs">
-          <h3>Ficha Técnica</h3>
-          <dl class="specs__list">
-            <dt>Autor</dt><dd>Erigutemberg Meneses</dd>
-            <dt>Gênero</dt><dd>Direito Civil / Administração</dd>
-            <dt>Páginas</dt><dd>320</dd>
-            <dt>Ano</dt><dd>2024</dd>
-            <dt>ISBN</dt><dd>978-85-XXX-XXXX-X</dd>
-          </dl>
-          <div class="specs__actions">
-            <a href="#comprar" class="btn btn--primary">Comprar Livro</a>
-            <a href="#ebook" class="btn btn--outline">E-book</a>
-          </div>
-        </div>
-      </div>
-    </section>
+        <!-- FICHA TÉCNICA -->
+        <section class="section">
+            <h2>Ficha Técnica</h2>
+            <div class="tech-specs">
+                <p><strong>Autor:</strong> Erigutemberg Meneses</p>
+                <p><strong>Gênero:</strong> Direito Civil / Administração</p>
+                <p><strong>Páginas:</strong> 320</p>
+                <p><strong>Ano:</strong> 2024</p>
+                <p><strong>ISBN:</strong> 978-85-XXX-XXXX-X</p>
+            </div>
+        </section>
 
-    <!-- Sobre o Autor -->
-    <section id="autor" class="section section--author">
-      <div class="container">
-        <h2 class="section__title">Quem Escreveu</h2>
-        <div class="author__grid">
-          <div class="author__photo">
-            <img src="{{ '/assets/img/autor.jpg' | relative_url }}" alt="Erigutemberg Meneses" loading="lazy">
-          </div>
-          <div class="author__info">
+        <!-- QUEM ESCREVEU -->
+        <section class="section">
+            <h2>Quem Escreveu</h2>
             <h3>Erigutemberg Meneses</h3>
-            <p class="author__role">Advogado, economista, técnico em contabilidade e síndico profissional</p>
+            <p style="font-style: italic; margin-bottom: 15px;">Advogado, economista, técnico em contabilidade e síndico profissional</p>
+            
             <p>Empresta seu conhecimento e experiência adquirida ao longo dos anos como economista, gestor em empresa pública e na sindicância de seu condomínio.</p>
-            <p>Esta é sua primeira obra de caráter técnico, demonstrando estilo leve na exposição de temas complexos da gestão condominial.</p>
-            <ul class="author__credentials">
-              <li><i class="fas fa-graduation-cap"></i> Advogado especialista em Direito Condominial</li>
-              <li><i class="fas fa-chart-line"></i> Economista com pós-graduação em Gestão Estratégica</li>
-              <li><i class="fas fa-id-card"></i> Síndico profissional certificado</li>
-              <li><i class="fas fa-microphone"></i> Palestrante e consultor em gestão condominial</li>
+            
+            <p style="margin-top: 15px;">Esta é sua primeira obra de caráter técnico, demonstrando estilo leve na exposição de temas complexos da gestão condominial.</p>
+            
+            <ul style="margin-top: 20px; list-style-position: inside;">
+                <li>⚖️ Advogado especialista em Direito Condominial</li>
+                <li>📊 Economista com pós-graduação em Gestão Estratégica</li>
+                <li>🏢 Síndico profissional certificado</li>
+                <li>🎤 Palestrante e consultor em gestão condominial</li>
             </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
 
-    <!-- Recursos -->
-    <section id="recursos" class="section section--resources">
-      <div class="container">
-        <h2 class="section__title">Materiais Complementares</h2>
-        <p class="section__subtitle">Recursos para Síndicos — Ferramentas práticas para download</p>
-        
-        <div class="resources__grid">
-          <!-- Recurso 1 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-clipboard-check"></i></div>
-            <h3>Checklist Diário do Zelador</h3>
-            <p>Roteiro completo de tarefas diárias para manutenção preventiva.</p>
-            <span class="resource-card__format">PDF</span>
-            <button class="btn btn--small btn--download" data-resource="checklist-diario" data-format="pdf">Download</button>
-          </article>
-          
-          <!-- Recurso 2 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-calendar-week"></i></div>
-            <h3>Checklist Semanal</h3>
-            <p>Atividades semanais para elevadores, gerador e áreas comuns.</p>
-            <span class="resource-card__format">PDF</span>
-            <button class="btn btn--small btn--download" data-resource="checklist-semanal" data-format="pdf">Download</button>
-          </article>
-          
-          <!-- Recurso 3 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-building"></i></div>
-            <h3>Roteiro de Inspeção Predial</h3>
-            <p>Checklist completo para vistoria técnica da edificação.</p>
-            <span class="resource-card__format">PDF</span>
-            <button class="btn btn--small btn--download" data-resource="inspecao-predial" data-format="pdf">Download</button>
-          </article>
-          
-          <!-- Recurso 4 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-file-contract"></i></div>
-            <h3>Modelo de Ata de Assembleia</h3>
-            <p>Template editável em Word para atas de assembleias.</p>
-            <span class="resource-card__format">DOCX</span>
-            <button class="btn btn--small btn--download" data-resource="ata-assembleia" data-format="docx">Download</button>
-          </article>
-          
-          <!-- Recurso 5 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-file-excel"></i></div>
-            <h3>Planilha de Inadimplência</h3>
-            <p>Planilha Excel para controle de inadimplência e multas.</p>
-            <span class="resource-card__format">XLSX</span>
-            <button class="btn btn--small btn--download" data-resource="planilha-inadimplencia" data-format="xlsx">Download</button>
-          </article>
-          
-          <!-- Recurso 6 -->
-          <article class="resource-card">
-            <div class="resource-card__icon"><i class="fas fa-sort-amount-down"></i></div>
-            <h3>Guia de Implantação do 5S</h3>
-            <p>Passo a passo para implementar o Programa 5S no condomínio.</p>
-            <span class="resource-card__format">PDF</span>
-            <button class="btn btn--small btn--download" data-resource="guia-5s" data-format="pdf">Download</button>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Jurisprudência -->
-    <section id="jurisprudencia" class="section section--jurisprudencia">
-      <div class="container">
-        <h2 class="section__title">Decisões dos Tribunais</h2>
-        <p class="section__subtitle">Principais precedentes sobre condomínios — atualizados semestralmente</p>
-        
-        <!-- Filtros -->
-        <div class="jurisprudencia__filters">
-          <button class="filter-btn active" data-filter="all">Todos</button>
-          <button class="filter-btn" data-filter="multa">Multas</button>
-          <button class="filter-btn" data-filter="exclusao">Exclusão</button>
-          <button class="filter-btn" data-filter="responsabilidade">Responsabilidade do Síndico</button>
-        </div>
-        
-        <!-- Cards de Jurisprudência -->
-        <div class="jurisprudencia__grid">
-          <article class="juris-card" data-category="multa">
-            <span class="juris-card__tag tag--multa">Multa</span>
-            <h3>Multa por barulho não exige assembleia prévia</h3>
-            <p class="juris-card__court">STJ - REsp 1.169.865/DF</p>
-            <p>O síndico pode aplicar multa prevista na Convenção sem necessidade de deliberação assemblear prévia, desde que assegurado o contraditório posterior.</p>
-          </article>
-          
-          <article class="juris-card" data-category="exclusao">
-            <span class="juris-card__tag tag--exclusao">Exclusão</span>
-            <h3>Exclusão de condômino antissocial</h3>
-            <p class="juris-card__court">TJ-SP - Apelação 668.403.4/6</p>
-            <p>A exclusão do condômino não está prevista no Código Civil. Em casos gravíssimos, depende de ação judicial autorizada pela assembleia.</p>
-          </article>
-          
-          <article class="juris-card" data-category="responsabilidade">
-            <span class="juris-card__tag tag--responsabilidade">Responsabilidade</span>
-            <h3>Síndico responde por omissão na manutenção</h3>
-            <p class="juris-card__court">TJ-SP - Apelação 9125473-28.2009.8.26.0000</p>
-            <p>O síndico que deixa de realizar manutenção preventiva em elevadores responde civil e criminalmente por acidentes dela decorrentes.</p>
-          </article>
-          
-          <article class="juris-card" data-category="multa">
-            <span class="juris-card__tag tag--multa">Multa</span>
-            <h3>Multa de até 10x para conduta antissocial</h3>
-            <p class="juris-card__court">TJ-RJ - Apelação 0042255-53.2009.8.19.0001</p>
-            <p>Comprovada a reiteração de conduta antissocial, a assembleia pode aplicar multa de até 10 vezes o valor da contribuição mensal.</p>
-          </article>
-          
-          <article class="juris-card" data-category="responsabilidade">
-            <span class="juris-card__tag tag--responsabilidade">Responsabilidade</span>
-            <h3>Condomínio responde por agressão de condômino</h3>
-            <p class="juris-card__court">TST - RR 849-39.2012.5.09.0013</p>
-            <p>O condomínio responde civilmente por danos causados por condômino a funcionário, com direito de regresso contra o agressor.</p>
-          </article>
-          
-          <article class="juris-card" data-category="exclusao">
-            <span class="juris-card__tag tag--exclusao">Exclusão</span>
-            <h3>Exclusão autorizada em caso gravíssimo</h3>
-            <p class="juris-card__court">TJ-PR - Apelação 957743-1</p>
-            <p>Em caso de estupro e cárcere privado na unidade, o tribunal autorizou a exclusão do proprietário do condomínio por via judicial.</p>
-          </article>
-        </div>
-        
-        <p class="jurisprudencia__update">Última atualização: <time datetime="2026-04">Abril/2026</time></p>
-        <a href="#" class="btn btn--outline">Ver todas as decisões</a>
-      </div>
-    </section>
-
-    <!-- Blog -->
-    <section id="blog" class="section section--blog">
-      <div class="container">
-        <h2 class="section__title">Artigos e Análises</h2>
-        <p class="section__subtitle">Blog do Síndico</p>
-        
-        <div class="blog__grid">
-          <article class="blog-card">
-            <time datetime="2026-04-10">10 Abr</time>
-            <h3><a href="#">STJ decide: multa por barulho não exige assembleia prévia</a></h3>
-            <p>Entenda o recente julgamento que consolidou o entendimento sobre aplicação de multas...</p>
-            <a href="#" class="blog-card__link">Ler mais →</a>
-          </article>
-          
-          <article class="blog-card">
-            <time datetime="2026-03-25">25 Mar</time>
-            <h3><a href="#">Como agir em caso de ameaça entre condôminos</a></h3>
-            <p>O síndico pode chamar a polícia? Qual a responsabilidade do condomínio? Guia prático...</p>
-            <a href="#" class="blog-card__link">Ler mais →</a>
-          </article>
-          
-          <article class="blog-card">
-            <time datetime="2026-03-10">10 Mar</time>
-            <h3><a href="#">Passo a passo da inspeção predial (com checklist)</a></h3>
-            <p>A NBR 5674 exige planejamento anual da manutenção. Saiba como organizar...</p>
-            <a href="#" class="blog-card__link">Ler mais →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section section--faq">
-      <div class="container">
-        <h2 class="section__title">Dúvidas Frequentes</h2>
-        
-        <div class="faq__list">
-          <details class="faq-item">
-            <summary>O síndico pode aplicar multa sem assembleia?</summary>
-            <p>Sim, desde que a Convenção ou o Regimento Interno prevejam a aplicação da multa. É obrigatória a notificação prévia do infrator e a garantia de ampla defesa.</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>É possível excluir um condômino antissocial?</summary>
-            <p>A exclusão não pode ser feita pelo síndico ou pela assembleia. Depende de ação judicial, autorizada pela assembleia, em casos gravíssimos.</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>Qual o limite da multa por comportamento antissocial?</summary>
-            <p>O Código Civil (art. 1.337) permite multa de até 10 vezes o valor da contribuição mensal do condômino.</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>O síndico pode entrar no apartamento sem autorização?</summary>
-            <p>Não. A Constituição Federal (art. 5º, XI) garante a inviolabilidade do domicílio.</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>O CDC se aplica à relação condomínio-condômino?</summary>
-            <p>Não. O Código de Defesa do Consumidor não se aplica às relações entre o condomínio e seus condôminos.</p>
-          </details>
-          
-          <details class="faq-item">
-            <summary>O que fazer em caso de inadimplência?</summary>
-            <p>O síndico deve notificar o devedor extrajudicialmente. Persistindo, o condomínio pode cobrar judicialmente.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contato -->
-    <section id="contato" class="section section--contact">
-      <div class="container">
-        <h2 class="section__title">Fale com o Autor</h2>
-        <p class="section__subtitle">Para palestras, cursos, consultorias ou parcerias, entre em contato.</p>
-        
-        <div class="contact__grid">
-          <div class="contact__info">
-            <a href="mailto:contato@teoriadasjanelasquebradas.com.br" class="contact__link">
-              <i class="fas fa-envelope"></i> contato@teoriadasjanelasquebradas.com.br
-            </a>
-            <div class="contact__social">
-              <a href="https://instagram.com/erigutembergmenezes" target="_blank" rel="noopener" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a href="https://linkedin.com/in/erigutemberg-meneses" target="_blank" rel="noopener" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-              </a>
-              <a href="{{ '/contato' | relative_url }}" aria-label="Formulário de contato">
-                <i class="fas fa-paper-plane"></i>
-              </a>
+        <!-- DECISÕES DOS TRIBUNAIS -->
+        <section class="section">
+            <h2>Decisões dos Tribunais</h2>
+            <p style="margin-bottom: 20px;">Principais precedentes sobre condomínios — atualizados semestralmente</p>
+            
+            <div class="cards-container">
+                <div class="card">
+                    <h3>Multa por barulho não exige assembleia prévia</h3>
+                    <div class="citation">STJ - REsp 1.169.865/DF</div>
+                    <p>O síndico pode aplicar multa prevista na Convenção sem necessidade de deliberação assemblear prévia, desde que assegurado o contraditório posterior.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Exclusão de condômino antissocial</h3>
+                    <div class="citation">TJ-SP - Apelação 668.403.4/6</div>
+                    <p>A exclusão do condômino não está prevista no Código Civil. Em casos gravíssimos, depende de ação judicial autorizada pela assembleia.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Síndico responde por omissão na manutenção</h3>
+                    <div class="citation">TJ-SP - Apelação 9125473-28.2009.8.26.0000</div>
+                    <p>O síndico que deixa de realizar manutenção preventiva em elevadores responde civil e criminalmente por acidentes dela decorrentes.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Multa de até 10x para conduta antissocial</h3>
+                    <div class="citation">TJ-RJ - Apelação 0042255-53.2009.8.19.0001</div>
+                    <p>Comprovada a reiteração de conduta antissocial, a assembleia pode aplicar multa de até 10 vezes o valor da contribuição mensal.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Condomínio responde por agressão de condômino</h3>
+                    <div class="citation">TST - RR 849-39.2012.5.09.0013</div>
+                    <p>O condomínio responde civilmente por danos causados por condômino a funcionário, com direito de regresso contra o agressor.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Exclusão autorizada em caso gravíssimo</h3>
+                    <div class="citation">TJ-PR - Apelação 957743-1</div>
+                    <p>Em caso de estupro e cárcere privado na unidade, o tribunal autorizou a exclusão do proprietário do condomínio por via judicial.</p>
+                </div>
             </div>
-          </div>
-          
-          <form class="contact__form" id="newsletter-form">
-            <h3>Receba atualizações</h3>
-            <p>Inscreva-se para receber novos artigos, atualizações de jurisprudência e recursos gratuitos.</p>
-            <div class="form__group">
-              <label for="email" class="visually-hidden">Seu e-mail</label>
-              <input type="email" id="email" name="email" placeholder="seu@email.com" required>
-              <button type="submit" class="btn btn--primary">Assinar</button>
+            
+            <a href="#" class="btn-view-all">Ver todas as decisões →</a>
+            <div class="update-date">Última atualização: Abril de 2026</div>
+        </section>
+
+        <!-- ARTIGOS E ANÁLISES -->
+        <section class="section">
+            <h2>Artigos e Análises</h2>
+            <p style="margin-bottom: 20px;">Blog do Síndico</p>
+            
+            <div class="articles-list">
+                <div class="article-item">
+                    <h3>STJ decide: multa por barulho não exige assembleia prévia</h3>
+                    <p>Entenda o recente julgamento que consolidou o entendimento sobre aplicação de multas...</p>
+                    <a href="#" class="article-link">Ler mais →</a>
+                </div>
+                
+                <div class="article-item">
+                    <h3>Como agir em caso de ameaça entre condôminos</h3>
+                    <p>O síndico pode chamar a polícia? Qual a responsabilidade do condomínio? Guia prático...</p>
+                    <a href="#" class="article-link">Ler mais →</a>
+                </div>
+                
+                <div class="article-item">
+                    <h3>Passo a passo da inspeção predial (com checklist)</h3>
+                    <p>A NBR 5674 exige planejamento anual da manutenção. Saiba como organizar...</p>
+                    <a href="#" class="article-link">Ler mais →</a>
+                </div>
             </div>
-            <p class="form__note"><small>Não enviamos spam. Você pode cancelar a inscrição a qualquer momento.</small></p>
-          </form>
+        </section>
+
+        <!-- DÚVIDAS FREQUENTES -->
+        <section class="section">
+            <h2>Dúvidas Frequentes</h2>
+            
+            <div class="faq-item">
+                <strong>O síndico pode aplicar multa sem assembleia?</strong>
+                <p>Sim, desde que a Convenção ou o Regimento Interno prevejam a aplicação da multa. É obrigatória a notificação prévia do infrator e a garantia de ampla defesa.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>É possível excluir um condômino antissocial?</strong>
+                <p>A exclusão não pode ser feita pelo síndico ou pela assembleia. Depende de ação judicial, autorizada pela assembleia, em casos gravíssimos.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>Qual o limite da multa por comportamento antissocial?</strong>
+                <p>O Código Civil (art. 1.337) permite multa de até 10 vezes o valor da contribuição mensal do condômino.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>O síndico pode entrar no apartamento sem autorização?</strong>
+                <p>Não. A Constituição Federal (art. 5º, XI) garante a inviolabilidade do domicílio.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>O CDC se aplica à relação condomínio-condômino?</strong>
+                <p>Não. O Código de Defesa do Consumidor não se aplica às relações entre o condomínio e seus condôminos.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>O que fazer em caso de inadimplência?</strong>
+                <p>O síndico deve notificar o devedor extrajudicialmente. Persistindo, o condomínio pode cobrar judicialmente.</p>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <h2 style="color: white; margin-bottom: 15px;">Receba atualizações</h2>
+            <p style="margin-bottom: 20px;">Inscreva-se para receber novos artigos, atualizações de jurisprudência e recursos gratuitos.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Seu melhor e-mail" required>
+                <button type="submit" class="btn-newsletter">Inscrever-se</button>
+            </form>
+            <p style="font-size: 0.85rem; margin-top: 15px;">Não enviamos spam. Você pode cancelar a inscrição a qualquer momento.</p>
+        </section>
+
+        <!-- CONTATO -->
+        <section class="section">
+            <h2>Fale com o Autor</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Para palestras, cursos, consultorias ou parcerias, entre em contato.</p>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Seu e-mail" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Assunto">
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Sua mensagem" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar mensagem</button>
+            </form>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2024 - Teoria das Janelas Quebradas - Todos os direitos reservados</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Erigutemberg Meneses | Advogado, Economista e Síndico Profissional</p>
         </div>
-      </div>
-    </section>
+    </footer>
 
-  </main>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container footer__content">
-      <p>&copy; {{ site.time | date: '%Y' }} Erigutemberg Meneses. Todos os direitos reservados.</p>
-      <p><small>Site complementar ao livro "Teoria das Janelas Quebradas". ISBN: 978-85-XXX-XXXX-X</small></p>
-    </div>
-  </footer>
-
-  <!-- Modal de Download -->
-  <dialog id="download-modal" class="modal">
-    <div class="modal__content">
-      <button class="modal__close" aria-label="Fechar">&times;</button>
-      <h3 id="modal-title">Baixar Recurso</h3>
-      <form id="download-form">
-        <p>Para receber o arquivo, informe seu e-mail:</p>
-        <input type="email" name="email" placeholder="seu@email.com" required>
-        <input type="hidden" id="resource-name" name="resource">
-        <input type="hidden" id="resource-format" name="format">
-        <button type="submit" class="btn btn--primary">Enviar Arquivo</button>
-      </form>
-      <p class="modal__note"><small>Seus dados serão usados apenas para enviar o recurso solicitado.</small></p>
-    </div>
-  </dialog>
-
-  <!-- Botão Voltar ao Topo -->
-  <button id="back-to-top" class="back-to-top" aria-label="Voltar ao topo">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- ✅ SCRIPT COM relative_url (COMPATÍVEL LOCAL + PRODUÇÃO) -->
-  <script src="{{ '/js/script.js' | relative_url }}"></script>
-  
-  <!-- Schema.org Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Book",
-    "name": "Teoria das Janelas Quebradas: Chamada à Ação em Condomínio",
-    "author": {
-      "@type": "Person",
-      "name": "Erigutemberg Meneses"
-    },
-    "description": "Uma obra inovadora que aplica os fundamentos da famosa teoria norte-americana à realidade dos condomínios brasileiros.",
-    "isbn": "978-85-XXX-XXXX-X",
-    "numberOfPages": 320,
-    "bookFormat": "https://schema.org/Paperback",
-    "inLanguage": "pt-BR",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Editora do Autor"
-    }
-  }
-  </script>
 </body>
 </html>
