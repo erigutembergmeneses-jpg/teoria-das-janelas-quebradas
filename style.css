@@ -1,6 +1,6 @@
 /* ============================================
-   ESTILO LEVE - MANTÉM O LAYOUT ORIGINAL
-   Apenas melhora fontes, cores e espaçamentos
+   TEORIA DAS JANELAS QUEBRADAS - SITE COMPLEMENTAR
+   Estilo baseado no modelo Conselho Fiscal
    ============================================ */
 
 * {
@@ -9,211 +9,261 @@
     box-sizing: border-box;
 }
 
+:root {
+    --primary: #1e3c72;
+    --primary-dark: #0f2a4a;
+    --secondary: #2a5298;
+    --accent: #e74c3c;
+    --accent-light: #f39c12;
+    --gray-light: #f8fafc;
+    --gray: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-hover: 0 10px 15px rgba(0,0,0,0.1);
+    --radius: 12px;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #1e293b;
-    background: #f0f2f5;
-    padding: 20px;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, #f0f2f5 0%, #e2e8f0 100%);
+    min-height: 100vh;
 }
 
-/* Container centralizado */
-body > * {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-/* Cabeçalho */
-body > :first-child {
+/* HEADER */
+.main-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: var(--white);
+    padding: 60px 0 40px;
     text-align: center;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    padding: 40px;
-    border-radius: 12px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    border-bottom: 4px solid var(--accent);
 }
 
-body > :first-child .badge,
-body > :first-child :first-child {
+.badge {
     display: inline-block;
-    background: #e74c3c;
+    background: var(--accent);
     padding: 5px 15px;
-    border-radius: 20px;
+    border-radius: 50px;
     font-size: 0.8rem;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
-body > :first-child h1 {
-    font-size: 2.5rem;
+.main-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.tagline {
+    font-size: 1.2rem;
+    opacity: 0.95;
     margin-bottom: 10px;
 }
 
-body > :first-child p {
-    font-size: 1.1rem;
-    opacity: 0.95;
+.author {
+    font-size: 1rem;
+    opacity: 0.85;
+    margin-bottom: 30px;
 }
 
-/* Todas as seções com fundo branco */
-section, 
-body > div:not(.container),
-body > :not(:first-child):not(:last-child) {
-    background: white;
-    padding: 30px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.header-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-/* Títulos principais (h2) */
-h2 {
-    color: #1e3c72;
-    border-left: 4px solid #e74c3c;
-    padding-left: 15px;
-    margin-bottom: 20px;
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--white);
+    color: var(--white);
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-outline:hover {
+    background: var(--white);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* SEÇÕES */
+.section {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.section h2 {
+    color: var(--primary);
+    border-left: 5px solid var(--accent);
+    padding-left: 20px;
+    margin-bottom: 30px;
     font-size: 1.8rem;
 }
 
-/* Subtítulos (h3) */
-h3 {
-    color: #2a5298;
-    margin: 20px 0 10px 0;
-}
-
-/* Grid dos 4 cards de features */
-body > :nth-child(2) > :last-child {
+/* CARDS GRID */
+.cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
 }
 
-body > :nth-child(2) > :last-child > div {
-    background: #f8fafc;
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
+.card {
+    background: var(--gray-light);
+    border-radius: var(--radius);
+    padding: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--gray);
 }
 
-body > :nth-child(2) > :last-child strong {
-    display: block;
-    color: #1e3c72;
-    margin-bottom: 5px;
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent-light);
 }
 
-/* Ficha Técnica */
-p strong:first-child {
-    color: #1e3c72;
-    display: inline-block;
-    min-width: 100px;
-}
-
-/* Lista de ícones (⚖️ 📊 🏢 🎤) */
-ul {
-    list-style: none;
-    margin-top: 15px;
-}
-
-ul li {
-    padding: 5px 0;
-}
-
-/* Cards de decisões judiciais - mantém como lista, apenas estilo */
-body > :nth-child(5) > div {
-    background: #f8fafc;
+.card-icon {
+    font-size: 2.5rem;
     margin-bottom: 15px;
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 3px solid #f39c12;
 }
 
-body > :nth-child(5) > div strong {
-    color: #1e3c72;
-    display: block;
-    margin-bottom: 5px;
+.card h3 {
+    color: var(--primary);
+    font-size: 1.2rem;
+    margin-bottom: 12px;
 }
 
-body > :nth-child(5) > div em {
-    color: #64748b;
-    font-size: 0.85rem;
-    display: block;
-    margin: 5px 0;
+.card p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
-/* Botão "Ver todas as decisões" */
-a {
+.btn-card {
     display: inline-block;
-    background: #1e3c72;
-    color: white;
-    padding: 8px 20px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 8px 16px;
     border-radius: 6px;
     text-decoration: none;
-    margin-top: 15px;
-}
-
-a:hover {
-    background: #2a5298;
-}
-
-/* Data de atualização */
-body > :nth-child(5) > :last-child {
-    text-align: right;
-    font-style: italic;
-    color: #64748b;
     font-size: 0.85rem;
-    background: transparent;
-    padding: 0;
+    transition: background 0.3s ease;
 }
 
-/* Artigos e Análises */
-body > :nth-child(6) > div {
-    background: #f8fafc;
-    padding: 15px;
-    margin-bottom: 15px;
+.btn-card:hover {
+    background: var(--secondary);
+}
+
+/* QR Code placeholder */
+.qrcode-placeholder {
+    background: #ddd;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
     border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-light);
 }
 
-body > :nth-child(6) a {
-    background: transparent;
-    color: #e74c3c;
-    padding: 0;
-    margin-top: 5px;
+/* Mini form */
+.mini-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.mini-form input {
+    padding: 8px;
+    border: 1px solid var(--gray);
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.mini-form button {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
     font-weight: bold;
 }
 
-body > :nth-child(6) a:hover {
+.mini-form button:hover {
+    background: #c0392b;
+}
+
+/* FOOTER */
+.main-footer {
+    background: var(--primary-dark);
+    color: var(--white);
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 40px;
+}
+
+.main-footer p {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-links a:hover {
     text-decoration: underline;
 }
 
-/* Footer */
-body > :last-child {
-    text-align: center;
-    background: #0f172a;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 30px;
-}
-
-/* Responsivo */
+/* RESPONSIVO */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
+    .main-header h1 {
+        font-size: 2rem;
     }
     
-    body > :first-child h1 {
-        font-size: 1.8rem;
-    }
-    
-    body > :first-child,
-    section,
-    body > div:not(.container),
-    body > :not(:first-child):not(:last-child) {
+    .section {
         padding: 20px;
     }
     
-    h2 {
-        font-size: 1.5rem;
+    .section h2 {
+        font-size: 1.4rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-links {
+        flex-direction: column;
+        align-items: center;
     }
 }
