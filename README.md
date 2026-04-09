@@ -28,7 +28,7 @@ Site oficial complementar ao livro **"Teoria das Janelas Quebradas: Chamada à A
 - **SEO:** `jekyll-seo-tag`, meta tags dinâmicas, Structured Data
 
 ## 📁 Estrutura de Pastas
-teoria-das-janelas-quebradas/
+eoria-das-janelas-quebradas/
 ├── _config.yml # Configurações do Jekyll e GitHub Pages
 ├── index.html # Página principal (Landing Page)
 ├── css/
@@ -41,7 +41,14 @@ teoria-das-janelas-quebradas/
 └── README.md # Documentação do projeto
 
 ## 💻 Como Executar Localmente
+
 > ⚠️ Opcional. O GitHub Pages faz o build automaticamente a cada push.
+
+### Pré-requisitos
+- Ruby ≥ 2.7 instalado ([guia de instalação](https://www.ruby-lang.org/pt/documentation/installation/))
+- Bundler: `gem install bundler`
+
+### Passo a passo
 
 1. Clone o repositório:
    ```bash
