@@ -20,15 +20,15 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
   
   <title>{{ page.title }}</title>
   
-  <!-- ⚠️ LINKS DE CSS COM BASEURL (CORREÇÃO PRINCIPAL) -->
-  <link rel="stylesheet" href="{{ site.baseurl }}/css/style.css">
+  <!-- ✅ LINKS DE CSS COM relative_url (COMPATÍVEL LOCAL + PRODUÇÃO) -->
+  <link rel="stylesheet" href="{{ '/css/style.css' | relative_url }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="{{ '/assets/img/favicon.png' | relative_url }}">
 </head>
 <body>
   
@@ -38,7 +38,7 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
   <!-- Header / Navegação -->
   <header class="header">
     <div class="container header__container">
-      <a href="{{ site.baseurl }}/" class="header__logo">
+      <a href="{{ '/' | relative_url }}" class="header__logo">
         <span class="logo__text">Teoria das Janelas Quebradas</span>
       </a>
       
@@ -48,12 +48,12 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
       
       <nav class="header__nav" id="main-nav">
         <ul class="nav__list">
-          <li><a href="{{ site.baseurl }}/#sobre">Sobre a Obra</a></li>
-          <li><a href="{{ site.baseurl }}/#autor">Autor</a></li>
-          <li><a href="{{ site.baseurl }}/#recursos">Recursos</a></li>
-          <li><a href="{{ site.baseurl }}/#jurisprudencia">Jurisprudência</a></li>
-          <li><a href="{{ site.baseurl }}/#blog">Blog</a></li>
-          <li><a href="{{ site.baseurl }}/#contato">Contato</a></li>
+          <li><a href="#sobre">Sobre a Obra</a></li>
+          <li><a href="#autor">Autor</a></li>
+          <li><a href="#recursos">Recursos</a></li>
+          <li><a href="#jurisprudencia">Jurisprudência</a></li>
+          <li><a href="#blog">Blog</a></li>
+          <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
     </div>
@@ -80,7 +80,7 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
         </div>
       </div>
       <div class="hero__book-cover">
-        <img src="{{ site.baseurl }}/assets/img/capa-livro.jpg" alt="Capa do livro Teoria das Janelas Quebradas" loading="lazy">
+        <img src="{{ '/assets/img/capa-livro.jpg' | relative_url }}" alt="Capa do livro Teoria das Janelas Quebradas" loading="lazy">
       </div>
     </section>
 
@@ -128,7 +128,7 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
         <h2 class="section__title">Quem Escreveu</h2>
         <div class="author__grid">
           <div class="author__photo">
-            <img src="{{ site.baseurl }}/assets/img/autor.jpg" alt="Erigutemberg Meneses" loading="lazy">
+            <img src="{{ '/assets/img/autor.jpg' | relative_url }}" alt="Erigutemberg Meneses" loading="lazy">
           </div>
           <div class="author__info">
             <h3>Erigutemberg Meneses</h3>
@@ -362,7 +362,7 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
               <a href="https://linkedin.com/in/erigutemberg-meneses" target="_blank" rel="noopener" aria-label="LinkedIn">
                 <i class="fab fa-linkedin-in"></i>
               </a>
-              <a href="{{ site.baseurl }}/contato" aria-label="Formulário de contato">
+              <a href="{{ '/contato' | relative_url }}" aria-label="Formulário de contato">
                 <i class="fas fa-paper-plane"></i>
               </a>
             </div>
@@ -376,7 +376,7 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
               <input type="email" id="email" name="email" placeholder="seu@email.com" required>
               <button type="submit" class="btn btn--primary">Assinar</button>
             </div>
-            <p class="form__note">Não enviamos spam. Você pode cancelar a inscrição a qualquer momento.</p>
+            <p class="form__note"><small>Não enviamos spam. Você pode cancelar a inscrição a qualquer momento.</small></p>
           </form>
         </div>
       </div>
@@ -413,8 +413,8 @@ description: Site oficial complementar ao livro de Erigutemberg Meneses. Recurso
     <i class="fas fa-arrow-up"></i>
   </button>
 
-  <!-- ⚠️ SCRIPT COM BASEURL (CORREÇÃO PRINCIPAL) -->
-  <script src="{{ site.baseurl }}/js/script.js"></script>
+  <!-- ✅ SCRIPT COM relative_url (COMPATÍVEL LOCAL + PRODUÇÃO) -->
+  <script src="{{ '/js/script.js' | relative_url }}"></script>
   
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
