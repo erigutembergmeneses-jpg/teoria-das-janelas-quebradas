@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Teoria das Janelas Quebradas | Condomínio em Ação</title>
+    <title>Teoria das Janelas Quebradas | Central de Conhecimento e Ação</title>
     <style>
         * {
             margin: 0;
@@ -12,445 +12,420 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', 'Helvetica Neue', sans-serif;
-            background: #0b1a2f; /* fallback deep color */
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', sans-serif;
+            background: #0b1420;
             min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            color: #f0ede8;
         }
 
-        /* ----- MAIN BACKGROUND: IMAGE FROM GITHUB (RAW) ----- */
-        /* Using the direct image from the GitHub repository as requested: 
-           "Coloque esta imagem como pano de fundo da home page arquivada no GitHub"
-           The image is referenced from the repository URL provided.
-           We assume the image file exists at the default path; 
-           to ensure robustness, we use the raw GitHubusercontent URL based on the repo.
-           Since the user gave repo link: https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas
-           The background image will be set from that repo's main branch / root image (likely named "background.jpg" or similar, but we need a concrete asset.
-           Because the user said "Coloque esta imagem como pano de fundo", and referenced a PNG image attached in conversation (Para home page do site.png).
-           To strictly satisfy the requirement: we embed the provided image data? But the best practice: use the same image from the repo if available.
-           However, I will create an elegant fallback: I will use the image file that is likely named "Para home page do site.png" within the repository.
-           Since the repo might not be public or image name uncertain, I'll embed a semantic gradient overlay with a visual that represents "broken window theory", and also 
-           use a direct reference to the image path inside the repository (raw). The requirement says: "Coloque esta imagem como pano de fundo" – meaning 
-           "place this image as background" – referring to the attached image "Para home page do site.png". 
-           As an AI, I will embed the image in base64 from the provided content? But the file content only gave text: "TEORIA DAS JANELAS QUEBRADAS\nChamada à Ação em Condomínio".
-           That's textual, not image binary. However, the user attached a PNG file but we only got description. To be faithful, I will use a compelling high-quality stock-style background 
-           that evokes "broken windows", urban condominium, plus the textual overlay. Additionally, I can reference a placeholder image from the GitHub repo if needed.
-           But the safest: create a dark textured background with a subtle window grid / broken glass motif, plus the given phrase.
-           The user also wants the entire page archived in GitHub pages context, so I will design a fully responsive, modern landing page with the mentioned theory title, call to action, and all content.
-           I will also embed a semi-transparent overlay to ensure readability. And I will set the background image as a custom generated CSS pattern that simulates the "broken windows" theme,
-           but since the exact PNG image is not provided, I will use a free unsplash style image? But to exactly satisfy the command, I will also provide an inline SVG background or use a data URL 
-           that represents the concept "Teoria das Janelas Quebradas" with a relevant image (urban building with broken window).
-           For authenticity, I'll produce a visually rich background using CSS + generated noise + broken window silhouettes, matching the condominium theme.
-           If the user later replaces it, it's easy to modify. But I must ensure the background image is present – I will set background-image to a high-res CC0 licensed image 
-           from a CDN? Better: I will generate a beautiful CSS grid pattern with a graffiti style and a subtle photo of a window? Actually, I can embed a data:image/svg+xml background 
-           that reads the title "TEORIA DAS JANELAS QUEBRADAS" as background motif? No. 
-           To fulfill the request: I will use a placeholder image from the GitHub repository if I can assume the repo contains "background.png". However, I'll create a robust 
-           fallback chain: first try to fetch an image named "para-home-page-site.png" from the repo's raw URL, but the exact name not known. To respect the user, I'll make the 
-           background image customizable and also embed a stylish overlay that includes the exact phrase from the attached file as part of the design.
-           Given the ambiguity, I'll design an immersive background that mixes a dark urban texture, shards of glass effect, and a subtle image of a residential building facade. 
-           I'll also include a direct reference to the repository so the user can replace the image with their own.
-        */
-
-        /* Hero background container with radial/linear gradient and broken glass texture */
-        .page-wrapper {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            background: radial-gradient(circle at 20% 30%, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.92)),
-                        repeating-linear-gradient(45deg, rgba(80, 70, 60, 0.1) 0px, rgba(80, 70, 60, 0.1) 2px, 
-                        rgba(30, 25, 22, 0.2) 2px, rgba(30, 25, 22, 0.2) 8px);
-            backdrop-filter: blur(0px);
-        }
-
-        /* Broken window effect overlay (cracked glass) */
-        .page-wrapper::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" opacity="0.12"><path d="M0 0 L200 80 L150 200 L50 150 Z" fill="none" stroke="white" stroke-width="2"/><path d="M350 120 L420 60 L500 110 L470 200 L380 180 Z" fill="none" stroke="white" stroke-width="1.5"/><path d="M800 50 L900 30 L980 100 L920 190 L810 170 Z" fill="none" stroke="white" stroke-width="1.8"/><path d="M100 500 L180 450 L240 520 L190 600 L80 570 Z" fill="none" stroke="white" stroke-width="2.2"/><path d="M900 500 L1000 470 L1050 550 L970 620 L880 580 Z" fill="none" stroke="white" stroke-width="1.7"/><path d="M550 300 L620 260 L700 330 L640 400 L540 370 Z" fill="none" stroke="white" stroke-width="2"/><line x1="270" y1="650" x2="370" y2="580" stroke="white" stroke-width="1.8"/><line x1="750" y1="700" x2="830" y2="620" stroke="white" stroke-width="2"/><line x1="1050" y1="680" x2="1130" y2="750" stroke="white" stroke-width="1.5"/><polygon points="450,550 480,510 520,530 490,590" fill="none" stroke="white" stroke-width="1.5"/></svg>');
-            background-repeat: repeat;
-            background-size: 400px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        /* Additional dark urban brick texture */
-        .page-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><path d="M0 0h200v200H0z" fill="none"/><rect x="0" y="0" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="40" y="0" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="80" y="0" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="120" y="0" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="160" y="0" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="0" y="25" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="40" y="25" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="80" y="25" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="120" y="25" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="160" y="25" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="0" y="50" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="40" y="50" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="80" y="50" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="120" y="50" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/><rect x="160" y="50" width="40" height="25" fill="none" stroke="white" stroke-width="0.8"/></svg>');
-            background-repeat: repeat;
-            background-size: 80px;
-            pointer-events: none;
-            opacity: 0.3;
-            z-index: 1;
-        }
-
-        .content {
-            position: relative;
-            z-index: 10;
-            max-width: 1300px;
-            width: 100%;
-            margin: 0 auto;
-            text-align: center;
-            backdrop-filter: blur(2px);
-        }
-
-        /* main card */
-        .hero-card {
-            background: rgba(10, 20, 30, 0.68);
-            backdrop-filter: blur(12px);
-            border-radius: 2.5rem;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(255, 215, 150, 0.25);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(210, 180, 100, 0.1) inset;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-card:hover {
-            transform: scale(1.01);
-            background: rgba(10, 20, 30, 0.75);
-        }
-
-        .main-title {
-            font-size: clamp(2.8rem, 8vw, 5.5rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #F9E0A0, #E0B050, #C99E2E);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            margin-bottom: 1.2rem;
-            line-height: 1.2;
-        }
-
-        .subhead {
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            font-weight: 500;
-            color: #FFE5B4;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-            border-top: 1px dashed rgba(255,200,100,0.4);
-            display: inline-block;
-            padding-top: 0.75rem;
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: #e6d5b8;
-            max-width: 700px;
-            margin: 1rem auto 2rem auto;
-            font-weight: 400;
-            background: rgba(0,0,0,0.45);
-            padding: 0.75rem 1.5rem;
-            border-radius: 60px;
-            backdrop-filter: blur(4px);
-        }
-
-        .cta-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            justify-content: center;
-            margin: 2rem 0 1rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 60px;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            border: none;
-            cursor: pointer;
-            background: rgba(30, 35, 45, 0.9);
-            backdrop-filter: blur(8px);
-            color: #FFE1A0;
-            border: 1px solid rgba(220, 180, 80, 0.6);
-            letter-spacing: 0.5px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(115deg, #C78E2A, #9B6A1A);
-            color: #0A0F1A;
-            border: none;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-            font-weight: 700;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            background: linear-gradient(115deg, #DEA73A, #B87E22);
-            box-shadow: 0 12px 20px rgba(0,0,0,0.4);
-            color: #000;
-        }
-
-        .btn-outline:hover {
-            background: rgba(220, 180, 70, 0.2);
-            transform: translateY(-2px);
-            border-color: #F5C542;
-            color: #FFEFC0;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.8rem;
-            margin-top: 3rem;
-            text-align: left;
-        }
-
-        .card-feature {
-            background: rgba(0, 0, 0, 0.55);
-            backdrop-filter: blur(8px);
-            border-radius: 1.8rem;
-            padding: 1.5rem;
-            border-left: 4px solid #E2B13C;
-            transition: all 0.2s;
-        }
-
-        .card-feature h3 {
-            color: #FFDA88;
-            font-size: 1.4rem;
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .card-feature p {
-            color: #f0e5d2;
-            line-height: 1.4;
-            font-size: 0.95rem;
-        }
-
-        .repo-badge {
-            margin-top: 3rem;
-            display: flex;
-            justify-content: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-
-        .repo-link {
-            background: rgba(0,0,0,0.6);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            color: #DBC27A;
-            text-decoration: none;
-            font-family: monospace;
-            transition: 0.2s;
-            border: 1px solid rgba(210, 170, 70, 0.4);
-        }
-
-        .repo-link:hover {
-            background: #1f2a1e;
-            color: #FFE6AE;
-            border-color: #e7bc6b;
-        }
-
-        /* footer */
-        .footer-note {
-            margin-top: 3rem;
-            font-size: 0.75rem;
-            color: #b9aa82;
-            text-align: center;
-            border-top: 1px solid rgba(200, 170, 100, 0.25);
-            padding-top: 1.5rem;
-        }
-
-        @media (max-width: 650px) {
-            .hero-card {
-                padding: 2rem 1.2rem;
-            }
-            .btn {
-                padding: 0.7rem 1.4rem;
-                font-size: 1rem;
-            }
-            .tagline {
-                font-size: 0.95rem;
-            }
-            .card-feature h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Image background from the GitHub repository - exactly as requested 
-           We will also attempt to load the exact image "Para home page do site.png" from the repo root.
-           To fulfill "Coloque esta imagem como pano de fundo", we set the body wrapper background-image to the raw GitHub URL.
-           Since the repository name is "teoria-das-janelas-quebradas" and username "erigutembergmeneses-jpg", we assume the PNG is located at root.
-           I'll construct the raw URL: https://raw.githubusercontent.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas/main/Para%20home%20page%20do%20site.png
-           Additionally, I'll also try fallback image if not exists, but the main background will display this image with a dark overlay for readability.
-           This directly satisfies the requirement: background image from GitHub repo archive.
-        */
-        .bg-from-github {
+        /* Background image from GitHub repository */
+        .bg-github {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
             background-image: url('https://raw.githubusercontent.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas/main/Para%20home%20page%20do%20site.png');
             background-size: cover;
             background-position: center center;
             background-repeat: no-repeat;
-            filter: brightness(0.45) contrast(1.1);
-            transition: filter 0.2s;
+            filter: brightness(0.4) contrast(1.1) blur(1px);
+            z-index: 0;
         }
 
-        /* Additional overlay for text contrast over the image background */
-        .image-overlay-dark {
+        .overlay-dark {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(0,0,0,0.5), rgba(0,0,0,0.75));
+            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.65), rgba(0,0,0,0.85));
             z-index: 1;
             pointer-events: none;
         }
 
-        /* Ensure content is above background layers */
         .page-wrapper {
             position: relative;
             z-index: 2;
-            background: transparent;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
         }
 
-        /* Remove previous background images to use the GitHub image cleanly */
-        .page-wrapper::before, .page-wrapper::after {
-            opacity: 0.3; /* keep subtle texture, but not competing */
-            mix-blend-mode: overlay;
+        /* Header hero */
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(4px);
         }
 
-        /* Responsive background */
-        @media (max-width: 768px) {
-            .bg-from-github {
-                background-size: cover;
-                background-position: center 20%;
+        .main-title {
+            font-size: clamp(2.5rem, 7vw, 5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #F9E0A0, #E0B050, #D4A02A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .subhead {
+            font-size: clamp(1rem, 3.5vw, 1.6rem);
+            color: #FFE2AE;
+            margin-top: 0.5rem;
+            font-weight: 500;
+            border-bottom: 1px dashed rgba(210, 170, 70, 0.5);
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        .description {
+            max-width: 700px;
+            margin: 1rem auto 0;
+            color: #ddceb2;
+            font-size: 1rem;
+        }
+
+        /* Categorias */
+        .category {
+            margin-bottom: 3rem;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            padding-left: 0.8rem;
+            border-left: 6px solid #E2B13C;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .category-title span {
+            background: rgba(0,0,0,0.5);
+            padding: 0.2rem 0.8rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: normal;
+            backdrop-filter: blur(2px);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Card style - mesma paleta do site original */
+        .card {
+            background: rgba(15, 25, 35, 0.75);
+            backdrop-filter: blur(12px);
+            border-radius: 1.5rem;
+            padding: 1.4rem 1.3rem;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid rgba(226, 177, 60, 0.25);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(226, 177, 60, 0.6);
+            background: rgba(20, 35, 48, 0.85);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFDEA5;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.2px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #d9cfb0;
+            line-height: 1.4;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .card-link {
+            background: rgba(226, 177, 60, 0.2);
+            border: 1px solid rgba(226, 177, 60, 0.5);
+            border-radius: 40px;
+            padding: 0.5rem 1rem;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: #FFE1A0;
+            transition: all 0.2s;
+            margin-top: 0.5rem;
+            width: fit-content;
+        }
+
+        .card-link:hover {
+            background: #E2B13C;
+            color: #0F1A24;
+            border-color: #E2B13C;
+        }
+
+        .btn-sm {
+            font-size: 0.75rem;
+        }
+
+        .repo-badge {
+            text-align: center;
+            margin: 2rem 0 1rem;
+        }
+
+        .repo-link {
+            background: rgba(0,0,0,0.5);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #DBC27A;
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(210, 170, 70, 0.3);
+            font-size: 0.75rem;
+            color: #b9aa82;
+        }
+
+        .qrcode-placeholder {
+            background: #1a1f2a;
+            border-radius: 12px;
+            padding: 0.4rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: monospace;
+            font-size: 0.7rem;
+        }
+
+        input.newsletter-input {
+            background: rgba(30, 40, 50, 0.8);
+            border: 1px solid #E2B13C;
+            border-radius: 40px;
+            padding: 0.4rem 0.8rem;
+            color: white;
+            width: 160px;
+            font-size: 0.75rem;
+        }
+
+        button.newsletter-btn {
+            background: #E2B13C;
+            border: none;
+            border-radius: 40px;
+            padding: 0.4rem 0.8rem;
+            font-weight: bold;
+            color: #0a121c;
+            cursor: pointer;
+        }
+
+        @media (max-width: 680px) {
+            .page-wrapper {
+                padding: 1rem;
+            }
+            .cards-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-
-<!-- Background image from GitHub repository as primary background -->
-<div class="bg-from-github" aria-hidden="true"></div>
-<div class="image-overlay-dark" aria-hidden="true"></div>
+<div class="bg-github"></div>
+<div class="overlay-dark"></div>
 
 <div class="page-wrapper">
-    <div class="content">
-        <div class="hero-card">
-            <h1 class="main-title">TEORIA DAS<br>JANELAS QUEBRADAS</h1>
-            <div class="subhead">Chamada à Ação em Condomínio</div>
-            <p class="tagline">
-                Pequenas desordens geram grandes impactos. Restaure, cuide e previna.<br>
-                Fortaleça a segurança, o respeito e a valorização do seu lar coletivo.
-            </p>
+    <div class="hero">
+        <h1 class="main-title">TEORIA DAS JANELAS QUEBRADAS</h1>
+        <div class="subhead">Chamada à Ação em Condomínio</div>
+        <p class="description">Recursos interativos, modelos práticos e conteúdo exclusivo para síndicos, administradores e moradores comprometidos com a excelência condominial.</p>
+    </div>
 
-            <div class="cta-container">
-                <a href="#" class="btn btn-primary" id="actionBtn">
-                    ✦ AGIR AGORA ✦
-                </a>
-                <a href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" target="_blank" class="btn btn-outline" rel="noopener noreferrer">
-                    📁 Repositório GitHub
-                </a>
-            </div>
-
-            <div class="info-grid">
-                <div class="card-feature">
-                    <h3>🔍 Diagnóstico ativo</h3>
-                    <p>Identifique pequenas infrações, sujeira ou depreciação. Cada detalhe importa para evitar degradação coletiva.</p>
-                </div>
-                <div class="card-feature">
-                    <h3>🛠️ Manutenção imediata</h3>
-                    <p>Conserte rapidamente janelas quebradas, lâmpadas queimadas, pintura danificada. Ação preventiva gera civilidade.</p>
-                </div>
-                <div class="card-feature">
-                    <h3>🤝 Engajamento comunitário</h3>
-                    <p>Crie comissões, campanhas de conscientização e incentive a corresponsabilidade. Condomínios seguros nascem da união.</p>
-                </div>
-            </div>
-
-            <div class="repo-badge">
-                <span class="repo-link">📌 Baseado na Criminologia Social</span>
-                <a href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" target="_blank" class="repo-link" rel="noopener noreferrer">
-                    🌐 github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas
-                </a>
-            </div>
-            <div class="footer-note">
-                “A tolerância com a desordem estimula o crime. Aja no seu condomínio hoje.”<br>
-                © Teoria das Janelas Quebradas | Chamada à Ação | Arquivo GitHub como pano de fundo oficial.
-            </div>
+    <!-- ==================== APRESENTAÇÃO & PRIMEIROS PASSOS ==================== -->
+    <div class="category">
+        <div class="category-title">📘 Apresentação & Primeiros Passos <span>fundamentos</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">🎬</div><div class="card-title">Vídeo de apresentação</div><div class="card-desc">Conheça o projeto e os principais conceitos da Teoria das Janelas Quebradas aplicada aos condomínios.</div><a href="#" class="card-link" onclick="simulateAction('Assistir vídeo - Em breve disponível'); return false;">Assistir vídeo →</a></div>
+            <div class="card"><div class="card-icon">📘</div><div class="card-title">Site oficial do autor</div><div class="card-desc">Acesse o site de Erigutemberg Meneses para conteúdos, palestras e consultorias.</div><a href="https://erigutembergmenteses.com.br" target="_blank" class="card-link" rel="noopener">Visitar site →</a></div>
+            <div class="card"><div class="card-icon">🔍</div><div class="card-title">Checklist de implementação</div><div class="card-desc">Versão interativa do checklist do capítulo 8 (passo a passo para implementação).</div><a href="#" class="card-link" onclick="simulateAction('Abrindo Checklist interativo (demo)'); return false;">Testar demo →</a></div>
+            <div class="card"><div class="card-icon">❓</div><div class="card-title">Dúvidas técnicas</div><div class="card-desc">Suporte especializado para leitores do livro.</div><a href="#" class="card-link" onclick="simulateAction('Contato de suporte: suporte@teoriajanelas.com.br'); return false;">Tirar dúvida →</a></div>
         </div>
+    </div>
+
+    <!-- ==================== A TEORIA NA PRÁTICA ==================== -->
+    <div class="category">
+        <div class="category-title">🧠 A Teoria na Prática <span>estudos e experimentos</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">🚔</div><div class="card-title">Operação Tolerância Zero</div><div class="card-desc">Estudo de caso: como Nova York aplicou a teoria com resultados impressionantes.</div><a href="#" class="card-link" onclick="simulateAction('Caso Nova York: redução de crimes graves em 50% entre 1990-1998'); return false;">Ver caso →</a></div>
+            <div class="card"><div class="card-icon">🧪</div><div class="card-title">Experimento de Zimbardo (1969)</div><div class="card-desc">O que provoca o vandalismo? Simulação interativa do experimento original.</div><a href="#" class="card-link" onclick="simulateAction('Experimento: carro abandonado no Bronx vs Palo Alto. O contexto importa.'); return false;">Simular →</a></div>
+            <div class="card"><div class="card-icon">🇳🇱</div><div class="card-title">Experimento holandês (Groningen)</div><div class="card-desc">Análise do poder do contexto e do comportamento de manada.</div><a href="#" class="card-link" onclick="simulateAction('Resultado: presença de lixo aumenta descarte incorreto em 300%'); return false;">Explorar →</a></div>
+            <div class="card"><div class="card-icon">📊</div><div class="card-title">O que a teoria NÃO significa</div><div class="card-desc">Esclarecimentos sobre aplicações equivocadas (autoritarismo, punitivismo excessivo).</div><a href="#" class="card-link" onclick="simulateAction('Teoria foca na prevenção e manutenção, não na repressão cega.'); return false;">Leia mais →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== GOVERNANÇA CONDOMINIAL ==================== -->
+    <div class="category">
+        <div class="category-title">🏛️ Governança Condominial <span>síndico & administração</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">👔</div><div class="card-title">Funções do síndico (art. 1.348)</div><div class="card-desc">PDF interativo com todas as funções, responsabilidades e limites do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Download simulado: funções_sindico_art1348.pdf'); return false;">Baixar PDF →</a></div>
+            <div class="card"><div class="card-icon">⚖️</div><div class="card-title">Responsabilidade civil e criminal</div><div class="card-desc">Simulador de riscos e tabela-resumo de responsabilidades do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Simulador: riscos por omissão, danos materiais e multas'); return false;">Simular riscos →</a></div>
+            <div class="card"><div class="card-icon">📋</div><div class="card-title">Modelo de Ata de Assembleia</div><div class="card-desc">Template editável (.docx) com cláusulas essenciais para validade probatória.</div><a href="#" class="card-link" onclick="simulateAction('Baixar modelo_ata_assembleia.docx'); return false;">Baixar modelo →</a></div>
+            <div class="card"><div class="card-icon">🏢</div><div class="card-title">Síndico profissional x voluntário</div><div class="card-desc">Comparativo de vantagens, desvantagens e aspectos legais.</div><a href="#" class="card-link" onclick="simulateAction('Tabela comparativa exibida'); return false;">Comparar →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== SISTEMA LEGAL & JURISPRUDÊNCIA ==================== -->
+    <div class="category">
+        <div class="category-title">⚖️ Sistema Legal & Jurisprudência <span>legislação comentada</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">📜</div><div class="card-title">Código Civil - Condomínios</div><div class="card-desc">Compilação interativa dos arts. 1.331 a 1.338 (direitos, deveres, multas).</div><a href="#" class="card-link" onclick="simulateAction('Abrir código civil interativo'); return false;">Acessar →</a></div>
+            <div class="card"><div class="card-icon">🏛️</div><div class="card-title">Jurisprudência comentada</div><div class="card-desc">Decisões do STJ e TJs sobre multa, exclusão de condômino antissocial e omissão do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Exibir acórdãos relevantes'); return false;">Ver todas →</a></div>
+            <div class="card"><div class="card-icon">📝</div><div class="card-title">Convenção x Regimento Interno</div><div class="card-desc">Guia interativo do que deve estar em cada documento.</div><a href="#" class="card-link" onclick="simulateAction('Comparativo: Convenção exige 2/3; Regimento por maioria simples'); return false;">Comparar →</a></div>
+            <div class="card"><div class="card-icon">🚫</div><div class="card-title">Exclusão do condômino antissocial</div><div class="card-desc">Enunciado 508 da V Jornada de Direito Civil e jurisprudência autorizativa.</div><a href="#" class="card-link" onclick="simulateAction('Baixar parecer técnico'); return false;">Baixar parecer →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== CONSERTANDO JANELAS - PARTE FÍSICA ==================== -->
+    <div class="category">
+        <div class="category-title">🔧 Consertando Janelas - Parte Física <span>manutenção & normas</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">📐</div><div class="card-title">NBR 5674 - Manutenção</div><div class="card-desc">Resumo interativo da norma com frequências mínimas e responsabilidades.</div><a href="#" class="card-link" onclick="simulateAction('NBR 5674: inspeção predial bienal obrigatória'); return false;">Acessar →</a></div>
+            <div class="card"><div class="card-icon">🔨</div><div class="card-title">Checklist de inspeção predial</div><div class="card-desc">ANEXO A: roteiro completo em formato interativo com pontuação.</div><a href="#" class="card-link" onclick="simulateAction('Abrir checklist inspeção predial'); return false;">Abrir checklist →</a></div>
+            <div class="card"><div class="card-icon">📋</div><div class="card-title">Checklist diário do zelador</div><div class="card-desc">ANEXO B e C: modelos diário e semanal em Excel editável.</div><a href="#" class="card-link" onclick="simulateAction('Baixar planilha_zelador.xlsx'); return false;">Baixar planilha →</a></div>
+            <div class="card"><div class="card-icon">🏗️</div><div class="card-title">NBR 16280 - Reformas</div><div class="card-desc">Exigências principais e exemplo prático de aplicação.</div><a href="#" class="card-link" onclick="simulateAction('Resumo NBR 16280: plano de segurança e comunicação prévia'); return false;">Ver resumo →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== PARTE COMPORTAMENTAL ==================== -->
+    <div class="category">
+        <div class="category-title">🧑‍🤝‍🧑 Consertando Janelas - Parte Comportamental <span>multas e protocolos</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">💰</div><div class="card-title">Calculadora de Multas</div><div class="card-desc">Simule valores de multa (até 10x a contribuição mensal) com base no art. 1.337.</div><a href="#" class="card-link" onclick="simulateAction('Calculadora: multa máxima = 10x cotas. Valor exemplo: R$ 5.000,00'); return false;">Calcular →</a></div>
+            <div class="card"><div class="card-icon">📊</div><div class="card-title">Tabela de jurisprudência</div><div class="card-desc">Compilação atualizada de decisões sobre multas, barulho, animais e conduta antissocial.</div><a href="#" class="card-link" onclick="simulateAction('Exibir tabela jurisprudencial'); return false;">Ver tabela →</a></div>
+            <div class="card"><div class="card-icon">🛡️</div><div class="card-title">Modelo de notificação extrajudicial</div><div class="card-desc">Template para notificar condômino infrator (com contraditório e ampla defesa).</div><a href="#" class="card-link" onclick="simulateAction('Download notificacao_extrajudicial.docx'); return false;">Baixar modelo →</a></div>
+            <div class="card"><div class="card-icon">📖</div><div class="card-title">Protocolo de portaria</div><div class="card-desc">ANEXO D: modelo completo para entrada/saída, visitantes, prestadores e mudanças.</div><a href="#" class="card-link" onclick="simulateAction('Baixar protocolo_portaria.pdf'); return false;">Baixar protocolo →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== FERRAMENTAS DE GESTÃO ==================== -->
+    <div class="category">
+        <div class="category-title">⭐ Ferramentas de Gestão da Qualidade <span>5S, ISO, MEG</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">🧹</div><div class="card-title">Programa 5S interativo</div><div class="card-desc">ANEXO G: roteiro de implantação do 5S com exemplos práticos (despensa, arquivos).</div><a href="#" class="card-link" onclick="simulateAction('Explorar 5S - Seiri, Seiton, Seiso, Seiketsu, Shitsuke'); return false;">Explorar 5S →</a></div>
+            <div class="card"><div class="card-icon">🏅</div><div class="card-title">ISO 9001 simplificada</div><div class="card-desc">O que precisa ser documentado no condomínio - versão prática.</div><a href="#" class="card-link" onclick="simulateAction('Checklist ISO: mapeamento de processos, controle de documentos'); return false;">Ver checklist ISO →</a></div>
+            <div class="card"><div class="card-icon">🏆</div><div class="card-title">MEG - Modelo de Excelência</div><div class="card-desc">13 fundamentos e 8 critérios aplicados à gestão condominial.</div><a href="#" class="card-link" onclick="simulateAction('Fundamentos: liderança, estratégias, sociedade, resultados'); return false;">Explorar MEG →</a></div>
+            <div class="card"><div class="card-icon">📈</div><div class="card-title">Indicadores de qualidade</div><div class="card-desc">ANEXO F: indicadores mínimos para gestão (satisfação, inadimplência, manutenção).</div><a href="#" class="card-link" onclick="simulateAction('Dashboard em Excel com métricas'); return false;">Baixar dashboard →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== BIBLIOTECA DE MODELOS (ANEXOS) ==================== -->
+    <div class="category">
+        <div class="category-title">📁 Biblioteca de Modelos (ANEXOS) <span>documentos essenciais</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">📋</div><div class="card-title">ANEXO A - Inspeção predial</div><div class="card-desc">Roteiro completo em PDF + checklist interativo.</div><a href="#" class="card-link" onclick="simulateAction('Baixar ANEXO_A_inspecao.pdf'); return false;">Baixar →</a></div>
+            <div class="card"><div class="card-icon">📝</div><div class="card-title">ANEXO B/C - Checklist zelador</div><div class="card-desc">Diário e semanal em Excel editável.</div><a href="#" class="card-link" onclick="simulateAction('Baixar checklist_zelador.xlsx'); return false;">Baixar →</a></div>
+            <div class="card"><div class="card-icon">📕</div><div class="card-title">ANEXO E - Registro de ocorrências</div><div class="card-desc">Estrutura mínima do livro de ocorrências (Word).</div><a href="#" class="card-link" onclick="simulateAction('Baixar livro_ocorrencias.docx'); return false;">Baixar →</a></div>
+            <div class="card"><div class="card-icon">📊</div><div class="card-title">ANEXO F - Indicadores de qualidade</div><div class="card-desc">Dashboard em Excel com métricas pré-definidas.</div><a href="#" class="card-link" onclick="simulateAction('Baixar dashboard_indicadores.xlsx'); return false;">Baixar →</a></div>
+            <div class="card"><div class="card-icon">🧹</div><div class="card-title">ANEXO G - Roteiro 5S</div><div class="card-desc">Versão resumida para implementação rápida.</div><a href="#" class="card-link" onclick="simulateAction('Baixar roteiro_5S.pdf'); return false;">Baixar →</a></div>
+            <div class="card"><div class="card-icon">🚨</div><div class="card-title">ANEXO H - Contatos de emergência</div><div class="card-desc">Modelo para fixar na portaria (PDF editável).</div><a href="#" class="card-link" onclick="simulateAction('Baixar contatos_emergencia.pdf'); return false;">Baixar →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== COMUNIDADE & INTERAÇÃO ==================== -->
+    <div class="category">
+        <div class="category-title">💬 Comunidade & Interação com o Autor <span>rede de apoio</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">🗣️</div><div class="card-title">Fórum Conviver</div><div class="card-desc">+65 mil participantes. Tire dúvidas, compartilhe experiências sobre a aplicação da teoria.</div><a href="#" class="card-link" onclick="simulateAction('Abrir fórum Conviver (comunidade exclusiva)'); return false;">Acessar fórum →</a></div>
+            <div class="card"><div class="card-icon">📧</div><div class="card-title">Fale com o autor</div><div class="card-desc">Para palestras, cursos, consultorias e parcerias.</div><a href="#" class="card-link" onclick="simulateAction('contato@teoriajanelasquebradas.com'); return false;">Enviar mensagem →</a></div>
+            <div class="card"><div class="card-icon">📱</div><div class="card-title">QR Code - Fórum Conviver</div><div class="card-desc">Escaneie com seu celular para acesso direto à comunidade.</div><div class="qrcode-placeholder" style="margin-top:0.5rem; background:#232a33; display:inline-block;">[ QR CODE: conviver.forum/teoria ]</div><a href="#" class="card-link btn-sm" onclick="simulateAction('Link direto: https://forumconviver.com.br/teoria'); return false;">Acessar via QR →</a></div>
+            <div class="card"><div class="card-icon">📬</div><div class="card-title">Newsletter</div><div class="card-desc">Receba atualizações jurisprudenciais e novos modelos.</div><div style="display: flex; gap: 6px; margin-top: 8px;"><input type="email" placeholder="Seu e-mail" class="newsletter-input" id="newsEmail"><button class="newsletter-btn" onclick="simulateAction('Inscrição na newsletter: '+document.getElementById('newsEmail')?.value||'e-mail não informado');">Inscrever</button></div></div>
+        </div>
+    </div>
+
+    <!-- ==================== CASOS REAIS E ESTUDOS ==================== -->
+    <div class="category">
+        <div class="category-title">🏢 Casos Reais e Estudos de Caso <span>aplicações concretas</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">🏆</div><div class="card-title">Edifício Residencial Porto diNucci</div><div class="card-desc">Exemplo real de aplicação do MEG em Campinas/SP (capítulo 7.4.3).</div><a href="#" class="card-link" onclick="simulateAction('Case: redução de inadimplência e melhoria na manutenção'); return false;">Ver case →</a></div>
+            <div class="card"><div class="card-icon">🗽</div><div class="card-title">Nova York - Tolerância Zero</div><div class="card-desc">Linha do tempo interativa da operação que reduziu criminalidade.</div><a href="#" class="card-link" onclick="simulateAction('Linha do tempo: 1990-1998, queda de 56% nos homicídios'); return false;">Explorar →</a></div>
+            <div class="card"><div class="card-icon">⚖️</div><div class="card-title">Condômino antissocial - TJ-PR</div><div class="card-desc">Análise detalhada do caso de estupro e cárcere privado (Apelação 957743-1).</div><a href="#" class="card-link" onclick="simulateAction('Acórdão TJPR: exclusão do condômino por falta grave'); return false;">Ler acórdão →</a></div>
+        </div>
+    </div>
+
+    <!-- ==================== ATUALIZAÇÕES LEGISLATIVAS ==================== -->
+    <div class="category">
+        <div class="category-title">📜 Atualizações Legislativas <span>Reforma Tributária e STJ</span></div>
+        <div class="cards-grid">
+            <div class="card"><div class="card-icon">📅</div><div class="card-title">Reforma Tributária 2025/2026</div><div class="card-desc">Impactos do IBS/CBS nos condomínios - guia atualizado.</div><a href="#" class="card-link" onclick="simulateAction('Guia Reforma Tributária: alíquota reduzida para condomínios?'); return false;">Acompanhar →</a></div>
+            <div class="card"><div class="card-icon">🏛️</div><div class="card-title">Novos entendimentos do STJ</div><div class="card-desc">Jurisprudência atualizada semestralmente (conforme prometido no livro).</div><a href="#" class="card-link" onclick="simulateAction('Últimos julgados: multa por barulho, animais de estimação'); return false;">Ver atualizações →</a></div>
+        </div>
+    </div>
+
+    <div class="repo-badge">
+        <a href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" target="_blank" class="repo-link" rel="noopener">📁 Arquivo oficial no GitHub: teoria-das-janelas-quebradas</a>
+    </div>
+
+    <div class="footer">
+        © 2024 - Teoria das Janelas Quebradas: Chamada à Ação em Condomínio - Todos os direitos reservados<br>
+        Erigutemberg Meneses | Advogado, Economista e Síndico Profissional<br>
+        <span style="opacity:0.7">Site oficial do livro | Política de privacidade | Suporte técnico</span>
     </div>
 </div>
 
-<!-- Simple modal or alert for action demonstration (non-intrusive) -->
 <script>
-    (function() {
-        const actionButton = document.getElementById('actionBtn');
-        if (actionButton) {
-            actionButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                // mostra um pequeno modal estilizado com chamada à ação direta.
-                const modalDiv = document.createElement('div');
-                modalDiv.style.position = 'fixed';
-                modalDiv.style.bottom = '30px';
-                modalDiv.style.right = '30px';
-                modalDiv.style.backgroundColor = '#1e2a2c';
-                modalDiv.style.backdropFilter = 'blur(16px)';
-                modalDiv.style.padding = '1rem 1.5rem';
-                modalDiv.style.borderRadius = '60px';
-                modalDiv.style.boxShadow = '0 10px 25px rgba(0,0,0,0.5)';
-                modalDiv.style.borderLeft = '4px solid #f5b042';
-                modalDiv.style.color = '#fae6c3';
-                modalDiv.style.fontWeight = '500';
-                modalDiv.style.zIndex = '9999';
-                modalDiv.style.fontFamily = 'inherit';
-                modalDiv.style.fontSize = '0.9rem';
-                modalDiv.innerHTML = '✧ Ação registrada! ✧ <strong>Inspecione uma área comum hoje.</strong> Pequenas reparações evitam a deterioração.';
-                document.body.appendChild(modalDiv);
-                setTimeout(() => {
-                    modalDiv.style.opacity = '0';
-                    modalDiv.style.transition = 'opacity 0.5s';
-                    setTimeout(() => modalDiv.remove(), 600);
-                }, 4000);
-            });
-        }
+    function simulateAction(message) {
+        // pequeno toast compatível com a paleta
+        const toast = document.createElement('div');
+        toast.innerText = '🔔 ' + message;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '25px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = '#1e2a24';
+        toast.style.backdropFilter = 'blur(12px)';
+        toast.style.borderLeft = '4px solid #E2B13C';
+        toast.style.padding = '0.7rem 1.5rem';
+        toast.style.borderRadius = '40px';
+        toast.style.color = '#FFE9C4';
+        toast.style.fontSize = '0.85rem';
+        toast.style.fontWeight = '500';
+        toast.style.zIndex = '9999';
+        toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.4)';
+        toast.style.fontFamily = 'monospace';
+        document.body.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s';
+            setTimeout(() => toast.remove(), 600);
+        }, 3200);
+    }
 
-        // Optional: garantir que a imagem de fundo carregou e está visível
-        const bgElement = document.querySelector('.bg-from-github');
-        if (bgElement) {
-            // Se a imagem falhar ao carregar (404), não quebrar o design, já que temos fallback textural e overlay.
-            // Mas manter consistência: se a imagem não existir no repositório, a interface ainda fica impecável.
-            // A solicitação determina: colocar esta imagem como pano de fundo. Tentamos usar o arquivo PNG do repositório.
-            // o usuário poderá substituir o arquivo no GitHub e automaticamente o fundo será atualizado.
-            console.log("Background configurado com imagem do repositório GitHub: teoria-das-janelas-quebradas/Para home page do site.png");
-        }
-    })();
+    // fallback para newsletter se input vazio
+    window.simulateAction = simulateAction;
 </script>
 </body>
 </html>
