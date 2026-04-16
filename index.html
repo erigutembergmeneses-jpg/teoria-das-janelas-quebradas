@@ -3,429 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Teoria das Janelas Quebradas | Central de Conhecimento e Ação</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, 'Roboto', sans-serif;
-            background: #0b1420;
-            min-height: 100vh;
-            color: #f0ede8;
-        }
-
-        /* Background image from GitHub repository */
-        .bg-github {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://raw.githubusercontent.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas/main/Para%20home%20page%20do%20site.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            filter: brightness(0.4) contrast(1.1) blur(1px);
-            z-index: 0;
-        }
-
-        .overlay-dark {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(0,0,0,0.65), rgba(0,0,0,0.85));
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .page-wrapper {
-            position: relative;
-            z-index: 2;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
-        }
-
-        /* Header hero */
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-            backdrop-filter: blur(4px);
-        }
-
-        .main-title {
-            font-size: clamp(2.5rem, 7vw, 5rem);
-            font-weight: 800;
-            background: linear-gradient(135deg, #F9E0A0, #E0B050, #D4A02A);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.4);
-        }
-
-        .subhead {
-            font-size: clamp(1rem, 3.5vw, 1.6rem);
-            color: #FFE2AE;
-            margin-top: 0.5rem;
-            font-weight: 500;
-            border-bottom: 1px dashed rgba(210, 170, 70, 0.5);
-            display: inline-block;
-            padding-bottom: 0.3rem;
-        }
-
-        .description {
-            max-width: 700px;
-            margin: 1rem auto 0;
-            color: #ddceb2;
-            font-size: 1rem;
-        }
-
-        /* Categorias */
-        .category {
-            margin-bottom: 3rem;
-        }
-
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.2rem;
-            padding-left: 0.8rem;
-            border-left: 6px solid #E2B13C;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .category-title span {
-            background: rgba(0,0,0,0.5);
-            padding: 0.2rem 0.8rem;
-            border-radius: 40px;
-            font-size: 0.9rem;
-            font-weight: normal;
-            backdrop-filter: blur(2px);
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Card style - mesma paleta do site original */
-        .card {
-            background: rgba(15, 25, 35, 0.75);
-            backdrop-filter: blur(12px);
-            border-radius: 1.5rem;
-            padding: 1.4rem 1.3rem;
-            transition: transform 0.2s ease, box-shadow 0.2s;
-            border: 1px solid rgba(226, 177, 60, 0.25);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(226, 177, 60, 0.6);
-            background: rgba(20, 35, 48, 0.85);
-            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.5);
-        }
-
-        .card-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: #FFDEA5;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.2px;
-        }
-
-        .card-desc {
-            font-size: 0.85rem;
-            color: #d9cfb0;
-            line-height: 1.4;
-            margin-bottom: 1.2rem;
-            flex-grow: 1;
-        }
-
-        .card-link {
-            background: rgba(226, 177, 60, 0.2);
-            border: 1px solid rgba(226, 177, 60, 0.5);
-            border-radius: 40px;
-            padding: 0.5rem 1rem;
-            text-align: center;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            color: #FFE1A0;
-            transition: all 0.2s;
-            margin-top: 0.5rem;
-            width: fit-content;
-        }
-
-        .card-link:hover {
-            background: #E2B13C;
-            color: #0F1A24;
-            border-color: #E2B13C;
-        }
-
-        .btn-sm {
-            font-size: 0.75rem;
-        }
-
-        .repo-badge {
-            text-align: center;
-            margin: 2rem 0 1rem;
-        }
-
-        .repo-link {
-            background: rgba(0,0,0,0.5);
-            padding: 0.4rem 1rem;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            color: #DBC27A;
-            text-decoration: none;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(210, 170, 70, 0.3);
-            font-size: 0.75rem;
-            color: #b9aa82;
-        }
-
-        .qrcode-placeholder {
-            background: #1a1f2a;
-            border-radius: 12px;
-            padding: 0.4rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: monospace;
-            font-size: 0.7rem;
-        }
-
-        input.newsletter-input {
-            background: rgba(30, 40, 50, 0.8);
-            border: 1px solid #E2B13C;
-            border-radius: 40px;
-            padding: 0.4rem 0.8rem;
-            color: white;
-            width: 160px;
-            font-size: 0.75rem;
-        }
-
-        button.newsletter-btn {
-            background: #E2B13C;
-            border: none;
-            border-radius: 40px;
-            padding: 0.4rem 0.8rem;
-            font-weight: bold;
-            color: #0a121c;
-            cursor: pointer;
-        }
-
-        @media (max-width: 680px) {
-            .page-wrapper {
-                padding: 1rem;
-            }
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Teoria das Janelas Quebradas | Planilha e Governança Condominial</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon opcional -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300596B'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
 </head>
 <body>
-<div class="bg-github"></div>
-<div class="overlay-dark"></div>
+    <header>
+        <h1>🧩 TEORIA DAS JANELAS QUEBRADAS</h1>
+        <p class="subhead">Chamada à Ação em Condomínio — Versão 2026</p>
+        <p class="description">Recurso central para síndicos, administradores e conselheiros fiscais. <strong>Planilha editável</strong> com provisionamento técnico e matriz de indexação.</p>
+    </header>
 
-<div class="page-wrapper">
-    <div class="hero">
-        <h1 class="main-title">TEORIA DAS JANELAS QUEBRADAS</h1>
-        <div class="subhead">Chamada à Ação em Condomínio</div>
-        <p class="description">Recursos interativos, modelos práticos e conteúdo exclusivo para síndicos, administradores e moradores comprometidos com a excelência condominial.</p>
-    </div>
+    <main>
+        <!-- CARD PRINCIPAL: PLANILHA + QR CODE -->
+        <section class="card-destaque" id="planilha">
+            <div class="card-destaque-conteudo">
+                <span class="badge">⚡ FERRAMENTA PRINCIPAL</span>
+                <h2>📊 Planilha: Provisionamento e Matriz de Indexação</h2>
+                <p>Padrão "Teoria das Janelas Quebradas" — versão 2026.<br>
+                Controle de depreciação, provisionamento por sistema, indexação de despesas e dashboard de KPIs.</p>
+                <div class="botoes-destaque">
+                    <a href="https://docs.google.com/spreadsheets/d/1UjZJaXwUeNJHYoP9P1ax0V3J3F0zxS42zM5B2Zd6VjU/copy" class="btn btn-primario" target="_blank">📱 Usar Google Sheets (copiar)</a>
+                    <button id="btnQrCode" class="btn btn-secundario">📷 QR Code do livro</button>
+                </div>
+                <p class="info-planilha">✔️ Cálculos automáticos | ✔️ Alertas de laudo vencido | ✔️ Matriz de indexação | ✔️ Totalmente editável</p>
+            </div>
+            <div class="card-destaque-imagem">
+                <div class="qr-placeholder" id="qrPreviewPlaceholder">
+                    ⬇️ Clique em "QR Code do livro" ⬇️
+                </div>
+            </div>
+        </section>
 
-    <!-- ==================== APRESENTAÇÃO & PRIMEIROS PASSOS ==================== -->
-    <div class="category">
-        <div class="category-title">📘 Apresentação & Primeiros Passos <span>fundamentos</span></div>
+        <!-- CARDS SECUNDÁRIOS (APENAS 5 + 1) -->
         <div class="cards-grid">
-            <div class="card"><div class="card-icon">🎬</div><div class="card-title">Vídeo de apresentação</div><div class="card-desc">Conheça o projeto e os principais conceitos da Teoria das Janelas Quebradas aplicada aos condomínios.</div><a href="#" class="card-link" onclick="simulateAction('Assistir vídeo - Em breve disponível'); return false;">Assistir vídeo →</a></div>
-            <div class="card"><div class="card-icon">📘</div><div class="card-title">Site oficial do autor</div><div class="card-desc">Acesse o site de Erigutemberg Meneses para conteúdos, palestras e consultorias.</div><a href="https://erigutembergmenteses.com.br" target="_blank" class="card-link" rel="noopener">Visitar site →</a></div>
-            <div class="card"><div class="card-icon">🔍</div><div class="card-title">Checklist de implementação</div><div class="card-desc">Versão interativa do checklist do capítulo 8 (passo a passo para implementação).</div><a href="#" class="card-link" onclick="simulateAction('Abrindo Checklist interativo (demo)'); return false;">Testar demo →</a></div>
-            <div class="card"><div class="card-icon">❓</div><div class="card-title">Dúvidas técnicas</div><div class="card-desc">Suporte especializado para leitores do livro.</div><a href="#" class="card-link" onclick="simulateAction('Contato de suporte: suporte@teoriajanelas.com.br'); return false;">Tirar dúvida →</a></div>
+            <div class="card">
+                <span class="card-icon">📘</span>
+                <h3>Fundamentos</h3>
+                <p>Apresentação, primeiros passos e a lógica do conserto invisível.</p>
+                <a href="#" class="link-card">Explorar →</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">⚖️</span>
+                <h3>Jurisprudência STJ 2025</h3>
+                <p>Decisões atualizadas sobre omissão, indexação e provisionamento.</p>
+                <a href="#" class="link-card">Ver acórdãos →</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🔧</span>
+                <h3>Checklist de inspeção</h3>
+                <p>Anexo A – roteiro completo para vistorias prediais.</p>
+                <a href="#" class="link-card">Abrir checklist →</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">💰</span>
+                <h3>Calculadora de multas</h3>
+                <p>Base no art. 1.337 + jurisprudência (até 10x a cota).</p>
+                <a href="#" class="link-card">Simular →</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">🗣️</span>
+                <h3>Fórum Conviver</h3>
+                <p>+65 mil participantes. Tire dúvidas sobre a planilha e a teoria.</p>
+                <a href="https://conviver.forum/teoria" class="link-card" target="_blank">Acessar comunidade →</a>
+            </div>
+            <div class="card">
+                <span class="card-icon">📬</span>
+                <h3>Atualizações</h3>
+                <p>Receba novos julgados e versões da planilha.</p>
+                <a href="#" class="link-card">Newsletter →</a>
+            </div>
+        </div>
+
+        <!-- RODAPÉ COM INFORMAÇÕES LEGAIS E TÉCNICAS -->
+        <footer>
+            <p><strong>Referências técnicas:</strong> NBR 5674:2012 • NBR 15575:2013 • Código Civil, art. 1.348, V • STJ, REsp 2.045.123/SP (2024)</p>
+            <p>© Teoria das Janelas Quebradas – Versão para livro. Planilha atualizada em 2026. <br> Acesso via QR Code com redirecionamento inteligente (Google Sheets / Excel / PDF).</p>
+        </footer>
+    </main>
+
+    <!-- MODAL DO QR CODE -->
+    <div id="modalQr" class="modal">
+        <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
+            <h3>📲 QR Code do livro</h3>
+            <p>Aponte a câmera do celular ou use o leitor de QR Code. Você será direcionado para a planilha editável.</p>
+            <div id="qrCodeContainer" style="text-align: center; margin: 20px 0;"></div>
+            <div class="info-qr">
+                <p>🔹 <strong>Google Sheets</strong> (recomendado para síndicos)<br>
+                🔹 <strong>Excel / LibreOffice</strong> (Conselho Fiscal)<br>
+                🔹 <strong>PDF interativo</strong> (consulta rápida)</p>
+                <p><em>O QR Code sempre aponta para a versão mais recente da planilha.</em></p>
+            </div>
         </div>
     </div>
 
-    <!-- ==================== A TEORIA NA PRÁTICA ==================== -->
-    <div class="category">
-        <div class="category-title">🧠 A Teoria na Prática <span>estudos e experimentos</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">🚔</div><div class="card-title">Operação Tolerância Zero</div><div class="card-desc">Estudo de caso: como Nova York aplicou a teoria com resultados impressionantes.</div><a href="#" class="card-link" onclick="simulateAction('Caso Nova York: redução de crimes graves em 50% entre 1990-1998'); return false;">Ver caso →</a></div>
-            <div class="card"><div class="card-icon">🧪</div><div class="card-title">Experimento de Zimbardo (1969)</div><div class="card-desc">O que provoca o vandalismo? Simulação interativa do experimento original.</div><a href="#" class="card-link" onclick="simulateAction('Experimento: carro abandonado no Bronx vs Palo Alto. O contexto importa.'); return false;">Simular →</a></div>
-            <div class="card"><div class="card-icon">🇳🇱</div><div class="card-title">Experimento holandês (Groningen)</div><div class="card-desc">Análise do poder do contexto e do comportamento de manada.</div><a href="#" class="card-link" onclick="simulateAction('Resultado: presença de lixo aumenta descarte incorreto em 300%'); return false;">Explorar →</a></div>
-            <div class="card"><div class="card-icon">📊</div><div class="card-title">O que a teoria NÃO significa</div><div class="card-desc">Esclarecimentos sobre aplicações equivocadas (autoritarismo, punitivismo excessivo).</div><a href="#" class="card-link" onclick="simulateAction('Teoria foca na prevenção e manutenção, não na repressão cega.'); return false;">Leia mais →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== GOVERNANÇA CONDOMINIAL ==================== -->
-    <div class="category">
-        <div class="category-title">🏛️ Governança Condominial <span>síndico & administração</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">👔</div><div class="card-title">Funções do síndico (art. 1.348)</div><div class="card-desc">PDF interativo com todas as funções, responsabilidades e limites do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Download simulado: funções_sindico_art1348.pdf'); return false;">Baixar PDF →</a></div>
-            <div class="card"><div class="card-icon">⚖️</div><div class="card-title">Responsabilidade civil e criminal</div><div class="card-desc">Simulador de riscos e tabela-resumo de responsabilidades do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Simulador: riscos por omissão, danos materiais e multas'); return false;">Simular riscos →</a></div>
-            <div class="card"><div class="card-icon">📋</div><div class="card-title">Modelo de Ata de Assembleia</div><div class="card-desc">Template editável (.docx) com cláusulas essenciais para validade probatória.</div><a href="#" class="card-link" onclick="simulateAction('Baixar modelo_ata_assembleia.docx'); return false;">Baixar modelo →</a></div>
-            <div class="card"><div class="card-icon">🏢</div><div class="card-title">Síndico profissional x voluntário</div><div class="card-desc">Comparativo de vantagens, desvantagens e aspectos legais.</div><a href="#" class="card-link" onclick="simulateAction('Tabela comparativa exibida'); return false;">Comparar →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== SISTEMA LEGAL & JURISPRUDÊNCIA ==================== -->
-    <div class="category">
-        <div class="category-title">⚖️ Sistema Legal & Jurisprudência <span>legislação comentada</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">📜</div><div class="card-title">Código Civil - Condomínios</div><div class="card-desc">Compilação interativa dos arts. 1.331 a 1.338 (direitos, deveres, multas).</div><a href="#" class="card-link" onclick="simulateAction('Abrir código civil interativo'); return false;">Acessar →</a></div>
-            <div class="card"><div class="card-icon">🏛️</div><div class="card-title">Jurisprudência comentada</div><div class="card-desc">Decisões do STJ e TJs sobre multa, exclusão de condômino antissocial e omissão do síndico.</div><a href="#" class="card-link" onclick="simulateAction('Exibir acórdãos relevantes'); return false;">Ver todas →</a></div>
-            <div class="card"><div class="card-icon">📝</div><div class="card-title">Convenção x Regimento Interno</div><div class="card-desc">Guia interativo do que deve estar em cada documento.</div><a href="#" class="card-link" onclick="simulateAction('Comparativo: Convenção exige 2/3; Regimento por maioria simples'); return false;">Comparar →</a></div>
-            <div class="card"><div class="card-icon">🚫</div><div class="card-title">Exclusão do condômino antissocial</div><div class="card-desc">Enunciado 508 da V Jornada de Direito Civil e jurisprudência autorizativa.</div><a href="#" class="card-link" onclick="simulateAction('Baixar parecer técnico'); return false;">Baixar parecer →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== CONSERTANDO JANELAS - PARTE FÍSICA ==================== -->
-    <div class="category">
-        <div class="category-title">🔧 Consertando Janelas - Parte Física <span>manutenção & normas</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">📐</div><div class="card-title">NBR 5674 - Manutenção</div><div class="card-desc">Resumo interativo da norma com frequências mínimas e responsabilidades.</div><a href="#" class="card-link" onclick="simulateAction('NBR 5674: inspeção predial bienal obrigatória'); return false;">Acessar →</a></div>
-            <div class="card"><div class="card-icon">🔨</div><div class="card-title">Checklist de inspeção predial</div><div class="card-desc">ANEXO A: roteiro completo em formato interativo com pontuação.</div><a href="#" class="card-link" onclick="simulateAction('Abrir checklist inspeção predial'); return false;">Abrir checklist →</a></div>
-            <div class="card"><div class="card-icon">📋</div><div class="card-title">Checklist diário do zelador</div><div class="card-desc">ANEXO B e C: modelos diário e semanal em Excel editável.</div><a href="#" class="card-link" onclick="simulateAction('Baixar planilha_zelador.xlsx'); return false;">Baixar planilha →</a></div>
-            <div class="card"><div class="card-icon">🏗️</div><div class="card-title">NBR 16280 - Reformas</div><div class="card-desc">Exigências principais e exemplo prático de aplicação.</div><a href="#" class="card-link" onclick="simulateAction('Resumo NBR 16280: plano de segurança e comunicação prévia'); return false;">Ver resumo →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== PARTE COMPORTAMENTAL ==================== -->
-    <div class="category">
-        <div class="category-title">🧑‍🤝‍🧑 Consertando Janelas - Parte Comportamental <span>multas e protocolos</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">💰</div><div class="card-title">Calculadora de Multas</div><div class="card-desc">Simule valores de multa (até 10x a contribuição mensal) com base no art. 1.337.</div><a href="#" class="card-link" onclick="simulateAction('Calculadora: multa máxima = 10x cotas. Valor exemplo: R$ 5.000,00'); return false;">Calcular →</a></div>
-            <div class="card"><div class="card-icon">📊</div><div class="card-title">Tabela de jurisprudência</div><div class="card-desc">Compilação atualizada de decisões sobre multas, barulho, animais e conduta antissocial.</div><a href="#" class="card-link" onclick="simulateAction('Exibir tabela jurisprudencial'); return false;">Ver tabela →</a></div>
-            <div class="card"><div class="card-icon">🛡️</div><div class="card-title">Modelo de notificação extrajudicial</div><div class="card-desc">Template para notificar condômino infrator (com contraditório e ampla defesa).</div><a href="#" class="card-link" onclick="simulateAction('Download notificacao_extrajudicial.docx'); return false;">Baixar modelo →</a></div>
-            <div class="card"><div class="card-icon">📖</div><div class="card-title">Protocolo de portaria</div><div class="card-desc">ANEXO D: modelo completo para entrada/saída, visitantes, prestadores e mudanças.</div><a href="#" class="card-link" onclick="simulateAction('Baixar protocolo_portaria.pdf'); return false;">Baixar protocolo →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== FERRAMENTAS DE GESTÃO ==================== -->
-    <div class="category">
-        <div class="category-title">⭐ Ferramentas de Gestão da Qualidade <span>5S, ISO, MEG</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">🧹</div><div class="card-title">Programa 5S interativo</div><div class="card-desc">ANEXO G: roteiro de implantação do 5S com exemplos práticos (despensa, arquivos).</div><a href="#" class="card-link" onclick="simulateAction('Explorar 5S - Seiri, Seiton, Seiso, Seiketsu, Shitsuke'); return false;">Explorar 5S →</a></div>
-            <div class="card"><div class="card-icon">🏅</div><div class="card-title">ISO 9001 simplificada</div><div class="card-desc">O que precisa ser documentado no condomínio - versão prática.</div><a href="#" class="card-link" onclick="simulateAction('Checklist ISO: mapeamento de processos, controle de documentos'); return false;">Ver checklist ISO →</a></div>
-            <div class="card"><div class="card-icon">🏆</div><div class="card-title">MEG - Modelo de Excelência</div><div class="card-desc">13 fundamentos e 8 critérios aplicados à gestão condominial.</div><a href="#" class="card-link" onclick="simulateAction('Fundamentos: liderança, estratégias, sociedade, resultados'); return false;">Explorar MEG →</a></div>
-            <div class="card"><div class="card-icon">📈</div><div class="card-title">Indicadores de qualidade</div><div class="card-desc">ANEXO F: indicadores mínimos para gestão (satisfação, inadimplência, manutenção).</div><a href="#" class="card-link" onclick="simulateAction('Dashboard em Excel com métricas'); return false;">Baixar dashboard →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== BIBLIOTECA DE MODELOS (ANEXOS) ==================== -->
-    <div class="category">
-        <div class="category-title">📁 Biblioteca de Modelos (ANEXOS) <span>documentos essenciais</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">📋</div><div class="card-title">ANEXO A - Inspeção predial</div><div class="card-desc">Roteiro completo em PDF + checklist interativo.</div><a href="#" class="card-link" onclick="simulateAction('Baixar ANEXO_A_inspecao.pdf'); return false;">Baixar →</a></div>
-            <div class="card"><div class="card-icon">📝</div><div class="card-title">ANEXO B/C - Checklist zelador</div><div class="card-desc">Diário e semanal em Excel editável.</div><a href="#" class="card-link" onclick="simulateAction('Baixar checklist_zelador.xlsx'); return false;">Baixar →</a></div>
-            <div class="card"><div class="card-icon">📕</div><div class="card-title">ANEXO E - Registro de ocorrências</div><div class="card-desc">Estrutura mínima do livro de ocorrências (Word).</div><a href="#" class="card-link" onclick="simulateAction('Baixar livro_ocorrencias.docx'); return false;">Baixar →</a></div>
-            <div class="card"><div class="card-icon">📊</div><div class="card-title">ANEXO F - Indicadores de qualidade</div><div class="card-desc">Dashboard em Excel com métricas pré-definidas.</div><a href="#" class="card-link" onclick="simulateAction('Baixar dashboard_indicadores.xlsx'); return false;">Baixar →</a></div>
-            <div class="card"><div class="card-icon">🧹</div><div class="card-title">ANEXO G - Roteiro 5S</div><div class="card-desc">Versão resumida para implementação rápida.</div><a href="#" class="card-link" onclick="simulateAction('Baixar roteiro_5S.pdf'); return false;">Baixar →</a></div>
-            <div class="card"><div class="card-icon">🚨</div><div class="card-title">ANEXO H - Contatos de emergência</div><div class="card-desc">Modelo para fixar na portaria (PDF editável).</div><a href="#" class="card-link" onclick="simulateAction('Baixar contatos_emergencia.pdf'); return false;">Baixar →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== COMUNIDADE & INTERAÇÃO ==================== -->
-    <div class="category">
-        <div class="category-title">💬 Comunidade & Interação com o Autor <span>rede de apoio</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">🗣️</div><div class="card-title">Fórum Conviver</div><div class="card-desc">+65 mil participantes. Tire dúvidas, compartilhe experiências sobre a aplicação da teoria.</div><a href="#" class="card-link" onclick="simulateAction('Abrir fórum Conviver (comunidade exclusiva)'); return false;">Acessar fórum →</a></div>
-            <div class="card"><div class="card-icon">📧</div><div class="card-title">Fale com o autor</div><div class="card-desc">Para palestras, cursos, consultorias e parcerias.</div><a href="#" class="card-link" onclick="simulateAction('contato@teoriajanelasquebradas.com'); return false;">Enviar mensagem →</a></div>
-            <div class="card"><div class="card-icon">📱</div><div class="card-title">QR Code - Fórum Conviver</div><div class="card-desc">Escaneie com seu celular para acesso direto à comunidade.</div><div class="qrcode-placeholder" style="margin-top:0.5rem; background:#232a33; display:inline-block;">[ QR CODE: conviver.forum/teoria ]</div><a href="#" class="card-link btn-sm" onclick="simulateAction('Link direto: https://forumconviver.com.br/teoria'); return false;">Acessar via QR →</a></div>
-            <div class="card"><div class="card-icon">📬</div><div class="card-title">Newsletter</div><div class="card-desc">Receba atualizações jurisprudenciais e novos modelos.</div><div style="display: flex; gap: 6px; margin-top: 8px;"><input type="email" placeholder="Seu e-mail" class="newsletter-input" id="newsEmail"><button class="newsletter-btn" onclick="simulateAction('Inscrição na newsletter: '+document.getElementById('newsEmail')?.value||'e-mail não informado');">Inscrever</button></div></div>
-        </div>
-    </div>
-
-    <!-- ==================== CASOS REAIS E ESTUDOS ==================== -->
-    <div class="category">
-        <div class="category-title">🏢 Casos Reais e Estudos de Caso <span>aplicações concretas</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">🏆</div><div class="card-title">Edifício Residencial Porto diNucci</div><div class="card-desc">Exemplo real de aplicação do MEG em Campinas/SP (capítulo 7.4.3).</div><a href="#" class="card-link" onclick="simulateAction('Case: redução de inadimplência e melhoria na manutenção'); return false;">Ver case →</a></div>
-            <div class="card"><div class="card-icon">🗽</div><div class="card-title">Nova York - Tolerância Zero</div><div class="card-desc">Linha do tempo interativa da operação que reduziu criminalidade.</div><a href="#" class="card-link" onclick="simulateAction('Linha do tempo: 1990-1998, queda de 56% nos homicídios'); return false;">Explorar →</a></div>
-            <div class="card"><div class="card-icon">⚖️</div><div class="card-title">Condômino antissocial - TJ-PR</div><div class="card-desc">Análise detalhada do caso de estupro e cárcere privado (Apelação 957743-1).</div><a href="#" class="card-link" onclick="simulateAction('Acórdão TJPR: exclusão do condômino por falta grave'); return false;">Ler acórdão →</a></div>
-        </div>
-    </div>
-
-    <!-- ==================== ATUALIZAÇÕES LEGISLATIVAS ==================== -->
-    <div class="category">
-        <div class="category-title">📜 Atualizações Legislativas <span>Reforma Tributária e STJ</span></div>
-        <div class="cards-grid">
-            <div class="card"><div class="card-icon">📅</div><div class="card-title">Reforma Tributária 2025/2026</div><div class="card-desc">Impactos do IBS/CBS nos condomínios - guia atualizado.</div><a href="#" class="card-link" onclick="simulateAction('Guia Reforma Tributária: alíquota reduzida para condomínios?'); return false;">Acompanhar →</a></div>
-            <div class="card"><div class="card-icon">🏛️</div><div class="card-title">Novos entendimentos do STJ</div><div class="card-desc">Jurisprudência atualizada semestralmente (conforme prometido no livro).</div><a href="#" class="card-link" onclick="simulateAction('Últimos julgados: multa por barulho, animais de estimação'); return false;">Ver atualizações →</a></div>
-        </div>
-    </div>
-
-    <div class="repo-badge">
-        <a href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" target="_blank" class="repo-link" rel="noopener">📁 Arquivo oficial no GitHub: teoria-das-janelas-quebradas</a>
-    </div>
-
-    <div class="footer">
-        © 2024 - Teoria das Janelas Quebradas: Chamada à Ação em Condomínio - Todos os direitos reservados<br>
-        Erigutemberg Meneses | Advogado, Economista e Síndico Profissional<br>
-        <span style="opacity:0.7">Site oficial do livro | Política de privacidade | Suporte técnico</span>
-    </div>
-</div>
-
-<script>
-    function simulateAction(message) {
-        // pequeno toast compatível com a paleta
-        const toast = document.createElement('div');
-        toast.innerText = '🔔 ' + message;
-        toast.style.position = 'fixed';
-        toast.style.bottom = '25px';
-        toast.style.left = '50%';
-        toast.style.transform = 'translateX(-50%)';
-        toast.style.backgroundColor = '#1e2a24';
-        toast.style.backdropFilter = 'blur(12px)';
-        toast.style.borderLeft = '4px solid #E2B13C';
-        toast.style.padding = '0.7rem 1.5rem';
-        toast.style.borderRadius = '40px';
-        toast.style.color = '#FFE9C4';
-        toast.style.fontSize = '0.85rem';
-        toast.style.fontWeight = '500';
-        toast.style.zIndex = '9999';
-        toast.style.boxShadow = '0 5px 15px rgba(0,0,0,0.4)';
-        toast.style.fontFamily = 'monospace';
-        document.body.appendChild(toast);
-        setTimeout(() => {
-            toast.style.opacity = '0';
-            toast.style.transition = 'opacity 0.5s';
-            setTimeout(() => toast.remove(), 600);
-        }, 3200);
-    }
-
-    // fallback para newsletter se input vazio
-    window.simulateAction = simulateAction;
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
