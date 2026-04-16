@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Teoria das Janelas Quebradas | Chamada à Ação em Condomínios</title>
-    <meta name="description" content="Aplique a Teoria das Janelas Quebradas na gestão do seu condomínio: prevenção de pequenas irregularidades, manutenção proativa e melhoria da convivência.">
-    <!-- Google Fonts & Font Awesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (Free CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Chart.js CDN para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -17,120 +19,88 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #f0f2f5;
-            color: #1a1a2e;
+            background: #f1f5f9;
+            color: #0f172a;
             line-height: 1.5;
+            scroll-behavior: smooth;
         }
 
         .container {
             max-width: 1300px;
             margin: 0 auto;
-            padding: 1.5rem 2rem;
+            padding: 2rem 1.5rem;
         }
 
-        /* Header / Hero */
-        .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: white;
-            border-radius: 1.5rem;
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
+        /* header */
+        .header {
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e293b, #2c3e66);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
         }
 
-        .hero h1 i {
-            color: #e94560;
-            margin-right: 0.5rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .header p {
+            font-size: 1.1rem;
+            color: #334155;
             max-width: 700px;
-            margin: 0 auto 1rem;
-        }
-
-        .hero .quote {
-            font-style: italic;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            margin-top: 1rem;
-            font-size: 0.95rem;
-            color: #ffd966;
-        }
-
-        .badge-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
+            margin: 0 auto;
         }
 
         .badge {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(4px);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 999px;
+            padding: 0.2rem 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.75rem;
         }
 
-        /* Seções */
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 2rem 0 1.2rem 0;
-            border-left: 5px solid #e94560;
-            padding-left: 1rem;
-            color: #1a1a2e;
-        }
-
-        .card-grid {
+        /* cards principais */
+        .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
         .card {
             background: white;
-            border-radius: 1.2rem;
+            border-radius: 1.25rem;
             padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.05);
             transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #e0e4e8;
+            border: 1px solid #e2e8f0;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -12px rgba(0, 0, 0, 0.15);
+            border-color: #cbd5e1;
         }
 
         .card-icon {
             font-size: 2rem;
-            color: #e94560;
             margin-bottom: 1rem;
         }
 
         .card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
+            font-size: 1.35rem;
             margin-bottom: 0.75rem;
-            color: #1a1a2e;
+            font-weight: 600;
         }
 
         .card p {
-            color: #4a5568;
+            color: #475569;
             margin-bottom: 1.2rem;
             font-size: 0.9rem;
         }
@@ -139,293 +109,323 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: #f0f2f5;
-            color: #1a1a2e;
-            padding: 0.6rem 1.2rem;
+            background: #1e293b;
+            color: white;
+            padding: 0.5rem 1.2rem;
             border-radius: 2rem;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500;
             font-size: 0.85rem;
-            transition: all 0.2s;
+            transition: background 0.2s;
             border: none;
             cursor: pointer;
         }
 
-        .btn-primary {
-            background: #e94560;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: #c62a47;
-            transform: scale(1.02);
-        }
-
         .btn-outline {
-            border: 1px solid #cbd5e0;
             background: transparent;
+            border: 1px solid #cbd5e1;
+            color: #1e293b;
         }
 
         .btn-outline:hover {
-            background: #f7fafc;
+            background: #f1f5f9;
         }
 
-        /* Conceito principal */
-        .conceito-box {
-            background: linear-gradient(135deg, #fef5e8 0%, #fff8f0 100%);
+        .btn-primary {
+            background: #2563eb;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        /* seção de ferramentas interativas (exemplo) */
+        .ferramentas {
+            background: white;
             border-radius: 1.5rem;
-            padding: 2rem;
-            margin: 1.5rem 0;
-            border-left: 8px solid #e94560;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e2e8f0;
         }
 
-        .conceito-box h3 {
-            color: #1a1a2e;
+        .ferramentas h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
-        .exemplo-cards {
+        .simuladores {
             display: flex;
             flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .simulador {
+            flex: 1;
+            min-width: 200px;
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-radius: 0.5rem;
+            border: 1px solid #cbd5e1;
+        }
+
+        .result {
+            font-weight: 600;
+            margin-top: 0.5rem;
+            color: #0f3b5c;
+        }
+
+        /* BLOCO RECURSOS DO CONSELHO FISCAL (links solicitados) */
+        .recursos-conselho {
+            background: #f8fafc;
+            border-radius: 1.25rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+
+        .recursos-conselho h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
 
-        .exemplo-item {
+        .link-card {
             background: white;
-            border-radius: 1rem;
-            padding: 1rem;
-            flex: 1;
-            min-width: 180px;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s;
         }
 
-        .exemplo-item i {
-            font-size: 1.8rem;
-            color: #e94560;
+        .link-card strong {
+            display: block;
             margin-bottom: 0.5rem;
+            color: #0f172a;
+        }
+
+        .link-card ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            list-style: none;
+        }
+
+        .link-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        .link-card a {
+            text-decoration: none;
+            color: #2563eb;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .link-card a:hover {
+            text-decoration: underline;
+            color: #1d4ed8;
+        }
+
+        .repo-footer {
+            margin-top: 1.25rem;
+            padding-top: 0.75rem;
+            border-top: 1px dashed #cbd5e1;
+            font-size: 0.85rem;
+            color: #475569;
+            text-align: center;
         }
 
         footer {
             text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            border-top: 1px solid #cbd5e0;
-            color: #4a5568;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            color: #5b6e8c;
+            font-size: 0.8rem;
         }
 
-        @media (max-width: 700px) {
-            .container { padding: 1rem; }
-            .hero h1 { font-size: 1.8rem; }
-            .section-title { font-size: 1.4rem; }
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .header h1 {
+                font-size: 1.6rem;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Hero principal -->
-    <div class="hero">
-        <h1><i class="fas fa-chalkboard"></i> Teoria das Janelas Quebradas</h1>
-        <div class="subtitle">Aplicada à Gestão de Condomínios</div>
-        <div class="quote">“Uma janela quebrada não reparada é um sinal de que ninguém se importa, levando a mais vandalismo e degradação.” — James Q. Wilson & George Kelling</div>
-        <div class="badge-container">
-            <span class="badge"><i class="fas fa-broom"></i> Manutenção Proativa</span>
-            <span class="badge"><i class="fas fa-gavel"></i> Ordem e Convivência</span>
-            <span class="badge"><i class="fas fa-chart-line"></i> Prevenção de Degradação</span>
-            <span class="badge"><i class="fas fa-hand-sparkles"></i> Pequenas Ações, Grandes Resultados</span>
-        </div>
+    <!-- CABEÇALHO -->
+    <div class="header">
+        <h1><i class="fas fa-building"></i> Teoria das Janelas Quebradas</h1>
+        <p>Chamada à Ação em Condomínios • Gestão proativa, fiscalização transparente e comunidade forte</p>
+        <div class="badge"><i class="fas fa-shield-alt"></i> Base legal: Código Civil + Lei 4.591/64</div>
     </div>
 
-    <!-- Conceito principal -->
-    <div class="conceito-box">
-        <h3><i class="fas fa-lightbulb"></i> O que é a Teoria das Janelas Quebradas?</h3>
-        <p>Desenvolvida por criminologistas nos anos 1980, a teoria afirma que <strong>sinais visíveis de desordem e abandono</strong> (como janelas quebradas, pichações, lixo acumulado) incentivam comportamentos anti-sociais e crimes mais graves. Em condomínios, isso significa que <strong>pequenas irregularidades não corrigidas</strong> geram um ambiente propício para conflitos maiores, depreciação do patrimônio e queda na qualidade de vida.</p>
-        <div class="exemplo-cards">
-            <div class="exemplo-item"><i class="fas fa-door-open"></i><br>Portaria descuidada</div>
-            <div class="exemplo-item"><i class="fas fa-trash-alt"></i><br>Lixo fora da área</div>
-            <div class="exemplo-item"><i class="fas fa-volume-up"></i><br>Barulho sem fiscalização</div>
-            <div class="exemplo-item"><i class="fas fa-paint-roller"></i><br>Pichação não removida</div>
-        </div>
-        <p style="margin-top:1rem;"><strong>Resultado:</strong> moradores perdem o senso de pertencimento, regras são desrespeitadas e o valor do imóvel cai.</p>
-    </div>
-
-    <!-- Grid de recursos e links (cards) -->
-    <h2 class="section-title"><i class="fas fa-tools"></i> Ferramentas e Recursos</h2>
-    <div class="card-grid">
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-book-open"></i></div>
-            <h3>Entenda a Teoria</h3>
-            <p>Artigo completo explicando a origem, os estudos de Wilson & Kelling e como aplicar no dia a dia do condomínio.</p>
-            <a href="#" class="btn btn-primary" id="artigoTeoriaBtn"><i class="fas fa-graduation-cap"></i> Ler artigo</a>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
-            <h3>Checklist de Inspeção</h3>
-            <p>Lista de verificação para identificar "janelas quebradas" no seu condomínio: áreas comuns, fachada, iluminação, lixo.</p>
-            <button class="btn btn-primary" id="checklistBtn"><i class="fas fa-check-double"></i> Abrir checklist</button>
-            <div id="checklistResult" style="margin-top:12px; font-size:0.85rem; display:none; background:#f0f2f5; padding:0.8rem; border-radius:0.8rem;"></div>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-chart-simple"></i></div>
-            <h3>Calculadora de Impacto</h3>
-            <p>Estime a desvalorização do imóvel e o custo da degradação acumulada ao longo do tempo.</p>
-            <button class="btn btn-primary" id="calcImpactoBtn"><i class="fas fa-calculator"></i> Simular impacto</button>
-            <div id="impactoResult" style="margin-top:10px; font-size:0.85rem;"></div>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-file-signature"></i></div>
-            <h3>Regulamento Interno</h3>
-            <p>Modelo de convenção e regulamento com cláusulas baseadas na manutenção proativa e prevenção de desordem.</p>
-            <a href="#" class="btn btn-primary" id="regulamentoBtn"><i class="fas fa-download"></i> Baixar modelo (PDF)</a>
-        </div>
+    <!-- CARDS PRINCIPAIS (conceitos) -->
+    <div class="grid-cards">
         <div class="card">
             <div class="card-icon"><i class="fas fa-chalkboard-user"></i></div>
-            <h3>Curso Online</h3>
-            <p>Capacitação para síndicos e conselheiros: aplicação prática da Teoria das Janelas Quebradas.</p>
-            <a href="#" class="btn btn-primary" id="cursoBtn"><i class="fas fa-video"></i> Acessar curso</a>
+            <h3>O que é a Teoria?</h3>
+            <p>Janelas quebradas sem reparo incentivam desordem maior. No condomínio: pequenas infrações viram inadimplência, depredação e conflitos. Ação imediata evita deterioração.</p>
+            <a href="#" class="btn btn-outline" onclick="alert('Ação preventiva: pequeñas correções geram cultura de zelo.')"><i class="fas fa-lightbulb"></i> Entender</a>
         </div>
         <div class="card">
             <div class="card-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>Dashboard de Monitoramento</h3>
-            <p>Acompanhe indicadores de manutenção, ocorrências e satisfação dos moradores.</p>
-            <a href="#" class="btn btn-primary" id="dashboardBtn"><i class="fas fa-chart-pie"></i> Ver dashboard</a>
+            <h3>Para Síndicos</h3>
+            <p>Ferramentas para gestão de riscos, conciliação e compliance. Mantenha a ordem e valorize o patrimônio.</p>
+            <a href="#recursos" class="btn btn-primary"><i class="fas fa-arrow-down"></i> Ver recursos</a>
         </div>
         <div class="card">
-            <div class="card-icon"><i class="fas fa-hand-sparkles"></i></div>
-            <h3>Guia de Ações Imediatas</h3>
-            <p>10 ações de baixo custo para eliminar sinais de abandono e restaurar a ordem no condomínio.</p>
-            <button class="btn btn-primary" id="guiaAcoesBtn"><i class="fas fa-list"></i> Ver guia</button>
-            <div id="guiaResult" style="margin-top:10px; font-size:0.85rem; display:none;"></div>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-comments"></i></div>
-            <h3>Comunidade de Síndicos</h3>
-            <p>Tire dúvidas, compartilhe experiências e aprenda com outros gestores que aplicam a teoria.</p>
-            <a href="https://conviver.sindiconet.com.br/perguntas" class="btn btn-primary" target="_blank"><i class="fas fa-users"></i> Acessar fórum</a>
+            <div class="card-icon"><i class="fas fa-people-arrows"></i></div>
+            <h3>Conselho Fiscal Ativo</h3>
+            <p>Fiscalização independente, pareceres preventivos e auditoria cidadã. Regulamento próprio e mapa de riscos.</p>
+            <a href="#recursos" class="btn btn-outline"><i class="fas fa-file-signature"></i> Acesse documentos</a>
         </div>
     </div>
 
-    <!-- Casos práticos / exemplos -->
-    <h2 class="section-title"><i class="fas fa-building"></i> Casos Reais de Sucesso</h2>
-    <div class="card-grid">
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-city"></i></div>
-            <h3>Condomínio Novo Horizonte - SP</h3>
-            <p>Após implementar ronda de manutenção semanal e reparo imediato de qualquer dano, reduziu ocorrências em 73% em 6 meses.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-tree"></i></div>
-            <h3>Residencial Parque Verde - RJ</h3>
-            <p>Revitalização de áreas comuns e campanha "Adote uma Parede" eliminou pichações e valorizou o imóvel em 18%.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon"><i class="fas fa-water"></i></div>
-            <h3>Condomínio Vila das Flores - MG</h3>
-            <p>Correção de infiltrações e iluminação de escadas reduziu conflitos entre moradores em 85%.</p>
+    <!-- FERRAMENTAS RÁPIDAS (exemplo de quórum e ROI simplificado) -->
+    <div class="ferramentas">
+        <h2><i class="fas fa-calculator"></i> Simuladores Rápidos</h2>
+        <div class="simuladores">
+            <div class="simulador">
+                <label><strong>Quórum Assembleia (art. 1.352 CC)</strong></label>
+                <label>Total de unidades:</label>
+                <input type="number" id="totalUnidades" value="40" step="1">
+                <label>Presentes / representados:</label>
+                <input type="number" id="presentes" value="25">
+                <button class="btn btn-outline" id="calcQuorum" style="margin-top: 6px;">Calcular maioria</button>
+                <div class="result" id="resultQuorum">--</div>
+            </div>
+            <div class="simulador">
+                <label><strong>ROI Energia (payback)</strong></label>
+                <label>Investimento (R$):</label>
+                <input type="number" id="invest" value="5000">
+                <label>Economia mensal (R$):</label>
+                <input type="number" id="economia" value="350">
+                <button class="btn btn-outline" id="calcRoi">Calcular Payback</button>
+                <div class="result" id="resultRoi">--</div>
+            </div>
         </div>
     </div>
 
-    <!-- Citação final -->
-    <div style="background:#1a1a2e; color:white; border-radius:1.5rem; padding:2rem; text-align:center; margin:2rem 0;">
-        <i class="fas fa-quote-left" style="font-size:2rem; color:#e94560; opacity:0.6;"></i>
-        <p style="font-size:1.2rem; max-width:800px; margin:1rem auto;">“A chave para evitar a degradação não é apenas punir, mas <strong>demonstrar que o ambiente é cuidado</strong>. Pequenas manutenções imediatas comunicam ordem e respeito.”</p>
-        <p style="margin-top:1rem;">— Adaptado de Kelling & Coles, “Fixing Broken Windows”</p>
+    <!-- BLOCO EXIGIDO: LINKS DO CONSELHO FISCAL (todos os links solicitados) -->
+    <div id="recursos" class="recursos-conselho">
+        <h3><i class="fas fa-folder-open"></i> Central de Documentos e Ferramentas do Conselho Fiscal</h3>
+        <p style="color: #334155; margin-bottom: 1rem; border-left: 3px solid #3b82f6; padding-left: 0.75rem;">
+            Regulamento, modelos, conciliação, ESG, atualizações legislativas e muito mais — tudo em um só lugar.
+        </p>
+
+        <div class="links-grid">
+            <!-- GRUPO 1: REGULAMENTO E MODELOS -->
+            <div class="link-card">
+                <strong><i class="fas fa-gavel"></i> Regulamento e Modelos Oficiais</strong>
+                <ul>
+                    <li>🔗 <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/regulamento-conselho.html" target="_blank" rel="noopener noreferrer">Regulamento do Conselho Fiscal (HTML completo)</a></li>
+                    <li>📄 <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ferigutembergmeneses-jpg.github.io%2Fconselho-fiscal-condominio-das-contas%2Fregulamento-conselho.docx.doc&wdOrigin=BROWSELINK" target="_blank" rel="noopener noreferrer">Regulamento (.docx editável) – Visualizar online</a></li>
+                    <li>⚖️ <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/atualizacoes-legislativas-conselho-fiscal.html" target="_blank" rel="noopener noreferrer">Atualizações Legislativas (Reforma Tributária 2025)</a></li>
+                </ul>
+            </div>
+            <!-- GRUPO 2: FERRAMENTAS DE GESTÃO -->
+            <div class="link-card">
+                <strong><i class="fas fa-chart-pie"></i> Gestão, Riscos e ROI</strong>
+                <ul>
+                    <li>🏦 <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/conciliacao-bancaria.html" target="_blank" rel="noopener noreferrer">Conciliação Bancária + Planilha Excel</a></li>
+                    <li>📈 <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/roi-energia.html" target="_blank" rel="noopener noreferrer">Calculadora ROI Energia (Payback detalhado)</a></li>
+                    <li>🗺️ <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/mapa-riscos.html" target="_blank" rel="noopener noreferrer">Mapa de Riscos (Probabilidade x Impacto)</a></li>
+                </ul>
+            </div>
+            <!-- GRUPO 3: ESG, COMUNIDADE E SITE OFICIAL -->
+            <div class="link-card">
+                <strong><i class="fas fa-leaf"></i> ESG, Comunidade e Autor</strong>
+                <ul>
+                    <li>♻️ <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/dashboard-esg.html" target="_blank" rel="noopener noreferrer">Dashboard ESG (Sustentabilidade e score)</a></li>
+                    <li>💬 <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank" rel="noopener noreferrer">Fórum Conviver – +65k usuários (dúvidas e respostas)</a></li>
+                    <li>👤 <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" target="_blank" rel="noopener noreferrer">Site oficial do autor – Eri Gutemberg Meneses</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- REPOSITÓRIO TEORIA DAS JANELAS QUEBRADAS (GitHub) -->
+        <div class="repo-footer">
+            📁 Repositório oficial do projeto: 
+            <a href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" target="_blank" rel="noopener noreferrer" style="font-weight: 500;">
+                Teoria das Janelas Quebradas – Chamada à Ação em Condomínios (GitHub)
+            </a> — Explore o código, contribua ou compartilhe.
+        </div>
+    </div>
+
+    <!-- MENÇÃO EXTRA: site do conselho fiscal (índice) -->
+    <div style="background: #eef2ff; border-radius: 1rem; padding: 0.8rem 1.2rem; margin-top: 1rem; text-align: center;">
+        <i class="fas fa-external-link-alt"></i> Portal completo do Conselho Fiscal: 
+        <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" target="_blank" rel="noopener noreferrer" style="font-weight: 600;">conselho-fiscal-condominio-das-contas (home)</a>
+        — reúne todas as ferramentas de gestão e compliance.
     </div>
 
     <footer>
-        <p><i class="fas fa-copyright"></i> Teoria das Janelas Quebradas | Aplicação na Gestão Condominial | Baseado nos estudos de Wilson, Kelling e Coles</p>
-        <p style="font-size:0.8rem; margin-top:0.5rem;">Conteúdo educativo para síndicos, conselheiros e administradores de condomínios</p>
+        <i class="fas fa-balance-scale"></i> Baseado em Código Civil (arts. 1.331 a 1.358), Lei 4.591/1964 e princípios de governança • Conteúdo educativo e colaborativo para síndicos e conselheiros.
     </footer>
 </div>
 
 <script>
-    // === Checklist Interativo ===
-    const checklistItems = [
-        "Há lixo acumulado em áreas comuns?",
-        "Existem pichações ou grafites não autorizados?",
-        "A iluminação de corredores e escadas está funcionando?",
-        "Portões, cercas ou muros apresentam danos?",
-        "Áreas de lazer (playground, salão) estão conservadas?",
-        "Há vidros quebrados em janelas ou portas?",
-        "O jardim ou paisagismo está abandonado?",
-        "Há vazamentos aparentes ou manchas de umidade?",
-        "Equipamentos de segurança (câmeras, interfones) funcionam?",
-        "Há moradores descumprindo regras de silêncio ou uso comum?"
-    ];
-
-    document.getElementById('checklistBtn').addEventListener('click', () => {
-        let resultDiv = document.getElementById('checklistResult');
-        let html = '<strong>🔍 Checklist de Inspeção:</strong><br><ul style="margin-top:8px; margin-left:20px;">';
-        checklistItems.forEach(item => {
-            html += `<li>${item}</li>`;
+    // Quórum simulador
+    const calcQuorumBtn = document.getElementById('calcQuorum');
+    const resultQuorumDiv = document.getElementById('resultQuorum');
+    if(calcQuorumBtn) {
+        calcQuorumBtn.addEventListener('click', () => {
+            let total = parseInt(document.getElementById('totalUnidades').value) || 0;
+            let presentes = parseInt(document.getElementById('presentes').value) || 0;
+            if(total <= 0) {
+                resultQuorumDiv.innerHTML = 'Total de unidades inválido.';
+                return;
+            }
+            let maioriaAbs = Math.floor(total / 2) + 1;
+            let atingiu = presentes >= maioriaAbs;
+            resultQuorumDiv.innerHTML = `Maioria absoluta: ${maioriaAbs} condôminos. Presentes: ${presentes}. ${atingiu ? '✅ Quórum alcançado para deliberação ordinária.' : '❌ Quórum insuficiente (necessário maioria absoluta).'}`;
         });
-        html += '</ul><p><strong>Ação:</strong> Para cada item com resposta "SIM", crie um plano de correção em até 48 horas.</p>';
-        resultDiv.innerHTML = html;
-        resultDiv.style.display = 'block';
-    });
+    }
 
-    // === Calculadora de Impacto Financeiro ===
-    document.getElementById('calcImpactoBtn').addEventListener('click', () => {
-        let valorImovel = prompt("Valor aproximado do imóvel (R$):", "500000");
-        if(valorImovel && !isNaN(parseFloat(valorImovel))) {
-            let valor = parseFloat(valorImovel);
-            let depreciacaoAnual = 0.08; // 8% ao ano por degradação
-            let perda1ano = valor * depreciacaoAnual;
-            let perda3anos = valor * (1 - Math.pow(0.92, 3));
-            document.getElementById('impactoResult').innerHTML = `📉 <strong>Impacto estimado:</strong><br>
-            • Desvalorização em 1 ano: <strong>R$ ${perda1ano.toFixed(2)}</strong><br>
-            • Perda acumulada em 3 anos sem correção: <strong>R$ ${perda3anos.toFixed(2)}</strong><br>
-            ⚠️ Além disso: queda na satisfação, aumento de conflitos e rotatividade de moradores.`;
-        } else {
-            document.getElementById('impactoResult').innerHTML = "❌ Por favor, insira um valor numérico válido.";
-        }
-    });
-
-    // === Guia de Ações Imediatas ===
-    const acoesLista = [
-        "🧹 Realizar mutirão de limpeza em áreas comuns",
-        "💡 Substituir todas as lâmpadas queimadas em até 24h",
-        "🎨 Remover pichações e reparar pequenos danos na pintura",
-        "🗑️ Instalar lixeiras adicionais e aumentar frequência da coleta",
-        "🔧 Criar canal de denúncia anônimo para irregularidades",
-        "📋 Publicar regras de convivência em locais visíveis",
-        "👮 Contratar ronda noturna ou monitoramento por câmeras",
-        "🌿 Revitalizar jardins e áreas verdes"
-    ];
-
-    document.getElementById('guiaAcoesBtn').addEventListener('click', () => {
-        let guiaDiv = document.getElementById('guiaResult');
-        let html = '<strong>✅ 8 Ações Imediatas (baixo custo):</strong><ul style="margin-top:8px; margin-left:20px;">';
-        acoesLista.forEach(acao => {
-            html += `<li>${acao}</li>`;
+    // ROI Simples (payback em meses)
+    const calcRoiBtn = document.getElementById('calcRoi');
+    const resultRoiDiv = document.getElementById('resultRoi');
+    if(calcRoiBtn) {
+        calcRoiBtn.addEventListener('click', () => {
+            let invest = parseFloat(document.getElementById('invest').value) || 0;
+            let economia = parseFloat(document.getElementById('economia').value) || 0;
+            if(economia <= 0) {
+                resultRoiDiv.innerHTML = 'Economia mensal precisa ser maior que zero.';
+                return;
+            }
+            let payback = invest / economia;
+            resultRoiDiv.innerHTML = `Payback estimado: ${payback.toFixed(1)} meses (${(payback/12).toFixed(1)} anos). ROI positivo após esse período.`;
         });
-        html += '</ul><p><strong>Efeito esperado:</strong> Redução de até 60% em ocorrências nos primeiros 3 meses.</p>';
-        guiaDiv.innerHTML = html;
-        guiaDiv.style.display = 'block';
-    });
+    }
 
-    // === Links informativos (simulando downloads/páginas) ===
-    document.getElementById('artigoTeoriaBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("📖 ARTIGO COMPLETO\n\nA Teoria das Janelas Quebradas foi proposta por James Q. Wilson e George Kelling em 1982. Aplicada a condomínios:\n\n1. Pequenos problemas não resolvidos indicam falta de cuidado.\n2. Isso incentiva comportamentos mais graves.\n3. A solução é manutenção proativa e imediata.\n\nExemplo: uma lâmpada queimada no corredor → sensação de abandono → mais vandalismo → insegurança.\n\n👉 Ação: crie um protocolo de 'reparo em até 24h' para qualquer dano identificado.");
-    });
-
-    document.getElementById('regulamentoBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("📄 MODELO DE REGULAMENTO (PDF simulada)\n\nCláusulas sugeridas:\n\n• Art. 1º - Toda avaria em área comum deve ser comunicada e reparada em até 48h.\n• Art. 2º - O síndico manterá registro visual (fotos) das condições das áreas comuns.\n• Art. 3º - Multa progressiva para moradores que não mantiverem sua unidade em bom estado (fachada, janelas, varandas).\n• Art. 4º - Criação do Comitê de Manutenção Proativa com 3 moradores voluntários.\n\n📎 Para baixar o arquivo completo em PDF, entre em contato pelo e-mail: teoria@condominios.com.br");
-    });
-
-    document.getElementById('cursoBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("🎓 CURSO ONLINE: Teoria das Janelas Quebradas na Prática\n\nMódulos:\n1. Fundamentos da teoria (2h)\n2. Diagnóstico do seu condomínio (3h)\n3. Plano de ação de 30 dias (2h)\n4. Engajamento de moradores e equipe (2h)\n\n📅 Próxima turma: início em 15/05/2026\n💰 Investimento: R$ 197,00\n🔗 Link para inscrição: https://cursos.condominios.com.br/janelas-quebradas");
-    });
-
-    document.getElementById('dashboardBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        alert("📊 DASHBOARD DE MONITORAMENTO\n\nIndicadores sugeridos para acompanhamento:\n\n• Número de chamados de manutenção (meta: <10/mês)\n• Tempo médio de reparo (meta: <48h)\n• Satisfação dos moradores (pesquisa trimestral)\n• Ocorrências de vandalismo (meta: redução de 20% mês a mês)\n• Valor investido em manutenção preventiva vs corretiva\n\n🔧 Ferramenta recomendada: planilha Excel ou sistema de gestão condominial com módulo de ocorrências.");
-    });
+    // tooltip ou alerta inicial de boas-vindas (opcional)
+    console.log('Site Teoria das Janelas Quebradas carregado com todos os links integrados.');
 </script>
 </body>
 </html>
