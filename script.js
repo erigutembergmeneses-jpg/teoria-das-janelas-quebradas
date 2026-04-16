@@ -1,19 +1,16 @@
-// GERA QR CODE DINÂMICO (URL DO LIVRO + REDIRECIONAMENTO)
-const PLANILHA_URL = "https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/planilha-redirect"; 
-// URL curta que leva à página de redirecionamento inteligente.
-// Para simplicidade, já usamos o link que redireciona para Google Sheets.
-// Mas o QR Code do livro apontará para: https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/redirect-planilha
+// Link correto da sua planilha (com /copy no final)
+const PLANILHA_COPY_LINK = "https://docs.google.com/spreadsheets/d/1WDAbK79HB5j090J7E5o0kBGcXqDqtnXVmsbDdWMxRMs/copy";
 
-// Melhor prática: criar uma página /redirect-planilha.html que detecta dispositivo.
-// Por enquanto, o QR Code aponta diretamente para o link de cópia do Google Sheets (mais direto).
-const QR_CODE_TARGET = "https://docs.google.com/spreadsheets/d/1UjZJaXwUeNJHYoP9P1ax0V3J3F0zxS42zM5B2Zd6VjU/copy";
+// Para o QR Code do livro, recomendo usar a página de redirecionamento
+// Mas vou deixar o link direto da planilha funcionando também
+const QR_CODE_TARGET = PLANILHA_COPY_LINK;
 
 let qrModal = document.getElementById("modalQr");
 let btnQr = document.getElementById("btnQrCode");
 let spanFechar = document.querySelector(".fechar");
 let qrContainer = document.getElementById("qrCodeContainer");
 
-// Carrega a biblioteca QRCode dinamicamente (sem dependência externa fixa)
+// Carrega a biblioteca QRCode dinamicamente
 function carregarQRCodeLib(callback) {
     if (window.QRCode) {
         callback();
@@ -27,12 +24,12 @@ function carregarQRCodeLib(callback) {
 
 function exibirQRCode() {
     if (!qrContainer) return;
-    qrContainer.innerHTML = ""; // limpa
+    qrContainer.innerHTML = "";
     if (window.QRCode) {
         new QRCode(qrContainer, {
             text: QR_CODE_TARGET,
-            width: 200,
-            height: 200,
+            width: 220,
+            height: 220,
             colorDark: "#00596B",
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.M
@@ -43,9 +40,10 @@ function exibirQRCode() {
             qrContainer.innerHTML = "";
             new QRCode(qrContainer, {
                 text: QR_CODE_TARGET,
-                width: 200,
-                height: 200,
-                colorDark: "#00596B"
+                width: 220,
+                height: 220,
+                colorDark: "#00596B",
+                colorLight: "#ffffff"
             });
         });
     }
@@ -64,7 +62,7 @@ window.addEventListener("click", (e) => {
     if (e.target === qrModal) qrModal.style.display = "none";
 });
 
-// PRÉ-VISUALIZAÇÃO DO QR NO CARD (estático)
+// Pré-visualização no card
 const qrPreviewPlace = document.getElementById("qrPreviewPlaceholder");
 if (qrPreviewPlace) {
     qrPreviewPlace.innerHTML = "📘 QR Code do livro<br><span style='font-size:0.7rem;'>Clique no botão ao lado →</span>";
