@@ -1,6 +1,6 @@
-# Conselho Fiscal: Domínio das Contas
+# Teoria das Janelas Quebradas - Chamada à Ação em Condomínios
 
-Portal completo para conselheiros fiscais de condomínios. Integra ferramentas de gestão, auditoria, ESG, mapa de riscos, base legal e comunidade.
+Portal completo para síndicos, conselheiros fiscais e condôminos. Integra ferramentas de gestão, auditoria, ESG, mapa de riscos, base legal e comunidade.
 
 ## 🚀 Funcionalidades Principais
 
