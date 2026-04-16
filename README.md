@@ -1,56 +1,17 @@
-# 🏢 Teoria das Janelas Quebradas - Chamada à Ação em Condomínio
+# Teoria das Janelas Quebradas — Site com Planilha e QR Code
 
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?style=flat&logo=github)
-![Jekyll](https://img.shields.io/badge/Jekyll-Static%20Site-red?style=flat&logo=jekyll)
-![License](https://img.shields.io/badge/License-MIT-green)
+Site oficial para leitores do livro, com foco na **planilha editável de provisionamento e matriz de indexação condominial** (versão 2026).
 
-Site oficial complementar ao livro **"Teoria das Janelas Quebradas: Chamada à Ação em Condomínio"**, de autoria de **Erigutemberg Meneses**. O projeto aplica os conceitos da famosa teoria à gestão condominial, focando em manutenção preventiva, governança e administração eficiente.
+## 🧩 Objetivo
 
-🔗 **Acesse o site:** [erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas](https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/)
+Fornecer acesso rápido e organizado à ferramenta principal (planilha + QR Code), reduzindo a quantidade de cards e destacando a governança financeira preventiva.
 
----
+## 🚀 Funcionalidades
 
-## ✨ Funcionalidades
-- 📖 Apresentação completa da obra, ficha técnica e credenciais do autor
-- 📥 Materiais complementares para download (checklists, planilhas, modelos de ata)
-- ⚖️ Seção de jurisprudência atualizada com filtros interativos por categoria
-- 📰 Blog/Artigos sobre gestão condominial e novidades jurídicas
-- ❓ FAQ expansível com dúvidas frequentes de síndicos e administradores
-- 📱 Design responsivo, acessível e otimizado para dispositivos móveis
-- 🌐 SEO avançado (Meta tags, Open Graph, Schema.org JSON-LD)
+- Página responsiva e limpa
+- Card principal com link para **Google Sheets (cópia editável)**
+- Modal com **QR Code** do livro para leitores (compatível com celular)
+- 6 cards secundários essenciais: fundamentos, jurisprudência, checklist, calculadora de multas, fórum e newsletter
+- Rodapé com referências técnicas (NBR, CC, STJ)
 
-## 🛠️ Tecnologias Utilizadas
-- **Gerador Estático:** [Jekyll](https://jekyllrb.com/)
-- **Hospedagem:** [GitHub Pages](https://pages.github.com/)
-- **Frontend:** HTML5 Semântico, CSS3 (Custom Properties), JavaScript (Vanilla ES6+)
-- **Ícones:** [Font Awesome 6](https://fontawesome.com/)
-- **Tipografia:** Google Fonts (Inter & Playfair Display)
-- **SEO:** `jekyll-seo-tag`, meta tags dinâmicas, Structured Data
-
-## 📁 Estrutura de Pastas
-eoria-das-janelas-quebradas/
-├── _config.yml # Configurações do Jekyll e GitHub Pages
-├── index.html # Página principal (Landing Page)
-├── css/
-│ └── style.css # Estilos CSS customizados
-├── js/
-│ └── script.js # Funcionalidades JS interativas
-├── assets/
-│ ├── img/ # Imagens, capas, favicon
-│ └── docs/ # Arquivos para download (PDF, XLSX, DOCX)
-└── README.md # Documentação do projeto
-
-## 💻 Como Executar Localmente
-
-> ⚠️ Opcional. O GitHub Pages faz o build automaticamente a cada push.
-
-### Pré-requisitos
-- Ruby ≥ 2.7 instalado ([guia de instalação](https://www.ruby-lang.org/pt/documentation/installation/))
-- Bundler: `gem install bundler`
-
-### Passo a passo
-
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas.git
-   cd teoria-das-janelas-quebradas
+## 📁 Estrutura de arquivos
