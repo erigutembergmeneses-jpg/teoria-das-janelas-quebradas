@@ -1,107 +1,467 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Teoria das Janelas Quebradas | Planilha e Governança Condominial</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2300596B'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E">
+    <title>Conselho Fiscal: Domínio das Contas | ESG • Riscos • ROI</title>
+    <meta name="description" content="Plataforma completa para conselheiros fiscais de condomínios: ferramentas ESG, mapa de riscos, conciliação bancária, regulamento e comunidade.">
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Chart.js CDN para gráficos ESG e Riscos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f4f7fc;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+        }
+
+        /* Header / Hero */
+        .hero {
+            background: linear-gradient(135deg, #0b2b3b 0%, #1b4f6e 100%);
+            color: white;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h1 i {
+            color: #ffd966;
+            margin-right: 0.5rem;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(4px);
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Seções gerais */
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2rem 0 1.2rem 0;
+            border-left: 6px solid #2c7da0;
+            padding-left: 1rem;
+            color: #0b2b3b;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 18px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: #2c7da0;
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: #2c3e50;
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #eef2f5;
+            color: #1e4a6b;
+            padding: 0.6rem 1.2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #1f6e8c;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0e4e66;
+        }
+
+        .btn-outline {
+            border: 1px solid #bdd3df;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #e9f0f4;
+        }
+
+        /* Ferramentas interativas (ESG, Riscos, ROI) */
+        .tool-container {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            border: 1px solid #dce9ef;
+        }
+
+        .esg-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            justify-content: space-between;
+            margin: 1.5rem 0;
+        }
+
+        .stat-card {
+            background: #f0f6fa;
+            border-radius: 1rem;
+            padding: 1rem;
+            flex: 1;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1f6e8c;
+        }
+
+        canvas {
+            max-height: 250px;
+            margin: 1rem 0;
+        }
+
+        .risco-table {
+            overflow-x: auto;
+        }
+
+        .risco-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2edf2;
+            padding: 0.8rem 0;
+        }
+
+        .priority {
+            font-weight: 700;
+        }
+
+        .critical { color: #b91c1c; }
+        .high { color: #c2410c; }
+        .medium { color: #b45309; }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            border-top: 1px solid #cbdde6;
+            color: #4b6f86;
+        }
+
+        @media (max-width: 700px) {
+            .container { padding: 1rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .section-title { font-size: 1.5rem; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>🧩 TEORIA DAS JANELAS QUEBRADAS</h1>
-        <p class="subhead">Chamada à Ação em Condomínio — Versão 2026</p>
-        <p class="description">Recurso central para síndicos, administradores e conselheiros fiscais. <strong>Planilha editável</strong> com provisionamento técnico e matriz de indexação.</p>
-    </header>
-
-    <main>
-        <!-- CARD PRINCIPAL: PLANILHA + QR CODE -->
-        <section class="card-destaque" id="planilha">
-            <div class="card-destaque-conteudo">
-                <span class="badge">⚡ FERRAMENTA PRINCIPAL</span>
-                <h2>📊 Planilha: Provisionamento e Matriz de Indexação</h2>
-                <p>Padrão "Teoria das Janelas Quebradas" — versão 2026.<br>
-                Controle de depreciação, provisionamento por sistema, indexação de despesas e dashboard de KPIs.</p>
-                <div class="botoes-destaque">
-                    <!-- LINK CORRETO DA PLANILHA -->
-                    <a href="https://docs.google.com/spreadsheets/d/1WDAbK79HB5j090J7E5o0kBGcXqDqtnXVmsbDdWMxRMs/copy" class="btn btn-primario" target="_blank">
-                        📱 Usar Google Sheets (copiar)
-                    </a>
-                    <button id="btnQrCode" class="btn btn-secundario">📷 QR Code do livro</button>
-                </div>
-                <p class="info-planilha">✔️ Cálculos automáticos | ✔️ Alertas de laudo vencido | ✔️ Matriz de indexação | ✔️ Totalmente editável</p>
-            </div>
-            <div class="card-destaque-imagem">
-                <div class="qr-placeholder" id="qrPreviewPlaceholder">
-                    ⬇️ Clique em "QR Code do livro" ⬇️
-                </div>
-            </div>
-        </section>
-
-        <!-- CARDS SECUNDÁRIOS -->
-        <div class="cards-grid">
-            <div class="card">
-                <span class="card-icon">📘</span>
-                <h3>Fundamentos</h3>
-                <p>Apresentação, primeiros passos e a lógica do conserto invisível.</p>
-                <a href="#" class="link-card">Explorar →</a>
-            </div>
-            <div class="card">
-                <span class="card-icon">⚖️</span>
-                <h3>Jurisprudência STJ 2025</h3>
-                <p>Decisões atualizadas sobre omissão, indexação e provisionamento.</p>
-                <a href="#" class="link-card">Ver acórdãos →</a>
-            </div>
-            <div class="card">
-                <span class="card-icon">🔧</span>
-                <h3>Checklist de inspeção</h3>
-                <p>Anexo A – roteiro completo para vistorias prediais.</p>
-                <a href="#" class="link-card">Abrir checklist →</a>
-            </div>
-            <div class="card">
-                <span class="card-icon">💰</span>
-                <h3>Calculadora de multas</h3>
-                <p>Base no art. 1.337 + jurisprudência (até 10x a cota).</p>
-                <a href="#" class="link-card">Simular →</a>
-            </div>
-            <div class="card">
-                <span class="card-icon">🗣️</span>
-                <h3>Fórum Conviver</h3>
-                <p>+65 mil participantes. Tire dúvidas sobre a planilha e a teoria.</p>
-                <a href="https://conviver.forum/teoria" class="link-card" target="_blank">Acessar comunidade →</a>
-            </div>
-            <div class="card">
-                <span class="card-icon">📬</span>
-                <h3>Atualizações</h3>
-                <p>Receba novos julgados e versões da planilha.</p>
-                <a href="#" class="link-card">Newsletter →</a>
-            </div>
-        </div>
-
-        <!-- RODAPÉ COM INFORMAÇÕES LEGAIS E TÉCNICAS -->
-        <footer>
-            <p><strong>Referências técnicas:</strong> NBR 5674:2012 • NBR 15575:2013 • Código Civil, art. 1.348, V • STJ, REsp 2.045.123/SP (2024)</p>
-            <p>© Teoria das Janelas Quebradas – Versão para livro. Planilha atualizada em 2026. <br> Acesso via QR Code com redirecionamento inteligente (Google Sheets / Excel / PDF).</p>
-        </footer>
-    </main>
-
-    <!-- MODAL DO QR CODE -->
-    <div id="modalQr" class="modal">
-        <div class="modal-conteudo">
-            <span class="fechar">&times;</span>
-            <h3>📲 QR Code do livro</h3>
-            <p>Aponte a câmera do celular ou use o leitor de QR Code. Você será direcionado para a planilha editável.</p>
-            <div id="qrCodeContainer" style="text-align: center; margin: 20px 0;"></div>
-            <div class="info-qr">
-                <p>🔹 <strong>Google Sheets</strong> (recomendado para síndicos)<br>
-                🔹 <strong>Excel / LibreOffice</strong> (Conselho Fiscal)<br>
-                🔹 <strong>PDF interativo</strong> (consulta rápida)</p>
-                <p><em>O QR Code sempre aponta para a versão mais recente da planilha.</em></p>
-            </div>
+<div class="container">
+    <!-- Hero principal -->
+    <div class="hero">
+        <h1><i class="fas fa-chalkboard-user"></i> Conselho Fiscal: <span style="color:#ffd966">Com Domínio das Contas</span></h1>
+        <div class="tagline">Recursos digitais interativos • Modelos • Ferramentas de gestão e auditoria</div>
+        <div class="badge-container">
+            <span class="badge"><i class="fas-regular fa-chart-line"></i> ESG & Sustentabilidade</span>
+            <span class="badge"><i class="fas fa-scale-balanced"></i> Base Legal</span>
+            <span class="badge"><i class="fas fa-people-group"></i> Fórum Conviver +65k</span>
+            <span class="badge"><i class="fas fa-file-excel"></i> Planilhas e modelos</span>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Grid principal de links e cards (recursos) -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-gavel"></i></div>
+            <h3>Regulamento do Conselho</h3>
+            <p>Web interativa + documento .docx editável. Base legal, quóruns e responsabilidade civil.</p>
+            <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/regulamento-conselho.html" class="btn btn-primary" target="_blank"><i class="fas fa-file-alt"></i> Ler regulamento</a>
+            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ferigutembergmeneses-jpg.github.io%2Fconselho-fiscal-condominio-das-contas%2Fregulamento-conselho.docx.doc&wdOrigin=BROWSELINK" class="btn btn-outline" target="_blank"><i class="fas fa-download"></i> .DOCX editável</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-calculator"></i></div>
+            <h3>Calculadora de Quóruns</h3>
+            <p>Assembleias e quóruns legais (Código Civil/Lei 4591). Simule maiorias simples e qualificadas.</p>
+            <button class="btn btn-primary" id="calcQuorumBtn"><i class="fas fa-chart-simple"></i> Simular quórum</button>
+            <div id="quorumResult" style="margin-top:12px; font-size:0.9rem;"></div>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-handcuffs"></i></div>
+            <h3>Responsabilidade Civil</h3>
+            <p>Simulador de riscos para conselheiros. Entenda exposição por omissão dolosa/culposa.</p>
+            <button class="btn btn-primary" id="simularRiscoBtn"><i class="fas fa-scale-balanced"></i> Simular risco</button>
+            <div id="riscoCivilMsg" style="margin-top:10px; font-size:0.85rem; color:#2c3e50;"></div>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Dashboard ESG</h3>
+            <p>Métricas interativas: energia, água, reciclagem e ROI sustentável. Gráficos em tempo real.</p>
+            <a href="#esg-full" class="btn btn-primary" id="scrollToESG"><i class="fas fa-leaf"></i> Ver dashboard ESG</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-map"></i></div>
+            <h3>Mapa de Riscos</h3>
+            <p>Matriz probabilidade x impacto, riscos críticos (incêndio, fraude, inadimplência) e plano de ação.</p>
+            <a href="#riscos-full" class="btn btn-primary"><i class="fas fa-triangle-exclamation"></i> Explorar mapa</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-lightbulb"></i></div>
+            <h3>ROI Eficiência Energética</h3>
+            <p>Calcule payback, economia mensal e redução de CO₂ com energia solar ou LED.</p>
+            <button class="btn btn-primary" id="openRoiModalBtn"><i class="fas fa-solar-panel"></i> Calcular ROI</button>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-university"></i></div>
+            <h3>Conciliação bancária</h3>
+            <p>Planilha Excel + página explicativa. Cruze extratos e balancetes com eficiência.</p>
+            <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/conciliacao-bancaria.html" class="btn btn-primary" target="_blank"><i class="fas fa-file-invoice-dollar"></i> Acessar página</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-comments"></i></div>
+            <h3>Fórum Conviver</h3>
+            <p>+65 mil participantes. Tire dúvidas, compartilhe experiências com conselheiros de todo Brasil.</p>
+            <a href="https://conviver.sindiconet.com.br/perguntas" class="btn btn-primary" target="_blank"><i class="fas fa-users"></i> Acessar fórum</a>
+        </div>
+        <div class="card">
+            <div class="card-icon"><i class="fas fa-newspaper"></i></div>
+            <h3>Atualizações legislativas</h3>
+            <p>Reforma Tributária 2025/2026 • IBS/CBS e impactos nos condomínios.</p>
+            <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/atualizacoes-legislativas-conselho-fiscal.html" class="btn btn-primary" target="_blank"><i class="fas fa-scroll"></i> Acompanhar</a>
+        </div>
+    </div>
+
+    <!-- Seção ESG completa (dashboard interativo) -->
+    <div id="esg-full" class="tool-container">
+        <h2 style="display: flex; gap: 0.8rem; align-items: center;"><i class="fas fa-seedling" style="color:#2b7a4b;"></i> Dashboard ESG - Sustentabilidade e Governança</h2>
+        <div class="esg-stats">
+            <div class="stat-card"><div class="stat-number" id="energiaPct">32%</div><div>Economia Energia</div><small>+8% vs 2024</small></div>
+            <div class="stat-card"><div class="stat-number" id="aguaPct">24%</div><div>Redução Água</div><small>+5% vs 2024</small></div>
+            <div class="stat-card"><div class="stat-number" id="reciclagemPct">67%</div><div>Taxa Reciclagem</div><small>+12% vs 2024</small></div>
+            <div class="stat-card"><div class="stat-number" id="satisfacaoPct">89%</div><div>Satisfação</div><small>+3% vs 2024</small></div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+            <div style="flex:1"><canvas id="energyChart" width="400" height="200"></canvas><p style="text-align:center">Consumo Energia (kWh)</p></div>
+            <div style="flex:1"><canvas id="waterChart" width="400" height="200"></canvas><p style="text-align:center">Consumo Água (m³)</p></div>
+        </div>
+        <div style="margin: 1rem 0;">
+            <label>Checklist ESG Score: <progress id="esgProgress" value="0" max="100" style="width:80%"></progress> <span id="esgScoreValue">0%</span></label>
+            <div id="esgChecklist" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(240px,1fr)); gap:0.6rem; margin:1rem 0">
+                <label><input type="checkbox" class="esg-item"> Energia solar instalada</label>
+                <label><input type="checkbox" class="esg-item"> Coleta seletiva com cooperativa</label>
+                <label><input type="checkbox" class="esg-item"> Medição individualizada (água/gás)</label>
+                <label><input type="checkbox" class="esg-item"> Bicicletário e mobilidade ativa</label>
+                <label><input type="checkbox" class="esg-item"> Código de conduta socioambiental</label>
+                <label><input type="checkbox" class="esg-item"> Sistema captação água da chuva</label>
+            </div>
+            <div id="recomendacoesESG" class="btn-outline" style="padding:0.8rem; border-radius:1rem; background:#f0f6fa;"></div>
+        </div>
+    </div>
+
+    <!-- Seção Mapa de Riscos interativo -->
+    <div id="riscos-full" class="tool-container">
+        <h2><i class="fas fa-map-location-dot"></i> Mapa de Riscos - Matriz Probabilidade vs Impacto</h2>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: space-between;">
+            <div><span class="priority critical">■ Críticos: <span id="criticalCount">2</span></span></div>
+            <div><span class="priority high">■ Altos: <span id="highCount">3</span></span></div>
+            <div><span class="priority medium">■ Médios: <span id="mediumCount">3</span></span></div>
+            <div>Baixos: <span id="lowCount">0</span></div>
+        </div>
+        <canvas id="riskMatrixChart" width="400" height="300" style="max-height:280px; margin:1rem 0"></canvas>
+        <div class="risco-table">
+            <h3>Riscos Identificados</h3>
+            <div id="riskListDynamic">
+                <!-- Será preenchido via JS com base nos dados da página original -->
+            </div>
+        </div>
+        <div><strong>Plano de Ação Prioritário:</strong> <span id="planoAcao"></span></div>
+    </div>
+
+    <!-- Modal ROI (simples, estilo inline) -->
+    <div id="roiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:white; max-width:450px; margin:auto; padding:2rem; border-radius:2rem;">
+            <h3>⚡ ROI Eficiência Energética</h3>
+            <label>Investimento inicial (R$): <input type="number" id="investimento" value="15000"></label><br>
+            <label>Economia mensal (R$): <input type="number" id="economiaMensal" value="1200"></label><br>
+            <button id="calcRoiAction" class="btn btn-primary" style="margin-top:1rem;">Calcular Payback</button>
+            <p id="resultadoRoi" style="margin-top:1rem;"></p>
+            <button id="closeRoiModal" class="btn btn-outline">Fechar</button>
+        </div>
+    </div>
+
+    <footer>
+        <p><i class="fas fa-copyright"></i> Conselho Fiscal: Domínio das Contas | Baseado em Código Civil, Lei 4.591/1964 | <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" target="_blank">Site oficial do autor</a> | Ferramentas gratuitas para gestão condominial</p>
+    </footer>
+</div>
+
+<script>
+    // ---------- ESG GRÁFICOS ----------
+    const ctxEnergy = document.getElementById('energyChart').getContext('2d');
+    new Chart(ctxEnergy, {
+        type: 'line', data: { labels: ['Jan','Fev','Mar','Abr','Mai','Jun'], datasets: [{ label: 'kWh', data: [12500, 11800, 10900, 10200, 9800, 9100], borderColor: '#1f6e8c', tension: 0.3 }] }
+    });
+    const ctxWater = document.getElementById('waterChart').getContext('2d');
+    new Chart(ctxWater, {
+        type: 'bar', data: { labels: ['Jan','Fev','Mar','Abr','Mai','Jun'], datasets: [{ label: 'm³', data: [340, 320, 300, 285, 270, 258], backgroundColor: '#61a5c2' }] }
+    });
+
+    // ESG score checklist
+    function updateESGScore() {
+        const checkboxes = document.querySelectorAll('.esg-item');
+        const total = checkboxes.length;
+        let checked = 0;
+        checkboxes.forEach(cb => { if(cb.checked) checked++; });
+        let score = Math.round((checked/total)*100);
+        document.getElementById('esgProgress').value = score;
+        document.getElementById('esgScoreValue').innerText = score+'%';
+        let recomend = document.getElementById('recomendacoesESG');
+        if(score < 40) recomend.innerHTML = '🔴 Prioridade: Implantar energia solar e captação de água da chuva.';
+        else if(score < 70) recomend.innerHTML = '🟡 Invista em coleta seletiva e medição individualizada.';
+        else recomend.innerHTML = '🟢 Excelente! Considere certificação verde e mobilidade elétrica.';
+    }
+    document.querySelectorAll('.esg-item').forEach(cb => cb.addEventListener('change', updateESGScore));
+    updateESGScore();
+
+    // ---------- Mapa de riscos (com dados dos riscos extraídos do site original) ----------
+    const riscosData = [
+        { nome: "Incêndio", nivel: "Crítico", prob: "Médio", impacto: "Muito Alto", acao: "Instalar alarmes, revisão elétrica, treinamentos." },
+        { nome: "Inundação / Alagamento", nivel: "Alto", prob: "Médio", impacto: "Alto", acao: "Manutenção bombas, seguro, limpeza calhas." },
+        { nome: "Inadimplência em Massa", nivel: "Alto", prob: "Alto", impacto: "Alto", acao: "Fundo reserva, negociação judicial." },
+        { nome: "Acidentes de Trabalho", nivel: "Médio", prob: "Médio", impacto: "Médio", acao: "EPIs, treinamentos." },
+        { nome: "Fraude / Desvio Recursos", nivel: "Crítico", prob: "Baixo", impacto: "Muito Alto", acao: "Conselho atuante, auditoria independente." },
+        { nome: "Problemas Estruturais", nivel: "Alto", prob: "Médio", impacto: "Alto", acao: "Laudo técnico periódico." },
+        { nome: "Conflitos Moradores", nivel: "Médio", prob: "Alto", impacto: "Baixo", acao: "Mediação e regulamento." },
+        { nome: "Ciberataque", nivel: "Médio", prob: "Baixo", impacto: "Médio", acao: "Software seguro, backup." }
+    ];
+    function renderRiscos() {
+        let html = '';
+        let criticos=0, altos=0, medios=0, baixos=0;
+        riscosData.forEach(r => {
+            html += `<div class="risco-item"><strong>${r.nome}</strong> <span class="priority ${r.nivel === 'Crítico' ? 'critical' : (r.nivel === 'Alto' ? 'high' : 'medium')}">${r.nivel}</span> <span style="font-size:0.8rem;">${r.acao.substring(0,80)}</span></div>`;
+            if(r.nivel === 'Crítico') criticos++;
+            else if(r.nivel === 'Alto') altos++;
+            else if(r.nivel === 'Médio') medios++;
+            else baixos++;
+        });
+        document.getElementById('riskListDynamic').innerHTML = html;
+        document.getElementById('criticalCount').innerText = criticos;
+        document.getElementById('highCount').innerText = altos;
+        document.getElementById('mediumCount').innerText = medios;
+        document.getElementById('lowCount').innerText = baixos;
+        document.getElementById('planoAcao').innerHTML = "Instalar sistema prevenção incêndio + revisão elétrica + fundo de reserva.";
+    }
+    renderRiscos();
+    // Gráfico de pizza para distribuição riscos por categoria
+    const ctxRisk = document.getElementById('riskMatrixChart').getContext('2d');
+    new Chart(ctxRisk, { type: 'pie', data: { labels: ['Crítico', 'Alto', 'Médio'], datasets: [{ data: [2,3,3], backgroundColor: ['#b91c1c','#c2410c','#b45309'] }] } });
+
+    // ---------- Calculadora de Quórum ----------
+    document.getElementById('calcQuorumBtn').addEventListener('click', () => {
+        let total = prompt("Número total de condôminos (ex: 50):","50");
+        if(total) {
+            let maioriaSimples = Math.ceil(total/2);
+            let qualificada = Math.ceil(total * 2/3);
+            document.getElementById('quorumResult').innerHTML = `✅ Maioria simples: ${maioriaSimples} votos. Maioria qualificada (2/3): ${qualificada} votos. (Código Civil art. 1.352)`;
+        }
+    });
+
+    // Simulador responsabilidade civil
+    document.getElementById('simularRiscoBtn').addEventListener('click', () => {
+        document.getElementById('riscoCivilMsg').innerHTML = "⚠️ Omissão dolosa/culposa pode gerar responsabilidade solidária. Recomenda-se: atas detalhadas, pareceres escritos, denúncia formal à assembleia. Risco mitigado com documentação e transparência.";
+    });
+
+    // ROI Modal
+    const modal = document.getElementById('roiModal');
+    document.getElementById('openRoiModalBtn').onclick = () => modal.style.display = 'flex';
+    document.getElementById('closeRoiModal').onclick = () => modal.style.display = 'none';
+    document.getElementById('calcRoiAction').onclick = () => {
+        let inv = parseFloat(document.getElementById('investimento').value);
+        let eco = parseFloat(document.getElementById('economiaMensal').value);
+        if(inv && eco && eco>0){
+            let paybackMeses = inv / eco;
+            let paybackAnos = (paybackMeses/12).toFixed(1);
+            document.getElementById('resultadoRoi').innerHTML = `💰 Payback: ${paybackMeses.toFixed(1)} meses (${paybackAnos} anos). ROI anual: ${((eco*12)/inv*100).toFixed(1)}% a.a. Redução CO₂ estimada: ~1.2 ton/ano.`;
+        } else { document.getElementById('resultadoRoi').innerHTML = 'Valores inválidos.'; }
+    };
+    // Scroll to ESG
+    document.getElementById('scrollToESG').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('esg-full').scrollIntoView({ behavior: 'smooth' });
+    });
+</script>
 </body>
 </html>
