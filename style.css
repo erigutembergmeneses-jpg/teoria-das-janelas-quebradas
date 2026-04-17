@@ -1,3 +1,8 @@
+/* ==========================================
+   TEORIA DAS JANELAS QUEBRADAS - CSS COMPLETO
+   Versão Otimizada com Background e Layout Ajustado
+   ========================================== */
+
 /* Reset e Variáveis */
 :root {
     --primary-color: #f39c12;
@@ -9,7 +14,7 @@
     --dark-color: #1a1a2e;
     --light-color: #ecf0f1;
     --text-color: #2c3e50;
-    --card-bg: rgba(255, 255, 255, 0.95);
+    --card-bg: rgba(255, 255, 255, 0.98);
     --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
@@ -50,7 +55,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     z-index: -1;
 }
 
@@ -111,6 +116,7 @@ body {
     border-radius: 5px;
     transition: all 0.3s ease;
     border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .nav-link:hover {
@@ -126,19 +132,19 @@ body {
     z-index: 1;
 }
 
-/* Sections */
+/* Sections - PADRÃO GERAL */
 .section {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     background: var(--card-bg);
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
     box-shadow: var(--shadow-lg);
     backdrop-filter: blur(10px);
 }
 
 .section-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
     color: var(--dark-color);
     display: flex;
     align-items: center;
@@ -151,260 +157,338 @@ body {
     color: var(--primary-color);
 }
 
-/* Cards Grid */
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+/* ==========================================
+   AJUSTE DE DIMENSÕES: DASHBOARD & MAPA DE RISCOS
+   ========================================== */
+#dashboard .section,
+#mapa-riscos .section {
+    max-height: 650px;
+    overflow-y: auto;
+    padding: 1.25rem;
+    scroll-behavior: smooth;
 }
 
-.card {
+/* Scrollbar personalizada para seções com overflow */
+#dashboard .section::-webkit-scrollbar,
+#mapa-riscos .section::-webkit-scrollbar {
+    width: 8px;
+}
+
+#dashboard .section::-webkit-scrollbar-track,
+#mapa-riscos .section::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#dashboard .section::-webkit-scrollbar-thumb,
+#mapa-riscos .section::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+#dashboard .section::-webkit-scrollbar-thumb:hover,
+#mapa-riscos .section::-webkit-scrollbar-thumb:hover {
+    background: #e67e22;
+}
+
+/* Dashboard: Grid e cards compactos */
+#dashboard .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+#dashboard .card {
     background: white;
-    padding: 1.5rem;
+    padding: 0.9rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
-.card:hover {
-    transform: translateY(-5px);
+#dashboard .card:hover {
+    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }
 
-.card-icon {
-    font-size: 2.5rem;
+#dashboard .card-icon {
+    font-size: 2rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
-.card h3 {
+#dashboard .card h3 {
     margin-bottom: 0.5rem;
     color: var(--dark-color);
+    font-size: 0.9rem;
 }
 
-.metric-value {
-    font-size: 2rem;
+#dashboard .metric-value {
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--primary-color);
-    margin: 1rem 0;
+    margin: 0.4rem 0;
 }
 
-.score-bar {
+#dashboard .card canvas {
+    max-height: 60px;
     width: 100%;
-    height: 20px;
+}
+
+#dashboard .score-bar {
+    width: 100%;
+    height: 15px;
     background: #ecf0f1;
     border-radius: 10px;
     overflow: hidden;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
-.score-fill {
+#dashboard .score-fill {
     height: 100%;
     background: linear-gradient(90deg, var(--success-color), var(--primary-color));
     transition: width 0.5s ease;
     width: 0%;
 }
 
-/* Checklist */
-.checklist-container {
+/* Checklist ESG compacto */
+#dashboard .checklist-container {
     background: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    max-height: 260px;
+    overflow-y: auto;
 }
 
-.checklist-container h3 {
-    margin-bottom: 1rem;
+#dashboard .checklist-container h3 {
+    margin-bottom: 0.75rem;
     color: var(--dark-color);
+    font-size: 1.1rem;
 }
 
-.checklist {
+#dashboard .checklist {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 0.75rem;
-    margin-bottom: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
 }
 
-.checklist-item {
+#dashboard .checklist-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
     background: #f8f9fa;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-size: 0.85rem;
 }
 
-.checklist-item:hover {
+#dashboard .checklist-item:hover {
     background: #e9ecef;
 }
 
-.checklist-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
+#dashboard .checklist-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
     cursor: pointer;
+    accent-color: var(--primary-color);
 }
 
-.checklist-score {
+#dashboard .checklist-score {
     text-align: center;
-    font-size: 1.1rem;
-    margin-top: 1rem;
-    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem;
     background: var(--primary-color);
     color: white;
     border-radius: 5px;
     font-weight: 600;
+    position: sticky;
+    bottom: 0;
 }
 
-/* Matriz de Riscos */
-.matriz-riscos {
+/* Mapa de Riscos compacto */
+#mapa-riscos .matriz-riscos {
     background: white;
-    padding: 1.5rem;
+    padding: 0.75rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     overflow-x: auto;
+    max-height: 300px;
 }
 
-.matriz-header,
-.matriz-body {
+#mapa-riscos .matriz-header,
+#mapa-riscos .matriz-body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 0.5rem;
+    min-width: 400px;
 }
 
-.matriz-col-header,
-.matriz-row-header {
-    padding: 0.75rem;
+#mapa-riscos .matriz-col-header,
+#mapa-riscos .matriz-row-header {
+    padding: 0.5rem;
     text-align: center;
     font-weight: 600;
     background: var(--dark-color);
     color: white;
     border-radius: 5px;
+    font-size: 0.8rem;
 }
 
-.matriz-row {
+#mapa-riscos .matriz-row {
     display: contents;
 }
 
-.matriz-cell {
-    min-height: 80px;
-    padding: 0.5rem;
+#mapa-riscos .matriz-cell {
+    min-height: 50px;
+    padding: 0.4rem;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-weight: 600;
 }
 
-.matriz-cell:hover {
+#mapa-riscos .matriz-cell:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.matriz-cell.baixa {
+#mapa-riscos .matriz-cell.baixa {
     background: #d5f4e6;
     border: 2px solid var(--success-color);
+    color: #27ae60;
 }
 
-.matriz-cell.moderada {
+#mapa-riscos .matriz-cell.moderada {
     background: #fef3e2;
     border: 2px solid var(--warning-color);
+    color: #f39c12;
 }
 
-.matriz-cell.alta {
+#mapa-riscos .matriz-cell.alta {
     background: #fadbd8;
     border: 2px solid var(--danger-color);
+    color: #e74c3c;
 }
 
-.matriz-cell.critica {
+#mapa-riscos .matriz-cell.critica {
     background: #e74c3c;
     color: white;
     border: 2px solid #c0392b;
 }
 
 /* Lista de Riscos */
-.riscos-lista {
+#mapa-riscos .riscos-lista {
     background: white;
-    padding: 1.5rem;
+    padding: 1rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    max-height: 280px;
+    overflow-y: auto;
 }
 
-.riscos-lista h3 {
-    margin-bottom: 1rem;
+#mapa-riscos .riscos-lista h3 {
+    margin-bottom: 0.75rem;
     color: var(--dark-color);
+    font-size: 1.1rem;
 }
 
-.risco-item {
+#mapa-riscos .risco-item {
     display: grid;
     grid-template-columns: 2fr 1fr auto;
-    gap: 1rem;
+    gap: 0.75rem;
     align-items: center;
-    padding: 1rem;
+    padding: 0.6rem;
     background: #f8f9fa;
     border-radius: 5px;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
+    transition: background 0.3s ease;
 }
 
-.risco-nome {
+#mapa-riscos .risco-item:hover {
+    background: #e9ecef;
+}
+
+#mapa-riscos .risco-nome {
     font-weight: 600;
+    font-size: 0.9rem;
 }
 
-.risco-nivel {
-    padding: 0.25rem 0.75rem;
+#mapa-riscos .risco-nivel {
+    padding: 0.2rem 0.6rem;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-align: center;
+    color: white;
 }
 
-.risco-nivel.baixa {
+#mapa-riscos .risco-nivel.baixa {
     background: var(--success-color);
-    color: white;
 }
 
-.risco-nivel.moderada {
+#mapa-riscos .risco-nivel.moderada {
     background: var(--warning-color);
-    color: white;
 }
 
-.risco-nivel.alta,
-.risco-nivel.critica {
+#mapa-riscos .risco-nivel.alta,
+#mapa-riscos .risco-nivel.critica {
     background: var(--danger-color);
-    color: white;
 }
 
-.btn-plano {
-    padding: 0.5rem 1rem;
+#mapa-riscos .btn-plano {
+    padding: 0.4rem 0.8rem;
     background: var(--info-color);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s ease;
+    font-size: 0.8rem;
 }
 
-.btn-plano:hover {
+#mapa-riscos .btn-plano:hover {
     background: #2980b9;
 }
 
-/* Calculadoras */
+/* ==========================================
+   CALCULADORAS - PADRÃO DE REFERÊNCIA
+   ========================================== */
+#calculadoras .section {
+    max-height: none;
+    overflow: visible;
+}
+
 .calculadoras-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
 }
 
 .calculadora-card {
     background: white;
-    padding: 1.5rem;
+    padding: 1.2rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
+    min-height: 430px;
+    display: flex;
+    flex-direction: column;
 }
 
 .calculadora-card h3 {
@@ -413,6 +497,7 @@ body {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    font-size: 1.2rem;
 }
 
 .calculadora-card h3 i {
@@ -422,37 +507,40 @@ body {
 .form-calculadora {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.75rem;
+    flex: 1;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.4rem;
 }
 
 .form-group label {
     font-weight: 600;
     color: var(--dark-color);
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select {
-    padding: 0.75rem;
+    padding: 0.6rem;
     border: 2px solid #ddd;
     border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+    font-size: 0.95rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
     border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.1);
 }
 
 .btn-calcular {
-    padding: 0.75rem;
+    padding: 0.7rem;
     background: var(--primary-color);
     color: white;
     border: none;
@@ -461,11 +549,16 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: auto;
 }
 
 .btn-calcular:hover {
     background: #e67e22;
     transform: translateY(-2px);
+}
+
+.btn-calcular:active {
+    transform: translateY(0);
 }
 
 .resultado-calculadora {
@@ -474,28 +567,31 @@ body {
     background: #e8f8f5;
     border-radius: 5px;
     border-left: 4px solid var(--success-color);
+    animation: slideDown 0.3s ease;
 }
 
 .resultado-calculadora p {
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
+    font-size: 0.95rem;
 }
 
 .alerta {
     color: var(--danger-color);
     font-weight: 600;
     margin-top: 0.5rem;
+    font-size: 0.85rem;
 }
 
 /* Ferramentas */
 .ferramentas-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
 }
 
 .ferramenta-card {
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
     text-align: center;
@@ -503,6 +599,7 @@ body {
     color: var(--text-color);
     transition: all 0.3s ease;
     display: block;
+    cursor: pointer;
 }
 
 .ferramenta-card:hover {
@@ -513,9 +610,10 @@ body {
 }
 
 .ferramenta-card i {
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
 }
 
 .ferramenta-card:hover i {
@@ -523,25 +621,25 @@ body {
 }
 
 .ferramenta-card h4 {
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    font-size: 1.1rem;
 }
 
 .ferramenta-card p {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.8;
 }
 
 /* Recursos */
 .recursos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
 }
 
 .recurso-card {
     background: white;
-    padding: 1.5rem;
+    padding: 1.25rem;
     border-radius: 10px;
     box-shadow: var(--shadow);
     text-align: center;
@@ -553,29 +651,31 @@ body {
 }
 
 .recurso-card i {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .recurso-card h4 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
     color: var(--dark-color);
+    font-size: 1rem;
 }
 
 .recurso-card p {
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
 }
 
 .btn-link {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     background: var(--info-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     transition: background 0.3s ease;
+    font-size: 0.85rem;
 }
 
 .btn-link:hover {
@@ -592,11 +692,12 @@ body {
 }
 
 .footer p {
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
 }
 
 .licenca {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.8;
     margin-top: 1rem;
 }
@@ -610,8 +711,9 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.8);
     animation: fadeIn 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .modal-content {
@@ -625,6 +727,7 @@ body {
     overflow-y: auto;
     animation: slideDown 0.3s ease;
     position: relative;
+    box-shadow: var(--shadow-lg);
 }
 
 .modal-close {
@@ -635,10 +738,17 @@ body {
     cursor: pointer;
     color: var(--text-color);
     transition: color 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
 .modal-close:hover {
     color: var(--danger-color);
+    background: #f8f9fa;
 }
 
 /* Animações */
@@ -674,18 +784,27 @@ body {
     }
 
     .section {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .section-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
-    .cards-grid,
+    #dashboard .section,
+    #mapa-riscos .section {
+        max-height: 600px;
+    }
+
+    #dashboard .cards-grid,
     .calculadoras-grid,
     .ferramentas-grid,
     .recursos-grid {
         grid-template-columns: 1fr;
+    }
+
+    #dashboard .card {
+        min-height: 130px;
     }
 
     .risco-item {
@@ -696,7 +815,11 @@ body {
 
     .matriz-header,
     .matriz-body {
-        grid-template-columns: repeat(4, minmax(80px, 1fr));
+        grid-template-columns: repeat(4, minmax(70px, 1fr));
+    }
+
+    .calculadora-card {
+        min-height: 400px;
     }
 }
 
@@ -710,19 +833,33 @@ body {
     }
 
     .logo h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .subtitle {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
-    .metric-value {
-        font-size: 1.5rem;
+    .section-title {
+        font-size: 1.2rem;
     }
 
-    .checklist {
+    #dashboard .metric-value {
+        font-size: 1.2rem;
+    }
+
+    #dashboard .checklist {
         grid-template-columns: 1fr;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.9rem;
+    }
+
+    .btn-calcular {
+        font-size: 0.9rem;
+        padding: 0.6rem;
     }
 }
 
@@ -749,4 +886,59 @@ body {
 
 .hidden {
     display: none;
+}
+
+/* Estados interativos */
+.card:active,
+.btn-calcular:active,
+.btn-plano:active {
+    transform: scale(0.98);
+}
+
+/* Loading state */
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+    position: relative;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid var(--primary-color);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tooltip básico */
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.4rem 0.6rem;
+    background: var(--dark-color);
+    color: white;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 10;
+    margin-bottom: 5px;
 }
