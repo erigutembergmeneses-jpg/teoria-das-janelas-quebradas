@@ -3,710 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria das Janelas Quebradas | Gestão Proativa em Condomínios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="description" content="Teoria das Janelas Quebradas - Portal completo para síndicos, conselheiros fiscais e condôminos">
+    <title>Teoria das Janelas Quebradas - Chamada à Ação em Condomínios</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-green: #1b4d3e;
-            --secondary-green: #2d7a5f;
-            --light-green: #e8f5f0;
-            --accent-blue: #4a90a4;
-            --text-dark: #2c3e50;
-            --text-light: #666;
-            --white: #ffffff;
-            --gray-bg: #f8f9fa;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.8;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            color: var(--primary-green);
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-        }
-
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-
-        .hero-description {
-            font-size: 1rem;
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-        }
-
-        .reference {
-            font-style: italic;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: var(--white);
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        /* Main Theory Box */
-        .theory-box {
-            background: var(--white);
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-        }
-
-        .theory-box h2 {
-            color: var(--primary-green);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .theory-box p {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--primary-green);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
-        }
-
-        .cta-button:hover {
-            background: var(--secondary-green);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
-        }
-
-        .theory-note {
-            margin-top: 1.5rem;
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* Benefits Grid */
-        .benefits {
-            padding: 4rem 2rem;
-            background: var(--gray-bg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .benefit-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-
-        .benefit-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .benefit-card h3 {
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .benefit-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        /* Resources Section */
-        .resources {
-            padding: 4rem 2rem;
-            background: var(--white);
-        }
-
-        .section-title {
-            text-align: center;
-            color: var(--primary-green);
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        .resources-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .resource-card {
-            background: var(--light-green);
-            padding: 1.5rem;
-            border-radius: 10px;
-            border-left: 4px solid var(--primary-green);
-            transition: all 0.3s;
-        }
-
-        .resource-card:hover {
-            background: var(--primary-green);
-            color: var(--white);
-            transform: translateX(5px);
-        }
-
-        .resource-card:hover h3,
-        .resource-card:hover p {
-            color: var(--white);
-        }
-
-        .resource-card a {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .resource-card h3 {
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .resource-card p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Info Sections */
-        .info-sections {
-            padding: 4rem 2rem;
-            background: var(--gray-bg);
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .info-card {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        .info-card h3 {
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 1.3rem;
-        }
-
-        .info-card p {
-            color: var(--text-light);
-            line-height: 1.8;
-        }
-
-        /* Author Section */
-        .author {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
-            color: var(--white);
-            text-align: center;
-        }
-
-        .author h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .author p {
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            opacity: 0.9;
-        }
-
-        .author-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--white);
-            color: var(--primary-green);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s;
-        }
-
-        .author-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 3rem 2rem 1rem;
-            text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            margin-top: 2rem;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .theory-box {
-                padding: 2rem 1.5rem;
-            }
-
-            .benefits-grid,
-            .resources-grid,
-            .info-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Background Image Container -->
+    <div class="background-image"></div>
+    <div class="overlay"></div>
+
     <!-- Header -->
-    <header>
-        <nav>
+    <header class="header">
+        <div class="container">
             <div class="logo">
-                <i class="fas fa-building"></i>
-                <span>Janelas Quebradas</span>
+                <i class="fas fa-shield-alt"></i>
+                <h1>Teoria das Janelas Quebradas</h1>
             </div>
-            <ul class="nav-links">
-                <li><a href="#teoria">A Teoria</a></li>
-                <li><a href="#beneficios">Benefícios</a></li>
-                <li><a href="#recursos">Recursos</a></li>
-                <li><a href="#autor">Autor</a></li>
-            </ul>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </nav>
+            <p class="subtitle">Chamada à Ação em Condomínios</p>
+            <nav class="nav">
+                <a href="#dashboard" class="nav-link">Dashboard ESG</a>
+                <a href="#mapa-riscos" class="nav-link">Mapa de Riscos</a>
+                <a href="#calculadoras" class="nav-link">Calculadoras</a>
+                <a href="#ferramentas" class="nav-link">Ferramentas</a>
+                <a href="#recursos" class="nav-link">Recursos</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>
-                <i class="fas fa-window-maximize"></i>
-                Teoria das Janelas Quebradas
-            </h1>
-            <p class="hero-subtitle">
-                Chamada à Ação em Condomínios • Gestão proativa, fiscalização transparente e indicadores de sucesso
-            </p>
-            <div class="reference">
-                Baseada no clássico artigo de James O. Wilson & George L. Kelling (1982), 
-                traduzido e adaptado para síndicos, administradores e conselheiros.
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Theory Box -->
-    <section id="teoria" class="theory-box">
-        <h2>
-            <i class="fas fa-book-open"></i>
-            TEORIA DAS JANELAS QUEBRADAS
-        </h2>
-        <p>
-            Pequenos cuidados geram segurança coletiva. Conheça a base científica que 
-            transforma desordem em ordem sustentável.
-        </p>
-        <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" 
-           class="cta-button" target="_blank">
-            <i class="fas fa-file-pdf"></i>
-            Entenda a Teoria
-            <i class="fas fa-arrow-right"></i>
-        </a>
-        <p class="theory-note">
-            Documento completo: tradução do artigo "Broken Windows" + conexões práticas 
-            para síndicos e administradores.
-        </p>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="beneficios" class="benefits">
+    <!-- Main Content -->
+    <main class="main-content">
         <div class="container">
-            <h2 class="section-title">Resultados Comprovados</h2>
-            <p class="section-subtitle">
-                Aplicando a teoria na gestão condominial
-            </p>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="benefit-icon">📉</div>
-                    <h3>Baixa inadimplência</h3>
-                    <p>Controle financeiro sólido</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">⚡</div>
-                    <h3>Respostas rápidas</h3>
-                    <p>Manutenção ágil e preventiva</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">😊</div>
-                    <h3>Condôminos satisfeitos</h3>
-                    <p>Ambiente seguro e ordenado</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="benefit-icon">✅</div>
-                    <h3>Contas aprovadas</h3>
-                    <p>Sem ressalvas, com transparência</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            
+            <!-- Dashboard ESG Section -->
+            <section id="dashboard" class="section">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Dashboard ESG Interativo</h2>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Consumo de Energia</h3>
+                        <p class="metric-value" id="energiaValor">0 kWh</p>
+                        <canvas id="energiaChart"></canvas>
+                    </div>
 
-    <!-- Resources Section -->
-    <section id="recursos" class="resources">
-        <div class="container">
-            <h2 class="section-title">Recursos e Ferramentas</h2>
-            <p class="section-subtitle">
-                Acesse materiais completos para implementação
-            </p>
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank">
-                        <h3><i class="fas fa-file-pdf"></i> Artigo Completo</h3>
-                        <p>Baixe o PDF da Teoria das Janelas Quebradas traduzido e adaptado</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/regulamento-conselho.html" target="_blank">
-                        <h3><i class="fas fa-file-alt"></i> Regulamento do Conselho</h3>
-                        <p>Modelo completo de regulamento para conselho fiscal</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ferigutembergmeneses-jpg.github.io%2Fconselho-fiscal-condominio-das-contas%2Fregulamento-conselho.docx.doc&wdOrigin=BROWSELINK" target="_blank">
-                        <h3><i class="fas fa-file-word"></i> Documento Editável</h3>
-                        <p>Versão Word do regulamento para personalização</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/conciliacao-bancaria.html" target="_blank">
-                        <h3><i class="fas fa-calculator"></i> Conciliação Bancária</h3>
-                        <p>Guia prático para conciliação de contas condominiais</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/dashboard-esg.html" target="_blank">
-                        <h3><i class="fas fa-chart-line"></i> Dashboard ESG</h3>
-                        <p>Indicadores de sustentabilidade e governança</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/roi-energia.html" target="_blank">
-                        <h3><i class="fas fa-solar-panel"></i> ROI em Energia</h3>
-                        <p>Cálculo de retorno em eficiência energética</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/mapa-riscos.html" target="_blank">
-                        <h3><i class="fas fa-exclamation-triangle"></i> Mapa de Riscos</h3>
-                        <p>Identificação e gestão de riscos condominiais</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/atualizacoes-legislativas-conselho-fiscal.html" target="_blank">
-                        <h3><i class="fas fa-gavel"></i> Atualizações Legislativas</h3>
-                        <p>Mudanças na legislação condominial</p>
-                    </a>
-                </div>
-                <div class="resource-card">
-                    <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank">
-                        <h3><i class="fas fa-question-circle"></i> Dúvidas Frequentes</h3>
-                        <p>Tire suas dúvidas sobre gestão condominial</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <h3>Consumo de Água</h3>
+                        <p class="metric-value" id="aguaValor">0 m³</p>
+                        <canvas id="aguaChart"></canvas>
+                    </div>
 
-    <!-- Info Sections -->
-    <section class="info-sections">
-        <div class="container">
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>
-                        <i class="fas fa-sync-alt" style="color: var(--accent-blue);"></i>
-                        O Ciclo Virtuoso
-                    </h3>
-                    <p>
-                        Indicadores que transformam a gestão: baixa inadimplência, respostas rápidas, 
-                        condôminos satisfeitos e contas aprovadas sem ressalvas.
-                    </p>
-                </div>
-                <div class="info-card">
-                    <h3>
-                        <i class="fas fa-chart-bar" style="color: var(--accent-blue);"></i>
-                        Monitoramento Contínuo
-                    </h3>
-                    <p>
-                        Acompanhe mensalmente, trimestralmente e anualmente o desempenho do seu 
-                        condomínio contra metas ambiciosas para 2026.
-                    </p>
-                </div>
-                <div class="info-card">
-                    <h3>
-                        <i class="fas fa-laptop-house" style="color: var(--accent-blue);"></i>
-                        Engajamento Digital
-                    </h3>
-                    <p>
-                        Mais de 85% de condôminos ativos digitalmente é a chave para transparência 
-                        e decisões ágeis.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3>Taxa de Reciclagem</h3>
+                        <p class="metric-value" id="reciclagemValor">0%</p>
+                        <canvas id="reciclagemChart"></canvas>
+                    </div>
 
-    <!-- Author Section -->
-    <section id="autor" class="author">
-        <h2><i class="fas fa-user-tie"></i> Sobre o Autor</h2>
-        <p>
-            Eri Gutemberg Meneses - Pesquisador em Neurodireito, economista e advogado especializado 
-            em governança condominial, gestão proativa e inovação digital. Desenvolve pesquisas sobre 
-            justiça neurocompatível e aplicação de teorias comportamentais na administração de condomínios.
-        </p>
-        <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" 
-           class="author-link" target="_blank">
-            <i class="fas fa-external-link-alt"></i>
-            Visite o Site Oficial
-        </a>
-    </section>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3>Score ESG</h3>
+                        <p class="metric-value" id="scoreValor">0</p>
+                        <div class="score-bar">
+                            <div class="score-fill" id="scoreFill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ESG Checklist -->
+                <div class="checklist-container">
+                    <h3><i class="fas fa-clipboard-check"></i> Checklist de Sustentabilidade</h3>
+                    <div class="checklist" id="esgChecklist">
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="10">
+                            <span>Coleta seletiva implantada</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="15">
+                            <span>Lâmpadas LED em áreas comuns</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="20">
+                            <span>Sistema de captação de água da chuva</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="15">
+                            <span>Energia solar fotovoltaica</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="10">
+                            <span>Horta comunitária</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="10">
+                            <span>Composteira orgânica</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="10">
+                            <span>Política de redução de plástico</span>
+                        </label>
+                        <label class="checklist-item">
+                            <input type="checkbox" data-pontos="10">
+                            <span>Programa de conscientização ambiental</span>
+                        </label>
+                    </div>
+                    <p class="checklist-score">Score atual: <strong id="checklistScore">0</strong>/100 pontos</p>
+                </div>
+            </section>
+
+            <!-- Mapa de Riscos Section -->
+            <section id="mapa-riscos" class="section">
+                <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Mapa de Riscos</h2>
+                
+                <div class="matriz-riscos">
+                    <div class="matriz-header">
+                        <div></div>
+                        <div class="matriz-col-header">Baixa</div>
+                        <div class="matriz-col-header">Média</div>
+                        <div class="matriz-col-header">Alta</div>
+                    </div>
+                    <div class="matriz-body">
+                        <div class="matriz-row">
+                            <div class="matriz-row-header">Alta</div>
+                            <div class="matriz-cell critica" data-risco="incendio"></div>
+                            <div class="matriz-cell critica" data-risco="fraude"></div>
+                            <div class="matriz-cell critica" data-risco="colapso"></div>
+                        </div>
+                        <div class="matriz-row">
+                            <div class="matriz-row-header">Média</div>
+                            <div class="matriz-cell moderada" data-risco="vazamento"></div>
+                            <div class="matriz-cell moderada" data-risco="inadimplencia"></div>
+                            <div class="matriz-cell alta" data-risco="acidente"></div>
+                        </div>
+                        <div class="matriz-row">
+                            <div class="matriz-row-header">Baixa</div>
+                            <div class="matriz-cell baixa" data-risco="estetica"></div>
+                            <div class="matriz-cell baixa" data-risco="conforto"></div>
+                            <div class="matriz-cell moderada" data-risco="multas"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="riscos-lista" id="riscosLista">
+                    <h3>Riscos Identificados</h3>
+                    <div class="risco-item">
+                        <span class="risco-nome">Incêndio</span>
+                        <span class="risco-nivel critica">Crítico</span>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('incendio')">Plano de Ação</button>
+                    </div>
+                    <div class="risco-item">
+                        <span class="risco-nome">Inadimplência</span>
+                        <span class="risco-nivel moderada">Moderado</span>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('inadimplencia')">Plano de Ação</button>
+                    </div>
+                    <div class="risco-item">
+                        <span class="risco-nome">Fraude</span>
+                        <span class="risco-nivel critica">Crítico</span>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('fraude')">Plano de Ação</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Calculadoras Section -->
+            <section id="calculadoras" class="section">
+                <h2 class="section-title"><i class="fas fa-calculator"></i> Calculadoras</h2>
+                
+                <div class="calculadoras-grid">
+                    <!-- Calculadora ROI Energético -->
+                    <div class="calculadora-card">
+                        <h3><i class="fas fa-solar-panel"></i> ROI Energético</h3>
+                        <form id="roiForm" class="form-calculadora">
+                            <div class="form-group">
+                                <label>Investimento inicial (R$)</label>
+                                <input type="number" id="roiInvestimento" placeholder="Ex: 50000" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Economia mensal estimada (R$)</label>
+                                <input type="number" id="roiEconomia" placeholder="Ex: 1500" required>
+                            </div>
+                            <button type="submit" class="btn-calcular">Calcular ROI</button>
+                        </form>
+                        <div id="roiResultado" class="resultado-calculadora" style="display: none;">
+                            <p>Payback: <strong id="roiPayback">0</strong> meses</p>
+                            <p>Retorno anual: <strong id="roiRetorno">0</strong>%</p>
+                        </div>
+                    </div>
+
+                    <!-- Calculadora de Quórum -->
+                    <div class="calculadora-card">
+                        <h3><i class="fas fa-users"></i> Calculadora de Quórum</h3>
+                        <form id="quorumForm" class="form-calculadora">
+                            <div class="form-group">
+                                <label>Total de unidades</label>
+                                <input type="number" id="quorumTotal" placeholder="Ex: 100" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tipo de deliberação</label>
+                                <select id="quorumTipo" required>
+                                    <option value="2/3">2/3 (Obras úteis)</option>
+                                    <option value="1/2">1/2 (Maioria simples)</option>
+                                    <option value="3/4">3/4 (Obras voluptuárias)</option>
+                                    <option value="unanimidade">Unanimidade (Obras necessárias)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-calcular">Calcular Quórum</button>
+                        </form>
+                        <div id="quorumResultado" class="resultado-calculadora" style="display: none;">
+                            <p>Quórum necessário: <strong id="quorumNecessario">0</strong> unidades</p>
+                            <p>Percentual: <strong id="quorumPercentual">0</strong>%</p>
+                        </div>
+                    </div>
+
+                    <!-- Simulador de Responsabilidade -->
+                    <div class="calculadora-card">
+                        <h3><i class="fas fa-gavel"></i> Simulador de Responsabilidade</h3>
+                        <form id="responsabilidadeForm" class="form-calculadora">
+                            <div class="form-group">
+                                <label>Tipo de dano</label>
+                                <select id="respTipo" required>
+                                    <option value="moral">Dano Moral</option>
+                                    <option value="material">Dano Material</option>
+                                    <option value="estetico">Dano Estético</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Gravidade</label>
+                                <select id="respGravidade" required>
+                                    <option value="leve">Leve</option>
+                                    <option value="media">Média</option>
+                                    <option value="grave">Grave</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn-calcular">Simular</button>
+                        </form>
+                        <div id="responsabilidadeResultado" class="resultado-calculadora" style="display: none;">
+                            <p>Indenização estimada: <strong id="respValor">R$ 0</strong></p>
+                            <p class="alerta" id="respAlerta"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ferramentas Section -->
+            <section id="ferramentas" class="section">
+                <h2 class="section-title"><i class="fas fa-toolbox"></i> Ferramentas Legais</h2>
+                
+                <div class="ferramentas-grid">
+                    <a href="#" class="ferramenta-card" download>
+                        <i class="fas fa-file-word"></i>
+                        <h4>Regulamento do Conselho Fiscal</h4>
+                        <p>Modelo editável em Word (.docx)</p>
+                    </a>
+                    <a href="#" class="ferramenta-card" target="_blank">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Regulamento Web</h4>
+                        <p>Versão online para consulta</p>
+                    </a>
+                    <a href="#" class="ferramenta-card" download>
+                        <i class="fas fa-file-excel"></i>
+                        <h4>Conciliação Bancária</h4>
+                        <p>Planilha Excel automatizada</p>
+                    </a>
+                    <a href="#" class="ferramenta-card" target="_blank">
+                        <i class="fas fa-balance-scale"></i>
+                        <h4>Base Legal Completa</h4>
+                        <p>Código Civil e legislação</p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Recursos Section -->
+            <section id="recursos" class="section">
+                <h2 class="section-title"><i class="fas fa-link"></i> Recursos e Links</h2>
+                
+                <div class="recursos-grid">
+                    <div class="recurso-card">
+                        <i class="fas fa-comments"></i>
+                        <h4>Fórum Conviver</h4>
+                        <p>Comunidade com +65k usuários</p>
+                        <a href="https://www.sindiconet.com.br" target="_blank" class="btn-link">Acessar</a>
+                    </div>
+                    <div class="recurso-card">
+                        <i class="fas fa-newspaper"></i>
+                        <h4>Atualizações Legislativas</h4>
+                        <p>Reforma Tributária 2025 e mais</p>
+                        <a href="#" class="btn-link">Ver atualizações</a>
+                    </div>
+                    <div class="recurso-card">
+                        <i class="fas fa-book"></i>
+                        <h4>PDF Completo</h4>
+                        <p>Baixe o livro "Broken Windows"</p>
+                        <a href="Broken Windows (Janelas Quebradas).pdf.pdf" target="_blank" class="btn-link">Download</a>
+                    </div>
+                    <div class="recurso-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h4>Site do Autor</h4>
+                        <p>Conteúdos exclusivos e atualizações</p>
+                        <a href="#" class="btn-link">Visitar</a>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" target="_blank">
-                    Conselho Fiscal
-                </a>
-                <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank">
-                    Teoria Completa
-                </a>
-                <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" target="_blank">
-                    Site do Autor
-                </a>
-                <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank">
-                    Dúvidas
-                </a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 - Teoria das Janelas Quebradas Aplicada a Condomínios</p>
-                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
-                    Baseado em James O. Wilson & George L. Kelling (1982)
-                </p>
-            </div>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Teoria das Janelas Quebradas. Todos os direitos reservados.</p>
+            <p>Desenvolvido para a comunidade de síndicos e conselheiros.</p>
+            <p class="licenca">Uso educacional e gratuito baseado no Código Civil e Lei 4.591/1964</p>
         </div>
     </footer>
 
-    <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+    <!-- Modal Plano de Ação -->
+    <div id="modalPlanoAcao" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="fecharModal()">&times;</span>
+            <h2 id="modalTitulo">Plano de Ação</h2>
+            <div id="modalCorpo"></div>
+        </div>
+    </div>
 
-        // Mobile menu toggle
-        const mobileMenu = document.querySelector('.mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenu.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '100%';
-            navLinks.style.left = '0';
-            navLinks.style.right = '0';
-            navLinks.style.background = 'var(--primary-green)';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.padding = '1rem';
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
