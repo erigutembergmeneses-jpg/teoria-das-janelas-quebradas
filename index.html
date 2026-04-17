@@ -25,6 +25,13 @@
                 <h1>Teoria das Janelas Quebradas</h1>
             </div>
             <p class="subtitle">Chamada à Ação em Condomínios</p>
+            
+            <!-- BOTÃO PDF PRINCIPAL -->
+            <a href="Broken Windows (Janelas Quebradas).pdf" target="_blank" class="btn-pdf-principal" title="Baixar livro completo em PDF">
+                <i class="fas fa-file-pdf"></i>
+                <span>Baixar Livro Completo em PDF</span>
+            </a>
+            
             <nav class="nav">
                 <a href="#dashboard" class="nav-link">Dashboard ESG</a>
                 <a href="#mapa-riscos" class="nav-link">Mapa de Riscos</a>
@@ -44,7 +51,7 @@
                 <h2 class="section-title"><i class="fas fa-chart-line"></i> Dashboard ESG Interativo</h2>
                 
                 <div class="cards-grid">
-                    <div class="card">
+                    <div class="card" title="Clique para ver detalhes">
                         <div class="card-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
@@ -53,7 +60,7 @@
                         <canvas id="energiaChart"></canvas>
                     </div>
 
-                    <div class="card">
+                    <div class="card" title="Clique para ver detalhes">
                         <div class="card-icon">
                             <i class="fas fa-tint"></i>
                         </div>
@@ -62,7 +69,7 @@
                         <canvas id="aguaChart"></canvas>
                     </div>
 
-                    <div class="card">
+                    <div class="card" title="Clique para ver detalhes">
                         <div class="card-icon">
                             <i class="fas fa-recycle"></i>
                         </div>
@@ -71,7 +78,7 @@
                         <canvas id="reciclagemChart"></canvas>
                     </div>
 
-                    <div class="card">
+                    <div class="card" title="Clique para ver detalhes">
                         <div class="card-icon">
                             <i class="fas fa-leaf"></i>
                         </div>
@@ -138,21 +145,21 @@
                     <div class="matriz-body">
                         <div class="matriz-row">
                             <div class="matriz-row-header">Alta</div>
-                            <div class="matriz-cell critica" data-risco="incendio"></div>
-                            <div class="matriz-cell critica" data-risco="fraude"></div>
-                            <div class="matriz-cell critica" data-risco="colapso"></div>
+                            <div class="matriz-cell critica" data-risco="incendio" title="Clique para plano de ação">Incêndio</div>
+                            <div class="matriz-cell critica" data-risco="fraude" title="Clique para plano de ação">Fraude</div>
+                            <div class="matriz-cell critica" data-risco="colapso" title="Clique para plano de ação">Colapso</div>
                         </div>
                         <div class="matriz-row">
                             <div class="matriz-row-header">Média</div>
-                            <div class="matriz-cell moderada" data-risco="vazamento"></div>
-                            <div class="matriz-cell moderada" data-risco="inadimplencia"></div>
-                            <div class="matriz-cell alta" data-risco="acidente"></div>
+                            <div class="matriz-cell moderada" data-risco="vazamento" title="Clique para plano de ação">Vazamento</div>
+                            <div class="matriz-cell moderada" data-risco="inadimplencia" title="Clique para plano de ação">Inadimplência</div>
+                            <div class="matriz-cell alta" data-risco="acidente" title="Clique para plano de ação">Acidente</div>
                         </div>
                         <div class="matriz-row">
                             <div class="matriz-row-header">Baixa</div>
-                            <div class="matriz-cell baixa" data-risco="estetica"></div>
-                            <div class="matriz-cell baixa" data-risco="conforto"></div>
-                            <div class="matriz-cell moderada" data-risco="multas"></div>
+                            <div class="matriz-cell baixa" data-risco="estetica" title="Clique para plano de ação">Estética</div>
+                            <div class="matriz-cell baixa" data-risco="conforto" title="Clique para plano de ação">Conforto</div>
+                            <div class="matriz-cell moderada" data-risco="multas" title="Clique para plano de ação">Multas</div>
                         </div>
                     </div>
                 </div>
@@ -162,17 +169,17 @@
                     <div class="risco-item">
                         <span class="risco-nome">Incêndio</span>
                         <span class="risco-nivel critica">Crítico</span>
-                        <button class="btn-plano" onclick="abrirPlanoAcao('incendio')">Plano de Ação</button>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('incendio')" title="Ver plano de ação">Plano de Ação</button>
                     </div>
                     <div class="risco-item">
                         <span class="risco-nome">Inadimplência</span>
                         <span class="risco-nivel moderada">Moderado</span>
-                        <button class="btn-plano" onclick="abrirPlanoAcao('inadimplencia')">Plano de Ação</button>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('inadimplencia')" title="Ver plano de ação">Plano de Ação</button>
                     </div>
                     <div class="risco-item">
                         <span class="risco-nome">Fraude</span>
                         <span class="risco-nivel critica">Crítico</span>
-                        <button class="btn-plano" onclick="abrirPlanoAcao('fraude')">Plano de Ação</button>
+                        <button class="btn-plano" onclick="abrirPlanoAcao('fraude')" title="Ver plano de ação">Plano de Ação</button>
                     </div>
                 </div>
             </section>
@@ -187,12 +194,12 @@
                         <h3><i class="fas fa-solar-panel"></i> ROI Energético</h3>
                         <form id="roiForm" class="form-calculadora">
                             <div class="form-group">
-                                <label>Investimento inicial (R$)</label>
-                                <input type="number" id="roiInvestimento" placeholder="Ex: 50000" required>
+                                <label for="roiInvestimento">Investimento inicial (R$)</label>
+                                <input type="number" id="roiInvestimento" placeholder="Ex: 50000" required min="0">
                             </div>
                             <div class="form-group">
-                                <label>Economia mensal estimada (R$)</label>
-                                <input type="number" id="roiEconomia" placeholder="Ex: 1500" required>
+                                <label for="roiEconomia">Economia mensal estimada (R$)</label>
+                                <input type="number" id="roiEconomia" placeholder="Ex: 1500" required min="0">
                             </div>
                             <button type="submit" class="btn-calcular">Calcular ROI</button>
                         </form>
@@ -207,11 +214,11 @@
                         <h3><i class="fas fa-users"></i> Calculadora de Quórum</h3>
                         <form id="quorumForm" class="form-calculadora">
                             <div class="form-group">
-                                <label>Total de unidades</label>
-                                <input type="number" id="quorumTotal" placeholder="Ex: 100" required>
+                                <label for="quorumTotal">Total de unidades</label>
+                                <input type="number" id="quorumTotal" placeholder="Ex: 100" required min="1">
                             </div>
                             <div class="form-group">
-                                <label>Tipo de deliberação</label>
+                                <label for="quorumTipo">Tipo de deliberação</label>
                                 <select id="quorumTipo" required>
                                     <option value="2/3">2/3 (Obras úteis)</option>
                                     <option value="1/2">1/2 (Maioria simples)</option>
@@ -232,7 +239,7 @@
                         <h3><i class="fas fa-gavel"></i> Simulador de Responsabilidade</h3>
                         <form id="responsabilidadeForm" class="form-calculadora">
                             <div class="form-group">
-                                <label>Tipo de dano</label>
+                                <label for="respTipo">Tipo de dano</label>
                                 <select id="respTipo" required>
                                     <option value="moral">Dano Moral</option>
                                     <option value="material">Dano Material</option>
@@ -240,7 +247,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Gravidade</label>
+                                <label for="respGravidade">Gravidade</label>
                                 <select id="respGravidade" required>
                                     <option value="leve">Leve</option>
                                     <option value="media">Média</option>
@@ -262,22 +269,26 @@
                 <h2 class="section-title"><i class="fas fa-toolbox"></i> Ferramentas Legais</h2>
                 
                 <div class="ferramentas-grid">
-                    <a href="#" class="ferramenta-card" download>
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ferigutembergmeneses-jpg.github.io%2Fconselho-fiscal-condominio-das-contas%2Fregulamento-conselho.docx.doc&wdOrigin=BROWSELINK" 
+                       class="ferramenta-card" target="_blank" rel="noopener noreferrer" title="Regulamento do Conselho Fiscal em Word">
                         <i class="fas fa-file-word"></i>
                         <h4>Regulamento do Conselho Fiscal</h4>
                         <p>Modelo editável em Word (.docx)</p>
                     </a>
-                    <a href="#" class="ferramenta-card" target="_blank">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/regulamento-conselho.html" 
+                       class="ferramenta-card" target="_blank" rel="noopener noreferrer" title="Versão web do regulamento">
                         <i class="fas fa-file-alt"></i>
                         <h4>Regulamento Web</h4>
                         <p>Versão online para consulta</p>
                     </a>
-                    <a href="#" class="ferramenta-card" download>
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/conciliacao-bancaria.html" 
+                       class="ferramenta-card" target="_blank" rel="noopener noreferrer" title="Planilha de conciliação bancária">
                         <i class="fas fa-file-excel"></i>
                         <h4>Conciliação Bancária</h4>
                         <p>Planilha Excel automatizada</p>
                     </a>
-                    <a href="#" class="ferramenta-card" target="_blank">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" 
+                       class="ferramenta-card" target="_blank" rel="noopener noreferrer" title="Portal do Conselho Fiscal">
                         <i class="fas fa-balance-scale"></i>
                         <h4>Base Legal Completa</h4>
                         <p>Código Civil e legislação</p>
@@ -287,32 +298,49 @@
 
             <!-- Recursos Section -->
             <section id="recursos" class="section">
-                <h2 class="section-title"><i class="fas fa-link"></i> Recursos e Links</h2>
+                <h2 class="section-title"><i class="fas fa-link"></i> Recursos e Links Externos</h2>
                 
                 <div class="recursos-grid">
                     <div class="recurso-card">
                         <i class="fas fa-comments"></i>
                         <h4>Fórum Conviver</h4>
                         <p>Comunidade com +65k usuários</p>
-                        <a href="https://www.sindiconet.com.br" target="_blank" class="btn-link">Acessar</a>
+                        <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank" rel="noopener noreferrer" class="btn-link">Acessar Fórum</a>
                     </div>
                     <div class="recurso-card">
                         <i class="fas fa-newspaper"></i>
                         <h4>Atualizações Legislativas</h4>
                         <p>Reforma Tributária 2025 e mais</p>
-                        <a href="#" class="btn-link">Ver atualizações</a>
+                        <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/atualizacoes-legislativas-conselho-fiscal.html" 
+                           target="_blank" rel="noopener noreferrer" class="btn-link">Ver atualizações</a>
                     </div>
                     <div class="recurso-card">
-                        <i class="fas fa-book"></i>
-                        <h4>PDF Completo</h4>
-                        <p>Baixe o livro "Broken Windows"</p>
-                        <a href="Broken Windows (Janelas Quebradas).pdf.pdf" target="_blank" class="btn-link">Download</a>
+                        <i class="fas fa-chart-line"></i>
+                        <h4>Dashboard ESG Avançado</h4>
+                        <p>Versão completa com métricas</p>
+                        <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/dashboard-esg.html" 
+                           target="_blank" rel="noopener noreferrer" class="btn-link">Acessar Dashboard</a>
+                    </div>
+                    <div class="recurso-card">
+                        <i class="fas fa-solar-panel"></i>
+                        <h4>Calculadora ROI Energia</h4>
+                        <p>Ferramenta avançada de simulação</p>
+                        <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/roi-energia.html" 
+                           target="_blank" rel="noopener noreferrer" class="btn-link">Calcular ROI</a>
+                    </div>
+                    <div class="recurso-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Mapa de Riscos Completo</h4>
+                        <p>Matriz interativa de riscos</p>
+                        <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/mapa-riscos.html" 
+                           target="_blank" rel="noopener noreferrer" class="btn-link">Ver Mapa</a>
                     </div>
                     <div class="recurso-card">
                         <i class="fas fa-user-tie"></i>
                         <h4>Site do Autor</h4>
                         <p>Conteúdos exclusivos e atualizações</p>
-                        <a href="#" class="btn-link">Visitar</a>
+                        <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" 
+                           target="_blank" rel="noopener noreferrer" class="btn-link">Visitar Site</a>
                     </div>
                 </div>
             </section>
@@ -330,9 +358,9 @@
     </footer>
 
     <!-- Modal Plano de Ação -->
-    <div id="modalPlanoAcao" class="modal">
+    <div id="modalPlanoAcao" class="modal" role="dialog" aria-labelledby="modalTitulo" aria-modal="true">
         <div class="modal-content">
-            <span class="modal-close" onclick="fecharModal()">&times;</span>
+            <span class="modal-close" onclick="fecharModal()" role="button" tabindex="0" aria-label="Fechar modal">&times;</span>
             <h2 id="modalTitulo">Plano de Ação</h2>
             <div id="modalCorpo"></div>
         </div>
