@@ -2,8 +2,10 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Teoria das Janelas Quebradas | Gestão Estratégica em Condomínios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria das Janelas Quebradas | Gestão Proativa em Condomínios</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,374 +13,700 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-green: #1b4d3e;
+            --secondary-green: #2d7a5f;
+            --light-green: #e8f5f0;
+            --accent-blue: #4a90a4;
+            --text-dark: #2c3e50;
+            --text-light: #666;
+            --white: #ffffff;
+            --gray-bg: #f8f9fa;
+        }
+
         body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-            background: #f0f4f8;
-            color: #1a2c3e;
-            line-height: 1.5;
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1280px;
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        /* cabeçalho principal */
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
         .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--white) 100%);
+            padding: 4rem 2rem;
             text-align: center;
-            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: 2.3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #1e4a2f, #2b6e3f);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-        }
-
-        .hero .subhead {
-            font-size: 1.2rem;
-            color: #2c5a3a;
-            border-bottom: 2px solid #cbdbe6;
-            display: inline-block;
-            padding-bottom: 0.5rem;
-            margin-top: 0.5rem;
-            font-weight: 500;
-        }
-
-        .hero p {
-            max-width: 700px;
-            margin: 1rem auto 0;
-            color: #2c3e44;
-        }
-
-        /* seção chamada à ação (cards introdutórios) */
-        .callout {
+            color: var(--primary-green);
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
+            align-items: center;
             justify-content: center;
-            margin: 2rem 0 2.5rem;
+            gap: 1rem;
         }
 
-        .callout-card {
-            background: white;
-            border-radius: 1.5rem;
-            padding: 1.2rem 1.8rem;
-            flex: 1;
-            min-width: 200px;
-            text-align: center;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.03);
-            border: 1px solid #e0ede6;
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
-        .callout-card span {
+        .hero-description {
+            font-size: 1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .reference {
+            font-style: italic;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        /* Main Theory Box */
+        .theory-box {
+            background: var(--white);
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .theory-box h2 {
+            color: var(--primary-green);
             font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theory-box p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(27, 77, 62, 0.4);
+        }
+
+        .theory-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Benefits Grid */
+        .benefits {
+            padding: 4rem 2rem;
+            background: var(--gray-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Resources Section */
+        .resources {
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-green);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            background: var(--light-green);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-green);
+            transition: all 0.3s;
+        }
+
+        .resource-card:hover {
+            background: var(--primary-green);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .resource-card:hover h3,
+        .resource-card:hover p {
+            color: var(--white);
+        }
+
+        .resource-card a {
+            text-decoration: none;
+            color: inherit;
             display: block;
         }
 
-        .callout-card strong {
-            color: #1f5437;
+        .resource-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
             font-size: 1.1rem;
-        }
-
-        /* --- NOVOS BLOCOS IGUAIS AO SITE ORIGINAL (ciclo virtuoso original foi substituído) --- */
-        /* mantemos o estilo original: blocos de 3 colunas que aparecem antes da tabela */
-        .grid-three {
             display: flex;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 3rem 0;
-            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .virtue-card {
-            background: white;
-            border-radius: 1.8rem;
-            padding: 1.8rem;
-            flex: 1;
-            min-width: 240px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.2s;
-            border: 1px solid #e2f0e8;
-        }
-
-        .virtue-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f4f2d;
-            margin-bottom: 0.75rem;
-        }
-
-        .virtue-card p {
-            color: #2d4a3b;
-            margin-bottom: 1.2rem;
-        }
-
-        .mock-btn {
-            display: inline-block;
-            background: #eef3ef;
-            color: #1f5437;
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            text-decoration: none;
+        .resource-card p {
+            color: var(--text-light);
             font-size: 0.9rem;
-            transition: 0.2s;
         }
 
-        .mock-btn:hover {
-            background: #ddeae2;
+        /* Info Sections */
+        .info-sections {
+            padding: 4rem 2rem;
+            background: var(--gray-bg);
         }
 
-        /* SEÇÃO SUBSTITUÍDA: antes era "Ciclo Virtuoso de Gestão" com texto e ver métricas */
-        /* AGORA temos um bloco especial com o botão para o PDF da teoria */
-        .pdf-theory-block {
-            background: linear-gradient(125deg, #eef5f0, #ffffff);
-            border-radius: 2rem;
-            padding: 2.5rem 2rem;
-            margin: 2rem 0 3rem;
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .info-card h3 {
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.3rem;
+        }
+
+        .info-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Author Section */
+        .author {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            color: var(--white);
             text-align: center;
-            box-shadow: 0 12px 28px -12px rgba(0,0,0,0.1);
-            border: 1px solid #cde2d4;
         }
 
-        .pdf-theory-block h2 {
+        .author h2 {
             font-size: 2rem;
-            font-weight: 800;
-            color: #1a3c2a;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
 
-        .pdf-theory-block .tagline {
-            font-size: 1.1rem;
-            max-width: 650px;
-            margin: 0 auto 1.8rem auto;
-            color: #2c5542;
+        .author p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
         }
 
-        .btn-teoria {
+        .author-link {
             display: inline-flex;
             align-items: center;
-            gap: 0.8rem;
-            background: #1f5437;
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.2rem;
-            font-weight: 600;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.25s;
-            box-shadow: 0 6px 14px rgba(31,84,55,0.3);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .btn-teoria:hover {
-            background: #13402a;
-            transform: scale(1.02);
-        }
-
-        /* tabela de métricas (mantida exatamente como no site original) */
-        .metrics-section {
-            margin: 3rem 0;
-            overflow-x: auto;
-        }
-
-        .metrics-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: #1f3d30;
-        }
-
-        .metrics-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 1.2rem;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .metrics-table th, .metrics-table td {
-            padding: 1rem 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-            vertical-align: top;
-        }
-
-        .metrics-table th {
-            background: #eef3ea;
+            gap: 0.5rem;
+            background: var(--white);
+            color: var(--primary-green);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
             font-weight: 700;
-            color: #1f4f2d;
+            transition: all 0.3s;
         }
 
-        .status-ok {
-            color: #15803d;
-            font-weight: 600;
+        .author-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .radar-note {
-            background: #eef2fa;
-            border-radius: 1.2rem;
-            padding: 1.2rem;
-            margin: 2rem 0 1rem;
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
             text-align: center;
         }
 
-        .footer {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #cbd5e1;
-            font-size: 0.85rem;
-            color: #5a6e7c;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 700px) {
-            .container {
-                padding: 1.2rem;
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
-            .metrics-table th, .metrics-table td {
-                font-size: 0.8rem;
-                padding: 0.7rem;
+
+            .mobile-menu {
+                display: block;
             }
-            .btn-teoria {
-                padding: 0.7rem 1.8rem;
-                font-size: 1rem;
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .theory-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .benefits-grid,
+            .resources-grid,
+            .info-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- cabeçalho original -->
-    <div class="hero">
-        <h1>🧱 Teoria das Janelas Quebradas</h1>
-        <div class="subhead">Chamada à Ação em Condomínios • Gestão proativa, fiscalização transparente e indicadores de sucesso</div>
-        <p>Baseada no clássico artigo de James Q. Wilson & George L. Kelling (1982), traduzido e adaptado para síndicos, administradores e conselheiros.</p>
-    </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <span>Janelas Quebradas</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#teoria">A Teoria</a></li>
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#autor">Autor</a></li>
+            </ul>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
 
-    <!-- cards "chamada à ação" estilo site original -->
-    <div class="callout">
-        <div class="callout-card"><span>📉</span><strong>Baixa inadimplência</strong><br>Controle financeiro sólido</div>
-        <div class="callout-card"><span>⚡</span><strong>Respostas rápidas</strong><br>Manutenção ágil e preventiva</div>
-        <div class="callout-card"><span>😊</span><strong>Condôminos satisfeitos</strong><br>Ambiente seguro e ordenado</div>
-        <div class="callout-card"><span>✅</span><strong>Contas aprovadas</strong><br>Sem ressalvas, com transparência</div>
-    </div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                <i class="fas fa-window-maximize"></i>
+                Teoria das Janelas Quebradas
+            </h1>
+            <p class="hero-subtitle">
+                Chamada à Ação em Condomínios • Gestão proativa, fiscalização transparente e indicadores de sucesso
+            </p>
+            <div class="reference">
+                Baseada no clássico artigo de James O. Wilson & George L. Kelling (1982), 
+                traduzido e adaptado para síndicos, administradores e conselheiros.
+            </div>
+        </div>
+    </section>
 
-    <!-- TRÊS BLOCOS ORIGINAIS: O Ciclo Virtuoso (título) + Monitoramento + Engajamento (exatamente como no site) -->
-    <div class="grid-three">
-        <div class="virtue-card">
-            <h3>🌀 O Ciclo Virtuoso</h3>
-            <p>Indicadores que transformam a gestão: baixa inadimplência, respostas rápidas, condôminos satisfeitos e contas aprovadas sem ressalvas.</p>
-            <span class="mock-btn">Ver Métricas ↓</span>
-        </div>
-        <div class="virtue-card">
-            <h3>📊 Monitoramento Contínuo</h3>
-            <p>Acompanhe mensalmente, trimestralmente e anualmente o desempenho do seu condomínio contra metas ambiciosas para 2026.</p>
-            <span class="mock-btn">Simular Agora</span>
-        </div>
-        <div class="virtue-card">
-            <h3>📱 Engajamento Digital</h3>
-            <p>Mais de 85% de condôminos ativos digitalmente é a chave para transparência e decisões ágeis.</p>
-            <span class="mock-btn">Saiba mais</span>
-        </div>
-    </div>
-
-    <!-- ================================================= -->
-    <!-- SUBSTITUIÇÃO DO CAMPO "CICLO VIRTUOSO DE GESTÃO"  -->
-    <!-- Antigo bloco com "Ciclo Virtuoso de Gestão" + Ver Métricas foi removido e agora insere-se o BOTÃO PARA O PDF -->
-    <!-- ================================================= -->
-    <div class="pdf-theory-block" id="teoria-pdf-block">
-        <h2>📘 TEORIA DAS JANELAS QUEBRADAS</h2>
-        <div class="tagline">
-            Pequenos cuidados geram segurança coletiva. Conheça a base científica que transforma desordem em ordem sustentável.
-        </div>
-        <!-- Botão que abrirá o arquivo PDF (Broken Windows - Janelas Quebradas) -->
-        <button id="openTheoryBtn" class="btn-teoria">
-            🪟 Entenda a Teoria
-            <span>→</span>
-        </button>
-        <p style="margin-top: 1.5rem; font-size: 0.85rem; color: #4a6b5c;">
-            Documento completo: tradução do artigo "Broken Windows" + conexões práticas para síndicos e administradores.
+    <!-- Main Theory Box -->
+    <section id="teoria" class="theory-box">
+        <h2>
+            <i class="fas fa-book-open"></i>
+            TEORIA DAS JANELAS QUEBRADAS
+        </h2>
+        <p>
+            Pequenos cuidados geram segurança coletiva. Conheça a base científica que 
+            transforma desordem em ordem sustentável.
         </p>
-    </div>
+        <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" 
+           class="cta-button" target="_blank">
+            <i class="fas fa-file-pdf"></i>
+            Entenda a Teoria
+            <i class="fas fa-arrow-right"></i>
+        </a>
+        <p class="theory-note">
+            Documento completo: tradução do artigo "Broken Windows" + conexões práticas 
+            para síndicos e administradores.
+        </p>
+    </section>
 
-    <!-- TABELA DE MÉTRICAS DO CICLO VIRTUOSO (idêntica ao conteúdo do site original) -->
-    <div class="metrics-section">
-        <h2>📈 Métricas do Ciclo Virtuoso</h2>
-        <div style="background:#d9f0e1; border-radius: 30px; display: inline-block; padding: 0.2rem 1rem; margin-bottom: 1rem; font-weight: bold;">Score Geral: 100%</div>
-        <table class="metrics-table">
-            <thead>
-                <tr><th>Indicador</th><th>Meta 2026</th><th>Como Medir</th><th>Frequência</th><th>Valor Atual</th><th>Status</th></tr>
-            </thead>
-            <tbody>
-                <tr><td>Inadimplência estrutural</td><td> &lt;5% </td><td>(Inadimplentes > 90 dias) ÷ Total de unidades</td><td>Mensal</td><td>2.4%</td><td class="status-ok">✔ Meta</td></tr>
-                <tr><td>Tempo médio de resposta</td><td> &lt;48h </td><td>Do chamado à solução ou encaminhamento</td><td>Mensal</td><td>27 h</td><td class="status-ok">✔ Meta</td></tr>
-                <tr><td>Sinistralidade de seguros</td><td>Queda anual</td><td>Prêmio anual ÷ Valor segurado</td><td>Anual</td><td>-0.8% (índice)</td><td class="status-ok">✔ Queda</td></tr>
-                <tr><td>Autuações por órgãos públicos</td><td>Zero</td><td>ANPD, MTE, Bombeiros, Receita</td><td>Trimestral</td><td>0 autuações</td><td class="status-ok">✔ Zero</td></tr>
-                <tr><td>Satisfação dos condôminos</td><td>NPS ≥ 50</td><td>Pesquisa semestral com NPS ≥ 50</td><td>Semestral</td><td>NPS 72</td><td class="status-ok">✔ Meta</td></tr>
-                <tr><td>Aprovação de contas sem ressalvas</td><td>&gt;90%</td><td>% de assembleias com parecer aprovado</td><td>Por assembleia</td><td>98%</td><td class="status-ok">✔ Meta</td></tr>
-                <tr><td>Engajamento digital</td><td>&gt;85%</td><td>% de condôminos com login ativo + 2 interações/mês</td><td>Mensal</td><td>89%</td><td class="status-ok">✔ Meta</td></tr>
-            </tbody>
-        </table>
-    </div>
+    <!-- Benefits Section -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Resultados Comprovados</h2>
+            <p class="section-subtitle">
+                Aplicando a teoria na gestão condominial
+            </p>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">📉</div>
+                    <h3>Baixa inadimplência</h3>
+                    <p>Controle financeiro sólido</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Respostas rápidas</h3>
+                    <p>Manutenção ágil e preventiva</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">😊</div>
+                    <h3>Condôminos satisfeitos</h3>
+                    <p>Ambiente seguro e ordenado</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">✅</div>
+                    <h3>Contas aprovadas</h3>
+                    <p>Sem ressalvas, com transparência</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- Painel Radar (conteúdo fiel ao site) -->
-    <div class="radar-note">
-        <strong>📡 Painel de Performance - Radar do Ciclo Virtuoso</strong><br>
-        Quanto mais próximo da borda, melhor o desempenho em relação à meta.<br>
-        <span style="font-size:0.85rem;">Metas 2026: Inadimplência <5% | Tempo resposta <48h | Sinistralidade em queda | Zero autuações | Satisfação >80% | Aprovação contas >90% | Engajamento >85%</span>
-    </div>
+    <!-- Resources Section -->
+    <section id="recursos" class="resources">
+        <div class="container">
+            <h2 class="section-title">Recursos e Ferramentas</h2>
+            <p class="section-subtitle">
+                Acesse materiais completos para implementação
+            </p>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank">
+                        <h3><i class="fas fa-file-pdf"></i> Artigo Completo</h3>
+                        <p>Baixe o PDF da Teoria das Janelas Quebradas traduzido e adaptado</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/regulamento-conselho.html" target="_blank">
+                        <h3><i class="fas fa-file-alt"></i> Regulamento do Conselho</h3>
+                        <p>Modelo completo de regulamento para conselho fiscal</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Ferigutembergmeneses-jpg.github.io%2Fconselho-fiscal-condominio-das-contas%2Fregulamento-conselho.docx.doc&wdOrigin=BROWSELINK" target="_blank">
+                        <h3><i class="fas fa-file-word"></i> Documento Editável</h3>
+                        <p>Versão Word do regulamento para personalização</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/conciliacao-bancaria.html" target="_blank">
+                        <h3><i class="fas fa-calculator"></i> Conciliação Bancária</h3>
+                        <p>Guia prático para conciliação de contas condominiais</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/dashboard-esg.html" target="_blank">
+                        <h3><i class="fas fa-chart-line"></i> Dashboard ESG</h3>
+                        <p>Indicadores de sustentabilidade e governança</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/roi-energia.html" target="_blank">
+                        <h3><i class="fas fa-solar-panel"></i> ROI em Energia</h3>
+                        <p>Cálculo de retorno em eficiência energética</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/mapa-riscos.html" target="_blank">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Mapa de Riscos</h3>
+                        <p>Identificação e gestão de riscos condominiais</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/atualizacoes-legislativas-conselho-fiscal.html" target="_blank">
+                        <h3><i class="fas fa-gavel"></i> Atualizações Legislativas</h3>
+                        <p>Mudanças na legislação condominial</p>
+                    </a>
+                </div>
+                <div class="resource-card">
+                    <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank">
+                        <h3><i class="fas fa-question-circle"></i> Dúvidas Frequentes</h3>
+                        <p>Tire suas dúvidas sobre gestão condominial</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="footer">
-        ✦ Baseado no artigo <em>"Broken Windows"</em> (James Q. Wilson & George L. Kelling, The Atlantic, 1982) ✦ <br>
-        Tradução e adaptação para gestão condominial · Material de referência para síndicos e administradores.
-    </div>
-</div>
+    <!-- Info Sections -->
+    <section class="info-sections">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>
+                        <i class="fas fa-sync-alt" style="color: var(--accent-blue);"></i>
+                        O Ciclo Virtuoso
+                    </h3>
+                    <p>
+                        Indicadores que transformam a gestão: baixa inadimplência, respostas rápidas, 
+                        condôminos satisfeitos e contas aprovadas sem ressalvas.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>
+                        <i class="fas fa-chart-bar" style="color: var(--accent-blue);"></i>
+                        Monitoramento Contínuo
+                    </h3>
+                    <p>
+                        Acompanhe mensalmente, trimestralmente e anualmente o desempenho do seu 
+                        condomínio contra metas ambiciosas para 2026.
+                    </p>
+                </div>
+                <div class="info-card">
+                    <h3>
+                        <i class="fas fa-laptop-house" style="color: var(--accent-blue);"></i>
+                        Engajamento Digital
+                    </h3>
+                    <p>
+                        Mais de 85% de condôminos ativos digitalmente é a chave para transparência 
+                        e decisões ágeis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-    // Abrir o PDF diretamente quando clicar no botão "Entenda a Teoria"
-    // O arquivo deve estar na raiz do repositório com o nome exato: "Broken Windows (Janelas Quebradas).pdf"
-    // IMPORTANTE: se o nome tiver espaços, o navegador codifica automaticamente. Estamos usando encodeURIComponent para segurança.
-    document.getElementById('openTheoryBtn').addEventListener('click', function() {
-        // Nome do arquivo conforme enviado: "Broken Windows (Janelas Quebradas).pdf"
-        const pdfFileName = 'Broken Windows (Janelas Quebradas).pdf';
-        // Codifica para garantir que espaços e caracteres especiais sejam tratados corretamente
-        const pdfUrl = encodeURIComponent(pdfFileName);
-        // Abre em nova aba para fácil leitura
-        window.open(pdfUrl, '_blank');
-    });
-</script>
+    <!-- Author Section -->
+    <section id="autor" class="author">
+        <h2><i class="fas fa-user-tie"></i> Sobre o Autor</h2>
+        <p>
+            Eri Gutemberg Meneses - Pesquisador em Neurodireito, economista e advogado especializado 
+            em governança condominial, gestão proativa e inovação digital. Desenvolve pesquisas sobre 
+            justiça neurocompatível e aplicação de teorias comportamentais na administração de condomínios.
+        </p>
+        <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" 
+           class="author-link" target="_blank">
+            <i class="fas fa-external-link-alt"></i>
+            Visite o Site Oficial
+        </a>
+    </section>
 
-<!-- 
-    ==========================================================
-    INSTRUÇÕES PARA LEVAR O ARQUIVO PDF PARA O REPOSITÓRIO GITHUB:
-    ==========================================================
-    1. Certifique-se de que o arquivo PDF está com o nome EXATO:
-       "Broken Windows (Janelas Quebradas).pdf" (respeitando maiúsculas, minúsculas e espaços).
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" target="_blank">
+                    Conselho Fiscal
+                </a>
+                <a href="https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank">
+                    Teoria Completa
+                </a>
+                <a href="https://erigutembergmeneses-jpg.github.io/erigutemberg-meneses-site-oficial/" target="_blank">
+                    Site do Autor
+                </a>
+                <a href="https://conviver.sindiconet.com.br/perguntas" target="_blank">
+                    Dúvidas
+                </a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 - Teoria das Janelas Quebradas Aplicada a Condomínios</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+                    Baseado em James O. Wilson & George L. Kelling (1982)
+                </p>
+            </div>
+        </div>
+    </footer>
 
-    2. No seu repositório local (teoria-das-janelas-quebradas), copie o arquivo PDF para a pasta raiz (mesmo nível do index.html).
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
-    3. Adicione, commit e faça push:
-       git add "Broken Windows (Janelas Quebradas).pdf"
-       git commit -m "Adiciona PDF completo da Teoria das Janelas Quebradas"
-       git push origin main
-
-    4. Após o deploy, o GitHub Pages servirá o PDF no mesmo endereço base:
-       https://erigutembergmeneses-jpg.github.io/teoria-das-janelas-quebradas/Broken%20Windows%20(Janelas%20Quebradas).pdf
-
-    5. Teste o clique no botão: ele abrirá o PDF diretamente no navegador.
-
-    CASO O PDF NÃO ABRA:
-    - Verifique se o nome no repositório é idêntico ao usado no script.
-    - O GitHub Pages pode levar alguns minutos para publicar novos arquivos.
-    - Se desejar evitar espaços no nome, renomeie o PDF para "broken_windows_teoria.pdf" e altere a variável pdfFileName no script.
--->
+        // Mobile menu toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.right = '0';
+            navLinks.style.background = 'var(--primary-green)';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '1rem';
+        });
+    </script>
 </body>
 </html>
