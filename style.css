@@ -1,6 +1,6 @@
 /* ==========================================
    TEORIA DAS JANELAS QUEBRADAS - CSS COMPLETO
-   Versão Otimizada com Background e Layout Ajustado
+   Versão com Background, Layout Ajustado e Links Externos
    ========================================== */
 
 /* Reset e Variáveis */
@@ -98,14 +98,61 @@ body {
 .subtitle {
     font-size: 1.2rem;
     color: var(--primary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Botão PDF Principal */
+.btn-pdf-principal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 1rem 0 1.5rem;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    animation: pulse 2s infinite;
+    max-width: 100%;
+}
+
+.btn-pdf-principal:hover,
+.btn-pdf-principal:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
+    background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+.btn-pdf-principal:active {
+    transform: translateY(-1px);
+}
+
+.btn-pdf-principal i {
+    font-size: 1.5rem;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(231, 76, 60, 0.7);
+    }
 }
 
 .nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.75rem;
     margin-top: 1rem;
 }
 
@@ -117,12 +164,15 @@ body {
     transition: all 0.3s ease;
     border: 1px solid transparent;
     cursor: pointer;
+    font-size: 0.95rem;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
     background: var(--primary-color);
     border-color: var(--primary-color);
     transform: translateY(-2px);
+    outline: none;
 }
 
 /* Main Content */
@@ -213,7 +263,8 @@ body {
     cursor: pointer;
 }
 
-#dashboard .card:hover {
+#dashboard .card:hover,
+#dashboard .card:focus-within {
     transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
 }
@@ -364,9 +415,11 @@ body {
     font-weight: 600;
 }
 
-#mapa-riscos .matriz-cell:hover {
+#mapa-riscos .matriz-cell:hover,
+#mapa-riscos .matriz-cell:focus {
     transform: scale(1.05);
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    outline: 2px solid var(--info-color);
 }
 
 #mapa-riscos .matriz-cell.baixa {
@@ -463,8 +516,14 @@ body {
     font-size: 0.8rem;
 }
 
-#mapa-riscos .btn-plano:hover {
+#mapa-riscos .btn-plano:hover,
+#mapa-riscos .btn-plano:focus {
     background: #2980b9;
+    outline: none;
+}
+
+#mapa-riscos .btn-plano:active {
+    transform: scale(0.98);
 }
 
 /* ==========================================
@@ -552,9 +611,11 @@ body {
     margin-top: auto;
 }
 
-.btn-calcular:hover {
+.btn-calcular:hover,
+.btn-calcular:focus {
     background: #e67e22;
     transform: translateY(-2px);
+    outline: none;
 }
 
 .btn-calcular:active {
@@ -602,11 +663,13 @@ body {
     cursor: pointer;
 }
 
-.ferramenta-card:hover {
+.ferramenta-card:hover,
+.ferramenta-card:focus {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
     background: var(--primary-color);
     color: white;
+    outline: none;
 }
 
 .ferramenta-card i {
@@ -616,7 +679,8 @@ body {
     transition: color 0.3s ease;
 }
 
-.ferramenta-card:hover i {
+.ferramenta-card:hover i,
+.ferramenta-card:focus i {
     color: white;
 }
 
@@ -678,8 +742,10 @@ body {
     font-size: 0.85rem;
 }
 
-.btn-link:hover {
+.btn-link:hover,
+.btn-link:focus {
     background: #2980b9;
+    outline: none;
 }
 
 /* Footer */
@@ -746,19 +812,17 @@ body {
     border-radius: 50%;
 }
 
-.modal-close:hover {
+.modal-close:hover,
+.modal-close:focus {
     color: var(--danger-color);
     background: #f8f9fa;
+    outline: none;
 }
 
 /* Animações */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 @keyframes slideDown {
@@ -774,124 +838,78 @@ body {
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .logo h1 {
-        font-size: 1.8rem;
-    }
-
-    .nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .section {
-        padding: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.4rem;
-    }
-
+    .logo h1 { font-size: 1.8rem; }
+    .nav { flex-direction: column; align-items: center; }
+    .section { padding: 1rem; }
+    .section-title { font-size: 1.4rem; }
+    
     #dashboard .section,
-    #mapa-riscos .section {
-        max-height: 600px;
-    }
-
+    #mapa-riscos .section { max-height: 600px; }
+    
     #dashboard .cards-grid,
     .calculadoras-grid,
     .ferramentas-grid,
-    .recursos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #dashboard .card {
-        min-height: 130px;
-    }
-
+    .recursos-grid { grid-template-columns: 1fr; }
+    
+    #dashboard .card { min-height: 130px; }
+    
     .risco-item {
         grid-template-columns: 1fr;
         gap: 0.5rem;
         text-align: center;
     }
-
+    
     .matriz-header,
-    .matriz-body {
-        grid-template-columns: repeat(4, minmax(70px, 1fr));
+    .matriz-body { grid-template-columns: repeat(4, minmax(70px, 1fr)); }
+    
+    .calculadora-card { min-height: 400px; }
+    
+    .btn-pdf-principal {
+        font-size: 1rem;
+        padding: 0.9rem 1.5rem;
+        margin: 1rem 0;
     }
-
-    .calculadora-card {
-        min-height: 400px;
-    }
+    .btn-pdf-principal i { font-size: 1.2rem; }
 }
 
 @media (max-width: 480px) {
-    .header {
-        padding: 1rem 0;
-    }
-
-    .logo i {
-        font-size: 2rem;
-    }
-
-    .logo h1 {
-        font-size: 1.4rem;
-    }
-
-    .subtitle {
-        font-size: 0.95rem;
-    }
-
-    .section-title {
-        font-size: 1.2rem;
-    }
-
-    #dashboard .metric-value {
-        font-size: 1.2rem;
-    }
-
-    #dashboard .checklist {
-        grid-template-columns: 1fr;
-    }
-
+    .header { padding: 1rem 0; }
+    .logo i { font-size: 2rem; }
+    .logo h1 { font-size: 1.4rem; }
+    .subtitle { font-size: 0.95rem; }
+    .section-title { font-size: 1.2rem; }
+    
+    #dashboard .metric-value { font-size: 1.2rem; }
+    #dashboard .checklist { grid-template-columns: 1fr; }
+    
     .form-group input,
-    .form-group select {
-        font-size: 0.9rem;
-    }
-
-    .btn-calcular {
-        font-size: 0.9rem;
-        padding: 0.6rem;
+    .form-group select { font-size: 0.9rem; }
+    
+    .btn-calcular { font-size: 0.9rem; padding: 0.6rem; }
+    
+    .btn-pdf-principal {
+        font-size: 0.95rem;
+        padding: 0.8rem 1.2rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+        border-radius: 30px;
     }
 }
 
 /* Utilitários */
-.text-center {
-    text-align: center;
-}
-
-.mt-1 {
-    margin-top: 1rem;
-}
-
-.mt-2 {
-    margin-top: 2rem;
-}
-
-.mb-1 {
-    margin-bottom: 1rem;
-}
-
-.mb-2 {
-    margin-bottom: 2rem;
-}
-
-.hidden {
-    display: none;
-}
+.text-center { text-align: center; }
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.hidden { display: none; }
 
 /* Estados interativos */
 .card:active,
 .btn-calcular:active,
-.btn-plano:active {
+.btn-plano:active,
+.btn-pdf-principal:active {
     transform: scale(0.98);
 }
 
@@ -917,14 +935,13 @@ body {
 }
 
 @keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 /* Tooltip básico */
 [title] {
     position: relative;
+    cursor: help;
 }
 
 [title]:hover::after {
@@ -941,4 +958,24 @@ body {
     white-space: nowrap;
     z-index: 10;
     margin-bottom: 5px;
+    pointer-events: none;
+}
+
+/* Acessibilidade: focus visible */
+:focus-visible {
+    outline: 2px solid var(--info-color);
+    outline-offset: 2px;
+}
+
+/* Links externos - indicador visual */
+a[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.8em;
+    vertical-align: super;
+}
+
+.btn-pdf-principal::after,
+.nav-link::after,
+.btn-link::after {
+    content: none !important;
 }
