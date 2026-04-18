@@ -3,456 +3,629 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria das Janelas Quebradas | Gestão Condominial Inteligente</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Teoria das Janelas Quebradas aplicada à gestão condominial. Ferramentas interativas para síndicos e conselheiros fiscais: calculadoras, checklists, mapa de riscos e muito mais.">
+    <meta name="keywords" content="condomínio, gestão condominial, síndico, conselho fiscal, teoria das janelas quebradas, ESG, ROI">
+    <meta name="author" content="Erigutemberg Meneses">
+    <meta name="theme-color" content="#0F3460">
+    <title>Teoria das Janelas Quebradas | Gestão Condominial Inteligente e Preventiva</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>🚪 Teoria das Janelas Quebradas</h1>
-            <p class="tagline">Gestão Condominial Inteligente e Preventiva</p>
+    <!-- Loading Overlay -->
+    <div id="loading" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Carregando ferramentas...</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div id="progressBar" class="progress-bar"></div>
+
+    <!-- Sticky Menu -->
+    <nav class="sticky-menu" id="stickyMenu">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-window-restore"></i>
+                <span>Janelas Quebradas</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#teoria" class="nav-link"><i class="fas fa-book"></i> Teoria</a></li>
+                <li><a href="#riscos" class="nav-link"><i class="fas fa-chart-line"></i> Riscos</a></li>
+                <li><a href="#ferramentas" class="nav-link"><i class="fas fa-tools"></i> Ferramentas</a></li>
+                <li><a href="#fiscal" class="nav-link"><i class="fas fa-shield-alt"></i> Conselho</a></li>
+                <li><a href="#recursos" class="nav-link"><i class="fas fa-link"></i> Recursos</a></li>
+                <li><button id="themeToggle" class="theme-btn" aria-label="Modo escuro"><i class="fas fa-moon"></i></button></li>
+            </ul>
         </div>
-    </header>
+    </nav>
 
-    <main class="container">
-        <!-- Seção Teoria -->
-        <section class="theory-section">
-            <h2>Teoria das Janelas Quebradas na Gestão Condominial</h2>
-            <div class="cards-container">
-                <div class="card broken-window" data-detail="detail1">
-                    <div class="card-icon">🪟</div>
-                    <h3>Janela Quebrada</h3>
-                    <ul>
-                        <li>Notificação sem contraditório</li>
-                        <li>Processo ignorado</li>
-                        <li>Ata sem registro</li>
-                        <li>Multa arbitrária</li>
-                    </ul>
-                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
-                    <div id="detail1" class="detail-content">
-                        <p>Quando pequenas desordens são ignoradas, a mensagem enviada é que ninguém se importa. Isso incentiva comportamentos piores e deterioração generalizada do ambiente condominial.</p>
-                    </div>
-                </div>
-                <div class="card cascade" data-detail="detail2">
-                    <div class="card-icon">📉</div>
-                    <h3>Efeito Cascata</h3>
-                    <ul>
-                        <li>Desconfiança</li>
-                        <li>Inadimplência</li>
-                        <li>Judicialização</li>
-                        <li>Desvalorização</li>
-                    </ul>
-                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
-                    <div id="detail2" class="detail-content">
-                        <p>Uma janela quebrada não reparada desencadeia uma reação em cadeia: desconfiança leva à inadimplência, que gera judicialização e, finalmente, desvalorização do patrimônio.</p>
-                    </div>
-                </div>
-                <div class="card repair" data-detail="detail3">
-                    <div class="card-icon">✅</div>
-                    <h3>Reparo Imediato</h3>
-                    <ul>
-                        <li>Processo Válido</li>
-                        <li>Documentação</li>
-                        <li>Comunicação Técnica</li>
-                        <li>Governança Preventiva</li>
-                    </ul>
-                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
-                    <div id="detail3" class="detail-content">
-                        <p>Consertar a primeira janela quebrada é o princípio da governança preventiva. Processos corretos e documentação adequada previnem passivos judiciais e financeiros.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="quote">
-                <p>"Consertar a primeira janela é governança preventiva"</p>
-            </div>
-        </section>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
-        <!-- Sinais de Alerta -->
-        <section class="warning-signs">
-            <h2>🚨 Janela Quebrada - Sinais de Alerta</h2>
-            <p>Quando processos são ignorados ou aplicados de forma inadequada, enviamos uma mensagem de abandono.</p>
-            <div class="signs-grid">
-                <div class="sign">📄 Notificações sem base legal ou contraditório</div>
-                <div class="sign">📋 Atas de assembleia sem registro de divergências</div>
-                <div class="sign">💰 Multas aplicadas de forma arbitrária</div>
-                <div class="sign">👥 Conselho fiscal que aprova contas sem conferência</div>
-                <div class="sign">📱 Grupos de WhatsApp como tribunal informal</div>
-            </div>
-        </section>
-
-        <!-- Efeito Cascata -->
-        <section class="cascade-effect">
-            <h2>📉 Efeito Cascata da Deterioração</h2>
-            <p>Uma janela quebrada não reparada desencadeia consequências em cadeia.</p>
-            <div class="cascade-steps">
-                <div class="step">😟 1. Desconfiança</div>
-                <div class="arrow">→</div>
-                <div class="step">💰 2. Inadimplência</div>
-                <div class="arrow">→</div>
-                <div class="step">⚖️ 3. Judicialização</div>
-            </div>
-        </section>
-
-        <!-- Governança Preventiva -->
-        <section class="preventive">
-            <h2>🛠️ Reparo Imediato - Governança Preventiva</h2>
-            <p>Processos corretos e documentação previnem passivos.</p>
-            <div class="pillars">
-                <div class="pillar">✓ Notificação com base legal + prazo de defesa</div>
-                <div class="pillar">✓ Registro impecável em atas</div>
-                <div class="pillar">✓ Comunicação técnica e LGPD observada</div>
-                <div class="pillar">✓ Conselho fiscal com vigilância ativa</div>
-            </div>
-        </section>
-
-        <!-- Mapa de Riscos -->
-        <section class="risk-map">
-            <h2>🗺️ Mapa de Riscos</h2>
-            <div class="risk-filters">
-                <button class="filter-btn active" data-risk="all">Todos</button>
-                <button class="filter-btn" data-risk="alta">Alta</button>
-                <button class="filter-btn" data-risk="media">Média</button>
-                <button class="filter-btn" data-risk="baixa">Baixa</button>
-            </div>
-            <div class="risks-container">
-                <div class="risk-card high" data-risk-level="alta">
-                    <div class="risk-header">
-                        <span class="risk-level alta">Alta</span>
-                        <h3>🔥 Incêndio</h3>
-                    </div>
-                    <p>Risco crítico que exige plano de prevenção e equipamentos adequados</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Prevenção de Incêndio:</h4>
-                        <ul>
-                            <li>✓ Instalar extintores em todas as áreas comuns (validade anual)</li>
-                            <li>✓ Manter saídas de emergência desobstruídas</li>
-                            <li>✓ Realizar simulado de evacuação semestral</li>
-                            <li>✓ Verificar sistema de alarme e iluminação de emergência</li>
-                            <li>✓ Capacitar funcionários no uso de extintores</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="risk-card medium" data-risk-level="media">
-                    <div class="risk-header">
-                        <span class="risk-level media">Média</span>
-                        <h3>💰 Inadimplência</h3>
-                    </div>
-                    <p>Impacto no fluxo de caixa e manutenção do condomínio</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Combate à Inadimplência:</h4>
-                        <ul>
-                            <li>✓ Notificação extrajudicial em até 30 dias de atraso</li>
-                            <li>✓ Aplicar multa e juros conforme convenção</li>
-                            <li>✓ Oferecer parcelamento para devedores de boa fé</li>
-                            <li>✓ Restringir acesso a áreas de lazer (conforme lei)</li>
-                            <li>✓ Ação de cobrança após 90 dias</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="risk-card high" data-risk-level="alta">
-                    <div class="risk-header">
-                        <span class="risk-level alta">Alta</span>
-                        <h3>🔍 Fraude</h3>
-                    </div>
-                    <p>Risco de desvios e irregularidades financeiras</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Prevenção de Fraudes:</h4>
-                        <ul>
-                            <li>✓ Conciliação bancária mensal obrigatória</li>
-                            <li>✓ Duas assinaturas para movimentação acima de R$ 5.000</li>
-                            <li>✓ Auditoria externa anual</li>
-                            <li>✓ Relatórios financeiros mensais aos condôminos</li>
-                            <li>✓ Canal de denúncia anônimo</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="risk-card medium" data-risk-level="media">
-                    <div class="risk-header">
-                        <span class="risk-level media">Média</span>
-                        <h3>💧 Vazamento</h3>
-                    </div>
-                    <p>Danos estruturais e conflitos entre condôminos</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Gestão de Vazamentos:</h4>
-                        <ul>
-                            <li>✓ Vistoria preventiva semestral nas áreas comuns</li>
-                            <li>✓ Seguro obrigatório para unidades</li>
-                            <li>✓ Registro fotográfico do estado atual</li>
-                            <li>✓ Acionamento imediato de especialista</li>
-                            <li>✓ Mediação de conflitos entre vizinhos</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="risk-card medium" data-risk-level="media">
-                    <div class="risk-header">
-                        <span class="risk-level media">Média</span>
-                        <h3>🏢 Colapso</h3>
-                    </div>
-                    <p>Falha em sistemas essenciais do condomínio</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Contingência:</h4>
-                        <ul>
-                            <li>✓ Manutenção preventiva de elevadores (mensal)</li>
-                            <li>✓ Backup de energia (gerador testado trimestralmente)</li>
-                            <li>✓ Reserva técnica de no mínimo 3 meses</li>
-                            <li>✓ Contrato com fornecedores emergenciais 24h</li>
-                            <li>✓ Plano de comunicação de crises</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="risk-card low" data-risk-level="baixa">
-                    <div class="risk-header">
-                        <span class="risk-level baixa">Baixa</span>
-                        <h3>⚠️ Acidente</h3>
-                    </div>
-                    <p>Ocorrências nas áreas comuns</p>
-                    <div class="risk-plan">
-                        <h4>📋 Plano de Segurança:</h4>
-                        <ul>
-                            <li>✓ Sinalização adequada em todas as áreas</li>
-                            <li>✓ Piso antiderrapante em áreas molhadas</li>
-                            <li>✓ Iluminação adequada em estacionamentos</li>
-                            <li>✓ Seguro de responsabilidade civil atualizado</li>
-                            <li>✓ Registro de ocorrência em até 24h</li>
-                        </ul>
-                    </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">🚪 Teoria das <span class="highlight">Janelas Quebradas</span></h1>
+                <p class="hero-subtitle">Gestão Condominial Inteligente e Preventiva</p>
+                <div class="hero-buttons">
+                    <a href="#teoria" class="btn-primary"><i class="fas fa-play"></i> Começar</a>
+                    <a href="#ferramentas" class="btn-secondary"><i class="fas fa-chart-simple"></i> Ferramentas</a>
                 </div>
             </div>
         </section>
 
-        <!-- Ferramentas do Conselho Fiscal (integradas do outro site) -->
-        <section class="fiscal-tools">
-            <h2>🏛️ Conselho Fiscal: Domínio das Contas</h2>
-            <p class="section-subtitle">Ferramentas de gestão, auditoria e transparência para síndicos e conselheiros</p>
-            
-            <!-- Apresentação -->
-            <div class="tools-category">
-                <h3>📺 APRESENTAÇÃO & PRIMEIROS PASSOS</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">🎥</div>
-                        <h4>Vídeo de apresentação</h4>
-                        <p>Conheça o projeto e tire dúvidas</p>
-                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="tool-link">Assistir vídeo →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">✅</div>
-                        <h4>Checklist Digital Demo</h4>
-                        <p>Versão demonstrativa interativa</p>
-                        <a href="#" class="tool-link demo-trigger" data-demo="checklist">Testar demo →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">💬</div>
-                        <h4>Dúvidas técnicas</h4>
-                        <p>Suporte especializado</p>
-                        <a href="mailto:suporte@condominio.com.br" class="tool-link">Tirar dúvida →</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Base Legal -->
-            <div class="tools-category">
-                <h3>⚖️ BASE LEGAL & FISCALIZAÇÃO</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">📄</div>
-                        <h4>Regulamento do Conselho</h4>
-                        <p>Web interativa + .docx editável</p>
-                        <a href="#" class="tool-link web-regulamento">Acessar Online →</a>
-                        <a href="#" class="tool-link small">📥 Baixar .docx</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🧮</div>
-                        <h4>Calculadora de Quóruns</h4>
-                        <p>Assembleias & quóruns legais</p>
-                        <div class="calculator-placeholder quorum-calc">
-                            <input type="number" id="totalUnits" placeholder="Total de unidades" value="100">
-                            <input type="number" id="presentUnits" placeholder="Unidades presentes" value="60">
-                            <button id="calcQuorum">Calcular Quórum</button>
-                            <p class="calc-result">Quórum necessário: <span id="quorumNeeded">0</span> unidades (<span id="quorumPercent">0</span>%)</p>
+        <div class="container">
+            <!-- Teoria Section -->
+            <section id="teoria" class="theory-section">
+                <h2><i class="fas fa-brain"></i> Teoria das Janelas Quebradas na Gestão Condominial</h2>
+                <div class="cards-container">
+                    <div class="card broken-window" data-detail="detail1">
+                        <div class="card-icon"><i class="fas fa-window-maximize"></i></div>
+                        <h3>Janela Quebrada</h3>
+                        <ul>
+                            <li><i class="fas fa-times-circle"></i> Notificação sem contraditório</li>
+                            <li><i class="fas fa-hourglass-half"></i> Processo ignorado</li>
+                            <li><i class="fas fa-file-alt"></i> Ata sem registro</li>
+                            <li><i class="fas fa-money-bill-wave"></i> Multa arbitrária</li>
+                        </ul>
+                        <button class="detail-btn"><i class="fas fa-chevron-down"></i> Clique para ver detalhes</button>
+                        <div id="detail1" class="detail-content">
+                            <p><i class="fas fa-info-circle"></i> Quando pequenas desordens são ignoradas, a mensagem enviada é que ninguém se importa. Isso incentiva comportamentos piores e deterioração generalizada do ambiente condominial.</p>
                         </div>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">⚖️</div>
-                        <h4>Responsabilidade Civil</h4>
-                        <p>Simulador de riscos e indenizações</p>
-                        <div class="calculator-placeholder liability-sim">
-                            <input type="number" id="damageValue" placeholder="Valor do dano (R$)" value="10000">
-                            <button id="calcLiability">Simular Risco</button>
-                            <p class="calc-result">Indenização estimada: <span id="liabilityEstimate">R$ 0</span></p>
+                    <div class="card cascade" data-detail="detail2">
+                        <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Efeito Cascata</h3>
+                        <ul>
+                            <li><i class="fas fa-user-friends"></i> Desconfiança</li>
+                            <li><i class="fas fa-hand-holding-usd"></i> Inadimplência</li>
+                            <li><i class="fas fa-gavel"></i> Judicialização</li>
+                            <li><i class="fas fa-building"></i> Desvalorização</li>
+                        </ul>
+                        <button class="detail-btn"><i class="fas fa-chevron-down"></i> Clique para ver detalhes</button>
+                        <div id="detail2" class="detail-content">
+                            <p><i class="fas fa-chart-simple"></i> Uma janela quebrada não reparada desencadeia uma reação em cadeia: desconfiança leva à inadimplência, que gera judicialização e, finalmente, desvalorização do patrimônio.</p>
+                        </div>
+                    </div>
+                    <div class="card repair" data-detail="detail3">
+                        <div class="card-icon"><i class="fas fa-tools"></i></div>
+                        <h3>Reparo Imediato</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Processo Válido</li>
+                            <li><i class="fas fa-folder-open"></i> Documentação</li>
+                            <li><i class="fas fa-comments"></i> Comunicação Técnica</li>
+                            <li><i class="fas fa-shield-alt"></i> Governança Preventiva</li>
+                        </ul>
+                        <button class="detail-btn"><i class="fas fa-chevron-down"></i> Clique para ver detalhes</button>
+                        <div id="detail3" class="detail-content">
+                            <p><i class="fas fa-lightbulb"></i> Consertar a primeira janela quebrada é o princípio da governança preventiva. Processos corretos e documentação adequada previnem passivos judiciais e financeiros.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Prestação de Contas -->
-            <div class="tools-category">
-                <h3>📊 PRESTAÇÃO DE CONTAS & TRANSPARÊNCIA</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">📊</div>
-                        <h4>Conciliação bancária</h4>
-                        <p>Página explicativa + planilha Excel</p>
-                        <a href="#" class="tool-link">Acessar página →</a>
-                        <a href="#" class="tool-link small">📥 Baixar Planilha</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">📺</div>
-                        <h4>Vídeo: Como ler balancete</h4>
-                        <p>Tutorial prático — Sindiconet</p>
-                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="tool-link">Assistir vídeo →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">✅</div>
-                        <h4>Checklist de auditoria</h4>
-                        <p>Interativo + pontuação</p>
-                        <a href="#" class="tool-link audit-trigger">Abrir checklist →</a>
-                    </div>
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>"Consertar a primeira janela é governança preventiva"</p>
+                    <i class="fas fa-quote-right"></i>
                 </div>
-            </div>
+            </section>
 
-            <!-- Estratégia e Sustentabilidade -->
-            <div class="tools-category">
-                <h3>🌱 ESTRATÉGIA & SUSTENTABILIDADE</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">📈</div>
-                        <h4>Dashboard ESG</h4>
-                        <p>Sustentabilidade + métricas interativas</p>
-                        <a href="#" class="tool-link esg-trigger">Explorar ESG →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">⚡</div>
-                        <h4>ROI Eficiência Energética</h4>
-                        <p>Economia e retorno - Calcule payback e ROI</p>
-                        <div class="calculator-placeholder roi-calc">
-                            <input type="number" id="investimento" placeholder="Investimento (R$)" value="5000">
-                            <input type="number" id="economiaMensal" placeholder="Economia mensal (R$)" value="300">
-                            <button id="calcROI">Calcular ROI</button>
-                            <p class="calc-result">Payback: <span id="payback">0</span> meses | ROI: <span id="roi">0</span>%</p>
+            <!-- Sinais de Alerta -->
+            <section class="warning-signs">
+                <h2><i class="fas fa-exclamation-triangle"></i> Janela Quebrada - Sinais de Alerta</h2>
+                <p>Quando processos são ignorados ou aplicados de forma inadequada, enviamos uma mensagem de abandono.</p>
+                <div class="signs-grid">
+                    <div class="sign"><i class="fas fa-file-signature"></i> Notificações sem base legal ou contraditório</div>
+                    <div class="sign"><i class="fas fa-clipboard-list"></i> Atas de assembleia sem registro de divergências</div>
+                    <div class="sign"><i class="fas fa-coins"></i> Multas aplicadas de forma arbitrária</div>
+                    <div class="sign"><i class="fas fa-users"></i> Conselho fiscal que aprova contas sem conferência</div>
+                    <div class="sign"><i class="fab fa-whatsapp"></i> Grupos de WhatsApp como tribunal informal</div>
+                </div>
+            </section>
+
+            <!-- Efeito Cascata -->
+            <section class="cascade-effect">
+                <h2><i class="fas fa-water"></i> Efeito Cascata da Deterioração</h2>
+                <p>Uma janela quebrada não reparada desencadeia consequências em cadeia.</p>
+                <div class="cascade-steps">
+                    <div class="step"><i class="fas fa-frown"></i> 1. Desconfiança</div>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="step"><i class="fas fa-money-bill-wave"></i> 2. Inadimplência</div>
+                    <div class="arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="step"><i class="fas fa-gavel"></i> 3. Judicialização</div>
+                </div>
+            </section>
+
+            <!-- Governança Preventiva -->
+            <section class="preventive">
+                <h2><i class="fas fa-shield-virus"></i> Reparo Imediato - Governança Preventiva</h2>
+                <p>Processos corretos e documentação previnem passivos.</p>
+                <div class="pillars">
+                    <div class="pillar"><i class="fas fa-check-circle"></i> Notificação com base legal + prazo de defesa</div>
+                    <div class="pillar"><i class="fas fa-check-circle"></i> Registro impecável em atas</div>
+                    <div class="pillar"><i class="fas fa-check-circle"></i> Comunicação técnica e LGPD observada</div>
+                    <div class="pillar"><i class="fas fa-check-circle"></i> Conselho fiscal com vigilância ativa</div>
+                </div>
+            </section>
+
+            <!-- Mapa de Riscos Interativo -->
+            <section id="riscos" class="risk-map">
+                <h2><i class="fas fa-map"></i> Mapa de Riscos Interativo</h2>
+                <div class="risk-filters">
+                    <button class="filter-btn active" data-risk="all"><i class="fas fa-list"></i> Todos</button>
+                    <button class="filter-btn" data-risk="alta"><i class="fas fa-fire"></i> Alta</button>
+                    <button class="filter-btn" data-risk="media"><i class="fas fa-chart-line"></i> Média</button>
+                    <button class="filter-btn" data-risk="baixa"><i class="fas fa-leaf"></i> Baixa</button>
+                </div>
+                
+                <!-- Matriz 3x3 -->
+                <div class="risk-matrix">
+                    <h3>Matriz de Probabilidade x Impacto</h3>
+                    <div class="matrix-container" id="riskMatrix">
+                        <div class="matrix-header">
+                            <div></div>
+                            <div>Baixo Impacto</div>
+                            <div>Médio Impacto</div>
+                            <div>Alto Impacto</div>
+                        </div>
+                        <div class="matrix-row">
+                            <div class="matrix-label">Provável</div>
+                            <div class="matrix-cell low-mid" data-risk="vazamento">Vazamento</div>
+                            <div class="matrix-cell medium-high" data-risk="inadimplencia">Inadimplência</div>
+                            <div class="matrix-cell high-high" data-risk="incendio">Incêndio</div>
+                        </div>
+                        <div class="matrix-row">
+                            <div class="matrix-label">Possível</div>
+                            <div class="matrix-cell low-mid" data-risk="acidente">Acidente</div>
+                            <div class="matrix-cell medium-high" data-risk="colapso">Colapso</div>
+                            <div class="matrix-cell high-high" data-risk="fraude">Fraude</div>
+                        </div>
+                        <div class="matrix-row">
+                            <div class="matrix-label">Improvável</div>
+                            <div class="matrix-cell low-low">-</div>
+                            <div class="matrix-cell low-mid">-</div>
+                            <div class="matrix-cell medium-high">-</div>
                         </div>
                     </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🗺️</div>
-                        <h4>Mapa de Riscos Completo</h4>
+                </div>
+
+                <div class="risks-container" id="risksContainer">
+                    <div class="risk-card high" data-risk-level="alta" data-risk-name="incendio">
+                        <div class="risk-header">
+                            <span class="risk-level alta"><i class="fas fa-fire"></i> Alta</span>
+                            <h3><i class="fas fa-fire-extinguisher"></i> Incêndio</h3>
+                            <span class="priority-badge urgent"><i class="fas fa-clock"></i> URGENTE</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Baixa</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Alto</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 9/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 30%">Implementado: 30%</div>
+                        </div>
+                        <p>Risco crítico que exige plano de prevenção e equipamentos adequados</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Prevenção de Incêndio:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Instalar extintores em todas as áreas comuns (validade anual)</li>
+                                <li><i class="fas fa-check"></i> Manter saídas de emergência desobstruídas</li>
+                                <li><i class="fas fa-check"></i> Realizar simulado de evacuação semestral</li>
+                                <li><i class="fas fa-check"></i> Verificar sistema de alarme e iluminação de emergência</li>
+                                <li><i class="fas fa-check"></i> Capacitar funcionários no uso de extintores</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('incendio')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                    <!-- Outros cards de risco seguem mesma estrutura -->
+                    <div class="risk-card medium" data-risk-level="media" data-risk-name="inadimplencia">
+                        <div class="risk-header">
+                            <span class="risk-level media"><i class="fas fa-chart-line"></i> Média</span>
+                            <h3><i class="fas fa-hand-holding-usd"></i> Inadimplência</h3>
+                            <span class="priority-badge high"><i class="fas fa-exclamation-circle"></i> ALERTA</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Média</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Médio</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 7/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 45%">Implementado: 45%</div>
+                        </div>
+                        <p>Impacto no fluxo de caixa e manutenção do condomínio</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Combate à Inadimplência:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Notificação extrajudicial em até 30 dias de atraso</li>
+                                <li><i class="fas fa-check"></i> Aplicar multa e juros conforme convenção</li>
+                                <li><i class="fas fa-check"></i> Oferecer parcelamento para devedores de boa fé</li>
+                                <li><i class="fas fa-check"></i> Restringir acesso a áreas de lazer (conforme lei)</li>
+                                <li><i class="fas fa-check"></i> Ação de cobrança após 90 dias</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('inadimplencia')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                    <div class="risk-card high" data-risk-level="alta" data-risk-name="fraude">
+                        <div class="risk-header">
+                            <span class="risk-level alta"><i class="fas fa-fire"></i> Alta</span>
+                            <h3><i class="fas fa-search"></i> Fraude</h3>
+                            <span class="priority-badge urgent"><i class="fas fa-clock"></i> URGENTE</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Baixa</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Alto</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 8/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 25%">Implementado: 25%</div>
+                        </div>
+                        <p>Risco de desvios e irregularidades financeiras</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Prevenção de Fraudes:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Conciliação bancária mensal obrigatória</li>
+                                <li><i class="fas fa-check"></i> Duas assinaturas para movimentação acima de R$ 5.000</li>
+                                <li><i class="fas fa-check"></i> Auditoria externa anual</li>
+                                <li><i class="fas fa-check"></i> Relatórios financeiros mensais aos condôminos</li>
+                                <li><i class="fas fa-check"></i> Canal de denúncia anônimo</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('fraude')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                    <div class="risk-card medium" data-risk-level="media" data-risk-name="vazamento">
+                        <div class="risk-header">
+                            <span class="risk-level media"><i class="fas fa-chart-line"></i> Média</span>
+                            <h3><i class="fas fa-tint"></i> Vazamento</h3>
+                            <span class="priority-badge high"><i class="fas fa-exclamation-circle"></i> ALERTA</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Média</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Médio</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 6/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 50%">Implementado: 50%</div>
+                        </div>
+                        <p>Danos estruturais e conflitos entre condôminos</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Gestão de Vazamentos:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Vistoria preventiva semestral nas áreas comuns</li>
+                                <li><i class="fas fa-check"></i> Seguro obrigatório para unidades</li>
+                                <li><i class="fas fa-check"></i> Registro fotográfico do estado atual</li>
+                                <li><i class="fas fa-check"></i> Acionamento imediato de especialista</li>
+                                <li><i class="fas fa-check"></i> Mediação de conflitos entre vizinhos</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('vazamento')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                    <div class="risk-card medium" data-risk-level="media" data-risk-name="colapso">
+                        <div class="risk-header">
+                            <span class="risk-level media"><i class="fas fa-chart-line"></i> Média</span>
+                            <h3><i class="fas fa-building"></i> Colapso</h3>
+                            <span class="priority-badge high"><i class="fas fa-exclamation-circle"></i> ALERTA</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Baixa</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Alto</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 7/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 35%">Implementado: 35%</div>
+                        </div>
+                        <p>Falha em sistemas essenciais do condomínio</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Contingência:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Manutenção preventiva de elevadores (mensal)</li>
+                                <li><i class="fas fa-check"></i> Backup de energia (gerador testado trimestralmente)</li>
+                                <li><i class="fas fa-check"></i> Reserva técnica de no mínimo 3 meses</li>
+                                <li><i class="fas fa-check"></i> Contrato com fornecedores emergenciais 24h</li>
+                                <li><i class="fas fa-check"></i> Plano de comunicação de crises</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('colapso')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                    <div class="risk-card low" data-risk-level="baixa" data-risk-name="acidente">
+                        <div class="risk-header">
+                            <span class="risk-level baixa"><i class="fas fa-leaf"></i> Baixa</span>
+                            <h3><i class="fas fa-ambulance"></i> Acidente</h3>
+                            <span class="priority-badge low"><i class="fas fa-info-circle"></i> MONITORAR</span>
+                        </div>
+                        <div class="risk-metrics">
+                            <span><i class="fas fa-chart-simple"></i> Probabilidade: Baixa</span>
+                            <span><i class="fas fa-bolt"></i> Impacto: Médio</span>
+                            <span><i class="fas fa-chart-line"></i> Prioridade: 4/10</span>
+                        </div>
+                        <div class="risk-progress">
+                            <div class="progress-bar" style="width: 60%">Implementado: 60%</div>
+                        </div>
+                        <p>Ocorrências nas áreas comuns</p>
+                        <div class="risk-plan">
+                            <h4><i class="fas fa-clipboard-list"></i> Plano de Segurança:</h4>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Sinalização adequada em todas as áreas</li>
+                                <li><i class="fas fa-check"></i> Piso antiderrapante em áreas molhadas</li>
+                                <li><i class="fas fa-check"></i> Iluminação adequada em estacionamentos</li>
+                                <li><i class="fas fa-check"></i> Seguro de responsabilidade civil atualizado</li>
+                                <li><i class="fas fa-check"></i> Registro de ocorrência em até 24h</li>
+                            </ul>
+                        </div>
+                        <button class="action-btn" onclick="generatePDF('acidente')"><i class="fas fa-file-pdf"></i> Gerar Plano de Ação</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ferramentas do Conselho Fiscal -->
+            <section id="ferramentas" class="fiscal-tools">
+                <h2><i class="fas fa-chart-pie"></i> Conselho Fiscal: Domínio das Contas</h2>
+                <p class="section-subtitle">Ferramentas de gestão, auditoria e transparência para síndicos e conselheiros</p>
+                
+                <div class="tools-category">
+                    <h3><i class="fas fa-video"></i> APRESENTAÇÃO & PRIMEIROS PASSOS</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-play-circle"></i></div>
+                            <h4>Vídeo de apresentação</h4>
+                            <p>Conheça o projeto e tire dúvidas</p>
+                            <a href="#" class="tool-link video-trigger"><i class="fas fa-play"></i> Assistir vídeo →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-check-double"></i></div>
+                            <h4>Checklist Digital Demo</h4>
+                            <p>Versão demonstrativa interativa</p>
+                            <a href="#" class="tool-link demo-trigger"><i class="fas fa-clipboard-list"></i> Testar demo →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-headset"></i></div>
+                            <h4>Dúvidas técnicas</h4>
+                            <p>Suporte especializado</p>
+                            <a href="#" class="tool-link support-trigger"><i class="fab fa-whatsapp"></i> Tirar dúvida →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3><i class="fas fa-gavel"></i> BASE LEGAL & FISCALIZAÇÃO</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-file-contract"></i></div>
+                            <h4>Regulamento do Conselho</h4>
+                            <p>Web interativa + .docx editável</p>
+                            <a href="#" class="tool-link web-regulamento"><i class="fas fa-globe"></i> Acessar Online →</a>
+                            <a href="#" class="tool-link small"><i class="fas fa-download"></i> Baixar .docx</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-calculator"></i></div>
+                            <h4>Calculadora de Quóruns</h4>
+                            <p>Assembleias & quóruns legais</p>
+                            <div class="calculator-placeholder quorum-calc">
+                                <label><i class="fas fa-building"></i> Total de unidades:</label>
+                                <input type="number" id="totalUnits" placeholder="Total de unidades" value="100">
+                                <label><i class="fas fa-users"></i> Unidades presentes:</label>
+                                <input type="number" id="presentUnits" placeholder="Unidades presentes" value="60">
+                                <select id="assemblyType">
+                                    <option value="first">1ª Convocação (2/3)</option>
+                                    <option value="second">2ª Convocação (Maioria simples)</option>
+                                </select>
+                                <button id="calcQuorum"><i class="fas fa-calculator"></i> Calcular Quórum</button>
+                                <p class="calc-result"><i class="fas fa-chart-simple"></i> Quórum necessário: <span id="quorumNeeded">0</span> unidades (<span id="quorumPercent">0</span>%)</p>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-balance-scale"></i></div>
+                            <h4>Responsabilidade Civil</h4>
+                            <p>Simulador de riscos e indenizações</p>
+                            <div class="calculator-placeholder liability-sim">
+                                <label><i class="fas fa-money-bill"></i> Valor do dano (R$):</label>
+                                <input type="number" id="damageValue" placeholder="Valor do dano" value="10000">
+                                <label><i class="fas fa-percent"></i> Fator de risco (1-3):</label>
+                                <input type="range" id="riskFactor" min="1" max="3" step="0.1" value="1.5">
+                                <button id="calcLiability"><i class="fas fa-chart-line"></i> Simular Risco</button>
+                                <p class="calc-result"><i class="fas fa-dollar-sign"></i> Indenização estimada: <span id="liabilityEstimate">R$ 0</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3><i class="fas fa-chart-line"></i> PRESTAÇÃO DE CONTAS & TRANSPARÊNCIA</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                            <h4>Conciliação bancária</h4>
+                            <p>Página explicativa + planilha Excel</p>
+                            <a href="#" class="tool-link conciliation-trigger"><i class="fas fa-info-circle"></i> Acessar página →</a>
+                            <a href="#" class="tool-link small"><i class="fas fa-download"></i> Baixar Planilha</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-video"></i></div>
+                            <h4>Vídeo: Como ler balancete</h4>
+                            <p>Tutorial prático — Sindiconet</p>
+                            <a href="#" class="tool-link video-balancete-trigger"><i class="fas fa-play"></i> Assistir vídeo →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-clipboard-check"></i></div>
+                            <h4>Checklist de auditoria</h4>
+                            <p>Interativo + pontuação</p>
+                            <a href="#" class="tool-link audit-trigger"><i class="fas fa-check-double"></i> Abrir checklist →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3><i class="fas fa-seedling"></i> ESTRATÉGIA & SUSTENTABILIDADE</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-chart-simple"></i></div>
+                            <h4>Dashboard ESG</h4>
+                            <p>Sustentabilidade + métricas interativas</p>
+                            <a href="#" class="tool-link esg-trigger"><i class="fas fa-chart-pie"></i> Explorar ESG →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-bolt"></i></div>
+                            <h4>ROI Eficiência Energética</h4>
+                            <p>Economia e retorno - Calcule payback e ROI</p>
+                            <div class="calculator-placeholder roi-calc">
+                                <label><i class="fas fa-dollar-sign"></i> Investimento (R$):</label>
+                                <input type="number" id="investimento" placeholder="Investimento" value="5000">
+                                <label><i class="fas fa-chart-line"></i> Economia mensal (R$):</label>
+                                <input type="number" id="economiaMensal" placeholder="Economia mensal" value="300">
+                                <label><i class="fas fa-tools"></i> Custo mensal (R$):</label>
+                                <input type="number" id="custoMensal" placeholder="Custo mensal" value="50">
+                                <button id="calcROI"><i class="fas fa-calculator"></i> Calcular ROI</button>
+                                <p class="calc-result"><i class="fas fa-clock"></i> Payback: <span id="payback">0</span> meses | <i class="fas fa-chart-line"></i> ROI: <span id="roi">0</span>%</p>
+                            </div>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-map-marked-alt"></i></div>
+                            <h4>Mapa de Riscos Completo</h4>
+                            <p>Matriz interativa de riscos condominiais</p>
+                            <a href="#" class="tool-link risk-trigger"><i class="fas fa-chart-line"></i> Acessar mapa →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tools-category">
+                    <h3><i class="fas fa-users"></i> COMUNIDADE & FERRAMENTAS</h3>
+                    <div class="tools-grid">
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-folder-open"></i></div>
+                            <h4>Biblioteca de Modelos</h4>
+                            <p>Word, Excel, editáveis</p>
+                            <a href="#" class="tool-link library-trigger"><i class="fas fa-book"></i> Ver biblioteca →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-comments"></i></div>
+                            <h4>Fórum de Experiências</h4>
+                            <p>+65 mil participantes - Troca de experiências</p>
+                            <a href="https://forum.conviver.com.br" target="_blank" class="tool-link"><i class="fas fa-external-link-alt"></i> Acessar fórum →</a>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-icon"><i class="fas fa-newspaper"></i></div>
+                            <h4>Atualizações legislativas</h4>
+                            <p>Reforma Tributária 2025/2026 - IBS/CBS</p>
+                            <a href="#" class="tool-link legislative-trigger"><i class="fas fa-gavel"></i> Acompanhar →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ferramentas Legais -->
+            <section id="fiscal" class="legal-tools">
+                <h2><i class="fas fa-gavel"></i> Ferramentas Legais</h2>
+                <div class="legal-grid">
+                    <a href="#" class="legal-item legal-trigger" data-doc="regulamento">
+                        <span><i class="fas fa-file-contract"></i></span>
+                        Regulamento do Conselho Fiscal Modelo editável em Word (.docx)
+                        <span class="download-badge"><i class="fas fa-download"></i> Baixar Modelo</span>
+                    </a>
+                    <a href="#" class="legal-item legal-trigger" data-doc="regulamento-web">
+                        <span><i class="fas fa-globe"></i></span>
+                        Regulamento Web Versão online para consulta
+                        <span class="link-badge"><i class="fas fa-external-link-alt"></i> Acessar Online</span>
+                    </a>
+                    <a href="#" class="legal-item legal-trigger" data-doc="conciliacao">
+                        <span><i class="fas fa-file-excel"></i></span>
+                        Conciliação Bancária Planilha Excel automatizada
+                        <span class="download-badge"><i class="fas fa-download"></i> Baixar Planilha</span>
+                    </a>
+                    <a href="#" class="legal-item legal-trigger" data-doc="base-legal">
+                        <span><i class="fas fa-book"></i></span>
+                        Base Legal Completa Código Civil e legislação pertinente
+                        <span class="download-badge"><i class="fas fa-download"></i> Baixar Compilação</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Recursos e Links Externos -->
+            <section id="recursos" class="resources">
+                <h2><i class="fas fa-link"></i> Recursos e Links Externos</h2>
+                <div class="resources-grid">
+                    <div class="resource-card">
+                        <h3><i class="fas fa-comments"></i> Fórum Conviver</h3>
+                        <p>Comunidade com +65k usuários para troca de experiências</p>
+                        <a href="https://forum.conviver.com.br" target="_blank" class="resource-link">Acessar Fórum →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-newspaper"></i> Atualizações Legislativas</h3>
+                        <p>Reforma Tributária 2025 e mudanças na legislação condominial</p>
+                        <a href="#" class="resource-link legislative-trigger">Ver atualizações →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-chart-line"></i> Dashboard ESG Avançado</h3>
+                        <p>Versão completa com métricas de sustentabilidade</p>
+                        <a href="#" class="resource-link esg-trigger">Acessar Dashboard →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-calculator"></i> Calculadora ROI Energia</h3>
+                        <p>Ferramenta avançada de simulação de retorno</p>
+                        <div class="calculator-placeholder inline roi-calc-simple">
+                            <input type="number" id="investimento2" placeholder="Investimento (R$)" value="5000">
+                            <input type="number" id="economiaMensal2" placeholder="Economia mensal (R$)" value="300">
+                            <button id="calcROI2"><i class="fas fa-calculator"></i> Calcular</button>
+                            <p class="calc-result">Payback: <span id="payback2">0</span> meses</p>
+                        </div>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-map"></i> Mapa de Riscos Completo</h3>
                         <p>Matriz interativa de riscos condominiais</p>
-                        <a href="#" class="tool-link risk-trigger">Acessar mapa →</a>
+                        <a href="#" class="resource-link risk-trigger">Ver Mapa →</a>
+                    </div>
+                    <div class="resource-card">
+                        <h3><i class="fas fa-user"></i> Site do Autor</h3>
+                        <p>Conteúdos exclusivos e atualizações</p>
+                        <a href="https://erigutembergmeneses-jpg.github.io" target="_blank" class="resource-link">Visitar Site →</a>
                     </div>
                 </div>
-            </div>
-
-            <!-- Comunidade e Ferramentas -->
-            <div class="tools-category">
-                <h3>👥 COMUNIDADE & FERRAMENTAS</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <div class="tool-icon">📁</div>
-                        <h4>Biblioteca de Modelos</h4>
-                        <p>Word, Excel, editáveis</p>
-                        <a href="#" class="tool-link">Ver biblioteca →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">🗣️</div>
-                        <h4>Fórum de Experiências</h4>
-                        <p>+65 mil participantes - Troca de experiências</p>
-                        <a href="https://forum.conviver.com.br" target="_blank" class="tool-link">Acessar fórum →</a>
-                    </div>
-                    <div class="tool-card">
-                        <div class="tool-icon">📜</div>
-                        <h4>Atualizações legislativas</h4>
-                        <p>Reforma Tributária 2025/2026 - IBS/CBS</p>
-                        <a href="#" class="tool-link">Acompanhar →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ferramentas Legais Originais -->
-        <section class="legal-tools">
-            <h2>⚖️ Ferramentas Legais</h2>
-            <div class="legal-grid">
-                <a href="#" class="legal-item">
-                    <span>📄</span>
-                    Regulamento do Conselho Fiscal Modelo editável em Word (.docx)
-                    <span class="download-badge">📥 Baixar Modelo</span>
-                </a>
-                <a href="#" class="legal-item">
-                    <span>🌐</span>
-                    Regulamento Web Versão online para consulta
-                    <span class="link-badge">🔗 Acessar Online</span>
-                </a>
-                <a href="#" class="legal-item">
-                    <span>📊</span>
-                    Conciliação Bancária Planilha Excel automatizada
-                    <span class="download-badge">📥 Baixar Planilha</span>
-                </a>
-                <a href="#" class="legal-item">
-                    <span>📚</span>
-                    Base Legal Completa Código Civil e legislação pertinente
-                    <span class="download-badge">📥 Baixar Compilação</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Recursos e Links Externos -->
-        <section class="resources">
-            <h2>🔗 Recursos e Links Externos</h2>
-            <div class="resources-grid">
-                <div class="resource-card">
-                    <h3>💬 Fórum Conviver</h3>
-                    <p>Comunidade com +65k usuários para troca de experiências</p>
-                    <a href="https://forum.conviver.com.br" target="_blank" class="resource-link">Acessar Fórum →</a>
-                </div>
-                <div class="resource-card">
-                    <h3>📰 Atualizações Legislativas</h3>
-                    <p>Reforma Tributária 2025 e mudanças na legislação condominial</p>
-                    <a href="#" class="resource-link">Ver atualizações →</a>
-                </div>
-                <div class="resource-card">
-                    <h3>📈 Dashboard ESG Avançado</h3>
-                    <p>Versão completa com métricas de sustentabilidade</p>
-                    <a href="#" class="resource-link esg-trigger">Acessar Dashboard →</a>
-                </div>
-                <div class="resource-card">
-                    <h3>💰 Calculadora ROI Energia</h3>
-                    <p>Ferramenta avançada de simulação de retorno</p>
-                    <div class="calculator-placeholder inline roi-calc-simple">
-                        <input type="number" id="investimento2" placeholder="Investimento (R$)" value="5000">
-                        <input type="number" id="economiaMensal2" placeholder="Economia mensal (R$)" value="300">
-                        <button id="calcROI2">Calcular</button>
-                        <p class="calc-result">Payback: <span id="payback2">0</span> meses</p>
-                    </div>
-                </div>
-                <div class="resource-card">
-                    <h3>🗺️ Mapa de Riscos Completo</h3>
-                    <p>Matriz interativa de riscos condominiais</p>
-                    <a href="#" class="resource-link risk-trigger">Ver Mapa →</a>
-                </div>
-                <div class="resource-card">
-                    <h3>👤 Site do Autor</h3>
-                    <p>Conteúdos exclusivos e atualizações</p>
-                    <a href="https://erigutembergmeneses-jpg.github.io" target="_blank" class="resource-link">Visitar Site →</a>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Teoria das Janelas Quebradas - Gestão Condominial Inteligente e Preventiva</p>
-            <p>Desenvolvido para síndicos, conselheiros e gestores condominiais</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-window-restore"></i> Teoria das Janelas Quebradas</h4>
+                    <p>Gestão Condominial Inteligente e Preventiva</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links Rápidos</h4>
+                    <a href="#teoria">Teoria</a>
+                    <a href="#riscos">Riscos</a>
+                    <a href="#ferramentas">Ferramentas</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <a href="#" class="support-trigger"><i class="fab fa-whatsapp"></i> Suporte</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Teoria das Janelas Quebradas - Gestão Condominial Inteligente e Preventiva</p>
+                <p>Desenvolvido para síndicos, conselheiros e gestores condominiais</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Modais para ferramentas interativas -->
+    <!-- Modais -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div id="modal-body"></div>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <script src="script.js"></script>
 </body>
