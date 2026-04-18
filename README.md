@@ -1,102 +1,79 @@
 # README.md
 
-# Teoria das Janelas Quebradas - Gestão Condominial
+# 🚪 Teoria das Janelas Quebradas - Gestão Condominial
 
 ## 📌 Sobre o Projeto
 
-Site educacional e ferramentas práticas para síndicos, conselheiros fiscais e gestores condominiais, baseado na **Teoria das Janelas Quebradas** aplicada à administração de condomínios.
+Site profissional e interativo para síndicos, conselheiros fiscais e gestores condominiais, baseado na **Teoria das Janelas Quebradas** aplicada à administração de condomínios.
 
-## 🚀 Funcionalidades
+## ✨ Funcionalidades Implementadas
 
-### Teoria das Janelas Quebradas
-- **Janela Quebrada**: Identificação de falhas na gestão
-- **Efeito Cascata**: Consequências da má gestão
-- **Reparo Imediato**: Governança preventiva
+### 🎨 Design e UX
+- ✅ **Hero section com imagem de fundo** (`janelas-quebradas-pn`)
+- ✅ **Menu sticky fixo** com navegação suave
+- ✅ **Botão "Voltar ao topo"** flutuante
+- ✅ **Modo escuro/claro** com persistência (localStorage)
+- ✅ **Barra de progresso** de scroll
+- ✅ **Loading overlay** inicial
+- ✅ **Toast notifications** para feedback
+- ✅ **Design totalmente responsivo** (mobile-first)
 
-### Mapa de Riscos
-- 6 riscos categorizados (Alta/Média/Baixa)
-- Planos de ação para cada risco
-- Filtro interativo por nível de risco
+### 📚 Teoria Interativa
+- ✅ Cards expansíveis com detalhes
+- ✅ Animações suaves
+- ✅ Ícones Font Awesome integrados
 
-### Ferramentas do Conselho Fiscal (integradas)
-- **Calculadora de Quóruns** para assembleias
-- **Simulador de Responsabilidade Civil** com estimativa de indenizações
-- **Calculadora ROI** para eficiência energética
-- **Checklists interativos** (auditoria e demo)
-- **Dashboard ESG** com métricas de sustentabilidade
-- **Mapa de Riscos Completo** interativo
-- **Regulamento do Conselho** (web + download)
-- **Biblioteca de modelos** (Word/Excel)
-- **Vídeos tutoriais** (como ler balancete)
+### 🗺️ Mapa de Riscos Avançado
+- ✅ **Filtros** por nível (Alta/Média/Baixa)
+- ✅ **Matriz 3x3 interativa** (Probabilidade x Impacto)
+- ✅ **Cards de risco** com:
+  - Badges de prioridade (URGENTE/ALERTA/MONITORAR)
+  - Métricas (Probabilidade, Impacto, Prioridade)
+  - Barra de progresso de implementação
+  - Botão para gerar PDF do plano de ação
+- ✅ Clicar na matriz leva ao card correspondente
 
-### Ferramentas Legais
-- Regulamento do Conselho Fiscal (.docx)
-- Conciliação Bancária (Excel)
-- Base Legal completa (Código Civil)
+### 🧮 Calculadoras e Simuladores
+- ✅ **Calculadora de Quórum** (1ª e 2ª convocação)
+- ✅ **Simulador de Responsabilidade Civil** (com slider de fator de risco)
+- ✅ **ROI Eficiência Energética** (com custo de manutenção)
+- ✅ Resultados instantâneos e coloridos
 
-### Recursos Externos
-- Fórum Conviver (+65k usuários)
-- Atualizações Legislativas (Reforma Tributária 2025/2026)
-- Dashboards avançados
+### 📋 Checklists Interativos
+- ✅ **Checklist Digital Demo** (com localStorage)
+- ✅ **Checklist de Auditoria** (8 itens, persistente)
+- ✅ Salvamento automático no navegador
 
-## 🛠️ Tecnologias Utilizadas
+### 📊 Ferramentas do Conselho Fiscal
+- ✅ **Dashboard ESG** (com métricas visuais)
+- ✅ **Mapa de Riscos Completo** (modal interativo)
+- ✅ **Regulamento do Conselho** (versão web)
+- ✅ **Conciliação Bancária** (passo a passo + download)
+- ✅ **Vídeos tutoriais** (YouTube embed)
+- ✅ **Biblioteca de Modelos** (Word/Excel/PDF)
+- ✅ **Atualizações Legislativas** (Reforma Tributária, LGPD)
 
-- HTML5 semântico
-- CSS3 com Flexbox/Grid e animações
-- JavaScript puro (sem dependências externas)
-- Design responsivo (mobile-first)
-- Modais interativos
-- LocalStorage (simulado para checklists)
+### 🔗 Recursos Externos
+- ✅ Links para Fórum Conviver
+- ✅ Site do autor
+- ✅ Suporte WhatsApp integrado
 
-## 📂 Estrutura de Arquivos
-# README.md
-
-# Teoria das Janelas Quebradas - Gestão Condominial
-
-## 📌 Sobre o Projeto
-
-Site educacional e ferramentas práticas para síndicos, conselheiros fiscais e gestores condominiais, baseado na **Teoria das Janelas Quebradas** aplicada à administração de condomínios.
-
-## 🚀 Funcionalidades
-
-### Teoria das Janelas Quebradas
-- **Janela Quebrada**: Identificação de falhas na gestão
-- **Efeito Cascata**: Consequências da má gestão
-- **Reparo Imediato**: Governança preventiva
-
-### Mapa de Riscos
-- 6 riscos categorizados (Alta/Média/Baixa)
-- Planos de ação para cada risco
-- Filtro interativo por nível de risco
-
-### Ferramentas do Conselho Fiscal (integradas)
-- **Calculadora de Quóruns** para assembleias
-- **Simulador de Responsabilidade Civil** com estimativa de indenizações
-- **Calculadora ROI** para eficiência energética
-- **Checklists interativos** (auditoria e demo)
-- **Dashboard ESG** com métricas de sustentabilidade
-- **Mapa de Riscos Completo** interativo
-- **Regulamento do Conselho** (web + download)
-- **Biblioteca de modelos** (Word/Excel)
-- **Vídeos tutoriais** (como ler balancete)
-
-### Ferramentas Legais
-- Regulamento do Conselho Fiscal (.docx)
-- Conciliação Bancária (Excel)
-- Base Legal completa (Código Civil)
-
-### Recursos Externos
-- Fórum Conviver (+65k usuários)
-- Atualizações Legislativas (Reforma Tributária 2025/2026)
-- Dashboards avançados
+### 💾 Persistência de Dados
+- ✅ Checklists salvos no localStorage
+- ✅ Modo escuro salvo
+- ✅ Progresso de auditoria mantido
 
 ## 🛠️ Tecnologias Utilizadas
 
-- HTML5 semântico
-- CSS3 com Flexbox/Grid e animações
-- JavaScript puro (sem dependências externas)
-- Design responsivo (mobile-first)
-- Modais interativos
-- LocalStorage (simulado para checklists)
+- **HTML5** semântico
+- **CSS3** com:
+  - Flexbox e Grid Layout
+  - Variáveis CSS (temas claro/escuro)
+  - Animações keyframes
+  - Media queries (mobile-first)
+- **JavaScript puro** (sem dependências externas)
+- **Font Awesome 6** (ícones)
+- **Google Fonts** (Inter + Playfair Display)
+- **LocalStorage API** (persistência)
 
 ## 📂 Estrutura de Arquivos
