@@ -1,727 +1,129 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria das Janelas Quebradas - Gestão Condominial</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: #0A1929;
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
-
-        .section {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .section h2 {
-            color: #0A1929;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid #667eea;
-        }
-
-        /* ===================================
-           DIAGRAMA INTERATIVO COM IMAGEM DE FUNDO
-           =================================== */
-        .diagrama-janelas {
-            background: linear-gradient(rgba(10, 25, 41, 0.85), rgba(10, 25, 41, 0.9)), 
-                        url('janelas-quebradas-pg.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            border-radius: 15px;
-            padding: 2.5rem 2rem;
-            color: white;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .diagrama-janelas::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(10, 25, 41, 0.7);
-            z-index: 0;
-        }
-
-        .diagrama-janelas > * {
-            position: relative;
-            z-index: 1;
-        }
-
-        .diagrama-janelas h2 {
-            color: white;
-            border-bottom: 2px solid #E9C46A;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .diagrama-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 2rem;
-            align-items: start;
-            margin-bottom: 2rem;
-        }
-
-        .coluna-diagrama {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 10px;
-            padding: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .coluna-diagrama:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .coluna-diagrama.ativa {
-            border-color: #E9C46A;
-            background: rgba(233, 196, 106, 0.2);
-        }
-
-        .coluna-quebra { border-left: 5px solid #E63946; }
-        .coluna-cascata { border-left: 5px solid #F4A261; }
-        .coluna-reparo { border-left: 5px solid #2A9D8F; }
-
-        .icone-janela {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-
-        .titulo-coluna {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .coluna-quebra .titulo-coluna { color: #E63946; }
-        .coluna-cascata .titulo-coluna { color: #F4A261; }
-        .coluna-reparo .titulo-coluna { color: #2A9D8F; }
-
-        .lista-itens {
-            list-style: none;
-            padding: 0;
-        }
-
-        .lista-itens li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
-        }
-
-        .coluna-quebra .lista-itens li::before {
-            content: "✗";
-            position: absolute;
-            left: 0;
-            color: #E63946;
-            font-weight: bold;
-        }
-
-        .coluna-cascata .lista-itens li::before {
-            content: "↓";
-            position: absolute;
-            left: 0;
-            color: #F4A261;
-            font-weight: bold;
-        }
-
-        .coluna-reparo .lista-itens li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #2A9D8F;
-            font-weight: bold;
-        }
-
-        .seta-cascata {
-            text-align: center;
-            font-size: 2rem;
-            color: #F4A261;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .rodape-diagrama {
-            text-align: center;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-style: italic;
-            color: #E9C46A;
-        }
-
-        /* Conteúdo Expansível */
-        .conteudo-expansivel {
-            display: none;
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-top: 1rem;
-            animation: slideDown 0.3s ease;
-        }
-
-        .conteudo-expansivel.ativo {
-            display: block;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .conteudo-expansivel h3 {
-            color: #0A1929;
-            margin-bottom: 1rem;
-        }
-
-        .conteudo-expansivel .fechar {
-            float: right;
-            background: #E63946;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-        }
-
-        .conteudo-expansivel .fechar:hover {
-            background: #d62839;
-        }
-
-        .box-info {
-            background: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 5px;
-        }
-
-        .box-alerta {
-            background: #fff3cd;
-            border-left-color: #ffc107;
-        }
-
-        .box-sucesso {
-            background: #d4edda;
-            border-left-color: #28a745;
-        }
-
-        /* ===================================
-           MAPA DE RISCOS
-           =================================== */
-        .mapa-riscos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .risco-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 1.5rem;
-            border-left: 5px solid #667eea;
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-
-        .risco-card:hover {
-            transform: translateX(5px);
-        }
-
-        .risco-card.critico { border-left-color: #E63946; }
-        .risco-card.moderado { border-left-color: #F4A261; }
-        .risco-card.baixo { border-left-color: #2A9D8F; }
-
-        .risco-nivel {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .risco-nivel.alta { background: #E63946; color: white; }
-        .risco-nivel.media { background: #F4A261; color: white; }
-        .risco-nivel.baixa { background: #2A9D8F; color: white; }
-
-        .btn-plano {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.3s ease;
-        }
-
-        .btn-plano:hover {
-            background: #764ba2;
-        }
-
-        .plano-detalhes {
-            display: none;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            border: 2px solid #667eea;
-        }
-
-        .plano-detalhes.ativo {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        /* ===================================
-           CALCULADORAS
-           =================================== */
-        .calculadora-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .calc-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 1.5rem;
-        }
-
-        .calc-card h3 {
-            color: #0A1929;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #667eea;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #555;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 2px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .btn-calcular {
-            width: 100%;
-            padding: 0.75rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .btn-calcular:hover {
-            background: #764ba2;
-        }
-
-        .resultado {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 5px;
-            font-weight: bold;
-            text-align: center;
-            display: none;
-        }
-
-        .resultado.ativo {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* ===================================
-           FERRAMENTAS LEGAIS
-           =================================== */
-        .ferramentas-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .ferramenta-item {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .ferramenta-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .ferramenta-item strong {
-            color: #0A1929;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .ferramenta-download {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.4rem 0.8rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.85rem;
-        }
-
-        .ferramenta-download:hover {
-            background: #764ba2;
-        }
-
-        /* ===================================
-           RECURSOS E LINKS
-           =================================== */
-        .recursos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .recurso-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .recurso-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
-
-        .recurso-card h3 {
-            margin-bottom: 0.5rem;
-        }
-
-        .recurso-card p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-
-        .btn-recurso {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-recurso:hover {
-            background: #E9C46A;
-            color: #0A1929;
-        }
-
-        /* Modal para detalhes */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.7);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-overlay.ativo {
-            display: flex;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
-        }
-
-        .modal-fechar {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: #E63946;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        /* Responsivo */
-        @media (max-width: 768px) {
-            .diagrama-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .diagrama-janelas {
-                background-attachment: scroll;
-            }
-
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            .calculadora-grid,
-            .mapa-riscos-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Teoria das Janelas Quebradas | Gestão Condominial Inteligente</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>🪟 Teoria das Janelas Quebradas</h1>
-        <p>Gestão Condominial Inteligente e Preventiva</p>
+        <div class="container">
+            <h1>🚪 Teoria das Janelas Quebradas</h1>
+            <p class="tagline">Gestão Condominial Inteligente e Preventiva</p>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- DIAGRAMA INTERATIVO -->
-        <div class="diagrama-janelas" id="diagrama-interativo">
+    <main class="container">
+        <!-- Seção Teoria -->
+        <section class="theory-section">
             <h2>Teoria das Janelas Quebradas na Gestão Condominial</h2>
-            
-            <div class="diagrama-wrapper">
-                <div class="coluna-diagrama coluna-quebra" onclick="toggleConteudo('quebra')">
-                    <div class="icone-janela">🪟</div>
-                    <div class="titulo-coluna">Janela Quebrada</div>
-                    <ul class="lista-itens">
+            <div class="cards-container">
+                <div class="card broken-window" data-detail="detail1">
+                    <div class="card-icon">🪟</div>
+                    <h3>Janela Quebrada</h3>
+                    <ul>
                         <li>Notificação sem contraditório</li>
                         <li>Processo ignorado</li>
                         <li>Ata sem registro</li>
                         <li>Multa arbitrária</li>
                     </ul>
-                    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                        🔽 Clique para ver detalhes
+                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
+                    <div id="detail1" class="detail-content">
+                        <p>Quando pequenas desordens são ignoradas, a mensagem enviada é que ninguém se importa. Isso incentiva comportamentos piores e deterioração generalizada do ambiente condominial.</p>
                     </div>
                 </div>
-
-                <div class="coluna-diagrama coluna-cascata" onclick="toggleConteudo('cascata')">
-                    <div class="icone-janela">📉</div>
-                    <div class="titulo-coluna">Efeito Cascata</div>
-                    <div class="seta-cascata">↓</div>
-                    <ul class="lista-itens">
+                <div class="card cascade" data-detail="detail2">
+                    <div class="card-icon">📉</div>
+                    <h3>Efeito Cascata</h3>
+                    <ul>
                         <li>Desconfiança</li>
                         <li>Inadimplência</li>
                         <li>Judicialização</li>
                         <li>Desvalorização</li>
                     </ul>
-                    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                        🔽 Clique para ver detalhes
+                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
+                    <div id="detail2" class="detail-content">
+                        <p>Uma janela quebrada não reparada desencadeia uma reação em cadeia: desconfiança leva à inadimplência, que gera judicialização e, finalmente, desvalorização do patrimônio.</p>
                     </div>
                 </div>
-
-                <div class="coluna-diagrama coluna-reparo" onclick="toggleConteudo('reparo')">
-                    <div class="icone-janela">🪟✅</div>
-                    <div class="titulo-coluna">Reparo Imediato</div>
-                    <ul class="lista-itens">
+                <div class="card repair" data-detail="detail3">
+                    <div class="card-icon">✅</div>
+                    <h3>Reparo Imediato</h3>
+                    <ul>
                         <li>Processo Válido</li>
                         <li>Documentação</li>
                         <li>Comunicação Técnica</li>
                         <li>Governança Preventiva</li>
                     </ul>
-                    <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
-                        🔽 Clique para ver detalhes
+                    <button class="detail-btn">🔽 Clique para ver detalhes</button>
+                    <div id="detail3" class="detail-content">
+                        <p>Consertar a primeira janela quebrada é o princípio da governança preventiva. Processos corretos e documentação adequada previnem passivos judiciais e financeiros.</p>
                     </div>
                 </div>
             </div>
-
-            <div class="rodape-diagrama">
-                "Consertar a primeira janela é governança preventiva"
+            <div class="quote">
+                <p>"Consertar a primeira janela é governança preventiva"</p>
             </div>
+        </section>
 
-            <!-- Conteúdos Expansíveis -->
-            <div id="quebra" class="conteudo-expansivel">
-                <button class="fechar" onclick="toggleConteudo('quebra')">✕ Fechar</button>
-                <h3>🚨 Janela Quebrada - Sinais de Alerta</h3>
-                <p>Quando processos são ignorados ou aplicados de forma inadequada, enviamos uma mensagem de abandono.</p>
-                <div class="box-info box-alerta">
-                    <h4>Principais Sinais:</h4>
-                    <ul>
-                        <li>Notificações sem base legal ou contraditório</li>
-                        <li>Atas de assembleia sem registro de divergências</li>
-                        <li>Multas aplicadas de forma arbitrária</li>
-                        <li>Conselho fiscal que aprova contas sem conferência</li>
-                        <li>Grupos de WhatsApp como tribunal informal</li>
-                    </ul>
-                </div>
+        <!-- Sinais de Alerta -->
+        <section class="warning-signs">
+            <h2>🚨 Janela Quebrada - Sinais de Alerta</h2>
+            <p>Quando processos são ignorados ou aplicados de forma inadequada, enviamos uma mensagem de abandono.</p>
+            <div class="signs-grid">
+                <div class="sign">📄 Notificações sem base legal ou contraditório</div>
+                <div class="sign">📋 Atas de assembleia sem registro de divergências</div>
+                <div class="sign">💰 Multas aplicadas de forma arbitrária</div>
+                <div class="sign">👥 Conselho fiscal que aprova contas sem conferência</div>
+                <div class="sign">📱 Grupos de WhatsApp como tribunal informal</div>
             </div>
+        </section>
 
-            <div id="cascata" class="conteudo-expansivel">
-                <button class="fechar" onclick="toggleConteudo('cascata')">✕ Fechar</button>
-                <h3>📉 Efeito Cascata da Deterioração</h3>
-                <p>Uma janela quebrada não reparada desencadeia consequências em cadeia.</p>
-                <div class="box-info">
-                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
-                        <div style="text-align: center; padding: 1rem; background: #ffe5e5; border-radius: 8px;">
-                            <div style="font-size: 2rem;">😟</div>
-                            <strong>1. Desconfiança</strong>
-                        </div>
-                        <div style="font-size: 2rem; color: #F4A261; align-self: center;">→</div>
-                        <div style="text-align: center; padding: 1rem; background: #fff3cd; border-radius: 8px;">
-                            <div style="font-size: 2rem;">💰</div>
-                            <strong>2. Inadimplência</strong>
-                        </div>
-                        <div style="font-size: 2rem; color: #F4A261; align-self: center;">→</div>
-                        <div style="text-align: center; padding: 1rem; background: #ffe5e5; border-radius: 8px;">
-                            <div style="font-size: 2rem;">⚖️</div>
-                            <strong>3. Judicialização</strong>
-                        </div>
-                    </div>
-                </div>
+        <!-- Efeito Cascata -->
+        <section class="cascade-effect">
+            <h2>📉 Efeito Cascata da Deterioração</h2>
+            <p>Uma janela quebrada não reparada desencadeia consequências em cadeia.</p>
+            <div class="cascade-steps">
+                <div class="step">😟 1. Desconfiança</div>
+                <div class="arrow">→</div>
+                <div class="step">💰 2. Inadimplência</div>
+                <div class="arrow">→</div>
+                <div class="step">⚖️ 3. Judicialização</div>
             </div>
+        </section>
 
-            <div id="reparo" class="conteudo-expansivel">
-                <button class="fechar" onclick="toggleConteudo('reparo')">✕ Fechar</button>
-                <h3>🛠️ Reparo Imediato - Governança Preventiva</h3>
-                <p>Processos corretos e documentação previnem passivos.</p>
-                <div class="box-info box-sucesso">
-                    <h4>🛡️ Pilares do Reparo:</h4>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0;">✓ Notificação com base legal + prazo de defesa</li>
-                        <li style="padding: 0.5rem 0;">✓ Registro impecável em atas</li>
-                        <li style="padding: 0.5rem 0;">✓ Comunicação técnica e LGPD observada</li>
-                        <li style="padding: 0.5rem 0;">✓ Conselho fiscal com vigilância ativa</li>
-                    </ul>
-                </div>
+        <!-- Governança Preventiva -->
+        <section class="preventive">
+            <h2>🛠️ Reparo Imediato - Governança Preventiva</h2>
+            <p>Processos corretos e documentação previnem passivos.</p>
+            <div class="pillars">
+                <div class="pillar">✓ Notificação com base legal + prazo de defesa</div>
+                <div class="pillar">✓ Registro impecável em atas</div>
+                <div class="pillar">✓ Comunicação técnica e LGPD observada</div>
+                <div class="pillar">✓ Conselho fiscal com vigilância ativa</div>
             </div>
-        </div>
+        </section>
 
-        <!-- MAPA DE RISCOS -->
-        <div class="section" id="mapa-riscos">
+        <!-- Mapa de Riscos -->
+        <section class="risk-map">
             <h2>🗺️ Mapa de Riscos</h2>
-            <div style="margin-bottom: 1.5rem;">
-                <span class="risco-nivel alta">Alta</span>
-                <span class="risco-nivel media">Média</span>
-                <span class="risco-nivel baixa">Baixa</span>
+            <div class="risk-filters">
+                <button class="filter-btn active" data-risk="all">Todos</button>
+                <button class="filter-btn" data-risk="alta">Alta</button>
+                <button class="filter-btn" data-risk="media">Média</button>
+                <button class="filter-btn" data-risk="baixa">Baixa</button>
             </div>
-            
-            <div class="mapa-riscos-grid">
-                <div class="risco-card critico">
-                    <span class="risco-nivel alta">Alta</span>
-                    <h3>Incêndio</h3>
+            <div class="risks-container">
+                <div class="risk-card high" data-risk-level="alta">
+                    <div class="risk-header">
+                        <span class="risk-level alta">Alta</span>
+                        <h3>🔥 Incêndio</h3>
+                    </div>
                     <p>Risco crítico que exige plano de prevenção e equipamentos adequados</p>
-                    <button class="btn-plano" onclick="mostrarPlano('incendio')">Ver Plano de Ação</button>
-                    <div id="plano-incendio" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Prevenção de Incêndio:</h4>
                         <ul>
                             <li>✓ Instalar extintores em todas as áreas comuns (validade anual)</li>
@@ -730,16 +132,15 @@
                             <li>✓ Verificar sistema de alarme e iluminação de emergência</li>
                             <li>✓ Capacitar funcionários no uso de extintores</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('incendio')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Checklist PDF</button>
                     </div>
                 </div>
-
-                <div class="risco-card moderado">
-                    <span class="risco-nivel media">Média</span>
-                    <h3>Inadimplência</h3>
+                <div class="risk-card medium" data-risk-level="media">
+                    <div class="risk-header">
+                        <span class="risk-level media">Média</span>
+                        <h3>💰 Inadimplência</h3>
+                    </div>
                     <p>Impacto no fluxo de caixa e manutenção do condomínio</p>
-                    <button class="btn-plano" onclick="mostrarPlano('inadimplencia')">Ver Plano de Ação</button>
-                    <div id="plano-inadimplencia" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Combate à Inadimplência:</h4>
                         <ul>
                             <li>✓ Notificação extrajudicial em até 30 dias de atraso</li>
@@ -748,16 +149,15 @@
                             <li>✓ Restringir acesso a áreas de lazer (conforme lei)</li>
                             <li>✓ Ação de cobrança após 90 dias</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('inadimplencia')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Modelo de Notificação</button>
                     </div>
                 </div>
-
-                <div class="risco-card critico">
-                    <span class="risco-nivel alta">Alta</span>
-                    <h3>Fraude</h3>
+                <div class="risk-card high" data-risk-level="alta">
+                    <div class="risk-header">
+                        <span class="risk-level alta">Alta</span>
+                        <h3>🔍 Fraude</h3>
+                    </div>
                     <p>Risco de desvios e irregularidades financeiras</p>
-                    <button class="btn-plano" onclick="mostrarPlano('fraude')">Ver Plano de Ação</button>
-                    <div id="plano-fraude" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Prevenção de Fraudes:</h4>
                         <ul>
                             <li>✓ Conciliação bancária mensal obrigatória</li>
@@ -766,16 +166,15 @@
                             <li>✓ Relatórios financeiros mensais aos condôminos</li>
                             <li>✓ Canal de denúncia anônimo</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('fraude')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Protocolo de Auditoria</button>
                     </div>
                 </div>
-
-                <div class="risco-card moderado">
-                    <span class="risco-nivel media">Média</span>
-                    <h3>Vazamento</h3>
+                <div class="risk-card medium" data-risk-level="media">
+                    <div class="risk-header">
+                        <span class="risk-level media">Média</span>
+                        <h3>💧 Vazamento</h3>
+                    </div>
                     <p>Danos estruturais e conflitos entre condôminos</p>
-                    <button class="btn-plano" onclick="mostrarPlano('vazamento')">Ver Plano de Ação</button>
-                    <div id="plano-vazamento" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Gestão de Vazamentos:</h4>
                         <ul>
                             <li>✓ Vistoria preventiva semestral nas áreas comuns</li>
@@ -784,16 +183,15 @@
                             <li>✓ Acionamento imediato de especialista</li>
                             <li>✓ Mediação de conflitos entre vizinhos</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('vazamento')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Formulário de Vistoria</button>
                     </div>
                 </div>
-
-                <div class="risco-card moderado">
-                    <span class="risco-nivel media">Média</span>
-                    <h3>Colapso</h3>
+                <div class="risk-card medium" data-risk-level="media">
+                    <div class="risk-header">
+                        <span class="risk-level media">Média</span>
+                        <h3>🏢 Colapso</h3>
+                    </div>
                     <p>Falha em sistemas essenciais do condomínio</p>
-                    <button class="btn-plano" onclick="mostrarPlano('colapso')">Ver Plano de Ação</button>
-                    <div id="plano-colapso" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Contingência:</h4>
                         <ul>
                             <li>✓ Manutenção preventiva de elevadores (mensal)</li>
@@ -802,16 +200,15 @@
                             <li>✓ Contrato com fornecedores emergenciais 24h</li>
                             <li>✓ Plano de comunicação de crises</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('colapso')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Plano de Contingência</button>
                     </div>
                 </div>
-
-                <div class="risco-card baixo">
-                    <span class="risco-nivel baixa">Baixa</span>
-                    <h3>Acidente</h3>
+                <div class="risk-card low" data-risk-level="baixa">
+                    <div class="risk-header">
+                        <span class="risk-level baixa">Baixa</span>
+                        <h3>⚠️ Acidente</h3>
+                    </div>
                     <p>Ocorrências nas áreas comuns</p>
-                    <button class="btn-plano" onclick="mostrarPlano('acidente')">Ver Plano de Ação</button>
-                    <div id="plano-acidente" class="plano-detalhes">
+                    <div class="risk-plan">
                         <h4>📋 Plano de Segurança:</h4>
                         <ul>
                             <li>✓ Sinalização adequada em todas as áreas</li>
@@ -820,343 +217,243 @@
                             <li>✓ Seguro de responsabilidade civil atualizado</li>
                             <li>✓ Registro de ocorrência em até 24h</li>
                         </ul>
-                        <button class="btn-plano" onclick="baixarPlano('acidente')" style="margin-top: 1rem; background: #28a745;">📥 Baixar Checklist de Segurança</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <!-- CALCULADORAS -->
-        <div class="section" id="calculadoras">
-            <h2>🧮 Calculadoras</h2>
+        <!-- Ferramentas do Conselho Fiscal (integradas do outro site) -->
+        <section class="fiscal-tools">
+            <h2>🏛️ Conselho Fiscal: Domínio das Contas</h2>
+            <p class="section-subtitle">Ferramentas de gestão, auditoria e transparência para síndicos e conselheiros</p>
             
-            <div class="calculadora-grid">
-                <div class="calc-card">
-                    <h3>ROI Energético</h3>
-                    <div class="form-group">
-                        <label for="investimento">Investimento inicial (R$)</label>
-                        <input type="number" id="investimento" placeholder="Ex: 50000" min="0">
+            <!-- Apresentação -->
+            <div class="tools-category">
+                <h3>📺 APRESENTAÇÃO & PRIMEIROS PASSOS</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">🎥</div>
+                        <h4>Vídeo de apresentação</h4>
+                        <p>Conheça o projeto e tire dúvidas</p>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="tool-link">Assistir vídeo →</a>
                     </div>
-                    <div class="form-group">
-                        <label for="economia">Economia mensal estimada (R$)</label>
-                        <input type="number" id="economia" placeholder="Ex: 2000" min="0">
+                    <div class="tool-card">
+                        <div class="tool-icon">✅</div>
+                        <h4>Checklist Digital Demo</h4>
+                        <p>Versão demonstrativa interativa</p>
+                        <a href="#" class="tool-link demo-trigger" data-demo="checklist">Testar demo →</a>
                     </div>
-                    <button class="btn-calcular" onclick="calcularROI()">Calcular ROI</button>
-                    <div id="resultado-roi" class="resultado">
-                        <div>Payback: <strong id="payback">0</strong> meses</div>
-                        <div>Retorno anual: <strong id="retorno-anual">0</strong>%</div>
-                    </div>
-                </div>
-
-                <div class="calc-card">
-                    <h3>Calculadora de Quórum</h3>
-                    <div class="form-group">
-                        <label for="unidades">Total de unidades</label>
-                        <input type="number" id="unidades" placeholder="Ex: 100" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="tipo-quorum">Tipo de deliberação</label>
-                        <select id="tipo-quorum">
-                            <option value="0.6667">2/3 (Obras úteis)</option>
-                            <option value="0.5">1/2 (Maioria simples)</option>
-                            <option value="0.75">3/4 (Obras voluptuárias)</option>
-                            <option value="1">Unanimidade (Obras necessárias)</option>
-                        </select>
-                    </div>
-                    <button class="btn-calcular" onclick="calcularQuorum()">Calcular Quórum</button>
-                    <div id="resultado-quorum" class="resultado">
-                        <div>Quórum necessário: <strong id="quorum-unidades">0</strong> unidades</div>
-                        <div>Percentual: <strong id="quorum-percentual">0</strong>%</div>
-                    </div>
-                </div>
-
-                <div class="calc-card">
-                    <h3>Simulador de Responsabilidade</h3>
-                    <div class="form-group">
-                        <label for="tipo-dano">Tipo de dano</label>
-                        <select id="tipo-dano">
-                            <option value="moral">Dano Moral</option>
-                            <option value="material">Dano Material</option>
-                            <option value="estetico">Dano Estético</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="gravidade">Gravidade</label>
-                        <select id="gravidade">
-                            <option value="leve">Leve</option>
-                            <option value="media">Média</option>
-                            <option value="grave">Grave</option>
-                        </select>
-                    </div>
-                    <button class="btn-calcular" onclick="simularResponsabilidade()">Simular</button>
-                    <div id="resultado-resp" class="resultado">
-                        <div>Indenização estimada: <strong id="indenizacao">R$ 0</strong></div>
+                    <div class="tool-card">
+                        <div class="tool-icon">💬</div>
+                        <h4>Dúvidas técnicas</h4>
+                        <p>Suporte especializado</p>
+                        <a href="mailto:suporte@condominio.com.br" class="tool-link">Tirar dúvida →</a>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- FERRAMENTAS LEGAIS -->
-        <div class="section" id="ferramentas-legais">
+            <!-- Base Legal -->
+            <div class="tools-category">
+                <h3>⚖️ BASE LEGAL & FISCALIZAÇÃO</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📄</div>
+                        <h4>Regulamento do Conselho</h4>
+                        <p>Web interativa + .docx editável</p>
+                        <a href="#" class="tool-link web-regulamento">Acessar Online →</a>
+                        <a href="#" class="tool-link small">📥 Baixar .docx</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🧮</div>
+                        <h4>Calculadora de Quóruns</h4>
+                        <p>Assembleias & quóruns legais</p>
+                        <div class="calculator-placeholder quorum-calc">
+                            <input type="number" id="totalUnits" placeholder="Total de unidades" value="100">
+                            <input type="number" id="presentUnits" placeholder="Unidades presentes" value="60">
+                            <button id="calcQuorum">Calcular Quórum</button>
+                            <p class="calc-result">Quórum necessário: <span id="quorumNeeded">0</span> unidades (<span id="quorumPercent">0</span>%)</p>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚖️</div>
+                        <h4>Responsabilidade Civil</h4>
+                        <p>Simulador de riscos e indenizações</p>
+                        <div class="calculator-placeholder liability-sim">
+                            <input type="number" id="damageValue" placeholder="Valor do dano (R$)" value="10000">
+                            <button id="calcLiability">Simular Risco</button>
+                            <p class="calc-result">Indenização estimada: <span id="liabilityEstimate">R$ 0</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prestação de Contas -->
+            <div class="tools-category">
+                <h3>📊 PRESTAÇÃO DE CONTAS & TRANSPARÊNCIA</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📊</div>
+                        <h4>Conciliação bancária</h4>
+                        <p>Página explicativa + planilha Excel</p>
+                        <a href="#" class="tool-link">Acessar página →</a>
+                        <a href="#" class="tool-link small">📥 Baixar Planilha</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📺</div>
+                        <h4>Vídeo: Como ler balancete</h4>
+                        <p>Tutorial prático — Sindiconet</p>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="tool-link">Assistir vídeo →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">✅</div>
+                        <h4>Checklist de auditoria</h4>
+                        <p>Interativo + pontuação</p>
+                        <a href="#" class="tool-link audit-trigger">Abrir checklist →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estratégia e Sustentabilidade -->
+            <div class="tools-category">
+                <h3>🌱 ESTRATÉGIA & SUSTENTABILIDADE</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📈</div>
+                        <h4>Dashboard ESG</h4>
+                        <p>Sustentabilidade + métricas interativas</p>
+                        <a href="#" class="tool-link esg-trigger">Explorar ESG →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">⚡</div>
+                        <h4>ROI Eficiência Energética</h4>
+                        <p>Economia e retorno - Calcule payback e ROI</p>
+                        <div class="calculator-placeholder roi-calc">
+                            <input type="number" id="investimento" placeholder="Investimento (R$)" value="5000">
+                            <input type="number" id="economiaMensal" placeholder="Economia mensal (R$)" value="300">
+                            <button id="calcROI">Calcular ROI</button>
+                            <p class="calc-result">Payback: <span id="payback">0</span> meses | ROI: <span id="roi">0</span>%</p>
+                        </div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🗺️</div>
+                        <h4>Mapa de Riscos Completo</h4>
+                        <p>Matriz interativa de riscos condominiais</p>
+                        <a href="#" class="tool-link risk-trigger">Acessar mapa →</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comunidade e Ferramentas -->
+            <div class="tools-category">
+                <h3>👥 COMUNIDADE & FERRAMENTAS</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">📁</div>
+                        <h4>Biblioteca de Modelos</h4>
+                        <p>Word, Excel, editáveis</p>
+                        <a href="#" class="tool-link">Ver biblioteca →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🗣️</div>
+                        <h4>Fórum de Experiências</h4>
+                        <p>+65 mil participantes - Troca de experiências</p>
+                        <a href="https://forum.conviver.com.br" target="_blank" class="tool-link">Acessar fórum →</a>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📜</div>
+                        <h4>Atualizações legislativas</h4>
+                        <p>Reforma Tributária 2025/2026 - IBS/CBS</p>
+                        <a href="#" class="tool-link">Acompanhar →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ferramentas Legais Originais -->
+        <section class="legal-tools">
             <h2>⚖️ Ferramentas Legais</h2>
-            <div class="ferramentas-grid">
-                <div class="ferramenta-item" onclick="abrirFerramenta('regulamento')">
-                    <strong>📄 Regulamento do Conselho Fiscal</strong>
-                    <span>Modelo editável em Word (.docx)</span>
-                    <span class="ferramenta-download">📥 Baixar Modelo</span>
-                </div>
-                <div class="ferramenta-item" onclick="abrirFerramenta('web')">
-                    <strong>🌐 Regulamento Web</strong>
-                    <span>Versão online para consulta</span>
-                    <span class="ferramenta-download">🔗 Acessar Online</span>
-                </div>
-                <div class="ferramenta-item" onclick="abrirFerramenta('conciliacao')">
-                    <strong>📊 Conciliação Bancária</strong>
-                    <span>Planilha Excel automatizada</span>
-                    <span class="ferramenta-download">📥 Baixar Planilha</span>
-                </div>
-                <div class="ferramenta-item" onclick="abrirFerramenta('legislacao')">
-                    <strong>📚 Base Legal Completa</strong>
-                    <span>Código Civil e legislação pertinente</span>
-                    <span class="ferramenta-download">📥 Baixar Compilação</span>
-                </div>
+            <div class="legal-grid">
+                <a href="#" class="legal-item">
+                    <span>📄</span>
+                    Regulamento do Conselho Fiscal Modelo editável em Word (.docx)
+                    <span class="download-badge">📥 Baixar Modelo</span>
+                </a>
+                <a href="#" class="legal-item">
+                    <span>🌐</span>
+                    Regulamento Web Versão online para consulta
+                    <span class="link-badge">🔗 Acessar Online</span>
+                </a>
+                <a href="#" class="legal-item">
+                    <span>📊</span>
+                    Conciliação Bancária Planilha Excel automatizada
+                    <span class="download-badge">📥 Baixar Planilha</span>
+                </a>
+                <a href="#" class="legal-item">
+                    <span>📚</span>
+                    Base Legal Completa Código Civil e legislação pertinente
+                    <span class="download-badge">📥 Baixar Compilação</span>
+                </a>
             </div>
-        </div>
+        </section>
 
-        <!-- RECURSOS E LINKS -->
-        <div class="section" id="recursos">
+        <!-- Recursos e Links Externos -->
+        <section class="resources">
             <h2>🔗 Recursos e Links Externos</h2>
-            <div class="recursos-grid">
-                <div class="recurso-card">
+            <div class="resources-grid">
+                <div class="resource-card">
                     <h3>💬 Fórum Conviver</h3>
                     <p>Comunidade com +65k usuários para troca de experiências</p>
-                    <a href="https://www.sindiconet.com.br/comunidade" target="_blank" rel="noopener" class="btn-recurso">Acessar Fórum →</a>
+                    <a href="https://forum.conviver.com.br" target="_blank" class="resource-link">Acessar Fórum →</a>
                 </div>
-                <div class="recurso-card">
+                <div class="resource-card">
                     <h3>📰 Atualizações Legislativas</h3>
                     <p>Reforma Tributária 2025 e mudanças na legislação condominial</p>
-                    <a href="https://www.conassibrasil.com.br/noticias/" target="_blank" rel="noopener" class="btn-recurso">Ver atualizações →</a>
+                    <a href="#" class="resource-link">Ver atualizações →</a>
                 </div>
-                <div class="recurso-card">
+                <div class="resource-card">
                     <h3>📈 Dashboard ESG Avançado</h3>
                     <p>Versão completa com métricas de sustentabilidade</p>
-                    <a href="#mapa-riscos" class="btn-recurso" onclick="scrollToSection('mapa-riscos')">Acessar Dashboard →</a>
+                    <a href="#" class="resource-link esg-trigger">Acessar Dashboard →</a>
                 </div>
-                <div class="recurso-card">
+                <div class="resource-card">
                     <h3>💰 Calculadora ROI Energia</h3>
                     <p>Ferramenta avançada de simulação de retorno</p>
-                    <a href="#calculadoras" class="btn-recurso" onclick="scrollToSection('calculadoras')">Calcular ROI →</a>
+                    <div class="calculator-placeholder inline roi-calc-simple">
+                        <input type="number" id="investimento2" placeholder="Investimento (R$)" value="5000">
+                        <input type="number" id="economiaMensal2" placeholder="Economia mensal (R$)" value="300">
+                        <button id="calcROI2">Calcular</button>
+                        <p class="calc-result">Payback: <span id="payback2">0</span> meses</p>
+                    </div>
                 </div>
-                <div class="recurso-card">
+                <div class="resource-card">
                     <h3>🗺️ Mapa de Riscos Completo</h3>
                     <p>Matriz interativa de riscos condominiais</p>
-                    <a href="#mapa-riscos" class="btn-recurso" onclick="scrollToSection('mapa-riscos')">Ver Mapa →</a>
+                    <a href="#" class="resource-link risk-trigger">Ver Mapa →</a>
                 </div>
-                <div class="recurso-card">
+                <div class="resource-card">
                     <h3>👤 Site do Autor</h3>
                     <p>Conteúdos exclusivos e atualizações</p>
-                    <a href="https://erigutembergmeneses-jpg.github.io" target="_blank" rel="noopener" class="btn-recurso">Visitar Site →</a>
+                    <a href="https://erigutembergmeneses-jpg.github.io" target="_blank" class="resource-link">Visitar Site →</a>
                 </div>
             </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Teoria das Janelas Quebradas - Gestão Condominial Inteligente e Preventiva</p>
+            <p>Desenvolvido para síndicos, conselheiros e gestores condominiais</p>
+        </div>
+    </footer>
+
+    <!-- Modais para ferramentas interativas -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="modal" class="modal-overlay" onclick="fecharModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-fechar" onclick="fecharModal()">×</button>
-            <div id="modal-conteudo"></div>
-        </div>
-    </div>
-
-    <script>
-        // Toggle conteúdo expansível no diagrama
-        function toggleConteudo(id) {
-            const elemento = document.getElementById(id);
-            const coluna = elemento.closest('.diagrama-janelas').querySelector(`[onclick="toggleConteudo('${id}')"]`);
-            
-            document.querySelectorAll('.conteudo-expansivel').forEach(el => {
-                if (el.id !== id) el.classList.remove('ativo');
-            });
-            document.querySelectorAll('.coluna-diagrama').forEach(el => {
-                if (el !== coluna) el.classList.remove('ativa');
-            });
-
-            elemento.classList.toggle('ativo');
-            if(coluna) coluna.classList.toggle('ativa');
-            
-            if (elemento.classList.contains('ativo')) {
-                setTimeout(() => {
-                    elemento.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
-        }
-
-        // Mostrar plano de ação
-        function mostrarPlano(tipo) {
-            const plano = document.getElementById(`plano-${tipo}`);
-            if(!plano) return;
-            document.querySelectorAll('.plano-detalhes').forEach(p => {
-                if (p.id !== `plano-${tipo}`) p.classList.remove('ativo');
-            });
-            plano.classList.toggle('ativo');
-            if (plano.classList.contains('ativo')) {
-                setTimeout(() => {
-                    plano.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
-        }
-
-        // Função de download funcional simulando arquivos do repositório
-        function baixarPlano(tipo) {
-            const nomesArquivos = {
-                'incendio': 'Checklist_Prevencao_Incendio.pdf',
-                'inadimplencia': 'Modelo_Notificacao_Inadimplente.pdf',
-                'fraude': 'Protocolo_Auditoria_Fraude.pdf',
-                'vazamento': 'Formulario_Vistoria_Vazamento.pdf',
-                'colapso': 'Plano_Contingencia_Colapso.pdf',
-                'acidente': 'Checklist_Seguranca_Areas_Comuns.pdf'
-            };
-            const nomeArquivo = nomesArquivos[tipo] || `plano_${tipo}.pdf`;
-            // Cria um blob com conteúdo demonstrativo
-            const conteudo = `Documento gerado automaticamente: ${nomeArquivo}\n\nConteúdo do plano de ação para ${tipo}. Implemente as medidas preventivas conforme descrito no site.`;
-            const blob = new Blob([conteudo], {type: 'application/pdf'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = nomeArquivo;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-        }
-
-        // Calculadora ROI
-        function calcularROI() {
-            const investimento = parseFloat(document.getElementById('investimento').value) || 0;
-            const economia = parseFloat(document.getElementById('economia').value) || 0;
-            const resultadoDiv = document.getElementById('resultado-roi');
-            if (investimento > 0 && economia > 0) {
-                const payback = Math.round(investimento / economia);
-                const retornoAnual = ((economia * 12) / investimento * 100).toFixed(1);
-                document.getElementById('payback').textContent = payback;
-                document.getElementById('retorno-anual').textContent = retornoAnual;
-                resultadoDiv.classList.add('ativo');
-            } else {
-                alert('⚠️ Por favor, preencha ambos os campos com valores maiores que zero.');
-                resultadoDiv.classList.remove('ativo');
-            }
-        }
-
-        // Calculadora de Quórum
-        function calcularQuorum() {
-            const unidades = parseInt(document.getElementById('unidades').value) || 0;
-            const tipo = parseFloat(document.getElementById('tipo-quorum').value);
-            const resultadoDiv = document.getElementById('resultado-quorum');
-            if (unidades > 0) {
-                const quorum = Math.ceil(unidades * tipo);
-                const percentual = (tipo * 100).toFixed(0);
-                document.getElementById('quorum-unidades').textContent = quorum;
-                document.getElementById('quorum-percentual').textContent = percentual;
-                resultadoDiv.classList.add('ativo');
-            } else {
-                alert('⚠️ Por favor, informe o número total de unidades.');
-                resultadoDiv.classList.remove('ativo');
-            }
-        }
-
-        // Simulador de Responsabilidade
-        function simularResponsabilidade() {
-            const tipo = document.getElementById('tipo-dano').value;
-            const gravidade = document.getElementById('gravidade').value;
-            const valores = {
-                moral: { leve: 5000, media: 15000, grave: 30000 },
-                material: { leve: 10000, media: 25000, grave: 50000 },
-                estetico: { leve: 8000, media: 20000, grave: 40000 }
-            };
-            const valor = valores[tipo][gravidade];
-            document.getElementById('indenizacao').textContent = `R$ ${valor.toLocaleString('pt-BR')}`;
-            document.getElementById('resultado-resp').classList.add('ativo');
-        }
-
-        // Abrir ferramenta com download funcional
-        function abrirFerramenta(tipo) {
-            const ferramentas = {
-                'regulamento': { titulo: '📄 Regulamento do Conselho Fiscal', arquivo: 'Regulamento_Conselho_Fiscal.docx', conteudo: 'Modelo completo com atribuições detalhadas, procedimentos de fiscalização e cláusulas de blindagem jurídica.' },
-                'web': { titulo: '🌐 Regulamento Web', arquivo: 'regulamento_web.html', conteudo: 'Versão online com consulta rápida por artigo, atualizações em tempo real e links para legislação.' },
-                'conciliacao': { titulo: '📊 Conciliação Bancária', arquivo: 'Conciliacao_Bancaria.xlsx', conteudo: 'Planilha Excel com conciliação automática, relatórios mensais, alertas de divergência e gráficos de evolução.' },
-                'legislacao': { titulo: '📚 Base Legal Completa', arquivo: 'Base_Legal_Condominios.pdf', conteudo: 'Compilação com Código Civil (Arts. 1.331-1.358), Lei 4.591/64, LGPD aplicada a condomínios e jurisprudência atualizada.' }
-            };
-            const f = ferramentas[tipo];
-            if(f) {
-                // Modal com opção de download
-                document.getElementById('modal-conteudo').innerHTML = `
-                    <h2>${f.titulo}</h2>
-                    <p>${f.conteudo}</p>
-                    <button class="btn-plano" onclick="baixarFerramenta('${tipo}', '${f.arquivo}')" style="background: #28a745; margin-top: 1rem;">📥 Baixar ${f.arquivo}</button>
-                    <button class="btn-plano" onclick="fecharModal()" style="margin-top: 1rem;">Fechar</button>
-                `;
-                document.getElementById('modal').classList.add('ativo');
-            }
-        }
-
-        function baixarFerramenta(tipo, nomeArquivo) {
-            const conteudos = {
-                'regulamento': 'Modelo de Regulamento do Conselho Fiscal - Texto completo...',
-                'web': '<html><body><h1>Regulamento Web</h1><p>Versão online do regulamento...</p></body></html>',
-                'conciliacao': 'Planilha de Conciliação Bancária - Dados simulados...',
-                'legislacao': 'Compilação da Legislação Condominial - Código Civil, Lei 4.591/64...'
-            };
-            const blob = new Blob([conteudos[tipo] || 'Conteúdo da ferramenta legal'], {type: 'application/octet-stream'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = nomeArquivo;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            fecharModal();
-        }
-
-        function fecharModal(event) {
-            const modal = document.getElementById('modal');
-            if (!event || event.target === modal || event.target === document.getElementById('modal-fechar-btn')) {
-                modal.classList.remove('ativo');
-            }
-        }
-
-        function scrollToSection(id) {
-            event.preventDefault();
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-
-        // Animação ao carregar
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section, .diagrama-janelas');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            sections.forEach(section => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'all 0.6s ease';
-                observer.observe(section);
-            });
-
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') fecharModal();
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
