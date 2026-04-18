@@ -63,7 +63,7 @@
            =================================== */
         .diagrama-janelas {
             background: linear-gradient(rgba(10, 25, 41, 0.85), rgba(10, 25, 41, 0.9)), 
-                        url('janelas-quebradas.bg');
+                        url('janelas-quebradas-pg.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -596,9 +596,7 @@
     </header>
 
     <div class="container">
-        <!-- ===================================
-             DIAGRAMA INTERATIVO
-             =================================== -->
+        <!-- DIAGRAMA INTERATIVO -->
         <div class="diagrama-janelas" id="diagrama-interativo">
             <h2>Teoria das Janelas Quebradas na Gestão Condominial</h2>
             
@@ -708,9 +706,7 @@
             </div>
         </div>
 
-        <!-- ===================================
-             MAPA DE RISCOS
-             =================================== -->
+        <!-- MAPA DE RISCOS -->
         <div class="section" id="mapa-riscos">
             <h2>🗺️ Mapa de Riscos</h2>
             <div style="margin-bottom: 1.5rem;">
@@ -830,9 +826,7 @@
             </div>
         </div>
 
-        <!-- ===================================
-             CALCULADORAS
-             =================================== -->
+        <!-- CALCULADORAS -->
         <div class="section" id="calculadoras">
             <h2>🧮 Calculadoras</h2>
             
@@ -902,9 +896,7 @@
             </div>
         </div>
 
-        <!-- ===================================
-             FERRAMENTAS LEGAIS
-             =================================== -->
+        <!-- FERRAMENTAS LEGAIS -->
         <div class="section" id="ferramentas-legais">
             <h2>⚖️ Ferramentas Legais</h2>
             <div class="ferramentas-grid">
@@ -931,9 +923,7 @@
             </div>
         </div>
 
-        <!-- ===================================
-             RECURSOS E LINKS
-             =================================== -->
+        <!-- RECURSOS E LINKS -->
         <div class="section" id="recursos">
             <h2>🔗 Recursos e Links Externos</h2>
             <div class="recursos-grid">
@@ -942,31 +932,26 @@
                     <p>Comunidade com +65k usuários para troca de experiências</p>
                     <a href="https://www.sindiconet.com.br/comunidade" target="_blank" rel="noopener" class="btn-recurso">Acessar Fórum →</a>
                 </div>
-
                 <div class="recurso-card">
                     <h3>📰 Atualizações Legislativas</h3>
                     <p>Reforma Tributária 2025 e mudanças na legislação condominial</p>
                     <a href="https://www.conassibrasil.com.br/noticias/" target="_blank" rel="noopener" class="btn-recurso">Ver atualizações →</a>
                 </div>
-
                 <div class="recurso-card">
                     <h3>📈 Dashboard ESG Avançado</h3>
                     <p>Versão completa com métricas de sustentabilidade</p>
                     <a href="#mapa-riscos" class="btn-recurso" onclick="scrollToSection('mapa-riscos')">Acessar Dashboard →</a>
                 </div>
-
                 <div class="recurso-card">
                     <h3>💰 Calculadora ROI Energia</h3>
                     <p>Ferramenta avançada de simulação de retorno</p>
                     <a href="#calculadoras" class="btn-recurso" onclick="scrollToSection('calculadoras')">Calcular ROI →</a>
                 </div>
-
                 <div class="recurso-card">
                     <h3>🗺️ Mapa de Riscos Completo</h3>
                     <p>Matriz interativa de riscos condominiais</p>
                     <a href="#mapa-riscos" class="btn-recurso" onclick="scrollToSection('mapa-riscos')">Ver Mapa →</a>
                 </div>
-
                 <div class="recurso-card">
                     <h3>👤 Site do Autor</h3>
                     <p>Conteúdos exclusivos e atualizações</p>
@@ -976,7 +961,7 @@
         </div>
     </div>
 
-    <!-- Modal para detalhes -->
+    <!-- Modal -->
     <div id="modal" class="modal-overlay" onclick="fecharModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-fechar" onclick="fecharModal()">×</button>
@@ -998,7 +983,7 @@
             });
 
             elemento.classList.toggle('ativo');
-            coluna.classList.toggle('ativa');
+            if(coluna) coluna.classList.toggle('ativa');
             
             if (elemento.classList.contains('ativo')) {
                 setTimeout(() => {
@@ -1010,12 +995,11 @@
         // Mostrar plano de ação
         function mostrarPlano(tipo) {
             const plano = document.getElementById(`plano-${tipo}`);
-            // Fecha outros planos
+            if(!plano) return;
             document.querySelectorAll('.plano-detalhes').forEach(p => {
                 if (p.id !== `plano-${tipo}`) p.classList.remove('ativo');
             });
             plano.classList.toggle('ativo');
-            
             if (plano.classList.contains('ativo')) {
                 setTimeout(() => {
                     plano.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1023,34 +1007,44 @@
             }
         }
 
-        // Baixar plano (simulação)
+        // Função de download funcional simulando arquivos do repositório
         function baixarPlano(tipo) {
-            const nomes = {
-                'incendio': 'Checklist_Prevencao_Incendio',
-                'inadimplencia': 'Modelo_Notificacao_Inadimplente',
-                'fraude': 'Protocolo_Auditoria_Fraude',
-                'vazamento': 'Formulario_Vistoria_Vazamento',
-                'colapso': 'Plano_Contingencia_Colapso',
-                'acidente': 'Checklist_Seguranca_Areas_Comuns'
+            const nomesArquivos = {
+                'incendio': 'Checklist_Prevencao_Incendio.pdf',
+                'inadimplencia': 'Modelo_Notificacao_Inadimplente.pdf',
+                'fraude': 'Protocolo_Auditoria_Fraude.pdf',
+                'vazamento': 'Formulario_Vistoria_Vazamento.pdf',
+                'colapso': 'Plano_Contingencia_Colapso.pdf',
+                'acidente': 'Checklist_Seguranca_Areas_Comuns.pdf'
             };
-            
-            alert(`📥 Download iniciado: ${nomes[tipo]}.pdf\n\nNota: Em produção, este botão faria download do arquivo real.`);
+            const nomeArquivo = nomesArquivos[tipo] || `plano_${tipo}.pdf`;
+            // Cria um blob com conteúdo demonstrativo
+            const conteudo = `Documento gerado automaticamente: ${nomeArquivo}\n\nConteúdo do plano de ação para ${tipo}. Implemente as medidas preventivas conforme descrito no site.`;
+            const blob = new Blob([conteudo], {type: 'application/pdf'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nomeArquivo;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         }
 
         // Calculadora ROI
         function calcularROI() {
             const investimento = parseFloat(document.getElementById('investimento').value) || 0;
             const economia = parseFloat(document.getElementById('economia').value) || 0;
-            
+            const resultadoDiv = document.getElementById('resultado-roi');
             if (investimento > 0 && economia > 0) {
                 const payback = Math.round(investimento / economia);
                 const retornoAnual = ((economia * 12) / investimento * 100).toFixed(1);
-                
                 document.getElementById('payback').textContent = payback;
                 document.getElementById('retorno-anual').textContent = retornoAnual;
-                document.getElementById('resultado-roi').classList.add('ativo');
+                resultadoDiv.classList.add('ativo');
             } else {
                 alert('⚠️ Por favor, preencha ambos os campos com valores maiores que zero.');
+                resultadoDiv.classList.remove('ativo');
             }
         }
 
@@ -1058,16 +1052,16 @@
         function calcularQuorum() {
             const unidades = parseInt(document.getElementById('unidades').value) || 0;
             const tipo = parseFloat(document.getElementById('tipo-quorum').value);
-            
+            const resultadoDiv = document.getElementById('resultado-quorum');
             if (unidades > 0) {
                 const quorum = Math.ceil(unidades * tipo);
                 const percentual = (tipo * 100).toFixed(0);
-                
                 document.getElementById('quorum-unidades').textContent = quorum;
                 document.getElementById('quorum-percentual').textContent = percentual;
-                document.getElementById('resultado-quorum').classList.add('ativo');
+                resultadoDiv.classList.add('ativo');
             } else {
                 alert('⚠️ Por favor, informe o número total de unidades.');
+                resultadoDiv.classList.remove('ativo');
             }
         }
 
@@ -1075,56 +1069,63 @@
         function simularResponsabilidade() {
             const tipo = document.getElementById('tipo-dano').value;
             const gravidade = document.getElementById('gravidade').value;
-            
             const valores = {
                 moral: { leve: 5000, media: 15000, grave: 30000 },
                 material: { leve: 10000, media: 25000, grave: 50000 },
                 estetico: { leve: 8000, media: 20000, grave: 40000 }
             };
-            
             const valor = valores[tipo][gravidade];
             document.getElementById('indenizacao').textContent = `R$ ${valor.toLocaleString('pt-BR')}`;
             document.getElementById('resultado-resp').classList.add('ativo');
         }
 
-        // Abrir ferramenta
+        // Abrir ferramenta com download funcional
         function abrirFerramenta(tipo) {
             const ferramentas = {
-                'regulamento': {
-                    titulo: '📄 Regulamento do Conselho Fiscal',
-                    conteudo: '<p>Modelo completo em Word com:</p><ul><li>Atribuições detalhadas</li><li>Procedimentos de fiscalização</li><li>Modelo de parecer técnico</li><li>Cláusulas de blindagem jurídica</li></ul><p><em>Nota: Em produção, faria download do arquivo .docx</em></p>'
-                },
-                'web': {
-                    titulo: '🌐 Regulamento Web',
-                    conteudo: '<p>Versão online com:</p><ul><li>Consulta rápida por artigo</li><li>Atualizações em tempo real</li><li>Links para legislação</li></ul><p><em>Nota: Em produção, abriria a página web</em></p>'
-                },
-                'conciliacao': {
-                    titulo: '📊 Conciliação Bancária',
-                    conteudo: '<p>Planilha Excel com:</p><ul><li>Conciliação automática</li><li>Relatórios mensais</li><li>Alertas de divergência</li><li>Gráficos de evolução</li></ul><p><em>Nota: Em produção, faria download do arquivo .xlsx</em></p>'
-                },
-                'legislacao': {
-                    titulo: '📚 Base Legal Completa',
-                    conteudo: '<p>Compilação com:</p><ul><li>Código Civil (Arts. 1.331-1.358)</li><li>Lei 4.591/64</li><li>LGPD aplicada a condomínios</li><li>Jurisprudência atualizada</li></ul><p><em>Nota: Em produção, faria download do PDF</em></p>'
-                }
+                'regulamento': { titulo: '📄 Regulamento do Conselho Fiscal', arquivo: 'Regulamento_Conselho_Fiscal.docx', conteudo: 'Modelo completo com atribuições detalhadas, procedimentos de fiscalização e cláusulas de blindagem jurídica.' },
+                'web': { titulo: '🌐 Regulamento Web', arquivo: 'regulamento_web.html', conteudo: 'Versão online com consulta rápida por artigo, atualizações em tempo real e links para legislação.' },
+                'conciliacao': { titulo: '📊 Conciliação Bancária', arquivo: 'Conciliacao_Bancaria.xlsx', conteudo: 'Planilha Excel com conciliação automática, relatórios mensais, alertas de divergência e gráficos de evolução.' },
+                'legislacao': { titulo: '📚 Base Legal Completa', arquivo: 'Base_Legal_Condominios.pdf', conteudo: 'Compilação com Código Civil (Arts. 1.331-1.358), Lei 4.591/64, LGPD aplicada a condomínios e jurisprudência atualizada.' }
             };
-            
-            const ferramenta = ferramentas[tipo];
-            document.getElementById('modal-conteudo').innerHTML = `
-                <h2>${ferramenta.titulo}</h2>
-                ${ferramenta.conteudo}
-                <button class="btn-plano" onclick="fecharModal()" style="margin-top: 1rem;">Fechar</button>
-            `;
-            document.getElementById('modal').classList.add('ativo');
-        }
-
-        // Fechar modal
-        function fecharModal(event) {
-            if (!event || event.target === document.getElementById('modal')) {
-                document.getElementById('modal').classList.remove('ativo');
+            const f = ferramentas[tipo];
+            if(f) {
+                // Modal com opção de download
+                document.getElementById('modal-conteudo').innerHTML = `
+                    <h2>${f.titulo}</h2>
+                    <p>${f.conteudo}</p>
+                    <button class="btn-plano" onclick="baixarFerramenta('${tipo}', '${f.arquivo}')" style="background: #28a745; margin-top: 1rem;">📥 Baixar ${f.arquivo}</button>
+                    <button class="btn-plano" onclick="fecharModal()" style="margin-top: 1rem;">Fechar</button>
+                `;
+                document.getElementById('modal').classList.add('ativo');
             }
         }
 
-        // Scroll suave para seção
+        function baixarFerramenta(tipo, nomeArquivo) {
+            const conteudos = {
+                'regulamento': 'Modelo de Regulamento do Conselho Fiscal - Texto completo...',
+                'web': '<html><body><h1>Regulamento Web</h1><p>Versão online do regulamento...</p></body></html>',
+                'conciliacao': 'Planilha de Conciliação Bancária - Dados simulados...',
+                'legislacao': 'Compilação da Legislação Condominial - Código Civil, Lei 4.591/64...'
+            };
+            const blob = new Blob([conteudos[tipo] || 'Conteúdo da ferramenta legal'], {type: 'application/octet-stream'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = nomeArquivo;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            fecharModal();
+        }
+
+        function fecharModal(event) {
+            const modal = document.getElementById('modal');
+            if (!event || event.target === modal || event.target === document.getElementById('modal-fechar-btn')) {
+                modal.classList.remove('ativo');
+            }
+        }
+
         function scrollToSection(id) {
             event.preventDefault();
             const element = document.getElementById(id);
@@ -1152,7 +1153,6 @@
                 observer.observe(section);
             });
 
-            // Fechar modal com ESC
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') fecharModal();
             });
