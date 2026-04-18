@@ -1,23 +1,102 @@
-# Teoria das Janelas Quebradas - Chamada à Ação em Condomínios
+# README.md
 
-Permalink: Teoria das Janelas Quebradas - Chamada à Ação em Condomínios
+# Teoria das Janelas Quebradas - Gestão Condominial
 
-Portal completo para síndicos, conselheiros fiscais e condôminos. Integra ferramentas de gestão, auditoria, ESG, mapa de riscos, base legal e comunidade.
+## 📌 Sobre o Projeto
 
-![Background](assets/janelas-quebradas-bg.jpg)
+Site educacional e ferramentas práticas para síndicos, conselheiros fiscais e gestores condominiais, baseado na **Teoria das Janelas Quebradas** aplicada à administração de condomínios.
 
-## 🚀 Funcionalidades Principais
+## 🚀 Funcionalidades
 
-Permalink: 🚀 Funcionalidades Principais
+### Teoria das Janelas Quebradas
+- **Janela Quebrada**: Identificação de falhas na gestão
+- **Efeito Cascata**: Consequências da má gestão
+- **Reparo Imediato**: Governança preventiva
 
-- **Dashboard ESG Interativo**: Métricas de energia, água, reciclagem, checklist de sustentabilidade com score em tempo real.
-- **Mapa de Riscos**: Matriz probabilidade x impacto, lista de riscos (incêndio, inadimplência, fraude) e plano de ação prioritário.
-- **Calculadora ROI Energético**: Simula payback e retorno sobre investimento em eficiência energética.
-- **Ferramentas Legais**: Regulamento do conselho fiscal (.docx e web), calculadora de quóruns, simulador de responsabilidade civil.
-- **Links e Recursos**: Conciliação bancária, fórum Conviver (+65k usuários), atualizações legislativas (Reforma Tributária 2025).
-- **Design Responsivo**: Funciona em desktops, tablets e smartphones.
-- **Background Imersivo**: Interface com imagem de fundo da Teoria das Janelas Quebradas.
+### Mapa de Riscos
+- 6 riscos categorizados (Alta/Média/Baixa)
+- Planos de ação para cada risco
+- Filtro interativo por nível de risco
 
-## 📁 Estrutura do Projeto
+### Ferramentas do Conselho Fiscal (integradas)
+- **Calculadora de Quóruns** para assembleias
+- **Simulador de Responsabilidade Civil** com estimativa de indenizações
+- **Calculadora ROI** para eficiência energética
+- **Checklists interativos** (auditoria e demo)
+- **Dashboard ESG** com métricas de sustentabilidade
+- **Mapa de Riscos Completo** interativo
+- **Regulamento do Conselho** (web + download)
+- **Biblioteca de modelos** (Word/Excel)
+- **Vídeos tutoriais** (como ler balancete)
 
-Permalink: 📁 Estrutura do Projeto
+### Ferramentas Legais
+- Regulamento do Conselho Fiscal (.docx)
+- Conciliação Bancária (Excel)
+- Base Legal completa (Código Civil)
+
+### Recursos Externos
+- Fórum Conviver (+65k usuários)
+- Atualizações Legislativas (Reforma Tributária 2025/2026)
+- Dashboards avançados
+
+## 🛠️ Tecnologias Utilizadas
+
+- HTML5 semântico
+- CSS3 com Flexbox/Grid e animações
+- JavaScript puro (sem dependências externas)
+- Design responsivo (mobile-first)
+- Modais interativos
+- LocalStorage (simulado para checklists)
+
+## 📂 Estrutura de Arquivos
+# README.md
+
+# Teoria das Janelas Quebradas - Gestão Condominial
+
+## 📌 Sobre o Projeto
+
+Site educacional e ferramentas práticas para síndicos, conselheiros fiscais e gestores condominiais, baseado na **Teoria das Janelas Quebradas** aplicada à administração de condomínios.
+
+## 🚀 Funcionalidades
+
+### Teoria das Janelas Quebradas
+- **Janela Quebrada**: Identificação de falhas na gestão
+- **Efeito Cascata**: Consequências da má gestão
+- **Reparo Imediato**: Governança preventiva
+
+### Mapa de Riscos
+- 6 riscos categorizados (Alta/Média/Baixa)
+- Planos de ação para cada risco
+- Filtro interativo por nível de risco
+
+### Ferramentas do Conselho Fiscal (integradas)
+- **Calculadora de Quóruns** para assembleias
+- **Simulador de Responsabilidade Civil** com estimativa de indenizações
+- **Calculadora ROI** para eficiência energética
+- **Checklists interativos** (auditoria e demo)
+- **Dashboard ESG** com métricas de sustentabilidade
+- **Mapa de Riscos Completo** interativo
+- **Regulamento do Conselho** (web + download)
+- **Biblioteca de modelos** (Word/Excel)
+- **Vídeos tutoriais** (como ler balancete)
+
+### Ferramentas Legais
+- Regulamento do Conselho Fiscal (.docx)
+- Conciliação Bancária (Excel)
+- Base Legal completa (Código Civil)
+
+### Recursos Externos
+- Fórum Conviver (+65k usuários)
+- Atualizações Legislativas (Reforma Tributária 2025/2026)
+- Dashboards avançados
+
+## 🛠️ Tecnologias Utilizadas
+
+- HTML5 semântico
+- CSS3 com Flexbox/Grid e animações
+- JavaScript puro (sem dependências externas)
+- Design responsivo (mobile-first)
+- Modais interativos
+- LocalStorage (simulado para checklists)
+
+## 📂 Estrutura de Arquivos
