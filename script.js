@@ -1,33 +1,7 @@
-// Script para interatividade da página - Teoria das Janelas Quebradas
+// Script para a página - Teoria das Janelas Quebradas
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚪 Teoria das Janelas Quebradas - Site carregado com sucesso!');
-    
-    // Adiciona efeito de fade-in nos cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
-        
-        setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, 100);
-    });
-    
-    // Tooltip interativo nas ilustrações
-    const illustrations = document.querySelectorAll('.illustration');
-    illustrations.forEach(ill => {
-        ill.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.05)';
-            this.style.transition = 'transform 0.3s ease';
-        });
-        
-        ill.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
     
     // Log de clique nos botões PDF
     const pdfButtons = document.querySelectorAll('.btn-pdf');
