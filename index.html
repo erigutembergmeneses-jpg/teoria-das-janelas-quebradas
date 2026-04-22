@@ -3,340 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria das Janelas Quebradas - Condomínios</title>
+    <meta name="description" content="Teoria das Janelas Quebradas aplicada à Gestão Condominial - Ferramentas interativas para síndicos e gestores">
+    <title>🚪 Teoria das Janelas Quebradas - Gestão Condominial</title>
+    
+    <!-- Fontes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Estilos -->
     <link rel="stylesheet" href="style.css">
-    <!-- Font Awesome 6 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-image: url('janelas-quebradas.bg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: #1a2c3e;
-            line-height: 1.5;
-            position: relative;
-        }
-
-        /* Overlay semitransparente para melhor legibilidade do conteúdo */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(255, 255, 255, 0.85);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* header */
-        .hero {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .hero h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #0b5e4b, #1e4a6e);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        .hero p {
-            color: #2c5a6e;
-            font-weight: 500;
-            margin-top: 0.5rem;
-        }
-
-        /* grid cards */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.8rem;
-            margin-bottom: 3rem;
-        }
-        .card {
-            background: white;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.03), 0 6px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid #e2edf2;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 28px -12px rgba(0,0,0,0.12);
-        }
-        .card-header {
-            padding: 1.2rem 1.5rem 0.5rem;
-            border-bottom: 2px solid #eef3f7;
-        }
-        .card-header i {
-            font-size: 1.7rem;
-            color: #1e6f5c;
-            margin-right: 8px;
-            vertical-align: middle;
-        }
-        .card-header h2 {
-            display: inline-block;
-            font-size: 1.35rem;
-            font-weight: 600;
-            color: #1b4e6e;
-        }
-        .card-content {
-            padding: 1rem 1.5rem 1.5rem;
-            flex: 1;
-        }
-        .btn-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1rem;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #eef2f5;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
-            font-weight: 500;
-            font-size: 0.85rem;
-            text-decoration: none;
-            color: #1f5e6e;
-            transition: all 0.2s;
-            border: 1px solid #cddfe6;
-        }
-        .btn-primary {
-            background: #1e6f5c;
-            border-color: #176254;
-            color: white;
-        }
-        .btn-primary:hover {
-            background: #0f5949;
-            transform: scale(0.97);
-        }
-        .btn-outline:hover {
-            background: #e6f0f4;
-        }
-        hr {
-            margin: 1rem 0;
-            border: none;
-            border-top: 1px solid #e2edf2;
-        }
-        .badge {
-            background: #e0f0e9;
-            color: #1e6f5c;
-            border-radius: 30px;
-            padding: 0.2rem 0.7rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-        }
-        footer {
-            text-align: center;
-            margin-top: 2.5rem;
-            font-size: 0.8rem;
-            color: #6f8f9c;
-            border-top: 1px solid #d9e5ec;
-            padding-top: 2rem;
-        }
-        .janela-card {
-            background: #fffaf2;
-            border-left: 6px solid #e67e22;
-            margin: 1rem 0 2rem;
-        }
-        @media (max-width: 680px) {
-            .container { padding: 1rem; }
-            .card-header h2 { font-size: 1.2rem; }
-        }
-    </style>
 </head>
 <body>
-
+    <!-- Container principal com overlay para legibilidade sobre o background -->
     <div class="container">
-        <!-- NOVO CABEÇALHO INSERIDO CONFORME SOLICITADO -->
-        <header style="text-align: center; margin-bottom: 2rem;">
-            <h1 style="font-size: 2rem; font-weight: 700; background: linear-gradient(135deg, #0b5e4b, #1e4a6e); background-clip: text; -webkit-background-clip: text; color: transparent;">🚪 Teoria das Janelas Quebradas</h1>
-            <p class="subtitle" style="color: #2c5a6e; font-weight: 500; margin-top: 0.5rem;">Aplicada à gestão e convivência em condomínios</p>
+        
+        <!-- Cabeçalho -->
+        <header>
+            <h1>🚪 Teoria das Janelas Quebradas</h1>
+            <p class="subtitle">Aplicada à Gestão Condominial • Prevenção • Sustentabilidade • Conformidade</p>
             
-            <!-- Botões de acesso aos PDFs -->
-            <div class="pdf-buttons" style="display: flex; gap: 1rem; justify-content: center; margin-top: 1.5rem; flex-wrap: wrap;">
-                <a href="teoria-janelas.pdf" class="btn-pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #fff3e6; border: 1px solid #fed7aa; padding: 0.6rem 1.2rem; border-radius: 40px; font-weight: 500; text-decoration: none; color: #b45309;">
-                    📄 Teoria das Janelas Quebradas (PDF)
+            <!-- Botões para download dos materiais -->
+            <div class="pdf-buttons">
+                <a href="teoria-janelas.pdf" class="btn-pdf" download>
+                    <i class="fas fa-file-pdf"></i> Baixar Teoria Completa
                 </a>
-                <a href="Broken%20Windows%20(Janelas%20Quebradas).pdf" class="btn-pdf" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; background: #fff3e6; border: 1px solid #fed7aa; padding: 0.6rem 1.2rem; border-radius: 40px; font-weight: 500; text-decoration: none; color: #b45309;">
-                    🔍 Broken Windows - Janelas Quebradas (PDF)
+                <a href="Broken Windows (Janelas Quebradas).pdf.pdf" class="btn-pdf" download>
+                    <i class="fas fa-book"></i> Livro: Broken Windows
                 </a>
             </div>
         </header>
 
-        <!-- ========== FERRAMENTAS DE GESTÃO (recolhidas do repositório oficial) ========== -->
-        <!-- 1. BASE LEGAL & FISCALIZAÇÃO -->
-        <div class="grid">
-            <div class="card">
-                <div class="card-header"><i class="fas fa-gavel"></i><h2>Regulamento & Quóruns</h2></div>
-                <div class="card-content">
-                    <p><strong>Regulamento do Conselho</strong> — Web interativa + .docx editável</p>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-outline" id="regulamentoOnlineBtn"><i class="fas fa-globe"></i> Ler online</a>
-                        <a href="#" class="btn btn-outline" id="baixarDocxBtn"><i class="fas fa-download"></i> Baixar .docx</a>
-                    </div>
-                    <hr>
-                    <p><strong>Calculadora de Quóruns</strong> 🧮 Assembleias & quóruns legais</p>
-                    <div class="btn-group"><a href="#" class="btn btn-primary" id="calculadoraQuorumBtn"><i class="fas fa-calculator"></i> Calcular agora</a></div>
-                    <hr>
-                    <p><strong>Responsabilidade Civil</strong> ⚖️ Simulador de riscos</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="simularRiscoBtn"><i class="fas fa-chart-line"></i> Simular</a></div>
-                </div>
-            </div>
+        <!-- Seção: Regulamento & Quóruns -->
+        <section class="summary">
+            <h2><i class="fas fa-gavel"></i> Regulamento & Quóruns</h2>
+            
+            <article>
+                <h3><strong>Regulamento do Conselho</strong> — Web interativa + .docx editável</h3>
+                <p>
+                    <a href="#" class="link-action">Ler online</a> 
+                    <a href="#" class="link-action" download>Baixar .docx</a>
+                </p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Calculadora de Quóruns</strong> 🧮 Assembleias & quóruns legais</h3>
+                <p><a href="#" class="link-action">Calcular agora</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Responsabilidade Civil</strong> ⚖️ Simulador de riscos</h3>
+                <p><a href="#" class="link-action">Simular</a></p>
+            </article>
+        </section>
 
-            <!-- 2. PRESTAÇÃO DE CONTAS & TRANSPARÊNCIA -->
-            <div class="card">
-                <div class="card-header"><i class="fas fa-chart-pie"></i><h2>Prestação de Contas</h2></div>
-                <div class="card-content">
-                    <p><strong>Conciliação bancária</strong> 📊 Página explicativa + planilha Excel</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="conciliacaoBtn"><i class="fas fa-file-excel"></i> Acessar página</a></div>
-                    <hr>
-                    <p><strong>Vídeo: Como ler balancete</strong> 📺 Tutorial prático — Sindiconet</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="videoBalanceteBtn"><i class="fab fa-youtube"></i> Assistir vídeo</a></div>
-                    <hr>
-                    <p><strong>Checklist de auditoria</strong> ✅ Interativo + pontuação</p>
-                    <div class="btn-group"><a href="#" class="btn btn-primary" id="checklistAuditoriaBtn"><i class="fas fa-check-double"></i> Abrir checklist</a></div>
-                </div>
-            </div>
+        <!-- Seção: Prestação de Contas -->
+        <section class="summary">
+            <h2><i class="fas fa-file-invoice-dollar"></i> Prestação de Contas</h2>
+            
+            <article>
+                <h3><strong>Conciliação bancária</strong> 📊 Página explicativa + planilha Excel</h3>
+                <p><a href="#" class="link-action">Acessar página</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Vídeo: Como ler balancete</strong> 📺 Tutorial prático — Sindiconet</h3>
+                <p><a href="#" class="link-action" target="_blank">Assistir vídeo</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Checklist de auditoria</strong> ✅ Interativo + pontuação</h3>
+                <p><a href="#" class="link-action">Abrir checklist</a></p>
+            </article>
+        </section>
 
-            <!-- 3. ESTRATÉGIA & SUSTENTABILIDADE -->
-            <div class="card">
-                <div class="card-header"><i class="fas fa-leaf"></i><h2>Estratégia & Sustentabilidade</h2></div>
-                <div class="card-content">
-                    <p><strong>Dashboard ESG</strong> 🌱 Sustentabilidade + métricas interativas • Gráficos • Checklist ESG • ROI</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="esgDashboardBtn"><i class="fas fa-seedling"></i> Explorar ESG</a></div>
-                    <hr>
-                    <p><strong>ROI Eficiência Energética</strong> ⚡ Economia e retorno • Calcule payback, ROI e redução de CO₂</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="roiEnergiaBtn"><i class="fas fa-lightbulb"></i> Calcular ROI</a></div>
-                    <hr>
-                    <p><strong>Mapa de Riscos</strong> ⚠️ Identificação de riscos • Matriz interativa • Plano de ação</p>
-                    <div class="btn-group"><a href="#" class="btn btn-primary" id="mapaRiscosBtn"><i class="fas fa-exclamation-triangle"></i> Acessar mapa</a></div>
-                </div>
-            </div>
+        <!-- Seção: Estratégia & Sustentabilidade -->
+        <section class="summary">
+            <h2><i class="fas fa-seedling"></i> Estratégia & Sustentabilidade</h2>
+            
+            <article>
+                <h3><strong>Dashboard ESG</strong> 🌱 Sustentabilidade + métricas interativas • Gráficos • Checklist ESG • ROI</h3>
+                <p><a href="#" class="link-action">Explorar ESG</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>ROI Eficiência Energética</strong> ⚡ Economia e retorno • Calcule payback, ROI e redução de CO₂</h3>
+                <p><a href="#" class="link-action">Calcular ROI</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Mapa de Riscos</strong> ⚠️ Identificação de riscos • Matriz interativa • Plano de ação</h3>
+                <p><a href="#" class="link-action">Acessar mapa</a></p>
+            </article>
+        </section>
 
-            <!-- 4. COMUNIDADE & FERRAMENTAS -->
-            <div class="card">
-                <div class="card-header"><i class="fas fa-users"></i><h2>Comunidade & Ferramentas</h2></div>
-                <div class="card-content">
-                    <p><strong>Biblioteca de Modelos</strong> 📁 Word, Excel, editáveis</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="bibliotecaModelosBtn"><i class="fas fa-book"></i> Ver biblioteca</a></div>
-                    <hr>
-                    <p><strong>🗣️ Fórum de Experiências</strong> 💬 +65 mil participantes • Troca de experiências</p>
-                    <div class="btn-group"><a href="#" class="btn btn-outline" id="forumBtn"><i class="fas fa-comments"></i> Acessar fórum</a></div>
-                    <hr>
-                    <p><strong>Atualizações legislativas</strong> 📜 Reforma Tributária 2025/2026 • IBS/CBS</p>
-                    <div class="btn-group"><a href="#" class="btn btn-primary" id="legislacaoBtn"><i class="fas fa-newspaper"></i> Acompanhar</a></div>
-                </div>
-            </div>
-        </div>
+        <!-- Seção: Comunidade & Ferramentas -->
+        <section class="summary">
+            <h2><i class="fas fa-users"></i> Comunidade & Ferramentas</h2>
+            
+            <article>
+                <h3><strong>Biblioteca de Modelos</strong> 📁 Word, Excel, editáveis</h3>
+                <p><a href="#" class="link-action">Ver biblioteca</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>🗣️ Fórum de Experiências</strong> 💬 +65 mil participantes • Troca de experiências</h3>
+                <p><a href="#" class="link-action" target="_blank">Acessar fórum</a></p>
+            </article>
+            <hr>
+            
+            <article>
+                <h3><strong>Atualizações legislativas</strong> 📜 Reforma Tributária 2025/2026 • IBS/CBS</h3>
+                <p><a href="#" class="link-action">Acompanhar</a></p>
+            </article>
+        </section>
 
-        <!-- ÁREA DE FERRAMENTAS ADICIONAIS RECOLHIDAS DO REPOSITÓRIO (garantia de funcionamento e acesso direto) -->
-        <div style="margin-top: 1rem;">
-            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem;">
-                <i class="fas fa-toolbox fa-2x" style="color:#1e6f5c;"></i>
-                <h2 style="font-size: 1.5rem; font-weight: 600;">Ferramentas de Gestão Avançada</h2>
-                <span class="badge">Direto do repositório oficial</span>
+        <!-- Seção: Ferramentas de Gestão Avançada -->
+        <section class="summary">
+            <h2><i class="fas fa-toolbox"></i> Ferramentas de Gestão Avançada</h2>
+            <p><em>Direto do repositório oficial</em></p>
+            
+            <div class="tools-grid">
+                <article class="tool-card">
+                    <h3>📄 Regulamento Conselho Interativo</h3>
+                    <p>Web interativa + .docx editável</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>🧮 Calculadora de Quóruns Legal</h3>
+                    <p>Assembleias, maiorias simples e qualificada</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>⚖️ Simulador Responsabilidade Civil</h3>
+                    <p>Cálculo de riscos e exposição jurídica</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>📊 Conciliação Bancária</h3>
+                    <p>Página explicativa + planilha Excel</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>📺 Tutorial Como ler Balancete</h3>
+                    <p>Vídeo prático Sindiconet</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>✅ Checklist Auditoria</h3>
+                    <p>Interativo + pontuação automática</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>🌿 Dashboard ESG</h3>
+                    <p>Métricas sustentáveis, ROI e carbono</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>⚡ ROI Eficiência Energética</h3>
+                    <p>Payback, redução de CO₂ e economia</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>⚠️ Mapa de Riscos</h3>
+                    <p>Matriz interativa + plano de ação</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>📁 Biblioteca de Modelos</h3>
+                    <p>Word, Excel editáveis</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>💬 Fórum de Experiências</h3>
+                    <p>+65 mil participantes</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
+                
+                <article class="tool-card">
+                    <h3>📜 Reforma Tributária 2025/2026</h3>
+                    <p>IBS/CBS - simulador e guias</p>
+                    <a href="#" class="btn-tool">Acessar ferramenta</a>
+                </article>
             </div>
-            <div class="grid" id="externalToolsGrid"></div>
-        </div>
+        </section>
 
+        <!-- Rodapé -->
         <footer>
-            <i class="fas fa-shield-alt"></i> Portal integrado de conformidade • Transparência e gestão participativa • Acesse as ferramentas diretamente
+            <p>
+                <i class="fas fa-copyright"></i> 2026 • Erigutemberg Meneses • 
+                <a href="https://erigutembergmeneses-jpg.github.io" target="_blank">erigutembergmeneses-jpg.github.io</a>
+            </p>
+            <p style="margin-top: 8px; font-size: 0.85rem; color: #95a5a6;">
+                Projeto educacional baseado na Teoria das Janelas Quebradas aplicada à gestão condominial.
+            </p>
         </footer>
+        
     </div>
 
-    <script>
-        // Base do repositório oficial (todas as ferramentas estão armazenadas aqui)
-        const REPO_BASE = 'https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/';
-
-        // Mapeamento das ferramentas que devem ser recolhidas do site e estar funcionando na home page
-        const ferramentasRepositório = [
-            { nome: "📄 Regulamento Conselho Interativo", descricao: "Web interativa + .docx editável", url: REPO_BASE + "regulamento-conselho.html", icone: "fa-file-contract" },
-            { nome: "🧮 Calculadora de Quóruns Legal", descricao: "Assembleias, maiorias simples e qualificada", url: REPO_BASE + "calculadora-quoruns.html", icone: "fa-calculator" },
-            { nome: "⚖️ Simulador Responsabilidade Civil", descricao: "Cálculo de riscos e exposição jurídica", url: REPO_BASE + "simulador-riscos-civil.html", icone: "fa-scale-balanced" },
-            { nome: "📊 Conciliação Bancária", descricao: "Página explicativa + planilha Excel", url: REPO_BASE + "conciliacao-bancaria.html", icone: "fa-file-invoice-dollar" },
-            { nome: "📺 Tutorial Como ler Balancete", descricao: "Vídeo prático Sindiconet", url: REPO_BASE + "video-tutorial-balancete.html", icone: "fa-video" },
-            { nome: "✅ Checklist Auditoria", descricao: "Interativo + pontuação automática", url: REPO_BASE + "checklist-fiscal.html", icone: "fa-clipboard-check" },
-            { nome: "🌿 Dashboard ESG", descricao: "Métricas sustentáveis, ROI e carbono", url: REPO_BASE + "dashboard-esg-completo.html", icone: "fa-chart-line" },
-            { nome: "⚡ ROI Eficiência Energética", descricao: "Payback, redução de CO₂ e economia", url: REPO_BASE + "roi-energetico.html", icone: "fa-solar-panel" },
-            { nome: "⚠️ Mapa de Riscos", descricao: "Matriz interativa + plano de ação", url: REPO_BASE + "matriz-riscos.html", icone: "fa-map" },
-            { nome: "📁 Biblioteca de Modelos", descricao: "Word, Excel editáveis", url: REPO_BASE + "biblioteca-modelos.html", icone: "fa-folder-open" },
-            { nome: "💬 Fórum de Experiências", descricao: "+65 mil participantes", url: REPO_BASE + "forum-experiencias.html", icone: "fa-comments" },
-            { nome: "📜 Reforma Tributária 2025/2026", descricao: "IBS/CBS - simulador e guias", url: REPO_BASE + "reforma-tributaria-2025.html", icone: "fa-file-signature" }
-        ];
-
-        // Inserir os cards das ferramentas do repositório dentro do grid externo
-        const externalGrid = document.getElementById('externalToolsGrid');
-        if (externalGrid) {
-            ferramentasRepositório.forEach(ft => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div class="card-header">
-                        <i class="fas ${ft.icone}"></i>
-                        <h2>${ft.nome}</h2>
-                    </div>
-                    <div class="card-content">
-                        <p>${ft.descricao}</p>
-                        <div class="btn-group" style="margin-top: 1rem;">
-                            <a href="${ft.url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#2c7a6e;">
-                                <i class="fas fa-external-link-alt"></i> Acessar ferramenta
-                            </a>
-                        </div>
-                    </div>
-                `;
-                externalGrid.appendChild(card);
-            });
-        }
-
-        // Função auxiliar para abrir ferramentas do repositório (mesmo padrão)
-        function abrirFerramenta(caminho) {
-            window.open(REPO_BASE + caminho, '_blank');
-        }
-
-        // Mapeamento dos botões principais para as ferramentas do repositório (funcionamento direto)
-        document.getElementById('regulamentoOnlineBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('regulamento-conselho.html'); });
-        document.getElementById('baixarDocxBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('modelo-regulamento.docx'); window.open(REPO_BASE + 'regulamento-conselho.html', '_blank'); });
-        document.getElementById('calculadoraQuorumBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('calculadora-quoruns.html'); });
-        document.getElementById('simularRiscoBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('simulador-riscos-civil.html'); });
-        document.getElementById('conciliacaoBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('conciliacao-bancaria.html'); });
-        document.getElementById('videoBalanceteBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('video-tutorial-balancete.html'); });
-        document.getElementById('checklistAuditoriaBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('checklist-fiscal.html'); });
-        document.getElementById('esgDashboardBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('dashboard-esg-completo.html'); });
-        document.getElementById('roiEnergiaBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('roi-energetico.html'); });
-        document.getElementById('mapaRiscosBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('matriz-riscos.html'); });
-        document.getElementById('bibliotecaModelosBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('biblioteca-modelos.html'); });
-        document.getElementById('forumBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('forum-experiencias.html'); });
-        document.getElementById('legislacaoBtn')?.addEventListener('click', (e) => { e.preventDefault(); abrirFerramenta('reforma-tributaria-2025.html'); });
-
-        console.log("Portal carregado com sucesso — todas as ferramentas do repositório estão disponíveis e funcionando.");
-    </script>
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
