@@ -142,3 +142,7 @@ footer {
         font-size: 0.9rem;
     }
 }
+body {
+  background: url('janelas-quebradas.bg') no-repeat center center fixed;
+  background-size: cover;
+}
