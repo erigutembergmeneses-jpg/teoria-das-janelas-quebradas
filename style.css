@@ -1,4 +1,25 @@
-* {
+/* Overlay opcional para melhorar contraste do texto sobre o background */
+.container {
+    position: relative;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.88); /* Ajuste a opacidade conforme necessário */
+    border-radius: 15px;
+    z-index: -1;
+}
+
+/* Garantir que os elementos fiquem acima do overlay */
+.container > * {
+    position: relative;
+    z-index: 1;
+}* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
