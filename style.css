@@ -1,246 +1,115 @@
-css
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Corpo com imagem de fundo */
 body {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: url('janelas-quebradas-bg.png') no-repeat center center fixed;
     background-size: cover;
-    position: relative;
-    color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1.5rem;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* Overlay escuro para dar contraste e aspecto profissional */
+/* Overlay para contraste */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(3px);
-    z-index: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: -1;
 }
 
+/* Container */
 .container {
-    position: relative;
-    z-index: 2;
-    max-width: 1300px;
-    width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
+/* Título e subtítulo */
 h1 {
-    font-size: 2.8rem;
     text-align: center;
-    letter-spacing: -0.5px;
-    font-weight: 700;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    color: #222;
+    margin-bottom: 10px;
 }
 
 .subtitle {
     text-align: center;
     font-size: 1.2rem;
-    opacity: 0.9;
-    margin-bottom: 3rem;
-    font-style: italic;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    display: inline-block;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 0.5rem;
+    color: #444;
+    margin-bottom: 30px;
 }
 
+/* Cards */
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
     justify-content: center;
+    gap: 30px;
 }
 
 .card {
-    background: rgba(20, 20, 30, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 32px;
-    padding: 2rem 1.8rem;
-    flex: 1;
-    min-width: 280px;
-    max-width: 550px;
-    box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 300px;
+    transition: transform 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 28px 40px -15px rgba(0,0,0,0.6);
-    background: rgba(25, 25, 38, 0.9);
+    transform: translateY(-5px);
 }
 
 .card-icon {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
 }
 
 .card h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    border-left: 5px solid #f39c12;
-    padding-left: 1rem;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: #007BFF;
 }
 
 .card p {
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-    color: #e0e0e0;
+    margin-bottom: 15px;
+    color: #444;
 }
 
-.button-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin: 1.5rem 0 1rem;
-}
-
+/* Botões */
 .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.3rem;
-    border-radius: 60px;
+    display: inline-block;
+    padding: 12px 20px;
+    margin: 8px;
     text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
-    font-size: 0.9rem;
-    border: none;
-    cursor: pointer;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .btn-primary {
-    background: #f39c12;
-    color: #1e1e2a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    background-color: #007BFF;
+    color: white;
 }
 
 .btn-primary:hover {
-    background: #e67e22;
-    transform: scale(1.02);
-    color: white;
+    background-color: #0056b3;
+    transform: scale(1.05);
 }
 
-.btn-secondary {
-    background: rgba(255,255,255,0.2);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.5);
-}
-
-.btn-secondary:hover {
-    background: rgba(255,255,255,0.35);
-}
-
-/* Ilustração personalizada (estilo minimalista) */
-.illustration {
-    background: rgba(0,0,0,0.4);
-    border-radius: 24px;
-    padding: 1.2rem;
-    margin: 1rem 0;
-    text-align: center;
-}
-
-.broken-windows-demo {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.8rem;
-}
-
-.building {
-    background: #5a4a3a;
-    width: 140px;
-    padding: 15px 8px;
-    border-radius: 12px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    box-shadow: inset 0 0 0 2px #3e2e22, 0 6px 0 #2f241b;
-}
-
-.window {
-    background: #aac7db;
-    height: 55px;
-    border-radius: 8px;
-    box-shadow: inset 0 0 0 2px #2c3e4e;
-    transition: 0.1s;
-}
-
-.window.broken {
-    background: #6d7f8b;
-    position: relative;
-    overflow: hidden;
-}
-
-.window.broken::after {
-    content: "💔";
-    font-size: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.8;
-}
-
-.img-caption {
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
-    color: #ddd;
-}
-
-.card-footnote {
-    font-style: italic;
-    font-size: 0.85rem;
-    text-align: center;
-    margin-top: 1.2rem;
-    border-top: 1px dashed rgba(255,255,255,0.3);
-    padding-top: 1rem;
-}
-
+/* Rodapé */
 footer {
     text-align: center;
-    margin-top: 3.5rem;
-    font-size: 0.8rem;
-    opacity: 0.7;
-}
-
-/* Responsivo */
-@media (max-width: 800px) {
-    .cards {
-        flex-direction: column;
-        align-items: center;
-    }
-    h1 {
-        font-size: 2rem;
-    }
-    .card {
-        width: 100%;
-        max-width: 100%;
-    }
-    .building {
-        width: 110px;
-    }
-    .window {
-        height: 45px;
-    }
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: #666;
 }
