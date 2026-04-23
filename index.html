@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="overlay"></div> <!-- Para dar contraste e legibilidade sobre a imagem de fundo -->
     <main class="container">
         <h1>Teoria das Janelas Quebradas</h1>
         <p class="subtitle">Criminologia, ordem urbana e impacto social</p>
@@ -19,8 +19,8 @@
                 <h2>Leitura do artigo original</h2>
                 <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública.</p>
                 <div class="button-group">
-                    <a href="#" class="btn btn-primary" onclick="abrirModalPDF('Broken Windows (Janelas Quebradas).pdf', 'Artigo Original: Broken Windows')">📖 Ler artigo (PDF)</a>
-                    <a href="#" class="btn btn-secondary" onclick="abrirModalPDF('teoria-janelas.pdf', 'Teoria das Janelas Quebradas - Versão Completa')">📘 Teoria resumida</a>
+                    <a href="Broken%20Windows%20(Janelas%20Quebradas).pdf" class="btn btn-primary" target="_blank">📖 Ler artigo (PDF)</a>
+                    <a href="teoria-janelas.pdf" class="btn btn-secondary" target="_blank">📘 Teoria resumida</a>
                 </div>
             </div>
 
@@ -30,6 +30,7 @@
                 <h2>Teoria em ilustração</h2>
                 <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular crimes mais graves.</p>
                 <div class="illustration">
+                    <!-- Representação gráfica simplificada + legenda -->
                     <div class="broken-windows-demo">
                         <div class="building">
                             <div class="window broken"></div>
@@ -46,7 +47,7 @@
                     </div>
                     <p class="img-caption">⬆️ Representação: janelas quebradas geram mais vandalismo e criminalidade.</p>
                 </div>
-                <p class="card-footnote">"A desordem visível incentiva o crime" — Wilson & Kelling, 1982.</p>
+                <p class="card-footnote">"A desordre visível incentiva o crime" — Wilson & Kelling, 1982.</p>
             </div>
         </div>
 
@@ -55,198 +56,6 @@
         </footer>
     </main>
 
-    <!-- Modal para visualização de PDFs -->
-    <div id="modal-pdf" class="modal-pdf">
-        <div class="modal-content">
-            <span class="modal-close" onclick="fecharModalPDF()">&times;</span>
-            <h3 id="modal-pdf-title">Visualizando Documento</h3>
-            <div class="pdf-container">
-                <iframe id="pdf-frame" src="" frameborder="0"></iframe>
-            </div>
-            <div class="modal-actions">
-                <a id="pdf-download-link" href="" target="_blank" class="btn-download" download>
-                    <i class="fas fa-download"></i> Baixar PDF
-                </a>
-                <button class="btn-secondary" onclick="fecharModalPDF()">Fechar</button>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
-</body>
-
-    </section>
-
-    <!-- Seção: Resumo da Teoria -->
-    <section id="teoria" class="summary">
-      <h2><i class="fas fa-book-open"></i> Resumo da Teoria</h2>
-      
-      <div class="theory-grid">
-        <article class="theory-card">
-          <div class="card-icon">
-            <i class="fas fa-eye"></i>
-          </div>
-          <h3>Origem</h3>
-          <p>Proposta por Wilson & Kelling (1982), baseada em experimentos de Philip Zimbardo. Demonstra como sinais visuais de desordem incentivam comportamentos antissociais.</p>
-        </article>
-
-        <article class="theory-card">
-          <div class="card-icon">
-            <i class="fas fa-chain"></i>
-          </div>
-          <h3>Efeito Cascata</h3>
-          <p>Uma janela quebrada não reparada sinaliza abandono, encorajando mais vandalismo, que pode evoluir para crimes mais graves.</p>
-        </article>
-
-        <article class="theory-card">
-          <div class="card-icon">
-            <i class="fas fa-shield-alt"></i>
-          </div>
-          <h3>Prevenção</h3>
-          <p>Manutenção rápida, comunicação clara e envolvimento comunitário criam um ciclo virtuoso de cuidado e respeito mútuo.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- Seção: Aplicação em Condomínios -->
-    <section id="aplicacao" class="application">
-      <h2><i class="fas fa-building"></i> Aplicação Prática</h2>
-      
-      <div class="application-table-wrapper">
-        <table class="application-table">
-          <thead>
-            <tr>
-              <th>Sinal de "Janela Quebrada"</th>
-              <th>Risco Associado</th>
-              <th>Ação Preventiva</th>
-              <th>Prazo Ideal</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Lâmpada queimada na área comum</td>
-              <td>Sensação de insegurança; atrai vandalismo</td>
-              <td>Substituição imediata + checklist de iluminação</td>
-              <td>24-48h</td>
-            </tr>
-            <tr>
-              <td>Lixo acumulado fora do horário</td>
-              <td>Pragas; mau cheiro; desvalorização</td>
-              <td>Comunicação clara + fiscalização</td>
-              <td>Imediato</td>
-            </tr>
-            <tr>
-              <td>Pichação não removida</td>
-              <td>Estímulo a novas pichações</td>
-              <td>Limpeza em até 24h + câmeras</td>
-              <td>24h</td>
-            </tr>
-            <tr>
-              <td>Portão com defeito intermitente</td>
-              <td>Acesso não autorizado; acidentes</td>
-              <td>Manutenção preventiva contratada</td>
-              <td>72h</td>
-            </tr>
-            <tr>
-              <td>Reuniões de condomínio sem quórum</td>
-              <td>Decisões questionáveis; conflitos</td>
-              <td>Comunicação antecipada + múltiplos canais</td>
-              <td>Contínuo</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Seção: Ferramentas -->
-    <section id="ferramentas" class="tools">
-      <h2><i class="fas fa-tools"></i> Ferramentas de Gestão</h2>
-      
-      <div class="tools-grid">
-        <div class="tool-card">
-          <h3><i class="fas fa-calculator"></i> Calculadora de Quóruns</h3>
-          <p>Calcule quóruns para assembleias em 1ª e 2ª convocação conforme a convenção do seu condomínio.</p>
-          <button class="btn-tool" onclick="abrirCalculadora()">Calcular Agora</button>
-        </div>
-
-        <div class="tool-card">
-          <h3><i class="fas fa-clipboard-check"></i> Checklist de Auditoria</h3>
-          <p>Avalie 8 pontos críticos de manutenção e prevenção com pontuação automática e sugestões.</p>
-          <button class="btn-tool" onclick="abrirChecklist()">Iniciar Checklist</button>
-        </div>
-
-        <div class="tool-card">
-          <h3><i class="fas fa-chart-line"></i> Dashboard ESG</h3>
-          <p>Métricas de sustentabilidade, eficiência energética e impacto social para condomínios conscientes.</p>
-          <button class="btn-tool" onclick="abrirESG()">Explorar Dashboard</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção: Recursos -->
-    <section id="recursos" class="resources">
-      <h2><i class="fas fa-link"></i> Recursos Adicionais</h2>
-      
-      <div class="resources-list">
-        <a href="#" class="resource-item">
-          <i class="fas fa-file-alt"></i>
-          <div>
-            <strong>Regulamento do Conselho Fiscal</strong>
-            <span>Modelo editável em Word + versão web interativa</span>
-          </div>
-        </a>
-        
-        <a href="#" class="resource-item">
-          <i class="fas fa-video"></i>
-          <div>
-            <strong>Vídeo: Como Ler um Balancete</strong>
-            <span>Tutorial prático de 12 minutos — Sindiconet</span>
-          </div>
-        </a>
-        
-        <a href="#" class="resource-item">
-          <i class="fas fa-exclamation-triangle"></i>
-          <div>
-            <strong>Mapa de Riscos Interativo</strong>
-            <span>Identifique, classifique e priorize riscos condominiais</span>
-          </div>
-        </a>
-        
-        <a href="#" class="resource-item">
-          <i class="fas fa-comments"></i>
-          <div>
-            <strong>Fórum de Experiências</strong>
-            <span>+65 mil síndicos trocando soluções reais</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- Rodapé -->
-  <footer class="main-footer">
-    <p>
-      <i class="fas fa-copyright"></i> 2026 Erigutemberg Meneses — 
-      <a href="https://erigutembergmeneses.com.br" target="_blank">erigutembergmeneses.com.br</a>
-    </p>
-    <p class="footer-note">
-      Conteúdo licenciado sob <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a>. 
-      Permitido uso educacional com atribuição.
-    </p>
-  </footer>
-
-  <!-- Botão Voltar ao Topo -->
-  <button id="backToTop" class="back-to-top" aria-label="Voltar ao topo">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">
-    <span id="toastMessage"></span>
-  </div>
-
-  <!-- JavaScript -->
-  <script src="script.js"></script>
 </body>
 </html>
