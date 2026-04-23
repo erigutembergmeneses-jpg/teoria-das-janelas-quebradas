@@ -2,436 +2,86 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>🚪 Teoria das Janelas Quebradas</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .overlay {
-            display: none;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, #2c3e50, #3498db);
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px;
-        }
-
-        h2 {
-            color: #2c3e50;
-            margin: 30px 0 15px 0;
-            border-left: 4px solid #3498db;
-            padding-left: 15px;
-            font-size: 1.8em;
-        }
-
-        h3 {
-            color: #34495e;
-            margin: 20px 0 10px 0;
-        }
-
-        /* Cards lado a lado - Grid principal */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #e0e0e0;
-            text-align: center;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .card-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .card h2 {
-            color: #3498db;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-left: none;
-            padding-left: 0;
-            font-size: 1.5em;
-        }
-
-        .card p {
-            color: #555;
-            margin: 15px 0;
-            text-align: left;
-        }
-
-        .card-footnote {
-            font-size: 0.85em;
-            color: #7f8c8d;
-            font-style: italic;
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-
-        /* Cards lado a lado (Resumo e Efeito Cascata) */
-        .cards-row {
-            display: flex;
-            gap: 20px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .info-card {
-            flex: 1;
-            min-width: 250px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid #e0e0e0;
-        }
-
-        .info-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .info-card h3 {
-            color: #3498db;
-            margin-top: 0;
-            border-left: 3px solid #3498db;
-            padding-left: 10px;
-        }
-
-        .info-card p {
-            color: #555;
-            margin: 10px 0;
-        }
-
-        .theory-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 4px solid #3498db;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            overflow-x: auto;
-            display: block;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-
-        th {
-            background: #3498db;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background: #f8f9fa;
-        }
-
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 30px 0;
-        }
-
-        .tool-card {
-            background: #f8f9fa;
-            border-radius: 10px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .tool-card h3 {
-            color: #3498db;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 15px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .btn:hover {
-            background: #2980b9;
-        }
-
-        .btn-primary {
-            background: #3498db;
-        }
-
-        .btn-primary:hover {
-            background: #2980b9;
-        }
-
-        .btn-secondary {
-            background: #95a5a6;
-        }
-
-        .btn-secondary:hover {
-            background: #7f8c8d;
-        }
-
-        .btn-pdf {
-            background: #e74c3c;
-        }
-
-        .btn-pdf:hover {
-            background: #c0392b;
-        }
-
-        .btn-guide {
-            background: #27ae60;
-        }
-
-        .btn-guide:hover {
-            background: #229954;
-        }
-
-        .download-section {
-            background: #ecf0f1;
-            border-radius: 10px;
-            padding: 30px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .download-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .tools-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .cards-row {
-                flex-direction: column;
-            }
-
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoria das Janelas Quebradas - Docs</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Fontes do Google para imitar o estilo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@300;400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Ícones (FontAwesome para simular os ícones da imagem) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="overlay"></div>
-    <div class="container">
-        <header>
-            <h1>🚪 Teoria das Janelas Quebradas</h1>
-            <p class="subtitle">Ordem urbana e impacto social, aplicados aos condomínios</p>
-            <p>"Pequenas desordens não corrigidas levam à degradação progressiva do ambiente. Em condomínios, manutenção preventiva e cultura de cuidado são essenciais."</p>
-        </header>
 
-        <div class="content">
-            <!-- CARDS PRINCIPAIS: Artigo Original + Ilustração -->
-            <div class="cards-grid">
-                <!-- CARD 1: Leitura do artigo original -->
-                <div class="card">
-                    <div class="card-icon">📄</div>
-                    <h2>Leitura do artigo original</h2>
-                    <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
-                    <div class="button-group">
-                        <a href="Broken%20Windows%20(Janelas%20Quebradas).pdf" class="btn btn-primary" target="_blank">
-                            📖 Ler artigo (PDF)
-                        </a>
-                    </div>
-                </div>
+    <!-- Barra superior simulando GitHub Header -->
+    <header class="github-header">
+        <div class="header-content">
+            <div class="header-left">
+                <i class="fa-brands fa-github"></i>
+                <span class="breadcrumb">JanelasQuebradas-Docs / README.md</span>
+            </div>
+            <div class="header-right">
+                <i class="fa-solid fa-code-fork"></i> Fork
+            </div>
+        </div>
+    </header>
 
-                <!-- CARD 2: Ilustração da teoria -->
-                <div class="card">
-                    <div class="card-icon">🏚️</div>
-                    <h2>Ilustração da Teoria das Janelas Quebradas</h2>
-                    <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves.</p>
-                    <div class="button-group">
-                        <a href="teoria-janelas.pdf" class="btn btn-primary" target="_blank">
-                            🖼️ Ilustração da Teoria
-                        </a>
-                    </div>
-                    <p class="card-footnote">"A desordem visível incentiva o crime" — Wilson & Kelling, 1982.</p>
-                </div>
-            </div>
-            </div>
-
-            <!-- Prevenção -->
-            <div class="theory-card">
-                <h3>🛡️ Prevenção</h3>
-                <p>Manutenção rápida, comunicação clara e envolvimento comunitário criam um ciclo virtuoso de cuidado e respeito mútuo.</p>
-            </div>
-
-            <!-- Aplicação Prática - Tabela -->
-            <section>
-                <h2>📊 Aplicação Prática</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Sinal de "Janela Quebrada"</th>
-                            <th>Risco Associado</th>
-                            <th>Ação Preventiva</th>
-                            <th>Prazo Ideal</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Lâmpada queimada na área comum</td>
-                            <td>Sensação de insegurança; atrai vandalismo</td>
-                            <td>Substituição imediata + checklist de iluminação</td>
-                            <td>24-48h</td>
-                        </tr>
-                        <tr>
-                            <td>Lixo acumulado fora do horário</td>
-                            <td>Pragas; mau cheiro; desvalorização</td>
-                            <td>Comunicação clara + fiscalização</td>
-                            <td>Imediato</td>
-                        </tr>
-                        <tr>
-                            <td>Pichação não removida</td>
-                            <td>Estímulo a novas pichações</td>
-                            <td>Limpeza em até 24h + câmeras</td>
-                            <td>24h</td>
-                        </tr>
-                        <tr>
-                            <td>Portão com defeito intermitente</td>
-                            <td>Acesso não autorizado; acidentes</td>
-                            <td>Manutenção preventiva contratada</td>
-                            <td>72h</td>
-                        </tr>
-                        <tr>
-                            <td>Reuniões de condomínio sem quórum</td>
-                            <td>Decisões questionáveis; conflitos</td>
-                            <td>Comunicação antecipada + múltiplos canais</td>
-                            <td>Contínuo</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            </div>
-            <!-- Ferramentas de Gestão -->
-            <section>
-                <h2>🛠️ Ferramentas de Gestão</h2>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <h3>📐 Calculadora de Quóruns</h3>
-                        <p>Calcule quóruns para assembleias em 1ª e 2ª convocação conforme a convenção do seu condomínio.</p>
-                        <button class="btn" onclick="alert('Funcionalidade em desenvolvimento')">Acessar Calculadora</button>
-                    </div>
-                    <div class="tool-card">
-                        <h3>✓ Checklist de Auditoria</h3>
-                        <p>Avalie 8 pontos críticos de manutenção e prevenção com pontuação automática e sugestões.</p>
-                        <button class="btn" onclick="alert('Funcionalidade em desenvolvimento')">Iniciar Auditoria</button>
-                    </div>
-                    <div class="tool-card">
-                        <h3>🌱 Dashboard ESG</h3>
-                        <p>Métricas de sustentabilidade, eficiência energética e impacto social para condomínios conscientes.</p>
-                        <button class="btn" onclick="alert('Funcionalidade em desenvolvimento')">Ver Dashboard</button>
-                    </div>
-                </div>
-            </section>
+    <!-- Conteúdo Principal -->
+    <main class="hero-section">
+        
+        <!-- Títulos -->
+        <div class="titles-container">
+            <h1>TEORIA DAS JANELAS<br><span class="highlight">QUEBRADAS</span></h1>
+            <h2 class="subtitle">Chamada à Ação em Condomínio</h2>
         </div>
 
-        <footer>
-            <p>&copy; 2024 - Teoria das Janelas Quebradas aplicada à Gestão Condominial</p>
-            <p>Baseado nos estudos de Wilson, Kelling e Zimbardo | Repositório: Teoria das Janelas Quebradas</p>
-        </footer>
-    </div>
+        <!-- Elemento Central (Escudo Quebrado) -->
+        <!-- Nota: Como não temos a imagem original, criei um placeholder visual com CSS -->
+        <div class="shield-container">
+            <div class="shield">
+                <div class="shield-inner"></div>
+                <div class="crack crack-1"></div>
+                <div class="crack crack-2"></div>
+                <div class="crack crack-3"></div>
+            </div>
+        </div>
+
+        <!-- Cards Flutuantes -->
+        <div class="cards-wrapper">
+            
+            <!-- Card Esquerdo -->
+            <div class="card card-left">
+                <div class="card-icon">
+                    <i class="fa-regular fa-file-lines"></i>
+                </div>
+                <h3>Leitura do artigo original</h3>
+                <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
+                <a href="Broken Windows (Janelas Quebradas).pdf" target="_blank" class="btn-card">
+                    <i class="fa-regular fa-book-open"></i> Ler artigo (PDF)
+                </a>
+            </div>
+
+            <!-- Card Direito -->
+            <div class="card card-right">
+                <div class="card-icon">
+                    <i class="fa-solid fa-house-user"></i>
+                </div>
+                <h3>Ilustração da Teoria das Janelas Quebradas</h3>
+                <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves.</p>
+                <a href="teoria-janelas.pdf" target="_blank" class="btn-card">
+                    <i class="fa-regular fa-image"></i> Ilustração da Teoria
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Rodapé com Citação -->
+    <footer>
+        <p class="quote">"A desordem visível incentiva o crime" — Wilson & Kelling, 1982</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
