@@ -1,33 +1,29 @@
-# 🪟 Teoria das Janelas Quebradas
+# JanelasQuebradas-Docs
 
-Site informativo e referencial sobre o conceito criminológico da "Teoria das Janelas Quebradas" (Broken Windows Theory), desenvolvido por James Q. Wilson e George L. Kelling.
+Este repositório contém a documentação e recursos visuais para o projeto de conscientização sobre a **Teoria das Janelas Quebradas** aplicada à segurança em condomínios.
 
-## 📁 Estrutura do repositório
+## Sobre o Projeto
 
-- `index.html` — Página principal com dois cards: Leitura do artigo original e Ilustração da teoria.
-- `style.css` — Estilos profissionais, responsivos, com overlay e fundo `janelas-quebradas-bg.png`.
-- `script.js` — Interações leves e verificação de assets.
-- `Broken Windows (Janelas Quebradas).pdf` — Artigo original (em inglês / traduzido).
-- `teoria-janelas.pdf` — Resumo ou versão comentada da teoria.
-- `janelas-quebradas-bg.png` — Imagem de fundo do site.
+Baseado no artigo seminal de **James Q. Wilson** e **George L. Kelling** (1982), este material visa ilustrar como a desordem visível e a sensação de abandono podem incentivar comportamentos criminosos.
 
-## 🚀 Como usar
+A metáfora sugere que se uma janela quebrada em um prédio não for reparada, logo todas as outras janelas estarão quebradas. Da mesma forma, pequenos problemas não resolvidos em um condomínio (lâmpadas queimadas, pichações, lixo) sinalizam descaso, encorajando infrações mais graves.
 
-Basta abrir o arquivo `index.html` em qualquer navegador moderno.  
-Os links para os PDFs abrirão em nova aba, e a ilustração demonstra o conceito visualmente.
+## Estrutura do Arquivo
 
-## 🎨 Funcionalidades
+A página web incluída neste repositório serve como uma página de destino (landing page) para o material.
 
-- Layout em dois cards lado a lado (responsivo).
-- Fundo temático com imagem `janelas-quebradas-bg.png`.
-- Efeito de sobreposição escura para contraste e leitura confortável.
-- Botões estilizados para acesso aos arquivos PDF.
-- Demonstração visual com "janelas quebradas" em HTML/CSS.
+- `index.html`: Estrutura principal da página.
+- `style.css`: Estilização com tema escuro e cards flutuantes.
+- `script.js`: Interatividade básica e animações.
+- `Broken Windows (Janelas Quebradas).pdf`: O paper original de Wilson & Kelling.
+- `teoria-janelas.pdf`: Material visual/infográfico explicativo.
 
-## 🔧 Personalização
+## Como Usar
 
-Caso queira trocar o conteúdo dos PDFs, basta substituir os arquivos mantendo os mesmos nomes ou alterar os caminhos no `index.html`.
+1. Clone o repositório.
+2. Abra o arquivo `index.html` em qualquer navegador moderno.
+3. Utilize os botões na tela para baixar o artigo original ou a ilustração da teoria.
 
----
+## Citação
 
-Desenvolvido para fins didáticos e preservação do conhecimento científico.
+> "A desordem visível incentiva o crime" — Wilson & Kelling, 1982
