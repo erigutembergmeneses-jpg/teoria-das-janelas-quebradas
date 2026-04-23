@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Teoria das Janelas Quebradas aplicada à gestão condominial: prevenção, manutenção e cultura de cuidado.">
-  <meta name="author" content="Erigutemberg Meneses">
-  <meta name="keywords" content="janelas quebradas, condomínio, gestão, prevenção, manutenção, teoria">
-  
-  <title>🚪 Teoria das Janelas Quebradas | Gestão Condominial</title>
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- CSS Principal -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Teoria das Janelas Quebradas</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Loading Overlay -->
-  <div id="loading" class="loading-overlay">
-    <div class="loading-spinner"></div>
-    <p>Carregando teoria...</p>
-  </div>
+    <div class="overlay"></div>
+    <main class="container">
+        <h1>Teoria das Janelas Quebradas</h1>
+        <p class="subtitle">Criminologia, ordem urbana e impacto social</p>
 
-  <!-- Barra de Progresso -->
-  <div class="scroll-progress">
-    <div class="scroll-progress-bar" id="progressBar"></div>
-  </div>
+        <div class="cards">
+            <!-- CARD 1: Leitura do artigo original -->
+            <div class="card">
+                <div class="card-icon">📄</div>
+                <h2>Leitura do artigo original</h2>
+                <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública.</p>
+                <div class="button-group">
+                    <a href="#" class="btn btn-primary" onclick="abrirModalPDF('Broken%20Windows%20(Janelas%20Quebradas).pdf.pdf', 'Artigo Original: Broken Windows')">📖 Ler artigo (PDF)</a>
+                    <a href="#" class="btn btn-secondary" onclick="abrirModalPDF('teoria-janelas.pdf', 'Teoria das Janelas Quebradas - Versão Completa')">📘 Teoria resumida</a>
+                </div>
+            </div>
 
-  <!-- Cabeçalho Fixo -->
-  <header class="main-header">
-    <nav class="navbar">
-      <div class="nav-brand">
-        <i class="fas fa-window-maximize"></i>
-        <span>Janelas Quebradas</span>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#teoria">Teoria</a></li>
-        <li><a href="#aplicacao">Aplicação</a></li>
-        <li><a href="#ferramentas">Ferramentas</a></li>
-        <li><a href="#recursos">Recursos</a></li>
-      </ul>
-      <button class="nav-toggle" aria-label="Alternar menu">
-        <i class="fas fa-bars"></i>
-      </button>
-    </nav>
-  </header>
+            <!-- CARD 2: Ilustração da teoria -->
+            <div class="card">
+                <div class="card-icon">🏚️</div>
+                <h2>Teoria em ilustração</h2>
+                <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular crimes mais graves.</p>
+                <div class="illustration">
+                    <div class="broken-windows-demo">
+                        <div class="building">
+                            <div class="window broken"></div>
+                            <div class="window broken"></div>
+                            <div class="window"></div>
+                            <div class="window broken"></div>
+                        </div>
+                        <div class="building">
+                            <div class="window broken"></div>
+                            <div class="window"></div>
+                            <div class="window broken"></div>
+                            <div class="window broken"></div>
+                        </div>
+                    </div>
+                    <p class="img-caption">⬆️ Representação: janelas quebradas geram mais vandalismo e criminalidade.</p>
+                </div>
+                <p class="card-footnote">"A desordem visível incentiva o crime" — Wilson & Kelling, 1982.</p>
+            </div>
+        </div>
 
-  <!-- Container Principal -->
-  <main class="container">
-    
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>🚪 Teoria das Janelas Quebradas</h1>
-      <p class="subtitle">Aplicada à Gestão Condominial</p>
-      <p class="hero-description">
-        "Pequenas desordens não corrigidas levam à degradação progressiva do ambiente. 
-        Em condomínios, manutenção preventiva e cultura de cuidado são essenciais."
-      </p>
-      
-      <!-- Botões PDF -->
-      <div class="pdf-buttons">
-        <a href="Broken Windows (Janelas Quebradas).pdf" class="btn-pdf btn-primary" target="_blank" download>
-          <i class="fas fa-file-pdf"></i>
-          Baixar Teoria Completa
-        </a>
-        <a href="Guia-Pratico-Condominios.pdf" class="btn-pdf btn-secondary" target="_blank" download>
-          <i class="fas fa-download"></i>
-          Guia Prático Síndicos
-        </a>
-      </div>
+        <footer>
+            <p>Baseado no conceito criminológico | Repositório: Teoria das Janelas Quebradas</p>
+        </footer>
+    </main>
+
+    <!-- Modal para visualização de PDFs -->
+    <div id="modal-pdf" class="modal-pdf">
+        <div class="modal-content">
+            <span class="modal-close" onclick="fecharModalPDF()">&times;</span>
+            <h3 id="modal-pdf-title">Visualizando Documento</h3>
+            <div class="pdf-container">
+                <iframe id="pdf-frame" src="" frameborder="0"></iframe>
+            </div>
+            <div class="modal-actions">
+                <a id="pdf-download-link" href="" target="_blank" class="btn-download" download>
+                    <i class="fas fa-download"></i> Baixar PDF
+                </a>
+                <button class="btn-secondary" onclick="fecharModalPDF()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
     </section>
 
     <!-- Seção: Resumo da Teoria -->
