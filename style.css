@@ -267,3 +267,111 @@ footer {
         opacity: 0.3;
     }
 }
+/* Estilos para a seção CTA */
+.cta-container {
+    background: linear-gradient(135deg, #f6f8fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin: 3rem 0;
+    text-align: center;
+    border: 1px solid #d0d7de;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0969da, #2da44e, #0969da);
+}
+
+.cta-title {
+    font-family: 'Merriweather', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #24292f;
+    margin-bottom: 1rem;
+}
+
+.cta-description {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    color: #57606a;
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+    line-height: 1.6;
+}
+
+.cta-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #24292f;
+}
+
+.benefit-item i {
+    color: #2da44e;
+    font-size: 1.1rem;
+}
+
+.btn-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #0969da;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(9, 105, 218, 0.2);
+}
+
+.btn-cta:hover {
+    background: #0550ae;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(9, 105, 218, 0.3);
+}
+
+.info-note {
+    background: #fff8e7;
+    border-left: 4px solid #e36209;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #57606a;
+}
+
+@media (max-width: 768px) {
+    .cta-container {
+        padding: 1.5rem;
+    }
+    .cta-title {
+        font-size: 1.25rem;
+    }
+    .cta-description {
+        font-size: 0.9rem;
+    }
+    .btn-cta {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
