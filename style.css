@@ -375,111 +375,52 @@ footer {
         font-size: 0.95rem;
     }
 }
-/* Estilo para o card de busca */
-.busca-card {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-}
+/* ========================================== */
+/* GRID PARA OS CARDS FICAREM LADO A LADO     */
+/* ========================================== */
 
-.busca-card .card-icon {
-    font-size: 2.5rem;
-}
-
-.busca-card h3 {
-    color: white;
-}
-
-.busca-card p {
-    color: rgba(255,255,255,0.9);
-    font-size: 0.9rem;
-}
-
-.fake-search {
-    background: rgba(255,255,255,0.2);
-    border-radius: 40px;
-    padding: 8px 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin: 15px 0;
-    backdrop-filter: blur(4px);
-}
-
-.fake-icon {
-    font-size: 1rem;
-}
-
-.fake-text {
-    color: white;
-    font-size: 0.85rem;
-    opacity: 0.8;
-}
-
-.busca-card .btn {
-    background: white;
-    color: #667eea;
-    padding: 10px 20px;
-    border-radius: 30px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    transition: transform 0.2s;
-}
-
-.busca-card .btn:hover {
-    transform: scale(1.02);
-    background: #f0f0f0;
-}
-
-.qr-mini {
-    margin-top: 15px;
-    font-size: 0.7rem;
-    opacity: 0.8;
-}
-
-/* Responsivo: em celular, os cards empilham naturalmente */
-@media (max-width: 768px) {
-    .busca-card {
-        order: 4; /* Mantém a ordem correta */
-    }
-}
-/* Container que organiza os cards em uma grade */
 .cards-grid {
     display: grid;
-    /* Cria colunas flexíveis que se ajustam:
-       - Em telas grandes: 4 colunas iguais
-       - Em telas médias/pequenas: 2 ou 1 coluna */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem; /* Espaçamento entre os cards */
-    margin: 2rem 0;
-    padding: 0 1rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 1rem;
+    padding: 0;
 }
 
-/* Classe para cada card individual - personalize cores/bordas conforme seu estilo original */
-.card-busca { /* ou o nome da classe que você usa nos cards atuais */
-    background: #f8f9fa;
+/* Ajuste para tablets (2 colunas) */
+@media (max-width: 1024px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Ajuste para celulares (1 coluna) */
+@media (max-width: 640px) {
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Estilo de cada card */
+.card-busca {
+    background: #ffffff;
     border-radius: 1rem;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #e9ecef;
 }
 
 .card-busca:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
-/* Garante que os cards fiquem empilhados em celulares muito pequenos */
-@media (max-width: 480px) {
-    .cards-grid {
-        gap: 1rem;
-    }
-}
-/* Estilos para os botões dos cards */
+/* Botões dentro dos cards */
 .btn-card {
     display: inline-block;
     margin-top: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
     background: #2a5298;
     color: white;
     text-decoration: none;
@@ -492,7 +433,7 @@ footer {
     background: #1e3c72;
 }
 
-/* Estilos para as tags do card 3 */
+/* Tags do card 3 */
 .tags {
     display: flex;
     flex-wrap: wrap;
@@ -501,17 +442,18 @@ footer {
 }
 
 .tags span {
-    background: #e0e0e0;
-    padding: 0.2rem 0.6rem;
+    background: #e9ecef;
+    padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: 0.75rem;
-    color: #333;
+    color: #2a5298;
 }
 
-/* Destaque para o card de busca */
+/* Card de busca em destaque */
 .busca-destaque {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
+    border: none;
 }
 
 .busca-destaque h3,
