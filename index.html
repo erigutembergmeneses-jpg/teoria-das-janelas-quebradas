@@ -1,133 +1,319 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teoria das Janelas Quebradas - Docs</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Roboto:wght@300;400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Teoria das Janelas Quebradas - Gestão de Condomínios</title>
+    <style>
+        /* ========================================== */
+        /* ESTILOS GERAIS                             */
+        /* ========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a2e;
+            line-height: 1.5;
+            min-height: 100vh;
+            /* Imagem de fundo */
+            background-image: url('janelas-quebradas-bg.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        /* Overlay escuro sobre o fundo para melhor contraste do texto */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Cabeçalho com olho vigilante */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .olho-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .olho-vigilante {
+            width: 80px;
+            height: auto;
+            animation: piscar 4s infinite ease-in-out;
+        }
+
+        @keyframes piscar {
+            0%, 90%, 100% { opacity: 1; transform: scaleY(1); }
+            95% { opacity: 0.3; transform: scaleY(0.1); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: -0.02em;
+        }
+
+        .header h1 span {
+            background: linear-gradient(135deg, #ffd700 0%, #ff8c00 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .header h2 {
+            font-size: 1.3rem;
+            font-weight: normal;
+            color: #f0f0f0;
+            margin-top: 0.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.8);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        /* ========================================== */
+        /* GRID DOS CARDS - LADO A LADO               */
+        /* ========================================== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        /* Tablet: 2 colunas */
+        @media (max-width: 1024px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Celular: 1 coluna */
+        @media (max-width: 640px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Estilo de cada card */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 1.2rem;
+            padding: 1.8rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.25s, box-shadow 0.25s;
+            border: 1px solid rgba(255,255,255,0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1e3c72;
+        }
+
+        .card p {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        /* Botões */
+        .btn {
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.7rem 1.3rem;
+            background: #2a5298;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+        .btn:hover {
+            background: #1e3c72;
+            transform: scale(1.02);
+        }
+
+        /* Tags do card de ferramentas */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .tag {
+            background: #e9ecef;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #2a5298;
+        }
+
+        /* Card de busca em destaque */
+        .card-destaque {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
+            backdrop-filter: blur(2px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .card-destaque h3,
+        .card-destaque p {
+            color: white;
+        }
+
+        .btn-destaque {
+            background: white;
+            color: #667eea;
+        }
+
+        .btn-destaque:hover {
+            background: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            color: #f0f0f0;
+            font-size: 0.8rem;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+        }
+
+        .footer a {
+            color: #ffd700;
+            text-decoration: none;
+        }
+
+        .qr-hint {
+            margin-top: 1rem;
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+    </style>
 </head>
 <body>
-
-    <header class="github-header">
-        <div class="header-content">
-            <div class="header-left">
-                <i class="fa-brands fa-github"></i>
-                <span class="breadcrumb">JanelasQuebradas-Docs / README.md</span>
+    <div class="container">
+        <!-- Cabeçalho com olho vigilante -->
+        <div class="header">
+            <div class="olho-container">
+                <img src="olho-vigilante.png" alt="Olho Vigilante" class="olho-vigilante">
             </div>
-            <div class="header-right">
-                <i class="fa-solid fa-code-fork"></i> Fork
+            <h1>TEORIA DAS <span>JANELAS QUEBRADAS</span></h1>
+            <h2>Chamada à Ação em Condomínio</h2>
+            <div class="badge">📚 Gestão Financeira e Patrimonial</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- GRID COM 4 CARDS LADO A LADO               -->
+        <!-- ========================================== -->
+        <div class="cards-grid">
+
+            <!-- CARD 1 - ARTIGO ORIGINAL -->
+            <div class="card">
+                <h3>📄 Leitura do artigo original</h3>
+                <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
+                <a href="Broken Windows (Janelas Quebradas).pdf" class="btn" target="_blank">📖 Ler artigo (PDF) →</a>
             </div>
-        </div>
-    </header>
 
-    <main class="hero-section">
-        
-        <div class="titles-container">
-            <h1>TEORIA DAS JANELAS<br><span class="highlight">QUEBRADAS</span></h1>
-            <h2 class="subtitle">Chamada à Ação em Condomínio</h2>
-        </div>
+            <!-- CARD 2 - ILUSTRAÇÃO -->
+            <div class="card">
+                <h3>🎨 Ilustração da Teoria</h3>
+                <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves, e como isso se traduz na gestão condominial.</p>
+                <a href="teoria-janelas.pdf" class="btn" target="_blank">🖼️ Ver ilustração →</a>
+            </div>
 
-        <div class="shield-container">
-            <img src="olho-vigilante.png" alt="Olho Vigilante" class="main-image">
-        </div>
-
-        <div class="cards-wrapper">
-            
-            <div class="card card-left">
-                <div class="card-icon">
-                    <i class="fa-regular fa-file-lines"></i>
+            <!-- CARD 3 - CONSELHO FISCAL -->
+            <div class="card">
+                <h3>📋 Conselho Fiscal: Ferramentas Práticas</h3>
+                <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial desenvolvidas especialmente para síndicos, conselheiros e administradores.</p>
+                <div class="tags">
+                    <span class="tag">Checklists</span>
+                    <span class="tag">Auditoria</span>
+                    <span class="tag">Calculadora</span>
+                    <span class="tag">Quóruns</span>
+                    <span class="tag">Dashboard ESG</span>
+                    <span class="tag">Modelos Documentos</span>
                 </div>
-    <h1>TEORIA DAS JANELAS QUEBRADAS</h1>
+                <a href="#" class="btn">📂 Acessar Repositório Completo →</a>
+                <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity:0.7;">Repositório arquivado com todas as ferramentas do Conselho Fiscal</p>
+            </div>
 
-<!-- ========== INÍCIO DA SEÇÃO DE CARDS COM GRID ========== -->
+            <!-- CARD 4 - BUSCA INTELIGENTE (DESTAQUE) -->
+            <div class="card card-destaque">
+                <h3>🔍 Busque qualquer assunto do livro</h3>
+                <p>Digite uma palavra ou tema e encontre o trecho exato na hora.</p>
+                <p><strong>📌 Exemplos:</strong> janela quebrada, cheque especial, Porto Velho, depreciação, conselho fiscal.</p>
+                <a href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" class="btn btn-destaque" target="_blank">
+                    🔎 Ir para a busca →
+                </a>
+            </div>
 
-<div class="cards-grid">
-
-    <!-- CARD 1 -->
-    <div class="card-busca">
-        <h3>📄 Leitura do artigo original</h3>
-        <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
-        <a href="#" class="btn-card">Ler artigo (PDF) →</a>
-    </div>
-
-    <!-- CARD 2 -->
-    <div class="card-busca">
-        <h3>🎨 Ilustração da Teoria</h3>
-        <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves.</p>
-        <a href="#" class="btn-card">Ilustração da Teoria →</a>
-    </div>
-
-    <!-- CARD 3 -->
-    <div class="card-busca">
-        <h3>📋 Conselho Fiscal: Ferramentas Práticas</h3>
-        <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial.</p>
-        <div class="tags">
-            <span>Checklists</span>
-            <span>Auditoria</span>
-            <span>Calculadora</span>
-            <span>Quóruns</span>
-            <span>Dashboard ESG</span>
-            <span>Modelos Documentos</span>
         </div>
-        <a href="#" class="btn-card">Acessar Repositório Completo →</a>
-    </div>
 
-    <!-- CARD 4 - BUSCA INTELIGENTE -->
-    <div class="card-busca busca-destaque">
-        <h3>🔍 Busque qualquer assunto do livro</h3>
-        <p>Digite uma palavra ou tema e encontre o trecho exato na hora.</p>
-        <p><strong>Exemplos:</strong> janela quebrada, cheque especial, Porto Velho, depreciação.</p>
-        <a href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" class="btn-card btn-busca" target="_blank">
-            Ir para a busca →
-        </a>
-    </div>
-
-</div>
-
-<!-- ========== FIM DA SEÇÃO DE CARDS COM GRID ========== -->
-
-</div>
-    
-    <h3>Conselho Fiscal: Ferramentas Práticas</h3>
-    <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial desenvolvidas especialmente para síndicos, conselheiros e administradores.</p>
-    
-    <div class="badge-list" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1rem 0 1.5rem 0;">
-        <span class="badge" style="background: #f6f8fa; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">
-            <i class="fa-solid fa-check-circle" style="color: #2da44e;"></i> Checklists Auditoria
-        </span>
-        <span class="badge" style="background: #f6f8fa; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">
-            <i class="fa-solid fa-check-circle" style="color: #2da44e;"></i> Calculadora Quóruns
-        </span>
-        <span class="badge" style="background: #f6f8fa; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">
-            <i class="fa-solid fa-check-circle" style="color: #2da44e;"></i> Dashboard ESG
-        </span>
-        <span class="badge" style="background: #f6f8fa; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">
-            <i class="fa-solid fa-check-circle" style="color: #2da44e;"></i> Modelos Documentos
-        </span>
-    </div>
-    
-    <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" 
-       target="_blank" 
-       rel="noopener noreferrer"
-       class="btn-card">
-        <i class="fa-solid fa-folder-open"></i> Acessar Repositório Completo
-    </a>
-    
-    <div style="margin-top: 1rem; font-size: 0.7rem; color: #8b949e; border-top: 1px solid #d0d7de; padding-top: 0.75rem;">
-        <i class="fa-solid fa-database"></i> Repositório arquivado com todas as ferramentas do Conselho Fiscal
-    </div>
-</div>
+        <!-- Rodapé com instrução do QR Code -->
+        <div class="footer">
+            <p>© 2024 - <strong>Teoria das Janelas Quebradas no Condomínio</strong></p>
+            <p>📱 <strong>QR Code no livro:</strong> Aponte a câmera do celular para este código e busque qualquer assunto do livro em segundos.</p>
+            <p class="qr-hint">🔍 Busque por: "cheque especial", "Porto Velho", "conselho fiscal", "depreciação" - encontre a página exata</p>
         </div>
-    </main>
-
-    <footer>
-        <p class="quote">"A desordem visível incentiva o crime" — Wilson & Kelling, 1982</p>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>
