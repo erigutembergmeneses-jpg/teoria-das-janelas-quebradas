@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Teoria das Janelas Quebradas aplicada à gestão de condomínios - Ferramentas para conselhos fiscais e síndicos.">
     <title>Teoria das Janelas Quebradas - Gestão de Condomínios</title>
     <style>
         /* ========================================== */
@@ -19,16 +20,17 @@
             color: #1a1a2e;
             line-height: 1.5;
             min-height: 100vh;
-            /* Imagem de fundo */
-            background-image: url('janelas-quebradas-bg.png');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            /* Fallback gradient + imagem de fundo */
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-image: url('janelas-quebradas-bg.png'), linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background-size: cover, auto;
+            background-position: center, center;
+            background-attachment: fixed, fixed;
+            background-repeat: no-repeat, no-repeat;
             position: relative;
         }
 
-        /* Overlay escuro sobre o fundo para melhor contraste do texto */
+        /* Overlay escuro sobre o fundo para melhor contraste */
         body::before {
             content: '';
             position: fixed;
@@ -36,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.65);
             z-index: -1;
         }
 
@@ -59,12 +61,24 @@
             display: flex;
             justify-content: center;
             margin-bottom: 1.5rem;
+            min-height: 80px; /* Evita layout shift se imagem falhar */
         }
 
         .olho-vigilante {
             width: 80px;
             height: auto;
             animation: piscar 4s infinite ease-in-out;
+            /* Fallback visual se imagem não carregar */
+            background: #ffd700;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .olho-vigilante::before {
+            content: '👁️';
         }
 
         @keyframes piscar {
@@ -73,13 +87,14 @@
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
             letter-spacing: -0.02em;
+            line-height: 1.2;
         }
 
         .header h1 span {
@@ -90,7 +105,7 @@
         }
 
         .header h2 {
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             font-weight: normal;
             color: #f0f0f0;
             margin-top: 0.5rem;
@@ -99,12 +114,13 @@
 
         .badge {
             display: inline-block;
-            background: rgba(102, 126, 234, 0.8);
+            background: rgba(102, 126, 234, 0.9);
             color: white;
-            padding: 0.3rem 0.8rem;
+            padding: 0.4rem 1rem;
             border-radius: 30px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             margin-top: 1rem;
+            font-weight: 500;
         }
 
         /* ========================================== */
@@ -113,7 +129,7 @@
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1.8rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
@@ -129,31 +145,36 @@
             .cards-grid {
                 grid-template-columns: 1fr;
             }
+            .header h1 {
+                font-size: 1.8rem;
+            }
         }
 
         /* Estilo de cada card */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(2px);
-            border-radius: 1.2rem;
-            padding: 1.8rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.25s, box-shadow 0.25s;
-            border: 1px solid rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(4px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border: 1px solid rgba(255,255,255,0.4);
             display: flex;
             flex-direction: column;
+            min-height: 280px;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 32px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.35);
             background: rgba(255, 255, 255, 1);
         }
 
         .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
             color: #1e3c72;
+            line-height: 1.3;
         }
 
         .card p {
@@ -161,54 +182,66 @@
             margin-bottom: 1rem;
             flex: 1;
             line-height: 1.5;
+            font-size: 0.95rem;
         }
 
         /* Botões */
         .btn {
-            display: inline-block;
-            margin-top: 0.5rem;
-            padding: 0.7rem 1.3rem;
-            background: #2a5298;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: auto;
+            padding: 0.75rem 1.4rem;
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
             color: white;
             text-decoration: none;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             text-align: center;
-            transition: all 0.2s;
+            transition: all 0.2s ease;
             border: none;
             cursor: pointer;
             align-self: flex-start;
+            box-shadow: 0 4px 12px rgba(42, 82, 152, 0.3);
         }
 
-        .btn:hover {
-            background: #1e3c72;
-            transform: scale(1.02);
+        .btn:hover, .btn:focus {
+            background: linear-gradient(135deg, #1e3c72, #162a5a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(42, 82, 152, 0.45);
+            outline: none;
+        }
+
+        .btn:active {
+            transform: translateY(0);
         }
 
         /* Tags do card de ferramentas */
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin: 1rem 0;
+            gap: 0.4rem;
+            margin: 0.8rem 0;
         }
 
         .tag {
-            background: #e9ecef;
-            padding: 0.25rem 0.75rem;
+            background: linear-gradient(135deg, #e9ecef, #dee2e6);
+            padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             font-weight: 600;
             color: #2a5298;
+            border: 1px solid rgba(42, 82, 152, 0.2);
         }
 
         /* Card de busca em destaque */
         .card-destaque {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95), rgba(118, 75, 162, 0.95));
-            backdrop-filter: blur(2px);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.98), rgba(118, 75, 162, 0.98));
+            backdrop-filter: blur(4px);
             color: white;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.6);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .card-destaque h3,
@@ -216,104 +249,270 @@
             color: white;
         }
 
+        .card-destaque .tag {
+            background: rgba(255,255,255,0.25);
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
         .btn-destaque {
             background: white;
             color: #667eea;
+            font-weight: 700;
         }
 
-        .btn-destaque:hover {
-            background: #f0f0f0;
-            transform: scale(1.02);
+        .btn-destaque:hover, .btn-destaque:focus {
+            background: #f8f9fa;
+            color: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255,255,255,0.4);
         }
 
         /* Rodapé */
         .footer {
             text-align: center;
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.3);
+            border-top: 1px solid rgba(255,255,255,0.35);
             color: #f0f0f0;
-            font-size: 0.8rem;
-            text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+            font-size: 0.85rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
         }
 
         .footer a {
             color: #ffd700;
             text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            color: #ffed4e;
+            text-decoration: underline;
         }
 
         .qr-hint {
             margin-top: 1rem;
-            font-size: 0.75rem;
-            opacity: 0.8;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Mensagem de erro para imagens faltando */
+        .image-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: rgba(255,215,0,0.2);
+            border: 2px dashed #ffd700;
+            border-radius: 50%;
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+
+        /* Acessibilidade: foco visível */
+        a:focus, button:focus {
+            outline: 3px solid #ffd700;
+            outline-offset: 2px;
+        }
+
+        /* Animação de entrada suave */
+        @media (prefers-reduced-motion: no-preference) {
+            .card {
+                animation: fadeInUp 0.4s ease forwards;
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            .card:nth-child(1) { animation-delay: 0.1s; }
+            .card:nth-child(2) { animation-delay: 0.2s; }
+            .card:nth-child(3) { animation-delay: 0.3s; }
+            .card:nth-child(4) { animation-delay: 0.4s; }
+            
+            @keyframes fadeInUp {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- Cabeçalho com olho vigilante -->
-        <div class="header">
+        <header class="header">
             <div class="olho-container">
-                <img src="olho-vigilante.png" alt="Olho Vigilante" class="olho-vigilante">
+                <!-- Imagem com fallback e tratamento de erro -->
+                <img 
+                    src="olho-vigilante.png" 
+                    alt="Olho Vigilante - Símbolo de monitoramento" 
+                    class="olho-vigilante"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="image-fallback" style="display:none;" aria-hidden="true">👁️</div>
             </div>
             <h1>TEORIA DAS <span>JANELAS QUEBRADAS</span></h1>
             <h2>Chamada à Ação em Condomínio</h2>
-            <div class="badge">📚 Gestão Financeira e Patrimonial</div>
-        </div>
+            <div class="badge" role="status">📚 Gestão Financeira e Patrimonial</div>
+        </header>
 
         <!-- ========================================== -->
         <!-- GRID COM 4 CARDS LADO A LADO               -->
         <!-- ========================================== -->
-        <div class="cards-grid">
+        <main class="cards-grid" role="main">
 
             <!-- CARD 1 - ARTIGO ORIGINAL -->
-            <div class="card">
+            <article class="card">
                 <h3>📄 Leitura do artigo original</h3>
                 <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
-                <a href="Broken Windows (Janelas Quebradas).pdf" class="btn" target="_blank">📖 Ler artigo (PDF) →</a>
-            </div>
+                <a 
+                    href="assets/pdfs/broken-windows-janelas-quebradas.pdf" 
+                    class="btn" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    onclick="return checkFile(this, 'PDF do artigo')"
+                >
+                    📖 Ler artigo (PDF) →
+                </a>
+            </article>
 
             <!-- CARD 2 - ILUSTRAÇÃO -->
-            <div class="card">
+            <article class="card">
                 <h3>🎨 Ilustração da Teoria</h3>
                 <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves, e como isso se traduz na gestão condominial.</p>
-                <a href="teoria-janelas.pdf" class="btn" target="_blank">🖼️ Ver ilustração →</a>
-            </div>
+                <a 
+                    href="assets/pdfs/teoria-janelas-ilustracao.pdf" 
+                    class="btn" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onclick="return checkFile(this, 'PDF da ilustração')"
+                >
+                    🖼️ Ver ilustração →
+                </a>
+            </article>
 
             <!-- CARD 3 - CONSELHO FISCAL -->
-            <div class="card">
+            <article class="card">
                 <h3>📋 Conselho Fiscal: Ferramentas Práticas</h3>
                 <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial desenvolvidas especialmente para síndicos, conselheiros e administradores.</p>
-                <div class="tags">
-                    <span class="tag">Checklists</span>
-                    <span class="tag">Auditoria</span>
-                    <span class="tag">Calculadora</span>
-                    <span class="tag">Quóruns</span>
-                    <span class="tag">Dashboard ESG</span>
-                    <span class="tag">Modelos Documentos</span>
+                <div class="tags" role="list">
+                    <span class="tag" role="listitem">Checklists</span>
+                    <span class="tag" role="listitem">Auditoria</span>
+                    <span class="tag" role="listitem">Calculadora</span>
+                    <span class="tag" role="listitem">Quóruns</span>
+                    <span class="tag" role="listitem">Dashboard ESG</span>
+                    <span class="tag" role="listitem">Modelos Documentos</span>
                 </div>
-                <a href="#" class="btn">📂 Acessar Repositório Completo →</a>
-                <p style="font-size: 0.7rem; margin-top: 0.5rem; opacity:0.7;">Repositório arquivado com todas as ferramentas do Conselho Fiscal</p>
-            </div>
+                <a 
+                    href="https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas" 
+                    class="btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📂 Acessar Repositório →
+                </a>
+                <p style="font-size: 0.75rem; margin-top: 0.6rem; opacity:0.75;">Repositório público com ferramentas para conselhos fiscais</p>
+            </article>
 
             <!-- CARD 4 - BUSCA INTELIGENTE (DESTAQUE) -->
-            <div class="card card-destaque">
+            <article class="card card-destaque">
                 <h3>🔍 Busque qualquer assunto do livro</h3>
                 <p>Digite uma palavra ou tema e encontre o trecho exato na hora.</p>
                 <p><strong>📌 Exemplos:</strong> janela quebrada, cheque especial, Porto Velho, depreciação, conselho fiscal.</p>
-                <a href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" class="btn btn-destaque" target="_blank">
+                <a 
+                    href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" 
+                    class="btn btn-destaque" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onclick="return checkExternalLink(this)"
+                >
                     🔎 Ir para a busca →
                 </a>
-            </div>
+            </article>
 
-        </div>
+        </main>
 
         <!-- Rodapé com instrução do QR Code -->
-        <div class="footer">
-            <p>© 2024 - <strong>Teoria das Janelas Quebradas no Condomínio</strong></p>
+        <footer class="footer">
+            <p>© <span id="year">2024</span> - <strong>Teoria das Janelas Quebradas no Condomínio</strong></p>
             <p>📱 <strong>QR Code no livro:</strong> Aponte a câmera do celular para este código e busque qualquer assunto do livro em segundos.</p>
             <p class="qr-hint">🔍 Busque por: "cheque especial", "Porto Velho", "conselho fiscal", "depreciação" - encontre a página exata</p>
-        </div>
+            <p style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.8;">
+                <a href="https://github.com/erigutembergmeneses-jpg" target="_blank" rel="noopener">Código-fonte no GitHub</a>
+            </p>
+        </footer>
     </div>
+
+    <!-- Scripts funcionais -->
+    <script>
+        // Atualiza ano automaticamente no rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Verifica se arquivo PDF existe antes de abrir (evita 404)
+        function checkFile(link, description) {
+            const url = link.href;
+            
+            // Em produção no GitHub Pages, tentamos abrir diretamente
+            // Em desenvolvimento local, você pode ativar esta verificação:
+            /*
+            fetch(url, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) throw new Error('Arquivo não encontrado');
+                    window.open(url, '_blank', 'noopener,noreferrer');
+                })
+                .catch(error => {
+                    alert(`⚠️ ${description} não encontrado em:\n${url}\n\nVerifique se o arquivo está na pasta correta.`);
+                    return false;
+                });
+            */
+            return true; // Permite o clique normal
+        }
+
+        // Verifica links externos com feedback visual
+        function checkExternalLink(link) {
+            link.style.opacity = '0.7';
+            link.textContent = '⏳ Carregando...';
+            
+            // Restaura após 2 segundos (caso a página demore)
+            setTimeout(() => {
+                link.style.opacity = '1';
+                link.innerHTML = '🔎 Ir para a busca →';
+            }, 2000);
+            
+            return true;
+        }
+
+        // Fallback para imagens: se o CSS background falhar, usa gradiente
+        document.addEventListener('DOMContentLoaded', function() {
+            const body = document.body;
+            const originalBg = body.style.backgroundImage;
+            
+            // Testa se a imagem de fundo carregou (aproximado)
+            const testImg = new Image();
+            testImg.onload = function() {
+                // Imagem carregou com sucesso
+            };
+            testImg.onerror = function() {
+                // Remove referência à imagem faltante, mantém apenas o gradiente
+                body.style.backgroundImage = 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)';
+            };
+            testImg.src = 'janelas-quebradas-bg.png';
+        });
+
+        // Acessibilidade: permite navegação por teclado nos cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    const link = this.querySelector('.btn');
+                    if (link) link.click();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
