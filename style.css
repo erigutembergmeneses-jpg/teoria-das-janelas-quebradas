@@ -375,3 +375,71 @@ footer {
         font-size: 0.95rem;
     }
 }
+/* Estilo para o card de busca */
+.busca-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.busca-card .card-icon {
+    font-size: 2.5rem;
+}
+
+.busca-card h3 {
+    color: white;
+}
+
+.busca-card p {
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+}
+
+.fake-search {
+    background: rgba(255,255,255,0.2);
+    border-radius: 40px;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+    backdrop-filter: blur(4px);
+}
+
+.fake-icon {
+    font-size: 1rem;
+}
+
+.fake-text {
+    color: white;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.busca-card .btn {
+    background: white;
+    color: #667eea;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bold;
+    transition: transform 0.2s;
+}
+
+.busca-card .btn:hover {
+    transform: scale(1.02);
+    background: #f0f0f0;
+}
+
+.qr-mini {
+    margin-top: 15px;
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+/* Responsivo: em celular, os cards empilham naturalmente */
+@media (max-width: 768px) {
+    .busca-card {
+        order: 4; /* Mantém a ordem correta */
+    }
+}
