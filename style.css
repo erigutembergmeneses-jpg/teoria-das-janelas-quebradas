@@ -443,3 +443,35 @@ footer {
         order: 4; /* Mantém a ordem correta */
     }
 }
+/* Container que organiza os cards em uma grade */
+.cards-grid {
+    display: grid;
+    /* Cria colunas flexíveis que se ajustam:
+       - Em telas grandes: 4 colunas iguais
+       - Em telas médias/pequenas: 2 ou 1 coluna */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem; /* Espaçamento entre os cards */
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+/* Classe para cada card individual - personalize cores/bordas conforme seu estilo original */
+.card-busca { /* ou o nome da classe que você usa nos cards atuais */
+    background: #f8f9fa;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-busca:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+/* Garante que os cards fiquem empilhados em celulares muito pequenos */
+@media (max-width: 480px) {
+    .cards-grid {
+        gap: 1rem;
+    }
+}
