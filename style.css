@@ -475,3 +475,55 @@ footer {
         gap: 1rem;
     }
 }
+/* Estilos para os botões dos cards */
+.btn-card {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: #2a5298;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.btn-card:hover {
+    background: #1e3c72;
+}
+
+/* Estilos para as tags do card 3 */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+.tags span {
+    background: #e0e0e0;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #333;
+}
+
+/* Destaque para o card de busca */
+.busca-destaque {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.busca-destaque h3,
+.busca-destaque p {
+    color: white;
+}
+
+.btn-busca {
+    background: white;
+    color: #667eea;
+}
+
+.btn-busca:hover {
+    background: #f0f0f0;
+}
