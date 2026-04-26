@@ -3,7 +3,7 @@ const resources = {
     pdf1: {
         title: 'Artigo Original - Broken Windows',
         text: 'Acesse o artigo completo "Broken Windows" de James Q. Wilson e George L. Kelling, que originou a teoria das janelas quebradas em 1982.',
-        url: 'Broken Windows (Janelas Quebradas).pdf',
+        url: 'Broken%20 Windows%20(Janelas%20Quebradas).pdf',
         icon: 'fa-file-pdf',
         type: 'pdf'
     },
