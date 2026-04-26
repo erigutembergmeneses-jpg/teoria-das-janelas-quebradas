@@ -15,13 +15,13 @@ const resources = {
     external: {
         title: 'Ferramentas de Gestão',
         text: 'Acesse ferramentas práticas de gestão condominial para implementação da teoria no seu condomínio.',
-        url: 'https://erigutembergmeneses-jpg.github.io/busca-livro-condominio',
+        url: 'https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas',
         icon: 'fa-cog'
     },
     about: {
         title: 'Aplicação Prática',
         text: 'A teoria das janelas quebradas aplicada a condomínios sugere que pequenos problemas não resolvidos criam um ambiente que incentiva problemas maiores. Manter a ordem e o cuidado com detalhes previne deterioração do ambiente condominial.',
-        url: null,
+        url: 'https://erigutembergmeneses-jpg.github.io/busca-livro-condominio',
         icon: 'fa-shield-alt'
     }
 };
@@ -81,9 +81,11 @@ function openResource(resourceKey) {
     if (resource.url) {
         modalAction.textContent = 'Acessar Agora';
         modalAction.onclick = () => {
-            if (resourceKey === 'external') {
+            if (resourceKey === 'external' || resourceKey === 'about') {
+                // Links externos abrem em nova aba
                 window.open(resource.url, '_blank');
             } else {
+                // PDFs abrem em nova aba
                 window.open(resource.url, '_blank');
             }
             closeModal();
