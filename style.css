@@ -420,3 +420,6 @@ body {
         padding: 40px 20px 30px;
     }
 }
+.modal-body p {
+    white-space: pre-line;  /* Preserva quebras de linha do texto */
+}
