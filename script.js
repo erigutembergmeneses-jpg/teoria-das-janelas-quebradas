@@ -32,7 +32,7 @@ const resources = {
     anexos: {
         title: 'Coletânea de Anexos',
         text: 'Checklists, roteiros, modelos de parecer, cláusulas LGPD, matriz de riscos e ferramentas práticas para governança condominial baseada na Teoria das Janelas Quebradas. Material auditável e juridicamente defensável.',
-        url: 'https://erigutembergmeneses-jpg.github.io/coletanea-anexos.pdf',
+        url: 'coletanea-anexos.pdf',
         icon: 'fa-clipboard-list',
         type: 'pdf'
     }
