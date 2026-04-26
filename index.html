@@ -21,7 +21,6 @@
             color: #e2e8f0;
             line-height: 1.5;
             min-height: 100vh;
-            /* Imagem de fundo do repositório */
             background-image: url('janelas-quebradas-bg.png');
             background-size: cover;
             background-position: center center;
@@ -29,7 +28,6 @@
             background-repeat: no-repeat;
         }
 
-        /* Overlay escuro sobre a imagem para garantir contraste do texto */
         body::before {
             content: '';
             position: fixed;
@@ -49,7 +47,6 @@
             z-index: 1;
         }
 
-        /* Cabeçalho */
         .header {
             text-align: center;
             margin-bottom: 3rem;
@@ -94,7 +91,6 @@
             padding-top: 0.75rem;
         }
 
-        /* Cards lado a lado (GRID) */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -158,7 +154,6 @@
             background: #2563eb;
         }
 
-        /* Seção de Busca */
         .search-section {
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(8px);
@@ -195,7 +190,6 @@
             border-color: #3b82f6;
         }
 
-        /* Rodapé */
         .footer {
             text-align: center;
             margin-top: 4rem;
@@ -223,7 +217,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="header">
             <div class="olho-container">
                 <svg class="olho-vigilante" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -234,34 +227,38 @@
             <div class="subtitle">Chamada à Ação em Condomínio • Gestão Financeira e Patrimonial</div>
         </div>
 
-        <!-- Cards LADO A LADO (quatro cards) -->
         <div class="cards-grid">
+            <!-- Card 1 - Artigo Original -->
             <div class="card">
                 <div class="card-icon">📄</div>
                 <h3>Leitura do artigo original</h3>
                 <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
-                <a href="Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank" class="btn-card">
-    Ler artigo (PDF) →
-</a>
+                <a href="./Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank" class="btn-card">
+                    Ler artigo (PDF) →
                 </a>
             </div>
+
+            <!-- Card 2 - Ilustração -->
             <div class="card">
                 <div class="card-icon">🖼️</div>
                 <h3>Ilustração da Teoria</h3>
                 <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves, e como isso se traduz na gestão condominial.</p>
-                <a href="teoria-janelas.pdf" target="_blank" class="btn-card">
-    Ver ilustração →
-</a>
+                <a href="./teoria-janelas.pdf" target="_blank" class="btn-card">
+                    Ver ilustração →
                 </a>
             </div>
+
+            <!-- Card 3 - Conselho Fiscal -->
             <div class="card">
                 <div class="card-icon">⚖️</div>
                 <h3>Conselho Fiscal: Ferramentas Práticas</h3>
                 <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial desenvolvidas especialmente para síndicos, conselheiros e administradores.</p>
-                <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas" target="_blank" class="btn-card">
+                <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" target="_blank" class="btn-card">
                     Acessar Repositório →
                 </a>
             </div>
+
+            <!-- Card 4 - Busca no livro -->
             <div class="card">
                 <div class="card-icon">🔎</div>
                 <h3>Busca no livro</h3>
@@ -270,21 +267,28 @@
                     Ir para a Busca →
                 </a>
             </div>
-        </div>
-
-        <!-- Seção de Busca (redundante, mas mantida para reforço) -->
-        <div class="search-section">
-            <h3>🔎 Busque qualquer assunto do livro</h3>
-            <p>Digite uma palavra ou tema e encontre o trecho exato na hora.<br>Exemplos: janela quebrada, cheque especial, Porto Velho, depreciação, conselho fiscal.</p>
-            <a href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" target="_blank" class="btn-search">
-                Ir para a busca →
-            </a>
-        </div>
-
-        <!-- Rodapé -->
+      
         <div class="footer">
             <p>📚 Teoria das Janelas Quebradas • Documentação oficial • Repositório público com ferramentas para conselhos fiscais</p>
         </div>
     </div>
+
+    <!-- Script para verificar se os PDFs existem e dar feedback no console -->
+    <script>
+        (function() {
+            const pdfs = [
+                './Broken%20Windows%20(Janelas%20Quebradas).pdf',
+                './teoria-janelas.pdf'
+            ];
+            pdfs.forEach(pdf => {
+                fetch(pdf, { method: 'HEAD' })
+                    .then(res => {
+                        if (res.ok) console.log(`✅ PDF encontrado: ${pdf}`);
+                        else console.warn(`❌ PDF NÃO encontrado: ${pdf} (status ${res.status})`);
+                    })
+                    .catch(err => console.error(`Erro ao verificar ${pdf}:`, err));
+            });
+        })();
+    </script>
 </body>
 </html>
