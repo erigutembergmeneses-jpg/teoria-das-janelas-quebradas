@@ -23,6 +23,13 @@ const resources = {
         text: 'Bem-vindo à busca inteligente!\n229 páginas indexadas e prontas para consulta.\n\nDigite qualquer palavra ou assunto no campo acima e encontre trechos exatos do livro.',
         url: 'https://erigutembergmeneses-jpg.github.io/busca-livro-condominio',
         icon: 'fa-search'
+    },
+    // ➕ NOVO RECURSO: Coletânea de Anexos
+    anexos: {
+        title: 'Coletânea de Anexos',
+        text: 'Checklists, roteiros, modelos de parecer, cláusulas LGPD, matriz de riscos e ferramentas práticas para governança condominial baseada na Teoria das Janelas Quebradas. Material auditável e juridicamente defensável.',
+        url: 'coletanea-anexos.pdf',
+        icon: 'fa-clipboard-list'
     }
 };
 
@@ -74,12 +81,31 @@ function openResource(resourceKey) {
     const modalAction = document.getElementById('modal-action');
     const modalIcon = document.querySelector('.modal-icon');
 
+    // Verifica se o recurso existe
+    if (!resource) {
+        modalTitle.textContent = 'Recurso Indisponível';
+        modalText.textContent = 'Este recurso não foi encontrado ou está em manutenção.';
+        modalIcon.className = 'fas fa-exclamation-triangle modal-icon';
+        modalAction.style.display = 'none';
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        return;
+    }
+
     modalTitle.textContent = resource.title;
     modalText.textContent = resource.text;
     modalIcon.className = `fas ${resource.icon} modal-icon`;
 
     if (resource.url) {
-        modalAction.textContent = 'Acessar Agora';
+        // Define texto do botão conforme o tipo de recurso
+        if (resourceKey === 'anexos') {
+            modalAction.textContent = 'Baixar PDF';
+        } else if (resourceKey === 'external' || resourceKey === 'about') {
+            modalAction.textContent = 'Acessar Agora';
+        } else {
+            modalAction.textContent = 'Abrir Documento';
+        }
+        
         modalAction.onclick = () => {
             if (resourceKey === 'external' || resourceKey === 'about') {
                 // Links externos abrem em nova aba
