@@ -1,294 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <meta name="description" content="Teoria das Janelas Quebradas aplicada à gestão de condomínios - Ferramentas para conselhos fiscais e síndicos.">
-    <title>Teoria das Janelas Quebradas - Gestão de Condomínios</title>
-    <style>
-        /* ========================================== */
-        /* TODOS OS ESTILOS ESTÃO AQUI DENTRO AGORA    */
-        /* ========================================== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            font-size: 16px;
-            color: #e2e8f0;
-            line-height: 1.5;
-            min-height: 100vh;
-            background-image: url('janelas-quebradas-bg.png');
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: -1;
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .olho-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            min-height: 80px;
-        }
-
-        .olho-vigilante {
-            width: 80px;
-            height: auto;
-            animation: piscar 4s infinite ease-in-out;
-        }
-
-        @keyframes piscar {
-            0%, 90%, 100% { opacity: 1; transform: scaleY(1); }
-            95% { opacity: 0.3; transform: scaleY(0.1); }
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            font-weight: 400;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            display: inline-block;
-            padding-top: 0.75rem;
-        }
-
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-
-        .card {
-            background: rgba(30, 41, 59, 0.85);
-            backdrop-filter: blur(8px);
-            border-radius: 24px;
-            padding: 1.8rem;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.4);
-            border-color: rgba(255, 255, 255, 0.3);
-            background: rgba(30, 41, 59, 0.95);
-        }
-
-        .card-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: white;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
-        }
-
-        .btn-card {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #3b82f6;
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 40px;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: background 0.2s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-card:hover {
-            background: #2563eb;
-        }
-
-        .search-section {
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(8px);
-            border-radius: 32px;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .search-section h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: white;
-        }
-
-        .search-section p {
-            color: #cbd5e1;
-            margin-bottom: 1.5rem;
-        }
-
-        .btn-search {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 0.75rem 1.5rem;
-            border-radius: 40px;
-            color: white;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .btn-search:hover {
-            background: #3b82f6;
-            border-color: #3b82f6;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        @media (max-width: 768px) {
-            .cards-grid {
-                gap: 1rem;
-            }
-            .card {
-                padding: 1.2rem;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            body {
-                background-attachment: scroll;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Teoria das Janelas Quebradas - Chamada à Ação em Condomínio">
+    <meta name="author" content="Eri Gutemberg Meneses">
+    <title>Teoria das Janelas Quebradas | Condomínio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="olho-container">
-                <svg class="olho-vigilante" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="#FBBF24"/>
-                </svg>
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="main-title">
+                    <span class="title-line">TEORIA DAS JANELAS</span>
+                    <span class="title-line highlight">QUEBRADAS</span>
+                </h1>
+                <p class="subtitle">Chamada à Ação em Condomínio</p>
             </div>
-            <h1>TEORIA DAS JANELAS<br>QUEBRADAS</h1>
-            <div class="subtitle">Chamada à Ação em Condomínio • Gestão Financeira e Patrimonial</div>
-        </div>
+        </header>
 
-        <div class="cards-grid">
-            <!-- Card 1 - Artigo Original -->
-            <div class="card">
-                <div class="card-icon">📄</div>
-                <h3>Leitura do artigo original</h3>
-                <p>Acesse o paper seminal de James Q. Wilson e George L. Kelling, que introduziu a metáfora das janelas quebradas e suas implicações na segurança pública e que aqui se aplica aos condomínios.</p>
-                <a href="./Broken%20Windows%20(Janelas%20Quebradas).pdf" target="_blank" class="btn-card">
-                    Ler artigo (PDF) →
-                </a>
+        <!-- Main Visual -->
+        <section class="main-visual">
+            <div class="shield-container">
+                <div class="shield">
+                    <div class="shield-inner">
+                        <div class="eye">
+                            <div class="pupil"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="broken-glass">
+                    <div class="crack crack-1"></div>
+                    <div class="crack crack-2"></div>
+                    <div class="crack crack-3"></div>
+                    <div class="crack crack-4"></div>
+                    <div class="crack crack-5"></div>
+                    <div class="crack crack-6"></div>
+                </div>
             </div>
+        </section>
 
-            <!-- Card 2 - Ilustração -->
-            <div class="card">
-                <div class="card-icon">🖼️</div>
-                <h3>Ilustração da Teoria</h3>
-                <p>Entenda visualmente como a desordem e a sensação de abandono podem estimular infrações mais graves, e como isso se traduz na gestão condominial.</p>
-                <a href="./teoria-janelas.pdf" target="_blank" class="btn-card">
-                    Ver ilustração →
-                </a>
-            </div>
+        <!-- Cards Section -->
+        <section class="cards-section">
+            <div class="cards-container">
+                <!-- Card 1: Artigo Original -->
+                <div class="card" data-card="1">
+                    <div class="card-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Artigo Original</h3>
+                        <p>Broken Windows - Leitura do artigo clássico que originou a teoria</p>
+                        <button class="card-button" onclick="openResource('pdf1')">
+                            <span>Acessar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
 
-            <!-- Card 3 - Conselho Fiscal -->
-            <div class="card">
-                <div class="card-icon">⚖️</div>
-                <h3>Conselho Fiscal: Ferramentas Práticas</h3>
-                <p>A Teoria das Janelas Quebradas é o primeiro passo. Agora, coloque-a em prática com ferramentas reais de gestão condominial desenvolvidas especialmente para síndicos, conselheiros e administradores.</p>
-                <a href="https://erigutembergmeneses-jpg.github.io/conselho-fiscal-condominio-das-contas/" target="_blank" class="btn-card">
-                    Acessar Repositório →
-                </a>
-            </div>
+                <!-- Card 2: Teoria Ilustrada -->
+                <div class="card" data-card="2">
+                    <div class="card-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Teoria Ilustrada</h3>
+                        <p>Compreenda de forma visual e prática a aplicação da teoria</p>
+                        <button class="card-button" onclick="openResource('pdf2')">
+                            <span>Acessar</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
 
-            <!-- Card 4 - Busca no livro -->
-            <div class="card">
-                <div class="card-icon">🔎</div>
-                <h3>Busca no livro</h3>
-                <p>Encontre rapidamente qualquer palavra ou conceito dentro do livro "Teoria das Janelas Quebradas" aplicado à gestão de condomínios.</p>
-                <a href="https://erigutembergmeneses-jpg.github.io/busca-livro-condominio/" target="_blank" class="btn-card">
-                    Ir para a Busca →
-                </a>
+                <!-- Card 3: Ferramentas de Gestão -->
+                <div class="card" data-card="3">
+                    <div class="card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Ferramentas de Gestão</h3>
+                        <p>Recursos práticos para implementação no seu condomínio</p>
+                        <button class="card-button" onclick="openResource('external')">
+                            <span>Acessar</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
+
+                <!-- Card 4: Sobre a Teoria -->
+                <div class="card" data-card="4">
+                    <div class="card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Aplicação Prática</h3>
+                        <p>Como aplicar a teoria das janelas quebradas no seu condomínio</p>
+                        <button class="card-button" onclick="openResource('about')">
+                            <span>Saiba Mais</span>
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                    </div>
+                    <div class="card-glow"></div>
+                </div>
             </div>
-      
-        <div class="footer">
-            <p>📚 Teoria das Janelas Quebradas • Documentação oficial • Repositório público com ferramentas para conselhos fiscais</p>
+        </section>
+
+        <!-- Info Section -->
+        <section class="info-section">
+            <div class="info-content">
+                <h2>O que é a Teoria das Janelas Quebradas?</h2>
+                <p>
+                    A teoria sugere que sinais visíveis de desordem e negligência em um ambiente, 
+                    como vandalismo, janelas quebradas ou graffiti, encorajam further crime e 
+                    desordem [[8]]. Em condomínios, isso se traduz na importância de manter 
+                    padrões de organização e cuidado com as áreas comuns.
+                </p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">17</div>
+                        <div class="stat-label">Domínios no Brasil</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Aplicável</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; 2026 Teoria das Janelas Quebradas. Todos os direitos reservados.</p>
+                <p class="footer-author">Desenvolvido por Eri Gutemberg Meneses</p>
+                <div class="social-links">
+                    <a href="https://github.com/erigutembergmeneses-jpg" target="_blank" aria-label="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-body">
+                <i class="fas fa-info-circle modal-icon"></i>
+                <h3 id="modal-title">Título</h3>
+                <p id="modal-text">Texto</p>
+                <button class="modal-button" id="modal-action">Acessar</button>
+            </div>
         </div>
     </div>
 
-    <!-- Script para verificar se os PDFs existem e dar feedback no console -->
-    <script>
-        (function() {
-            const pdfs = [
-                './Broken%20Windows%20(Janelas%20Quebradas).pdf',
-                './teoria-janelas.pdf'
-            ];
-            pdfs.forEach(pdf => {
-                fetch(pdf, { method: 'HEAD' })
-                    .then(res => {
-                        if (res.ok) console.log(`✅ PDF encontrado: ${pdf}`);
-                        else console.warn(`❌ PDF NÃO encontrado: ${pdf} (status ${res.status})`);
-                    })
-                    .catch(err => console.error(`Erro ao verificar ${pdf}:`, err));
-            });
-        })();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
