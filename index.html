@@ -21,10 +21,15 @@
             color: #e2e8f0;
             line-height: 1.5;
             min-height: 100vh;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            /* Imagem de fundo do repositório */
+            background-image: url('janelas-quebradas-bg.png');
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
         }
 
-        /* Overlay escuro sobre o fundo para melhor contraste */
+        /* Overlay escuro sobre a imagem para garantir contraste do texto */
         body::before {
             content: '';
             position: fixed;
@@ -32,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.7);
             z-index: -1;
         }
 
@@ -98,19 +103,19 @@
         }
 
         .card {
-            background: rgba(30, 41, 59, 0.8);
+            background: rgba(30, 41, 59, 0.85);
             backdrop-filter: blur(8px);
             border-radius: 24px;
             padding: 1.8rem;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(30, 41, 59, 0.9);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(30, 41, 59, 0.95);
         }
 
         .card-icon {
@@ -153,15 +158,15 @@
             background: #2563eb;
         }
 
-        /* Busca */
+        /* Seção de Busca */
         .search-section {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
             border-radius: 32px;
             padding: 2rem;
             text-align: center;
             margin-top: 2rem;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .search-section h3 {
@@ -171,7 +176,7 @@
         }
 
         .search-section p {
-            color: #94a3b8;
+            color: #cbd5e1;
             margin-bottom: 1.5rem;
         }
 
@@ -197,7 +202,7 @@
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             font-size: 0.8rem;
-            color: #64748b;
+            color: #94a3b8;
         }
 
         @media (max-width: 768px) {
@@ -209,6 +214,9 @@
             }
             h1 {
                 font-size: 1.8rem;
+            }
+            body {
+                background-attachment: scroll;
             }
         }
     </style>
@@ -226,7 +234,7 @@
             <div class="subtitle">Chamada à Ação em Condomínio • Gestão Financeira e Patrimonial</div>
         </div>
 
-        <!-- Cards LADO A LADO -->
+        <!-- Cards LADO A LADO (quatro cards) -->
         <div class="cards-grid">
             <div class="card">
                 <div class="card-icon">📄</div>
@@ -252,8 +260,6 @@
                     Acessar Repositório →
                 </a>
             </div>
-
-            <!-- QUARTO CARD: Ferramenta de Busca -->
             <div class="card">
                 <div class="card-icon">🔎</div>
                 <h3>Busca no livro</h3>
@@ -264,7 +270,7 @@
             </div>
         </div>
 
-        <!-- Seção de Busca -->
+        <!-- Seção de Busca (redundante, mas mantida para reforço) -->
         <div class="search-section">
             <h3>🔎 Busque qualquer assunto do livro</h3>
             <p>Digite uma palavra ou tema e encontre o trecho exato na hora.<br>Exemplos: janela quebrada, cheque especial, Porto Velho, depreciação, conselho fiscal.</p>
