@@ -16,11 +16,11 @@ const resources = {
         title: 'Ferramentas de Gestão',
         text: 'Acesse ferramentas práticas de gestão condominial para implementação da teoria no seu condomínio.',
         url: 'https://erigutembergmeneses-jpg.github.io/busca-livro-condominio',
-        icon: 'fa-external-link-alt'
+        icon: 'fa-cog'
     },
     about: {
         title: 'Aplicação Prática',
-        text: 'A teoria das janelas quebradas aplicada a condomínios sugere que pequenos problemas não resolvidos (como lixo acumulado, graffiti, áreas descuidadas) criam um ambiente que incentiva problemas maiores. Manter a ordem e o cuidado com detalhes previne deterioração do ambiente condominial.',
+        text: 'A teoria das janelas quebradas aplicada a condomínios sugere que pequenos problemas não resolvidos criam um ambiente que incentiva problemas maiores. Manter a ordem e o cuidado com detalhes previne deterioração do ambiente condominial.',
         url: null,
         icon: 'fa-shield-alt'
     }
@@ -54,13 +54,15 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
-    // Efeito de parallax no escudo
-    const shield = document.querySelector('.shield-container');
-    document.addEventListener('mousemove', (e) => {
-        const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-        const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-        shield.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-    });
+    // Efeito de parallax na imagem do escudo
+    const shield = document.querySelector('.vigilante-shield');
+    if (shield) {
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            shield.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    }
 });
 
 // Função para abrir recursos
@@ -116,67 +118,6 @@ document.addEventListener('keydown', (e) => {
         closeModal();
     }
 });
-
-// Efeito de digitação no subtítulo
-function typeWriter(element, text, speed = 50) {
-    let i = 0;
-    element.textContent = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Inicializar efeito de digitação após carregamento
-window.addEventListener('load', () => {
-    const subtitle = document.querySelector('.subtitle');
-    const originalText = subtitle.textContent;
-    setTimeout(() => {
-        typeWriter(subtitle, originalText, 30);
-    }, 1000);
-});
-
-// Animação de contagem para estatísticas
-function animateValue(obj, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const value = Math.floor(progress * (end - start) + start);
-        obj.innerHTML = value + (obj.dataset.suffix || '');
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-// Observar estatísticas para animar
-const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const finalValue = parseInt(stat.textContent);
-                const suffix = stat.textContent.includes('%') ? '%' : '';
-                stat.dataset.suffix = suffix;
-                animateValue(stat, 0, finalValue, 2000);
-            });
-            statsObserver.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.5 });
-
-const statsSection = document.querySelector('.stats');
-if (statsSection) {
-    statsObserver.observe(statsSection);
-}
 
 // Adicionar efeito de brilho ao mover mouse nos cards
 document.querySelectorAll('.card').forEach(card => {
