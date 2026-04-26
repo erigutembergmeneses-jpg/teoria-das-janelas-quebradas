@@ -19,10 +19,10 @@ const resources = {
         icon: 'fa-cog'
     },
     about: {
-        title: 'Aplicação Prática',
-        text: 'A teoria das janelas quebradas aplicada a condomínios sugere que pequenos problemas não resolvidos criam um ambiente que incentiva problemas maiores. Manter a ordem e o cuidado com detalhes previne deterioração do ambiente condominial.',
+        title: 'Busque qualquer palavra ou assunto dentro do livro',
+        text: 'Bem-vindo à busca inteligente!\n229 páginas indexadas e prontas para consulta.\n\nDigite qualquer palavra ou assunto no campo acima e encontre trechos exatos do livro.',
         url: 'https://erigutembergmeneses-jpg.github.io/busca-livro-condominio',
-        icon: 'fa-shield-alt'
+        icon: 'fa-search'
     }
 };
 
