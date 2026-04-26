@@ -1,29 +1,48 @@
-# JanelasQuebradas-Docs
+# Teoria das Janelas Quebradas - Condomínio
 
-Este repositório contém a documentação e recursos visuais para o projeto de conscientização sobre a **Teoria das Janelas Quebradas** aplicada à segurança em condomínios.
+![Teoria das Janelas Quebradas](https://img.shields.io/badge/Teoria-Janelas%20Quebradas-gold?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Ativo-brightgreen?style=for-the-badge)
+![Versão](https://img.shields.io/badge/Versão-1.0.0-blue?style=for-the-badge)
 
-## Sobre o Projeto
+## 📋 Sobre o Projeto
 
-Baseado no artigo seminal de **James Q. Wilson** e **George L. Kelling** (1982), este material visa ilustrar como a desordem visível e a sensação de abandono podem incentivar comportamentos criminosos.
+Este site apresenta a **Teoria das Janelas Quebradas** (Broken Windows Theory) aplicada à gestão de condomínios. A teoria, desenvolvida por James Q. Wilson e George L. Kelling em 1982, sugere que sinais visíveis de desordem e negligência em um ambiente encorajam further crime e desordem [[8]].
 
-A metáfora sugere que se uma janela quebrada em um prédio não for reparada, logo todas as outras janelas estarão quebradas. Da mesma forma, pequenos problemas não resolvidos em um condomínio (lâmpadas queimadas, pichações, lixo) sinalizam descaso, encorajando infrações mais graves.
+### 🔍 O que é a Teoria?
 
-## Estrutura do Arquivo
+A teoria das janelas quebradas postula que:
+- Pequenos problemas não resolvidos criam um ambiente de deterioração
+- A falta de cuidado com detalhes incentiva problemas maiores
+- Em condomínios, a manutenção da ordem previne a degradação do ambiente
 
-A página web incluída neste repositório serve como uma página de destino (landing page) para o material.
+## 📁 Estrutura do Repositório
+teoria-das-janelas-quebradas/
+├── index.html # Página principal
+├── style.css # Estilização moderna e responsiva
+├── script.js # Funcionalidades interativas
+├── README.md # Este arquivo
+├── Broken Windows (Janelas Quebradas).pdf # Artigo original
+├── teoria-janelas.pdf # Teoria ilustrada
+├── janelas-quebradas-bg.png # Imagem de fundo
+└── olho-vigilante.png # Ícone do escudo
 
-- `index.html`: Estrutura principal da página.
-- `style.css`: Estilização com tema escuro e cards flutuantes.
-- `script.js`: Interatividade básica e animações.
-- `Broken Windows (Janelas Quebradas).pdf`: O paper original de Wilson & Kelling.
-- `teoria-janelas.pdf`: Material visual/infográfico explicativo.
+## 🎯 Recursos Disponíveis
 
-## Como Usar
+### 1. **Artigo Original**
+Leitura completa do artigo "Broken Windows" que originou a teoria.
 
-1. Clone o repositório.
-2. Abra o arquivo `index.html` em qualquer navegador moderno.
-3. Utilize os botões na tela para baixar o artigo original ou a ilustração da teoria.
+### 2. **Teoria Ilustrada**
+Material visual explicando a aplicação prática em condomínios.
 
-## Citação
+### 3. **Ferramentas de Gestão**
+Acesse ferramentas práticas em: 
+🔗 [Busca Livro Condomínio](https://erigutembergmeneses-jpg.github.io/busca-livro-condominio)
 
-> "A desordem visível incentiva o crime" — Wilson & Kelling, 1982
+### 4. **Aplicação Prática**
+Guia de implementação da teoria no seu condomínio.
+
+## 🚀 Como Usar
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/erigutembergmeneses-jpg/teoria-das-janelas-quebradas.git
